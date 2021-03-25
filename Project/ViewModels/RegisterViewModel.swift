@@ -18,14 +18,15 @@ class RegisterViewModel: ViewModelProtocol {
     }
     
     struct Output {
-        
+        let errorsObservable: Observable<String> = Observable()
+        let successObservable: Observable<Bool> = Observable()
     }
     
     // MARK: - Public properties
     let input: Input
     let output: Output
     
-    init() {
+    init(registrationService: RegistrationService) {
         self.input = Input()
         self.output = Output()
     }

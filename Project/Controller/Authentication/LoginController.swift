@@ -99,48 +99,7 @@ class LoginController: BaseViewController, ControllerType {
         // set up navigation bar
         self.navigationController?.navigationBar.barStyle = .black
         self.navigationController?.navigationBar.isHidden = true
-        
-        // content view contraints
-        self.view.addSubview(self.loginView)
-        self.loginView.centerX(inView: self.view)
-        self.loginView.centerY(inView: self.view, leftAnchor: self.view.leftAnchor, paddingLeft: 32)
-        
-        self.loginView.addSubview(self.logoImageFrameHoldView)
-        self.logoImageFrameHoldView.setDimensions(width: 100, height: 100)
-        self.logoImageFrameHoldView.centerX(inView: self.loginView, topAnchor: self.loginView.topAnchor, paddingTop: 20)
-        
-        // stack view.
-        let stackView = UIStackView(arrangedSubviews: [self.emailContainerView,
-                                                       self.passwordContainerView,
-                                                       self.loginButton])
-        
-        stackView.axis = .vertical
-        stackView.spacing = 20
-        stackView.distribution = .fillEqually
-        
-        self.loginView.addSubview(stackView)
-        stackView.anchor(top: self.logoImageFrameHoldView.bottomAnchor, left: self.loginView.leftAnchor, bottom: self.loginView.bottomAnchor, right: self.loginView.rightAnchor, paddingTop: 20, paddingBottom: 20)
-        
-        // logo image constaints
-        self.loginView.addSubview(self.logoImageView)
-        self.logoImageView.setDimensions(width: 100, height: 100)
-        self.logoImageView.centerX(inView: self.loginView)
-        self.logoImageViewCenterY = self.logoImageView.centerYAnchor.constraint(equalTo: self.loginView.centerYAnchor)
-        self.logoImageViewCenterY?.isActive = true
-
-        // activity.
-        self.loginView.addSubview(self.activityIndicator)
-        self.activityIndicator.centerY(inView: self.loginButton)
-        self.activityIndicator.anchor(right: self.loginButton.rightAnchor, paddingRight: 10, width: 30, height: 30)
-        
-        // register button constraints
-        self.view.addSubview(self.dontHaveAccountButton)
-        self.dontHaveAccountButton.anchor(left: self.view.leftAnchor, bottom: self.view.safeAreaLayoutGuide.bottomAnchor, paddingLeft: 40)
-        self.dontHaveAccountButton.centerX(inView: self.view)
-        
-        loginView.transform = CGAffineTransform(scaleX: 0, y: 0)
-        
-        self.addInputAccessoryForTextFields(textFields: [self.emailTextField, self.passwordTextField], dismissable: true, previousNextable: true)
+        self.addUIConstraints()
     }
     
     override func viewDidLayoutSubviews() {
@@ -200,7 +159,8 @@ extension LoginController {
         }
         
         self.dontHaveAccountButton.bind { button in
-            let regiterViewModel = RegisterViewModel()
+            let registrationService = RegistrationService()
+            let regiterViewModel = RegisterViewModel(registrationService: registrationService)
             let registrationController = RegistrationController.create(with: regiterViewModel)
             self.navigationController?.pushViewController(registrationController, animated: true)
         }
@@ -244,5 +204,49 @@ extension LoginController {
         self.moveLogoAnimator.addCompletion { final in
             self.logoImageView.topAnchor.constraint(equalTo: self.loginView.topAnchor, constant: 20).isActive = true
         }
+    }
+    
+    private func addUIConstraints() {
+        // content view contraints
+        self.view.addSubview(self.loginView)
+        self.loginView.centerX(inView: self.view)
+        self.loginView.centerY(inView: self.view, leftAnchor: self.view.leftAnchor, paddingLeft: 32)
+        
+        self.loginView.addSubview(self.logoImageFrameHoldView)
+        self.logoImageFrameHoldView.setDimensions(width: 100, height: 100)
+        self.logoImageFrameHoldView.centerX(inView: self.loginView, topAnchor: self.loginView.topAnchor, paddingTop: 20)
+        
+        // stack view.
+        let stackView = UIStackView(arrangedSubviews: [self.emailContainerView,
+                                                       self.passwordContainerView,
+                                                       self.loginButton])
+        
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        stackView.distribution = .fillEqually
+        
+        self.loginView.addSubview(stackView)
+        stackView.anchor(top: self.logoImageFrameHoldView.bottomAnchor, left: self.loginView.leftAnchor, bottom: self.loginView.bottomAnchor, right: self.loginView.rightAnchor, paddingTop: 20, paddingBottom: 20)
+        
+        // logo image constaints
+        self.loginView.addSubview(self.logoImageView)
+        self.logoImageView.setDimensions(width: 100, height: 100)
+        self.logoImageView.centerX(inView: self.loginView)
+        self.logoImageViewCenterY = self.logoImageView.centerYAnchor.constraint(equalTo: self.loginView.centerYAnchor)
+        self.logoImageViewCenterY?.isActive = true
+
+        // activity.
+        self.loginView.addSubview(self.activityIndicator)
+        self.activityIndicator.centerY(inView: self.loginButton)
+        self.activityIndicator.anchor(right: self.loginButton.rightAnchor, paddingRight: 10, width: 30, height: 30)
+        
+        // register button constraints
+        self.view.addSubview(self.dontHaveAccountButton)
+        self.dontHaveAccountButton.anchor(left: self.view.leftAnchor, bottom: self.view.safeAreaLayoutGuide.bottomAnchor, paddingLeft: 40)
+        self.dontHaveAccountButton.centerX(inView: self.view)
+        
+        loginView.transform = CGAffineTransform(scaleX: 0, y: 0)
+        
+        self.addInputAccessoryForTextFields(textFields: [self.emailTextField, self.passwordTextField], dismissable: true, previousNextable: true)
     }
 }
