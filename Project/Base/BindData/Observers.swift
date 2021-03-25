@@ -45,30 +45,3 @@ class Observable<T> {
     }
     
 }
-
-
-class Dynamic<T>: Codable where T : Codable {
-    
-    typealias Listener = (T) -> ()
-    var listener: Listener?
-    
-    var value: T {
-        didSet {
-            listener?(value)
-        }
-    }
-    
-    func bind(_ listener: @escaping Listener) {
-        self.listener = listener
-        self.listener?(value)
-    }
-    
-    init(_ value: T) {
-        self.value = value
-    }
-    
-    private enum CodingKeys: CodingKey {
-        case value
-    }
-    
-}
