@@ -46,14 +46,14 @@ class LoginViewModel: ViewModelProtocol {
                 return
             }
             
-            AuthService.shared.login(email: email, password: password) { (result, error) in
+            loginService.login(email: email, password: password) { (result, error) in
                 if let error = error {
                     self.output.errorsObservable.value = error.localizedDescription
                     return
                 }
                 self.output.successObservable.value = true
             }
-
+            
         }
     }
 }

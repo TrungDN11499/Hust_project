@@ -1,28 +1,37 @@
 //
-//  AuthService.swift
+//  RegistrationService.swift
 //  Project
 //
-//  Created by Be More on 9/30/20.
+//  Created by Be More on 25/03/2021.
 //
 
+import Foundation
 import UIKit
-import Firebase
-import FirebaseAuth
 import FirebaseDatabase
-import FirebaseStorage
+import FirebaseAuth
 
-struct AuthService {
-    static let shared = AuthService()
-    
-    func login(email: String, password: String, completion: @escaping(AuthDataResult?, Error?) -> ()) {
-        Auth.auth().signIn(withEmail: email, password: password, completion: completion)
-    }
-    
-    func registerUser(credentials: AuthCredentials, completion: @escaping(Error?, DatabaseReference) -> Void) {
-        guard let imageData = credentials.profileImage.jpegData(compressionQuality: 0.3) else { return }
+struct AuthCredentials {
+    let email: String
+    let password: String
+    let username: String
+    let fullName: String
+    let profileImage: UIImage
+}
+
+protocol RegistrationServiceProtocol {
+    func register(credentials: AuthCredentials, completion: @escaping(Error?, DatabaseReference) -> Void)
+}
+
+class RegistrationService: RegistrationServiceProtocol {
+    func register(credentials: AuthCredentials, completion: @escaping (Error?, DatabaseReference) -> Void) {
+        guard let imageData = credentials.profileImage.jpegData(compressionQuality: 0.1) else { return }
         let fileName = NSUUID().uuidString
         let storagre = STORAGE_PROFILE_IMAGES.child(fileName)
         storagre.putData(imageData, metadata: nil) { (metaData, error) in
+            if let error = error {
+                completion(error, DatabaseReference())
+                return
+            }
             storagre.downloadURL { (url, error) in
                 
                 guard let imageUrl = url?.absoluteString else { return }
@@ -48,5 +57,4 @@ struct AuthService {
             }
         }
     }
-    
 }

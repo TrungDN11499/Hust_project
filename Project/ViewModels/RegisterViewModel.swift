@@ -14,6 +14,7 @@ class RegisterViewModel: ViewModelProtocol {
         let password: Observable<String> = Observable()
         let fullName: Observable<String> = Observable()
         let userName: Observable<String> = Observable()
+        let registerDidTap: Observable<Any> = Observable()
     }
     
     struct Output {

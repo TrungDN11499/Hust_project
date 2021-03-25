@@ -26,6 +26,7 @@
 		FA2C25CF2532DEC30042EC43 /* Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C25CE2532DEC30042EC43 /* Observers.swift */; };
 		FA2C25DC2532F6900042EC43 /* BindingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C25DB2532F6900042EC43 /* BindingButton.swift */; };
 		FA2C25E1253309450042EC43 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C25E0253309450042EC43 /* RegisterViewModel.swift */; };
+		FA3CABB3260CE8DC009FC9B7 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3CABB2260CE8DC009FC9B7 /* RegistrationService.swift */; };
 		FA40810D253A01D9003DF3D7 /* ProfileFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA40810C253A01D9003DF3D7 /* ProfileFilterView.swift */; };
 		FA408112253A04A8003DF3D7 /* ProfileFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA408111253A04A8003DF3D7 /* ProfileFilterCell.swift */; };
 		FA408117253A0F09003DF3D7 /* ProfileHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA408116253A0F09003DF3D7 /* ProfileHeaderViewModel.swift */; };
@@ -122,6 +123,7 @@
 		FA2C25CE2532DEC30042EC43 /* Observers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observers.swift; sourceTree = "<group>"; };
 		FA2C25DB2532F6900042EC43 /* BindingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingButton.swift; sourceTree = "<group>"; };
 		FA2C25E0253309450042EC43 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		FA3CABB2260CE8DC009FC9B7 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		FA40810C253A01D9003DF3D7 /* ProfileFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilterView.swift; sourceTree = "<group>"; };
 		FA408111253A04A8003DF3D7 /* ProfileFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilterCell.swift; sourceTree = "<group>"; };
 		FA408116253A0F09003DF3D7 /* ProfileHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModel.swift; sourceTree = "<group>"; };
@@ -275,6 +277,14 @@
 				FA2C25C72532CC1A0042EC43 /* LoginService.swift */,
 			);
 			path = LoginService;
+			sourceTree = "<group>";
+		};
+		FA3CABB1260CE6B4009FC9B7 /* RegistrationService */ = {
+			isa = PBXGroup;
+			children = (
+				FA3CABB2260CE8DC009FC9B7 /* RegistrationService.swift */,
+			);
+			path = RegistrationService;
 			sourceTree = "<group>";
 		};
 		FA66C5DA2523822C00C31151 /* Authentication */ = {
@@ -439,6 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				FA2C25C62532CC090042EC43 /* LoginService */,
+				FA3CABB1260CE6B4009FC9B7 /* RegistrationService */,
 				FAA3626B2524EE0500580FE2 /* AuthService.swift */,
 				FA0DC9F6252658C400377539 /* UserService.swift */,
 				FA9B7CFE25361604006DFFA2 /* TweetService.swift */,
@@ -804,6 +815,7 @@
 				FAFD58A725208D9C006E4F94 /* SceneDelegate.swift in Sources */,
 				FA576D48253F56A10069BA96 /* NotificationViewModel.swift in Sources */,
 				FA684A24260903670044B082 /* StringExtension.swift in Sources */,
+				FA3CABB3260CE8DC009FC9B7 /* RegistrationService.swift in Sources */,
 				FA576D39253F3A770069BA96 /* Notification.swift in Sources */,
 				FAFDD725254E5039000C39FF /* UIColorExention.swift in Sources */,
 				FA875FA1260B7F98006DCBA9 /* DLog.swift in Sources */,
