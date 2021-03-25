@@ -225,7 +225,8 @@ extension ProfileController: ProfileHeaderViewDelegate {
     }
     
     func gotoLoginController() {
-        let loginControllerViewModel = LoginViewModel()
+        let loginService = LoginService()
+        let loginControllerViewModel = LoginViewModel(loginService: loginService)
         let loginController = LoginController.create(with: loginControllerViewModel)
         if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
             sceneDelegate.changeRootViewController(view: loginController)
@@ -235,7 +236,6 @@ extension ProfileController: ProfileHeaderViewDelegate {
 }
 
 // MARK: - EditProfileControllerDelegate.
-
 extension ProfileController: EditProfileControllerDelegate {
     
     func handleLogout() {
@@ -243,7 +243,7 @@ extension ProfileController: EditProfileControllerDelegate {
             try Auth.auth().signOut()
             self.gotoLoginController()
         } catch {
-            print("Logout fail.")
+            dLogWarning("sign out error")
         }
     }
     

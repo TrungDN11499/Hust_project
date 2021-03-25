@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 protocol TweetCellDelegate: class {
     func handleProfileImageTapped(_ cell: TweetCell)

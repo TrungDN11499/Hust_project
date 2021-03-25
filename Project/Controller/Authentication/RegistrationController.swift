@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class RegistrationController: BaseViewController {
+class RegistrationController: BaseViewController, ControllerType {
     
     typealias ViewModelType = RegisterViewModel
 
@@ -192,7 +192,7 @@ class RegistrationController: BaseViewController {
         self.imagePicker.allowsEditing = true
     }
     
-    private func configureUI() {
+    override func configureUI() {
         
         // register view contraints
         self.view.addSubview(self.registerView)

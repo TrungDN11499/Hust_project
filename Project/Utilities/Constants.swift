@@ -36,6 +36,8 @@ let REF_NOTIFICATION = DB_REF.child("notifications")
 
 let REF_USER_REPLIES = DB_REF.child("user-replies")
 
+let EXECUTE_SIGNAL = "execute" 
+
 extension UIColor {
     /// app main color
     static let twitterBlue = UIColor.rgb(red: 29, green: 161, blue: 242)

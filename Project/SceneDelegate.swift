@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: scene)
     
         if Auth.auth().currentUser == nil {
-            self.toLogin(view: UINavigationController(rootViewController: LoginController()))
+            self.toLogin()
         } else {
             self.window?.rootViewController = SplashViewController()
         }
@@ -29,8 +29,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.makeKeyAndVisible()
     }
 
-    func toLogin(view: UIViewController) {
-        let loginControllerViewModel = LoginViewModel()
+    func toLogin() {
+        let loginService = LoginService()
+        let loginControllerViewModel = LoginViewModel(loginService: loginService)
         let loginController = LoginController.create(with: loginControllerViewModel)
         self.window?.rootViewController = loginController
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BMTableViewCell: UITableViewCell {
+class BaseTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
@@ -52,16 +52,16 @@ class BMTableViewCell: UITableViewCell {
         tableView.register(nib, forCellReuseIdentifier: self.identifier())
     }
 
-    static func loadCell(_ tableView: UITableView) -> BMTableViewCell {
-        guard let cell = (tableView.dequeueReusableCell(withIdentifier: self.identifier()) as? BMTableViewCell) else {
-            return BMTableViewCell()
+    static func loadCell(_ tableView: UITableView) -> BaseTableViewCell {
+        guard let cell = (tableView.dequeueReusableCell(withIdentifier: self.identifier()) as? BaseTableViewCell) else {
+            return BaseTableViewCell()
         }
         return cell
     }
 
-    static func loadCell(_ tableView: UITableView, indexPath: IndexPath) -> BMTableViewCell {
-        guard let cell = (tableView.dequeueReusableCell(withIdentifier: self.identifier(), for: indexPath) as? BMTableViewCell) else {
-            return BMTableViewCell()
+    static func loadCell(_ tableView: UITableView, indexPath: IndexPath) -> BaseTableViewCell {
+        guard let cell = (tableView.dequeueReusableCell(withIdentifier: self.identifier(), for: indexPath) as? BaseTableViewCell) else {
+            return BaseTableViewCell()
         }
         return cell
     }

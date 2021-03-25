@@ -11,12 +11,20 @@ class Observable<T> {
     
     typealias Observer = (_ observable: Observable<T>, T) -> ()
     
-    private var observers: [Observer]
+    var observers: [Observer]
     
     public var value: T? {
         didSet {
             if let value = value {
                 notifyObservers(value)
+            }
+        }
+    }
+    
+    func excecute() {
+        if !self.observers.isEmpty {
+            self.observers.forEach { [unowned self](observer) in
+                observer(self, EXECUTE_SIGNAL as! T)
             }
         }
     }

@@ -8,7 +8,7 @@
 import Foundation
 
 class RegisterViewModel: ViewModelProtocol {
-    
+        
     struct Input {
         let email: Observable<String> = Observable()
         let password: Observable<String> = Observable()
@@ -16,10 +16,18 @@ class RegisterViewModel: ViewModelProtocol {
         let userName: Observable<String> = Observable()
     }
     
+    struct Output {
+        
+    }
+    
     // MARK: - Public properties
     let input: Input
+    let output: Output
     
     init() {
-        input = Input()
+        self.input = Input()
+        self.output = Output()
     }
+    
+    
 }

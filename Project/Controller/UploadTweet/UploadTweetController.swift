@@ -128,7 +128,7 @@ class UploadTweetController: BaseViewController {
     }
     
     /// set up ui
-    private func configureUI() {
+    override func configureUI() {
         self.configureNavigationBar()
         
         let imageCaptionStack = UIStackView(arrangedSubviews: [self.profileImageView, self.captionTextView])

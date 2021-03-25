@@ -8,8 +8,88 @@
 import Foundation
 import UIKit
 
-// MARK: - Programatically constraints
+// MARK: - IBInspectable
+extension UIView {
+    @IBInspectable var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            self.clipsToBounds = true
+            layer.cornerRadius = newValue
+        }
+    }
+    
+    @IBInspectable var borderWidth: CGFloat {
+        get {
+            return layer.borderWidth
+        }
+        set {
+            layer.borderWidth = newValue
+        }
+    }
+    
+    @IBInspectable var borderColor: UIColor? {
+        get {
+            if let color = layer.borderColor {
+                return UIColor(cgColor: color)
+            }
+            return nil
+        }
+        set {
+            if let color = newValue {
+                layer.borderColor = color.cgColor
+            } else {
+                layer.borderColor = nil
+            }
+        }
+    }
+    
+    @IBInspectable var shadowRadius: CGFloat {
+        get {
+            return layer.shadowRadius
+        }
+        set {
+            layer.shadowRadius = newValue
+        }
+    }
+    
+    @IBInspectable var shadowOpacity: Float {
+        get {
+            return layer.shadowOpacity
+        }
+        set {
+            layer.shadowOpacity = newValue
+        }
+    }
+    
+    @IBInspectable var shadowOffset: CGSize {
+        get {
+            return layer.shadowOffset
+        }
+        set {
+            layer.shadowOffset = newValue
+        }
+    }
+    
+    @IBInspectable var shadowColor: UIColor? {
+        get {
+            if let color = layer.shadowColor {
+                return UIColor(cgColor: color)
+            }
+            return nil
+        }
+        set {
+            if let color = newValue {
+                layer.shadowColor = color.cgColor
+            } else {
+                layer.shadowColor = nil
+            }
+        }
+    }
+}
 
+// MARK: - Programatically constraints
 extension UIView {
 
     /// Add constraints programatically.
@@ -126,7 +206,7 @@ extension UIView {
         anchor(top: view.topAnchor, left: view.leftAnchor,
                bottom: view.bottomAnchor, right: view.rightAnchor)
     }
-    
+   
     /// Constraints by visual format.
     ///
     /// - Parameters:
@@ -141,6 +221,12 @@ extension UIView {
             viewDictionaries[key] = view
         }
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewDictionaries))
+    }
+    
+    /// fill superview
+    func fillSuperView() {
+        self.superview?.addVisualFormatConstraint(format: "H:|[v0]|", views: self)
+        self.superview?.addVisualFormatConstraint(format: "V:|[v0]|", views: self)
     }
     
 }

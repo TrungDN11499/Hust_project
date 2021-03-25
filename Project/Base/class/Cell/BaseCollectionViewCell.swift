@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BMCollectionViewCell: UICollectionViewCell {
+class BaseCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties.
     
@@ -52,9 +52,9 @@ class BMCollectionViewCell: UICollectionViewCell {
         collectionView.register(self.self, forCellWithReuseIdentifier: self.nibName())
     }
     
-    static func loadCell(collectionView: UICollectionView, indexPath: IndexPath) -> BMCollectionViewCell? {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.nibName(), for: indexPath) as? BMCollectionViewCell else {
-            return BMCollectionViewCell()
+    static func loadCell(collectionView: UICollectionView, indexPath: IndexPath) -> BaseCollectionViewCell? {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.nibName(), for: indexPath) as? BaseCollectionViewCell else {
+            return BaseCollectionViewCell()
         }
         return cell
     }

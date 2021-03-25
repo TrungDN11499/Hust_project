@@ -52,6 +52,10 @@ extension UIViewController {
         }
     }
     
+    /// present alert with one button
+    /// - Parameters:
+    ///   - error: errort to present
+    /// - Returns: Voic
     func presentError(_ error: Error) {
         let alertController = UIAlertController(title: "Error",
                                                 message: error.localizedDescription,
@@ -60,6 +64,10 @@ extension UIViewController {
         self.present(alertController, animated: true)
     }
     
+    /// present message with one button
+    /// - Parameters:
+    ///   - message: message to present
+    /// - Returns: Void
     func presentMessage(_ message: String) {
         let alertController = UIAlertController(title: "Message",
                                                 message: message,
@@ -68,6 +76,10 @@ extension UIViewController {
         self.present(alertController, animated: true)
     }
     
+    /// present message with two buttons
+    /// - Parameters:
+    ///   - message: message to present
+    /// - Returns: Void
     func presentMessage(_ message: String, handler: ((UIAlertAction) -> Void)?) {
         let alertController = UIAlertController(title: "Message",
                                                 message: message,

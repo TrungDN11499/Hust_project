@@ -9,7 +9,7 @@ import UIKit
 
 class BindingTextField: UITextField {
     
-    var textChangeClosure: (String) -> () = { _ in }
+    private var completion: (String) -> () = { _ in }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,18 +21,23 @@ class BindingTextField: UITextField {
         commondInit()
     }
     
+    init(controlEvent: UIControl.Event) {
+        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        self.addTarget(self, action: #selector(handleGesture(_:)), for: controlEvent)
+    }
+    
     private func commondInit() {
-        self.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        self.addTarget(self, action: #selector(handleGesture(_:)), for: .editingChanged)
     }
     
     func bind(callBack: @escaping (String) -> ()) {
-        self.textChangeClosure = callBack
+        self.completion = callBack
     }
     
-    @objc private func textFieldDidChange(_ sender: UITextField) {
+    @objc private func handleGesture(_ sender: UITextField) {
         guard let text = sender.text else { return }
-        print(text)
-        self.textChangeClosure(text)
+        dLogDebug(text)
+        self.completion(text)
     }
 }
 

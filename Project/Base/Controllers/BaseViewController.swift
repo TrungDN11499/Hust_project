@@ -14,6 +14,8 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureView()
+        self.bindViewModel()
+        self.configureUI()
     }
     
     // MARK: - Selectors
@@ -23,11 +25,22 @@ class BaseViewController: UIViewController {
     }
     
     // MARK: - Helpers
-    
+    /// for configuring  view options
     func configureView() {
         self.view.backgroundColor = .white
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleResignFirstResponder)))
     }
+    
+    /// for programmatically configuring UI
+    func configureUI() {
+        
+    }
+    
+    /// for binding view model
+    func bindViewModel() {
+        
+    }
+    
     
     func changeRootViewControllerTo(rootViewController: UIViewController, withOption options: UIView.AnimationOptions = .curveLinear, duration: TimeInterval = 0) {
         
@@ -45,4 +58,6 @@ class BaseViewController: UIViewController {
                           animations: {},
                           completion:{ completed in })
     }
+    
+    
 }
