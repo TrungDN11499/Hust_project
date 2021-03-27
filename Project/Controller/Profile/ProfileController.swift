@@ -231,6 +231,10 @@ extension ProfileController: ProfileHeaderViewDelegate {
         if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
             sceneDelegate.changeRootViewController(view: loginController)
         }
+        
+        self.changeRootViewControllerTo(rootViewController: loginController,
+                                        withOption: .transitionCrossDissolve,
+                                        duration: 0.2)
     }
     
 }

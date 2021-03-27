@@ -41,23 +41,13 @@ class BaseViewController: UIViewController {
         
     }
     
-    
-    func changeRootViewControllerTo(rootViewController: UIViewController, withOption options: UIView.AnimationOptions = .curveLinear, duration: TimeInterval = 0) {
-        
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let sceneDelegate = windowScene.delegate as? SceneDelegate
-        else {
-            return
-        }
-    
-        sceneDelegate.window?.rootViewController = rootViewController
-        
-        UIView.transition(with: sceneDelegate.window!,
-                          duration: duration,
-                          options: options,
-                          animations: {},
-                          completion:{ completed in })
+    // go to home viewController
+    /// - Returns: Void
+    func gotoHomeController() {
+        let homeViewController = MainTabBarController()
+        self.changeRootViewControllerTo(rootViewController: homeViewController,
+                                        withOption: .transitionCrossDissolve,
+                                        duration: 0.2)
     }
-    
     
 }

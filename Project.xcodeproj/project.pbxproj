@@ -461,8 +461,8 @@
 		FAFD58DB25208ED4006E4F94 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FAB9759C2602F86D006A66BB /* Splash */,
 				FAFD58E225208F9C006E4F94 /* MainTabBarController.swift */,
+				FAB9759C2602F86D006A66BB /* Splash */,
 				FA9B7CF32535E7DE006DFFA2 /* UploadTweet */,
 				FA66C5DA2523822C00C31151 /* Authentication */,
 				FAFD591125209480006E4F94 /* Feeds */,

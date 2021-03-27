@@ -86,7 +86,6 @@ class LoginController: BaseViewController, ControllerType {
     private lazy var dontHaveAccountButton: BindingButton = {
         let button = Utilities().attributeButton("Don't have an account? ", "Sign Up")
         button.alpha = 0
-        button.addTarget(self, action: #selector(handleShowSignUp(_:)), for: .touchUpInside)
         return button
     }()
   
@@ -122,9 +121,6 @@ class LoginController: BaseViewController, ControllerType {
         }
     }
 
-    @objc private func handleShowSignUp(_ sender: UIButton) {
-    }
-
 }
 
 // MARK: - ControllerType
@@ -142,23 +138,23 @@ extension LoginController {
         self.emailTextField.bind(callBack: { viewModel.input.email.value = $0 })
         self.passwordTextField.bind(callBack: { viewModel.input.password.value = $0 })
         
-        self.viewModel.output.errorsObservable.bind { observable, value in
+        viewModel.output.errorsObservable.bind { [unowned self] observable, value in
             self.presentMessage(value)
             self.view.isUserInteractionEnabled = true
             self.activityIndicator.isHidden = true
         }
         
-        self.viewModel.output.successObservable.bind { observable, value in
+        viewModel.output.successObservable.bind { [unowned self] observable, value in
             self.gotoHomeController()
         }
         
-        self.loginButton.bind { button in
+        self.loginButton.bind { [unowned self] button in
             self.view.isUserInteractionEnabled = false
             self.activityIndicator.isHidden = false
-            self.viewModel.input.signInDidTap.excecute()
+            viewModel.input.signInDidTap.excecute()
         }
         
-        self.dontHaveAccountButton.bind { button in
+        self.dontHaveAccountButton.bind { [unowned self] button in
             let registrationService = RegistrationService()
             let regiterViewModel = RegisterViewModel(registrationService: registrationService)
             let registrationController = RegistrationController.create(with: regiterViewModel)
@@ -169,16 +165,7 @@ extension LoginController {
 
 // MARK: - Helpers
 extension LoginController {
-    
-    /// go to home viewController
-    /// - Returns: Void
-    func gotoHomeController() {
-        let homeViewController = MainTabBarController()
-        self.changeRootViewControllerTo(rootViewController: homeViewController,
-                                        withOption: .transitionCrossDissolve,
-                                        duration: 0.2)
-    }
-    
+        
     /// Animation move logo image view
     /// - Returns: Void
     private func setUpMoveLogo() {

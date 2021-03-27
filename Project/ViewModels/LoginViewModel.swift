@@ -23,10 +23,7 @@ class LoginViewModel: ViewModelProtocol {
         let errorsObservable: Observable<String> = Observable()
         let successObservable: Observable<Bool> = Observable()
     }
-    
-    var loginErrorCompletion: ((String) -> ())?
-    var loginSuccessCompletion: (() -> ())?
-    
+        
     // MARK: - Public properties
     let input: Input
     let output: Output
@@ -35,7 +32,7 @@ class LoginViewModel: ViewModelProtocol {
         self.input = Input()
         self.output = Output()
         
-        self.input.signInDidTap.bind { observer, value in
+        self.input.signInDidTap.bind {[unowned self] observer, value in
             guard let email = self.input.email.value, !String.isNilOrEmpty(email) else {
                 self.output.errorsObservable.value = "Email cannot left empty"
                 return

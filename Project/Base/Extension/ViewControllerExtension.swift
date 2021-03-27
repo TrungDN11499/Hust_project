@@ -97,4 +97,26 @@ extension UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    /// Change root view controller
+    /// - Parameters:
+    ///   - rootViewController: change to view controller
+    ///   - options: animation option, default is curveLinear
+    ///   - duration: animation duration, default is 0
+    /// - Returns: Void
+    func changeRootViewControllerTo(rootViewController: UIViewController, withOption options: UIView.AnimationOptions = .curveLinear, duration: TimeInterval = 0) {
+        
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let sceneDelegate = windowScene.delegate as? SceneDelegate
+        else {
+            return
+        }
+    
+        sceneDelegate.window?.rootViewController = rootViewController
+        
+        UIView.transition(with: sceneDelegate.window!,
+                          duration: duration,
+                          options: options,
+                          animations: {},
+                          completion:{ completed in })
+    }
 }

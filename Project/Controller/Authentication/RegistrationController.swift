@@ -10,14 +10,10 @@ import Firebase
 
 class RegistrationController: BaseViewController, ControllerType {
     
-    typealias ViewModelType = RegisterViewModel
-
     // MARK: - Properties
     private var viewModel: ViewModelType!
 
     private let imagePicker = UIImagePickerController()
-    
-    var profileImage: UIImage?
     
     private lazy var registerView: UIView = {
         let view = UIView()
@@ -25,14 +21,13 @@ class RegistrationController: BaseViewController, ControllerType {
         return view
     }()
     
-    private lazy var addPhotoButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var addPhotoButton: BindingButton = {
+        let button = BindingButton()
         button.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysTemplate), for: .normal)
         button.tintColor = .lightGray
         button.imageView?.contentMode = .scaleAspectFill
         button.imageView?.clipsToBounds = true
         button.layer.masksToBounds = true
-        button.addTarget(self, action: #selector(handleAddProfilePhoto(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -95,31 +90,30 @@ class RegistrationController: BaseViewController, ControllerType {
         return act
     }()
     
-    private lazy var signUpButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var signUpButton: BindingButton = {
+        let button = BindingButton(controlEvent: .touchUpInside)
         button.setTitle("Sign Up", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.backgroundColor = .twitterBlue
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius =  5
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        button.addTarget(self, action: #selector(handleSignUp(_:)), for: .touchUpInside)
         return button
     }()
     
-    private lazy var alreadyHaveAccountButton: UIButton = {
+    private lazy var alreadyHaveAccountButton: BindingButton = {
         let button = Utilities().attributeButton("Already have an account? ", "Log In")
-        button.addTarget(self, action: #selector(handleShowLogin(_:)), for: .touchUpInside)
         return button
     }()
     
     // MARK: - Lifecycles
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.setUpImagePicker()
-        self.configureUI()
+    override func bindViewModel() {
         self.configure(with: self.viewModel)
+    }
+    
+    override func configureUI() {
+        self.setUpImagePicker()
+        self.addUIConstraints()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -133,67 +127,79 @@ class RegistrationController: BaseViewController, ControllerType {
             self.addPhotoButton.layer.cornerRadius = self.addPhotoButton.frame.width / 2
         }
     }
-  
-    // MARK: - Selector
+}
+
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @objc private func handleAddProfilePhoto(_ sender: UIButton) {
-        self.present(self.imagePicker, animated: true, completion: nil)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let profileImage = info[.editedImage] as? UIImage else { return }
+        self.viewModel.input.profileImage.value = profileImage
+        self.addPhotoButton.layer.borderColor = UIColor.twitterBlue.cgColor
+        self.addPhotoButton.layer.borderWidth = 3
+        
+        self.addPhotoButton.setImage(profileImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @objc private func handleSignUp(_ sender: UIButton) {
-        
-        guard let profileImage = self.profileImage else {
-            self.presentMessage("please select an profile image")
-            return
-        }
-        
-        guard let email = self.emailTextField.text else { return }
-        guard let password = self.passwordTextField.text else { return }
-        guard let fullName = self.fullNameTextField.text else { return }
-        guard let username = self.usernameTextField.text?.lowercased() else { return }
-        
-        self.view.isUserInteractionEnabled = false
-        self.activityIndicator.isHidden = false
-        
-        AuthService.shared.registerUser(credentials: AuthCredentials(email: email, password: password, username: username, fullName: fullName, profileImage: profileImage)) { (error, databaseRef) in
-            if let error = error {
-                self.presentMessage(error.localizedDescription)
-                self.view.isUserInteractionEnabled = true
-                self.activityIndicator.isHidden = true
-            } else {
-                self.gotoHomeController()
-            }
-        }
-        
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
     }
     
-    func gotoHomeController() {
-        let homeController = MainTabBarController()
-        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-            sceneDelegate.changeRootViewController(view: homeController)
-        }
-    }
+}
+
+// MARK: - ControllerType
+extension RegistrationController {
+    typealias ViewModelType = RegisterViewModel
     
-    @objc private func handleShowLogin(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+    static func create(with viewModel: ViewModelType) -> UIViewController {
+        let vc = RegistrationController()
+        vc.viewModel = viewModel
+        return vc
     }
-    
-    // MARK: - Helpers
     
     func configure(with viewModel: ViewModelType) {
         self.emailTextField.bind(callBack: { viewModel.input.email.value = $0 })
         self.passwordTextField.bind(callBack: { viewModel.input.password.value = $0 })
         self.usernameTextField.bind(callBack: { viewModel.input.userName.value = $0 })
-        self.fullNameTextField.bind(callBack: { viewModel.input.password.value = $0 })
+        self.fullNameTextField.bind(callBack: { viewModel.input.fullName.value = $0 })
+        
+        viewModel.output.errorsObservable.bind { [unowned self] observable, value in
+            self.presentMessage(value)
+            self.view.isUserInteractionEnabled = true
+            self.activityIndicator.isHidden = true
+        }
+        
+        viewModel.output.successObservable.bind { [unowned self] observable, value in
+            self.gotoHomeController()
+        }
+        
+        self.signUpButton.bind { [unowned self] button in
+            self.view.isUserInteractionEnabled = false
+            self.activityIndicator.isHidden = false
+            viewModel.input.registerDidTap.excecute()
+        }
+        
+        self.alreadyHaveAccountButton.bind { [unowned self] button in
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        self.addPhotoButton.bind { [unowned self] button in
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }
     }
+    
+}
+
+// MARK: - Helpers
+extension RegistrationController {
     
     private func setUpImagePicker() {
         self.imagePicker.delegate = self
         self.imagePicker.allowsEditing = true
     }
     
-    override func configureUI() {
-        
+    private func addUIConstraints() {
         // register view contraints
         self.view.addSubview(self.registerView)
         self.registerView.centerX(inView: self.view)
@@ -226,33 +232,5 @@ class RegistrationController: BaseViewController, ControllerType {
         self.alreadyHaveAccountButton.centerX(inView: self.view)
         
         self.addInputAccessoryForTextFields(textFields: [self.emailTextField, self.passwordTextField, self.fullNameTextField, self.usernameTextField], dismissable: true, previousNextable: true)
-    }
-}
-
-// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
-extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let profileImage = info[.editedImage] as? UIImage else { return }
-        self.profileImage = profileImage
-        
-        self.addPhotoButton.layer.borderColor = UIColor.twitterBlue.cgColor
-        self.addPhotoButton.layer.borderWidth = 3
-        
-        self.addPhotoButton.setImage(profileImage.withRenderingMode(.alwaysOriginal), for: .normal)
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-}
-
-extension RegistrationController {
-    static func create(with viewModel: ViewModelType) -> UIViewController {
-        let vc = RegistrationController()
-        vc.viewModel = viewModel
-        return vc
     }
 }
