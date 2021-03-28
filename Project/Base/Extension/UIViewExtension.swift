@@ -105,6 +105,7 @@ extension UIView {
     ///   - paddingRight:   right padding
     ///   - width:          set width
     ///   - height:         set height
+    /// - Returns: Void
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 left: NSLayoutXAxisAnchor? = nil,
                 bottom: NSLayoutYAxisAnchor? = nil,
@@ -148,6 +149,7 @@ extension UIView {
     /// - Parameters:
     ///   - view:      center to view
     ///   - yConstant: set y constraint
+    /// - Returns: Void
     func center(inView view: UIView, xConstant: CGFloat? = 0 , yConstant: CGFloat? = 0) {
         translatesAutoresizingMaskIntoConstraints = false
         centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: xConstant!).isActive = true
@@ -160,6 +162,7 @@ extension UIView {
     ///   - view:       superview
     ///   - topAnchor:  constraint to top anchor
     ///   - paddingTop: add padding top
+    /// - Returns: Void
     func centerX(inView view: UIView, topAnchor: NSLayoutYAxisAnchor? = nil, paddingTop: CGFloat? = 0) {
         translatesAutoresizingMaskIntoConstraints = false
         centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -176,6 +179,7 @@ extension UIView {
     ///   - leftAnchor:  constraint to left anchor
     ///   - paddingLeft: add padding left
     ///   - constant:    constant set to center y anchor
+    /// - Returns: Void
     func centerY(inView view: UIView, leftAnchor: NSLayoutXAxisAnchor? = nil, paddingLeft: CGFloat? = nil, constant: CGFloat? = 0) {
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -191,6 +195,7 @@ extension UIView {
     /// - Parameters:
     ///     - width:  set width anchor
     ///     - height: set height anchor
+    /// - Returns: Void
     func setDimensions(width: CGFloat, height: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         widthAnchor.constraint(equalToConstant: width).isActive = true
@@ -201,6 +206,7 @@ extension UIView {
     ///
     /// - Parameters:
     ///   - view: superview
+    /// - Returns: Void
     func addConstraintsToFillView(_ view: UIView) {
         translatesAutoresizingMaskIntoConstraints = false
         anchor(top: view.topAnchor, left: view.leftAnchor,
@@ -212,6 +218,7 @@ extension UIView {
     /// - Parameters:
     ///   - format: format
     ///   - views:  constraint in view
+    /// - Returns: Void
     func addVisualFormatConstraint(format: String, views: UIView...) {
         var viewDictionaries = [String: UIView]()
         
@@ -224,6 +231,7 @@ extension UIView {
     }
     
     /// fill superview
+    /// - Returns: Void
     func fillSuperView() {
         self.superview?.addVisualFormatConstraint(format: "H:|[v0]|", views: self)
         self.superview?.addVisualFormatConstraint(format: "V:|[v0]|", views: self)

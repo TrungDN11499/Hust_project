@@ -93,7 +93,7 @@ class UploadTweetController: BaseViewController {
             return
         }
         
-        TweetService.shared.upload(caption: caption, type: self.config) { [weak self] error, data in
+        TweetService1.shared.upload(caption: caption, type: self.config) { [weak self] error, data in
             guard let `self` = self else { return }
             if error != nil {
                 return

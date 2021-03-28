@@ -7,15 +7,6 @@
 
 import UIKit
 
-//UITapGestureRecognizer
-//UIPinchGestureRecognizer
-//UIRotationGestureRecognizer
-//UISwipeGestureRecognizer
-//UIPanGestureRecognizer
-//UIScreenEdgePanGestureRecognizer
-//UILongPressGestureRecognizer
-//UIHoverGestureRecognizer
-
 enum GestureRecognizerType {
     case tap
     case pinch

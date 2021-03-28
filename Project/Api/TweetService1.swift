@@ -10,11 +10,11 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
-struct TweetService {
+struct TweetService1 {
     
     typealias Completion = (Error? ,DatabaseReference) -> Void
     
-    static let shared = TweetService()
+    static let shared = TweetService1()
     
     func upload(caption: String, type: UploadTweetConfiguration, completion: @escaping Completion) {
         guard let uid = Auth.auth().currentUser?.uid else { return }

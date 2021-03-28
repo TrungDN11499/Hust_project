@@ -82,7 +82,7 @@ class TweetController: BaseViewController {
     // MARK: - API
     
     private func fetchReplies() {
-        TweetService.shared.fetchReply(forTweet: self.tweet) { replies in
+        TweetService1.shared.fetchReply(forTweet: self.tweet) { replies in
             self.replies = replies
         }
     }

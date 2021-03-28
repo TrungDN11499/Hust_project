@@ -89,7 +89,10 @@ class MainTabBarController: UITabBarController {
         
         UITabBar.appearance().barTintColor = .systemGroupedBackground
         
-        let feedsViewController = FeedsViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let feedsService = FeedsService()
+        let feedsViewModel = FeedsViewModel(feedsService: feedsService)
+        let feedsViewController = FeedsViewController.create(with: feedsViewModel)
+        
         let exploreViewController = ExploreViewController()
         let notificationsViewController = NotificationsViewController()
         let conversationsViewController = ConversationsViewController()

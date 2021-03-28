@@ -8,6 +8,9 @@
 import Foundation
 
 extension Date {
+    /// Create date string for log functions
+    /// - Parameters:
+    /// - Returns: String
     func stringForLog() -> String {
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSS"

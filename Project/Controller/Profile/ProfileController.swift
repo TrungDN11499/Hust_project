@@ -73,7 +73,7 @@ class ProfileController: UICollectionViewController {
     
     private func fetchTweets() {
         guard let user = self.user else { return }
-        TweetService.shared.fetchTweets(forUser: user) { [weak self] in
+        TweetService1.shared.fetchTweets(forUser: user) { [weak self] in
             guard let `self` = self else { return }
             self.tweets = $0;
             self.collectionView.reloadData()
@@ -82,7 +82,7 @@ class ProfileController: UICollectionViewController {
     
     private func fetchLikeTweets() {
         guard let user = self.user else { return }
-        TweetService.shared.fetchLike(forUser: user) { [weak self]  in
+        TweetService1.shared.fetchLike(forUser: user) { [weak self]  in
             guard let `self` = self else { return }
             self.likedTweets = $0
         }
@@ -90,7 +90,7 @@ class ProfileController: UICollectionViewController {
     
     private func fetchReply() {
         guard let user = self.user else { return }
-        TweetService.shared.fetchReply(forUser: user) { [weak self] in
+        TweetService1.shared.fetchReply(forUser: user) { [weak self] in
             guard let `self` = self else { return }
             self.replyTweet = $0
         }

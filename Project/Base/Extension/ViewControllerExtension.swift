@@ -15,6 +15,7 @@ extension UIViewController {
     ///   - textFields: add  to text field
     ///   - dismissable: can be dissmisssed
     ///   - previousNextable: can move to other text field
+    /// - Returns: Void
     func addInputAccessoryForTextFields(textFields: [UITextField], dismissable: Bool = true, previousNextable: Bool = false) {
         for (index, textField) in textFields.enumerated() {
             let toolbar: UIToolbar = UIToolbar()
