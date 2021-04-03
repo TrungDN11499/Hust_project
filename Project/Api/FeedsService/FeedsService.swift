@@ -59,6 +59,7 @@ class FeedsService: FeedsServiceProtocol {
         }
     }
     
+    
     func fetchTweet(withTweetId tweetId: String, completion: @escaping (Tweet) -> ()) {
         REF_TWEETS.child(tweetId).observeSingleEvent(of: .value) { (snapshot) in
             guard let dictionary = snapshot.value as? [String: Any] else { return }
