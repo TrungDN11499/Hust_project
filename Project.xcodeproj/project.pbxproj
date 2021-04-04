@@ -58,6 +58,8 @@
 		FAB9759E2602F87C006A66BB /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9759D2602F87C006A66BB /* SplashViewController.swift */; };
 		FAC53E9F26103A7500E32E21 /* FeedsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC53E9E26103A7500E32E21 /* FeedsService.swift */; };
 		FAC53EA42610417400E32E21 /* FeedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC53EA32610417400E32E21 /* FeedsViewModel.swift */; };
+		FAE337E32613730F00BCA038 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE337E22613730F00BCA038 /* FeedViewModel.swift */; };
+		FAE4CBA92612D20F00C9E661 /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4CBA82612D20F00C9E661 /* CollectionViewDataSource.swift */; };
 		FAF3865B253B330200E76AF1 /* TweetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF3865A253B330200E76AF1 /* TweetController.swift */; };
 		FAF38663253B382100E76AF1 /* TweetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF38662253B382100E76AF1 /* TweetHeader.swift */; };
 		FAF38668253B61BB00E76AF1 /* UploadTweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF38667253B61BB00E76AF1 /* UploadTweetViewModel.swift */; };
@@ -156,6 +158,8 @@
 		FAB9759D2602F87C006A66BB /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		FAC53E9E26103A7500E32E21 /* FeedsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsService.swift; sourceTree = "<group>"; };
 		FAC53EA32610417400E32E21 /* FeedsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsViewModel.swift; sourceTree = "<group>"; };
+		FAE337E22613730F00BCA038 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		FAE4CBA82612D20F00C9E661 /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
 		FAF3865A253B330200E76AF1 /* TweetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetController.swift; sourceTree = "<group>"; };
 		FAF38662253B382100E76AF1 /* TweetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetHeader.swift; sourceTree = "<group>"; };
 		FAF38667253B61BB00E76AF1 /* UploadTweetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetViewModel.swift; sourceTree = "<group>"; };
@@ -315,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				FA875F36260B7DD4006DCBA9 /* TableViewDataSource.swift */,
+				FAE4CBA82612D20F00C9E661 /* CollectionViewDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -349,6 +354,24 @@
 				FAC53E9E26103A7500E32E21 /* FeedsService.swift */,
 			);
 			path = FeedsService;
+			sourceTree = "<group>";
+		};
+		FAE337E02613729400BCA038 /* Authenticate */ = {
+			isa = PBXGroup;
+			children = (
+				FA2C25BB2532C89D0042EC43 /* LoginViewModel.swift */,
+				FA2C25E0253309450042EC43 /* RegisterViewModel.swift */,
+			);
+			path = Authenticate;
+			sourceTree = "<group>";
+		};
+		FAE337E1261372A300BCA038 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				FAE337E22613730F00BCA038 /* FeedViewModel.swift */,
+				FAC53EA32610417400E32E21 /* FeedsViewModel.swift */,
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		FAF38659253B32EC00E76AF1 /* Tweet */ = {
@@ -488,9 +511,8 @@
 		FAFD58DC25208ED6006E4F94 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				FA2C25BB2532C89D0042EC43 /* LoginViewModel.swift */,
-				FA2C25E0253309450042EC43 /* RegisterViewModel.swift */,
-				FAC53EA32610417400E32E21 /* FeedsViewModel.swift */,
+				FAE337E02613729400BCA038 /* Authenticate */,
+				FAE337E1261372A300BCA038 /* Feed */,
 				FA26204D25376B2C000E1755 /* TweetViewModel.swift */,
 				FA408116253A0F09003DF3D7 /* ProfileHeaderViewModel.swift */,
 				FAF38667253B61BB00E76AF1 /* UploadTweetViewModel.swift */,
@@ -851,6 +873,7 @@
 				FAC53E9F26103A7500E32E21 /* FeedsService.swift in Sources */,
 				FA2C25CF2532DEC30042EC43 /* Observers.swift in Sources */,
 				FAB9759E2602F87C006A66BB /* SplashViewController.swift in Sources */,
+				FAE337E32613730F00BCA038 /* FeedViewModel.swift in Sources */,
 				FA2C25A92532C7400042EC43 /* ViewModelProtocol.swift in Sources */,
 				FAF3865B253B330200E76AF1 /* TweetController.swift in Sources */,
 				FA80F1882545CBB20030A00D /* EditProfileViewModel.swift in Sources */,
@@ -873,6 +896,7 @@
 				FA2C25C82532CC1A0042EC43 /* LoginService.swift in Sources */,
 				FAF417FF2528CA0600FDDC97 /* ViewControllerExtension.swift in Sources */,
 				FA89486B253ACBA10071A5DB /* UserCell.swift in Sources */,
+				FAE4CBA92612D20F00C9E661 /* CollectionViewDataSource.swift in Sources */,
 				FA2495C02523218C0060BECD /* UIViewExtension.swift in Sources */,
 				FA262049253753C0000E1755 /* TweetCell.swift in Sources */,
 				FA2C25C22532CA6A0042EC43 /* BindingTextField.swift in Sources */,

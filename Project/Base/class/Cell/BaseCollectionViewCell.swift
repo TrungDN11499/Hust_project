@@ -44,15 +44,15 @@ class BaseCollectionViewCell: UICollectionViewCell {
         return String(describing: self.self)
     }
     
-    static func registerCellByNib(collectionView: UICollectionView) {
+    static func registerCellByNib(_ collectionView: UICollectionView) {
         collectionView.register(UINib(nibName: self.nibName(), bundle: nil), forCellWithReuseIdentifier: self.nibName())
     }
     
-    static func registerCellByClass(collectionView: UICollectionView) {
+    static func registerCellByClass(_ collectionView: UICollectionView) {
         collectionView.register(self.self, forCellWithReuseIdentifier: self.nibName())
     }
     
-    static func loadCell(collectionView: UICollectionView, indexPath: IndexPath) -> BaseCollectionViewCell? {
+    static func loadCell(_ collectionView: UICollectionView, indexPath: IndexPath) -> BaseCollectionViewCell? {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.nibName(), for: indexPath) as? BaseCollectionViewCell else {
             return BaseCollectionViewCell()
         }

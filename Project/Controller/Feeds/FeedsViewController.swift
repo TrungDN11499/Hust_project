@@ -14,6 +14,7 @@ class FeedsViewController: BaseViewController, ControllerType {
 
     // MARK: - Properties
     private var viewModel: ViewModelType!
+    private var dataSource: CollectionViewDataSource<TweetCell, FeedViewModel>?
     
     private var tweets = [Tweet]() {
         didSet {
@@ -47,6 +48,7 @@ class FeedsViewController: BaseViewController, ControllerType {
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewModel.input.fetchTweets.excecute()
         self.configureViewController()
         self.fetchTweet()
     }
@@ -133,7 +135,8 @@ class FeedsViewController: BaseViewController, ControllerType {
         imageView.setDimensions(width: 44, height: 44)
         self.navigationItem.titleView = imageView
         
-        self.feedCollectionView.register(TweetCell.self, forCellWithReuseIdentifier: cellIden)
+        TweetCell.registerCellByClass(self.feedCollectionView)
+//        self.feedCollectionView.dataSource =
     }
     
     private func configureLeftBarButton() {
@@ -171,7 +174,11 @@ extension FeedsViewController {
     }
     
     func configure(with viewModel: ViewModelType) {
-        
+        viewModel.output.fetchTweetsResult.bind { observable, values in
+            self.dataSource = CollectionViewDataSource(vm: values, configure: { cell, viewModel in
+                dLogDebug(viewModel.output.FeedViewModel)
+            })
+        }
     }
     
 }

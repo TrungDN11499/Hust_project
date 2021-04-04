@@ -16,7 +16,7 @@ protocol TweetCellDelegate: class {
     func handleDeletePost(_ cell: TweetCell)
 }
 
-class TweetCell: UICollectionViewCell {
+class TweetCell: BaseCollectionViewCell {
     
     var needDelete: Bool = false
     

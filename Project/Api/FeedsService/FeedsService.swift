@@ -22,27 +22,89 @@ class FeedsService: FeedsServiceProtocol {
     typealias Completion = (Error? ,DatabaseReference) -> ()
     
     func fetchTweet(completion: @escaping ([Tweet]) -> ()) {
+        
         var tweets = [Tweet]()
         
-        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        let MAX_COUNTER = 2
+        var finalStatus = true
         
-        REF_USER_FOLLOWING.child(currentUid).observe(.childAdded) { snapshot in
-            let followedUid = snapshot.key
-            
-            REF_USER_TWEETS.child(followedUid).observe(.childAdded) { snapshot in
-                let tweetId = snapshot.key
-                self.fetchTweet(withTweetId: tweetId) { tweetsData in
-                    tweets.append(tweetsData)
-                    completion(tweets)
+        var numberFinished = 0 {
+            didSet {
+                if numberFinished == MAX_COUNTER {
+                    if finalStatus {
+                        completion(tweets)
+                    }
                 }
             }
         }
         
-        REF_USER_TWEETS.child(currentUid).observe(.childAdded) { snapshot in
-            let tweetId = snapshot.key
-            self.fetchTweet(withTweetId: tweetId) { tweetsData in
-                tweets.append(tweetsData)
-                completion(tweets)
+        var finishFollowingCount = false {
+            didSet {
+                if finishFollowingCount {
+                    numberFinished += 1
+                }
+            }
+        }
+        
+        var followingCount = 0
+        
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        
+        // get following user tweet.
+        REF_USER_FOLLOWING.child(currentUid).observe(.value) { flowwingSnapshot in
+            for child in flowwingSnapshot.children {
+                var followingTweets = [Tweet]()
+                if let snapshotChild = child as? DataSnapshot {
+                    let followedUid = snapshotChild.key
+                    REF_USER_TWEETS.child(followedUid).observe(.value) { tweetsSnapshot in
+                        for child in tweetsSnapshot.children {
+                            if let snapshotChild = child as? DataSnapshot {
+                                let tweetId = snapshotChild.key
+                                self.fetchTweet(withTweetId: tweetId) { tweetsData in
+                                    followingTweets.append(tweetsData)
+                                    if followingTweets.count == tweetsSnapshot.childrenCount {
+                                        tweets.append(contentsOf: followingTweets)
+                                        followingCount += 1
+                                        if followingCount == flowwingSnapshot.childrenCount {
+                                            finishFollowingCount = true
+                                        }
+                                    }
+                                }
+                            } else {
+                                finalStatus = false
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        self.fetchUserTweets { (success, currentUserTweets) in
+            if success {
+                tweets.append(contentsOf: currentUserTweets)
+                numberFinished += 1
+            } else {
+                finalStatus = false
+            }
+        }
+    }
+    
+    private func fetchUserTweets(completion: @escaping (Bool, [Tweet]) -> ()) {
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        REF_USER_TWEETS.child(currentUid).observe(.value) { snapshot in
+            var userTweets = [Tweet]()
+            for child in snapshot.children {
+                if let snapshotChild = child as? DataSnapshot {
+                    let tweetId = snapshotChild.key
+                    self.fetchTweet(withTweetId: tweetId) { tweetsData in
+                        userTweets.append(tweetsData)
+                        if userTweets.count == snapshot.childrenCount {
+                            completion(true, userTweets)
+                        }
+                    }
+                } else {
+                    completion(false,[Tweet]())
+                }
             }
         }
     }
