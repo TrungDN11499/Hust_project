@@ -8,13 +8,10 @@
 import UIKit
 import SDWebImage
 
-private let cellIden = "TweetCell"
-
 class FeedsViewController: BaseViewController, ControllerType {
 
     // MARK: - Properties
     private var viewModel: ViewModelType!
-    private var dataSource: CollectionViewDataSource<TweetCell, FeedViewModel>?
     
     private var tweets = [Tweet]() {
         didSet {
@@ -50,7 +47,6 @@ class FeedsViewController: BaseViewController, ControllerType {
         super.viewDidLoad()
         self.viewModel.input.fetchTweets.excecute()
         self.configureViewController()
-        self.fetchTweet()
     }
     
     // MARK: - Lifecycles
@@ -76,7 +72,7 @@ class FeedsViewController: BaseViewController, ControllerType {
     // MARK: - Selectors
     
     @objc private func hanldeRefresh(_ sender: UIRefreshControl) {
-        self.fetchTweet()
+        self.viewModel.input.fetchTweets.excecute()
     }
     
     @objc private func handleGoToProfile(_ sender: UIImageView) {
@@ -87,26 +83,26 @@ class FeedsViewController: BaseViewController, ControllerType {
     
     // MARK: -  Api
     
-    private func fetchTweet() {
-        
-        self.feedCollectionView.refreshControl?.beginRefreshing()
-        TweetService1.shared.fetchTweet { [weak self] tweets in
-            guard let `self` = self else { return }
-            
-            self.newTweets = tweets.filter { (Int(Date().timeIntervalSince1970) - Int($0.timestamp.timeIntervalSince1970)) <= 24 * 60 * 60 }.sorted { $0.timestamp > $1.timestamp }
-            
-            self.highInteractionTweets = tweets.filter { !((Int(Date().timeIntervalSince1970) - Int($0.timestamp.timeIntervalSince1970)) < 24 * 60 * 60) }.sorted { $0.timestamp > $1.timestamp }.sorted { $0.likes + $0.comments >  $1.likes + $1.comments }
-            
-            self.tweets = self.newTweets + self.highInteractionTweets
-            
-            self.checkIfUserLikeTweet()
-            DispatchQueue.main.async {
-                self.feedCollectionView.reloadData()
-            }
-        }
-        
-    }
-    
+//    private func fetchTweet() {
+//
+//        self.feedCollectionView.refreshControl?.beginRefreshing()
+//        TweetService1.shared.fetchTweet { [weak self] tweets in
+//            guard let `self` = self else { return }
+//
+//            self.newTweets = tweets.filter { (Int(Date().timeIntervalSince1970) - Int($0.timestamp.timeIntervalSince1970)) <= 24 * 60 * 60 }.sorted { $0.timestamp > $1.timestamp }
+//
+//            self.highInteractionTweets = tweets.filter { !((Int(Date().timeIntervalSince1970) - Int($0.timestamp.timeIntervalSince1970)) < 24 * 60 * 60) }.sorted { $0.timestamp > $1.timestamp }.sorted { $0.likes + $0.comments >  $1.likes + $1.comments }
+//
+//            self.tweets = self.newTweets + self.highInteractionTweets
+//
+//            self.checkIfUserLikeTweet()
+//            DispatchQueue.main.async {
+//                self.feedCollectionView.reloadData()
+//            }
+//        }
+//
+//    }
+//
     private func checkIfUserLikeTweet() {
         self.tweets.forEach { tweet in
             TweetService1.shared.checkIfUserLikeTweet(tweet: tweet) { didLike in
@@ -130,13 +126,13 @@ class FeedsViewController: BaseViewController, ControllerType {
         guard let logoImage = UIImage(named: "ic_cat") else {
             return
         }
+        
         let imageView = UIImageView(image: logoImage)
         imageView.contentMode = .scaleAspectFit
         imageView.setDimensions(width: 44, height: 44)
         self.navigationItem.titleView = imageView
         
-        TweetCell.registerCellByClass(self.feedCollectionView)
-//        self.feedCollectionView.dataSource =
+        TweetCollectionViewCell.registerCellByNib(self.feedCollectionView)
     }
     
     private func configureLeftBarButton() {
@@ -174,10 +170,16 @@ extension FeedsViewController {
     }
     
     func configure(with viewModel: ViewModelType) {
-        viewModel.output.fetchTweetsResult.bind { observable, values in
-            self.dataSource = CollectionViewDataSource(vm: values, configure: { cell, viewModel in
-                dLogDebug(viewModel.output.FeedViewModel)
-            })
+        viewModel.output.fetchTweetsResult.bind { [unowned self] observable, values in
+            DispatchQueue.main.async {
+                self.feedCollectionView.refreshControl?.endRefreshing()
+                if self.feedCollectionView.refreshControl == nil {
+                    let refreshControl = UIRefreshControl()
+                    refreshControl.addTarget(self, action: #selector(hanldeRefresh(_:)), for: .valueChanged)
+                    self.feedCollectionView.refreshControl = refreshControl
+                }
+                self.feedCollectionView.reloadData()
+            }
         }
     }
     
@@ -194,12 +196,14 @@ extension FeedsViewController: UICollectionViewDelegate {
 // MARK: - UICollectionViewDataSource
 extension FeedsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.tweets.count
+        return self.viewModel.output.fetchTweetsResult.value?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIden, for: indexPath) as? TweetCell else { return TweetCell() }
-        cell.tweet = self.tweets[indexPath.item]
+        guard let cell = TweetCollectionViewCell.loadCell(collectionView, indexPath: indexPath) as? TweetCollectionViewCell else {
+            return TweetCollectionViewCell()
+        }
+        cell.feedViewModel = self.viewModel.viewModel(at: indexPath)
         cell.needDelete = true
         cell.delegate = self
         return cell
@@ -209,17 +213,27 @@ extension FeedsViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension FeedsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let tweet = self.tweets[indexPath.item]
-        let viewModel = TweetViewModel(tweet)
-        let height = viewModel.size(forWidth: self.feedCollectionView.frame.width).height
-        return CGSize(width: self.feedCollectionView.frame.width, height: height + 72)
+        
+        let cellPadding: CGFloat = 12
+        let infoLabelHeight: CGFloat = 17
+        let actionButtonSize: CGFloat = 20
+        let profileImageSize: CGFloat = 48
+        
+        let textWidth = self.view.frame.width - (profileImageSize + actionButtonSize + cellPadding * 4)
+        let textHeight = self.viewModel.viewModel(at: indexPath)?.caption.height(withConstrainedWidth: textWidth, font: UIFont.systemFont(ofSize: 17)) ?? 0
+        
+        let contentHeight = (infoLabelHeight + 4 + textHeight) > profileImageSize ? (infoLabelHeight + 4 + textHeight) : profileImageSize
+        
+        let cellHeight: CGFloat =  cellPadding * 3 + actionButtonSize + contentHeight + 0.5
+        
+        return CGSize(width: self.feedCollectionView.frame.width, height: cellHeight)
     }
 }
 
-// MARK: - TweetCellDelegate
-extension FeedsViewController: TweetCellDelegate {
-    func handleReplyTapped(_ cell: TweetCell) {
-        guard let tweet = cell.tweet else { return }
+// MARK: - TweetCollectionViewCellDelegate
+extension FeedsViewController: TweetCollectionViewCellDelegate {
+    func handleReplyTapped(_ cell: TweetCollectionViewCell) {
+        guard let tweet = cell.feedViewModel?.tweet else { return }
         guard let index = self.feedCollectionView.indexPath(for: cell) else { return }
         
         let uploadTweetController = UploadTweetController(config: .reply(tweet), user: tweet.user, delegate: self, index: index.item)
@@ -229,13 +243,13 @@ extension FeedsViewController: TweetCellDelegate {
         self.present(nav, animated: true, completion: nil)
     }
     
-    func handleLikeTweet(_ cell: TweetCell) {
-        guard let tweet = cell.tweet else { return }
+    func handleLikeTweet(_ cell: TweetCollectionViewCell) {
+        guard let tweet = cell.feedViewModel?.tweet else { return }
         guard let index = self.feedCollectionView.indexPath(for: cell) else { return }
         TweetService1.shared.likeTweet(tweet: tweet) { (err, ref) in
-            cell.tweet?.didLike.toggle()
+            cell.feedViewModel?.tweet.didLike.toggle()
             let likes = tweet.didLike ? ((tweet.likes - 1) < 0 ? 0 : (tweet.likes - 1)) : tweet.likes + 1
-            cell.tweet?.likes = likes
+            cell.feedViewModel?.tweet.likes = likes
             
             self.tweets[index.item].likes = likes
             self.tweets[index.item].didLike = !tweet.didLike
@@ -246,16 +260,16 @@ extension FeedsViewController: TweetCellDelegate {
         }
     }
     
-    func handleProfileImageTapped(_ cell: TweetCell) {
-        guard let user = cell.tweet?.user else { return }
+    func handleProfileImageTapped(_ cell: TweetCollectionViewCell) {
+        guard let user = cell.feedViewModel?.tweet.user else { return }
         let profileComtroller = ProfileController(user)
         self.navigationController?.pushViewController(profileComtroller, animated: true)
     }
     
-    func handleDeletePost(_ cell: TweetCell) {
+    func handleDeletePost(_ cell: TweetCollectionViewCell) {
     
         self.presentMessage("Do you want to delete this post?") { action in
-            guard let tweet = cell.tweet else { return }
+            guard let tweet = cell.feedViewModel?.tweet else { return }
             TweetService1.shared.deleteTweet(tweet: tweet) { [weak self] (error, ref) in
                 guard let `self` = self else { return }
                 self.tweets.remove(at: self.feedCollectionView.indexPath(for: cell)!.item)

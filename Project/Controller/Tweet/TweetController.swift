@@ -118,7 +118,7 @@ class TweetController: BaseViewController {
         
         self.collectionView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor).isActive = true
 
-        self.collectionView.register(TweetCell.self, forCellWithReuseIdentifier: cellIden)
+        self.collectionView.register(TweetCell1.self, forCellWithReuseIdentifier: cellIden)
             
     }
     
@@ -137,11 +137,11 @@ extension TweetController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIden, for: indexPath) as? TweetCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIden, for: indexPath) as? TweetCell1 else {
             return UICollectionViewCell()
         }
         
-        cell.tweet = self.replies[indexPath.row]
+//        cell.tweet = self.replies[indexPath.row]
         
         return cell
     }

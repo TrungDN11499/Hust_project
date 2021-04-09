@@ -9,26 +9,26 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-protocol TweetCellDelegate: class {
-    func handleProfileImageTapped(_ cell: TweetCell)
-    func handleReplyTapped(_ cell: TweetCell)
-    func handleLikeTweet(_ cell: TweetCell)
-    func handleDeletePost(_ cell: TweetCell)
+protocol TweetCellDelegate1: class {
+    func handleProfileImageTapped(_ cell: TweetCell1)
+    func handleReplyTapped(_ cell: TweetCell1)
+    func handleLikeTweet(_ cell: TweetCell1)
+    func handleDeletePost(_ cell: TweetCell1)
 }
 
-class TweetCell: BaseCollectionViewCell {
+class TweetCell1: BaseCollectionViewCell {
     
     var needDelete: Bool = false
     
     // MARK: - Properties
     
-    var tweet: Tweet? {
+    var feedViewModel: FeedViewModel? {
         didSet {
             configureData()
         }
     }
     
-    weak var delegate: TweetCellDelegate?
+    weak var delegate: TweetCellDelegate1?
     
     private lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -54,24 +54,12 @@ class TweetCell: BaseCollectionViewCell {
         return button
     }()
     
-    private lazy var retweetButton: UIButton = {
-        let button = self.createButton(withImageName: "retweet")
-        button.addTarget(self, action: #selector(handleRetweet(_:)), for: .touchUpInside)
-        return button
-    }()
-    
     private lazy var likeButton: UIButton = {
         let button = self.createButton(withImageName: "like")
         button.addTarget(self, action: #selector(handleLike(_:)), for: .touchUpInside)
         return button
     }()
-    
-    private lazy var shareButton: UIButton = {
-        let button = self.createButton(withImageName: "share")
-        button.addTarget(self, action: #selector(handleShare(_:)), for: .touchUpInside)
-        return button
-    }()
-    
+        
     private let replyLabel: UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
@@ -90,7 +78,6 @@ class TweetCell: BaseCollectionViewCell {
     }()
     
     // MARK: - Lifecycle
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
@@ -110,17 +97,9 @@ class TweetCell: BaseCollectionViewCell {
     @objc private func handleComment(_ sender: UIButton) {
         self.delegate?.handleReplyTapped(self)
     }
-    
-    @objc private func handleRetweet(_ sender: UIButton) {
         
-    }
-    
     @objc private func handleLike(_ sender: UIButton) {
         self.delegate?.handleLikeTweet(self)
-    }
-    
-    @objc private func handleShare(_ sender: UIButton) {
-        
     }
     
     @objc private func handleDelete(_ sender: UIButton) {
@@ -130,57 +109,62 @@ class TweetCell: BaseCollectionViewCell {
     
     private func configureUI() {
         
+
         let captionStackView = UIStackView(arrangedSubviews: [infoLabel, captionLabel])
         captionStackView.axis = .vertical
         captionStackView.distribution = .fillProportionally
         captionStackView.spacing = 4
-        
+
         let imageCaptionStack = UIStackView(arrangedSubviews: [self.profileImageView, captionStackView])
         imageCaptionStack.distribution = .fillProportionally
         imageCaptionStack.spacing = 12
         imageCaptionStack.alignment = .leading
-        
+
         let stackView = UIStackView(arrangedSubviews: [self.replyLabel, imageCaptionStack])
         stackView.axis = .vertical
         stackView.spacing = 4
         stackView.distribution = .fillProportionally
-        
-        let actionStack = UIStackView(arrangedSubviews: [commentButton, retweetButton, likeButton, shareButton])
+
+        let actionStack = UIStackView(arrangedSubviews: [commentButton, likeButton])
         actionStack.axis = .horizontal
-        actionStack.spacing = 72
+        actionStack.spacing = 20
+
         self.contentView.addSubview(actionStack)
-        
         self.contentView.addSubview(stackView)
         self.contentView.addSubview(self.deleteButton)
-        
+
         self.deleteButton.anchor(top: self.contentView.topAnchor,
                                  right: self.contentView.rightAnchor,
                                  paddingTop: 4,
                                  paddingRight: 12)
         self.deleteButton.setDimensions(width: 20, height: 20)
-        
+
         stackView.anchor(top: self.contentView.topAnchor,
                          left: self.contentView.leftAnchor,
                          bottom: actionStack.topAnchor,
                          right: self.deleteButton.leftAnchor,
-                         paddingTop: 4,
+                         paddingTop: 12,
                          paddingLeft: 12,
                          paddingRight: 12)
+
+        actionStack.anchor(left: self.profileImageView.rightAnchor,
+                           bottom: self.contentView.bottomAnchor,
+                           paddingLeft: 12,
+                           paddingBottom: 12)
+//
+//        let underLineView = UIView()
+//        underLineView.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+//        self.contentView.addSubview(underLineView)
+//
+//        underLineView.anchor(left: self.contentView.leftAnchor,
+//                             bottom: self.contentView.bottomAnchor,
+//                             right: self.contentView.rightAnchor,
+//                             height: 1)
+//
+//        infoLabel.font = UIFont.systemFont(ofSize: 14)
         
         
-        actionStack.centerX(inView: self.contentView)
-        actionStack.anchor(bottom: self.contentView.bottomAnchor, paddingBottom: 8)
         
-        let underLineView = UIView()
-        underLineView.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
-        self.contentView.addSubview(underLineView)
-        
-        underLineView.anchor(left: self.contentView.leftAnchor,
-                             bottom: self.contentView.bottomAnchor,
-                             right: self.contentView.rightAnchor,
-                             height: 1)
-        
-        infoLabel.font = UIFont.systemFont(ofSize: 14)
         
     }
     
@@ -193,28 +177,26 @@ class TweetCell: BaseCollectionViewCell {
     }
     
     private func configureData() {
-        guard let tweet = self.tweet else { return }
+        guard let feedViewModel = self.feedViewModel else { return }
         
-        let tweetViewModel = TweetViewModel(tweet)
-        
-        if self.needDelete && (tweet.user.uid == Auth.auth().currentUser?.uid) {
+        if self.needDelete && (feedViewModel.tweet.user.uid == Auth.auth().currentUser?.uid) {
             self.deleteButton.isHidden = false
         } else {
             self.deleteButton.isHidden = true
         }
         
-        self.captionLabel.text = tweetViewModel.caption
+        self.captionLabel.text = feedViewModel.caption
     
-        self.profileImageView.sd_setImage(with: tweetViewModel.profileImageUrl, completed: nil)
-        infoLabel.attributedText = tweetViewModel.userInfoText
+        self.profileImageView.sd_setImage(with: feedViewModel.profileImageUrl, completed: nil)
+        infoLabel.attributedText = feedViewModel.userInfoText
         
-        self.likeButton.tintColor = tweetViewModel.likeButtonTintColor
+        self.likeButton.tintColor = feedViewModel.likeButtonTintColor
         
-        self.likeButton.setImage(tweetViewModel.likeButtonImage, for: .normal)
+        self.likeButton.setImage(feedViewModel.likeButtonImage, for: .normal)
         
-        self.replyLabel.text = tweetViewModel.replyText
+        self.replyLabel.text = feedViewModel.replyText
         
-        self.replyLabel.isHidden = tweetViewModel.shouldHideReplyLabel
+        self.replyLabel.isHidden = feedViewModel.shouldHideReplyLabel
         
     }
 }

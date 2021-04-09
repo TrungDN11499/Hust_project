@@ -29,7 +29,7 @@ class FeedsViewModel: ViewModelProtocol {
             var values = [FeedViewModel]()
             feedsService.fetchTweet { [unowned self] tweets in
                 self.sort(tweets: tweets).forEach { tweet in
-                    let tweet = FeedViewModel(tweet: tweet)
+                    let tweet = FeedViewModel(tweet)
                     values.append(tweet)
                 }
                 self.output.fetchTweetsResult.value = values
@@ -49,5 +49,9 @@ extension FeedsViewModel {
         let highInteractionTweets = tweets.filter { !((Int(Date().timeIntervalSince1970) - Int($0.timestamp.timeIntervalSince1970)) < 24 * 60 * 60) }.sorted { $0.timestamp > $1.timestamp }.sorted { $0.likes + $0.comments >  $1.likes + $1.comments }
         
         return newTweets + highInteractionTweets
+    }
+    
+    func viewModel(at index: IndexPath) -> FeedViewModel? {
+        return self.output.fetchTweetsResult.value?[index.item]
     }
 }
