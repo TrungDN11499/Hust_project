@@ -24,7 +24,7 @@ class FeedsViewController: BaseViewController, ControllerType {
         }
     }
     
-    lazy var feedCollectionView: UICollectionView = {
+    private lazy var feedCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collecionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collecionView.backgroundColor = .white
@@ -32,9 +32,6 @@ class FeedsViewController: BaseViewController, ControllerType {
         collecionView.dataSource = self
         return collecionView
     }()
-    
-    private var newTweets = [Tweet]()
-    private var highInteractionTweets = [Tweet]()
     
     var user: User? {
         didSet {
@@ -49,7 +46,6 @@ class FeedsViewController: BaseViewController, ControllerType {
         self.configureViewController()
     }
     
-    // MARK: - Lifecycles
     override func bindViewModel() {
         self.configure(with: self.viewModel)
     }
@@ -70,7 +66,6 @@ class FeedsViewController: BaseViewController, ControllerType {
     
     
     // MARK: - Selectors
-    
     @objc private func hanldeRefresh(_ sender: UIRefreshControl) {
         self.viewModel.input.fetchTweets.excecute()
     }
@@ -82,48 +77,13 @@ class FeedsViewController: BaseViewController, ControllerType {
     }
     
     // MARK: -  Api
-    
-//    private func fetchTweet() {
-//
-//        self.feedCollectionView.refreshControl?.beginRefreshing()
-//        TweetService1.shared.fetchTweet { [weak self] tweets in
-//            guard let `self` = self else { return }
-//
-//            self.newTweets = tweets.filter { (Int(Date().timeIntervalSince1970) - Int($0.timestamp.timeIntervalSince1970)) <= 24 * 60 * 60 }.sorted { $0.timestamp > $1.timestamp }
-//
-//            self.highInteractionTweets = tweets.filter { !((Int(Date().timeIntervalSince1970) - Int($0.timestamp.timeIntervalSince1970)) < 24 * 60 * 60) }.sorted { $0.timestamp > $1.timestamp }.sorted { $0.likes + $0.comments >  $1.likes + $1.comments }
-//
-//            self.tweets = self.newTweets + self.highInteractionTweets
-//
-//            self.checkIfUserLikeTweet()
-//            DispatchQueue.main.async {
-//                self.feedCollectionView.reloadData()
-//            }
-//        }
-//
-//    }
-//
-    private func checkIfUserLikeTweet() {
-        self.tweets.forEach { tweet in
-            TweetService1.shared.checkIfUserLikeTweet(tweet: tweet) { didLike in
-                guard didLike == true else { return }
-                if let index = self.tweets.firstIndex(where: { $0.tweetId == tweet.tweetId }) {
-                    self.tweets[index].didLike = true
-                    DispatchQueue.main.async {
-                        self.feedCollectionView.reloadData()
-                    }
-                }
-            }
-        }
-    }
-    
+        
     // MARK: - Helpers
-    
     private func configureViewController() {
         
         self.feedCollectionView.backgroundColor = .white
         
-        guard let logoImage = UIImage(named: "ic_cat") else {
+        guard let logoImage = UIImage(named: "ic_sun") else {
             return
         }
         
