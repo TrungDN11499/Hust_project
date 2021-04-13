@@ -166,16 +166,16 @@
 		FAF417F82528C96E00FDDC97 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		FAF417FE2528CA0600FDDC97 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		FAFD3A05254863100030F4DF /* EditProfileFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileFooterView.swift; sourceTree = "<group>"; };
-		FAFD58A125208D9B006E4F94 /* Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAFD58A125208D9B006E4F94 /* Triponus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Triponus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAFD58A425208D9C006E4F94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAFD58A625208D9C006E4F94 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FAFD58AD25208D9C006E4F94 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAFD58B025208D9C006E4F94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAFD58B225208D9C006E4F94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FAFD58B725208D9C006E4F94 /* ProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAFD58B725208D9C006E4F94 /* TriponusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TriponusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAFD58BB25208D9C006E4F94 /* ProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTests.swift; sourceTree = "<group>"; };
 		FAFD58BD25208D9C006E4F94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FAFD58C225208D9D006E4F94 /* ProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAFD58C225208D9D006E4F94 /* TriponusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TriponusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAFD58C625208D9D006E4F94 /* ProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectUITests.swift; sourceTree = "<group>"; };
 		FAFD58C825208D9D006E4F94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAFD58E225208F9C006E4F94 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -414,9 +414,9 @@
 		FAFD58A225208D9B006E4F94 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FAFD58A125208D9B006E4F94 /* Project.app */,
-				FAFD58B725208D9C006E4F94 /* ProjectTests.xctest */,
-				FAFD58C225208D9D006E4F94 /* ProjectUITests.xctest */,
+				FAFD58A125208D9B006E4F94 /* Triponus.app */,
+				FAFD58B725208D9C006E4F94 /* TriponusTests.xctest */,
+				FAFD58C225208D9D006E4F94 /* TriponusUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -592,9 +592,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FAFD58A025208D9B006E4F94 /* Project */ = {
+		FAFD58A025208D9B006E4F94 /* Triponus */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FAFD58CB25208D9D006E4F94 /* Build configuration list for PBXNativeTarget "Project" */;
+			buildConfigurationList = FAFD58CB25208D9D006E4F94 /* Build configuration list for PBXNativeTarget "Triponus" */;
 			buildPhases = (
 				5EAA7962E3443F04B1F518B3 /* [CP] Check Pods Manifest.lock */,
 				FAFD589D25208D9B006E4F94 /* Sources */,
@@ -606,14 +606,14 @@
 			);
 			dependencies = (
 			);
-			name = Project;
+			name = Triponus;
 			productName = Project;
-			productReference = FAFD58A125208D9B006E4F94 /* Project.app */;
+			productReference = FAFD58A125208D9B006E4F94 /* Triponus.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FAFD58B625208D9C006E4F94 /* ProjectTests */ = {
+		FAFD58B625208D9C006E4F94 /* TriponusTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FAFD58CE25208D9D006E4F94 /* Build configuration list for PBXNativeTarget "ProjectTests" */;
+			buildConfigurationList = FAFD58CE25208D9D006E4F94 /* Build configuration list for PBXNativeTarget "TriponusTests" */;
 			buildPhases = (
 				B543874EF5230F6690D52B2B /* [CP] Check Pods Manifest.lock */,
 				FAFD58B325208D9C006E4F94 /* Sources */,
@@ -625,14 +625,14 @@
 			dependencies = (
 				FAFD58B925208D9C006E4F94 /* PBXTargetDependency */,
 			);
-			name = ProjectTests;
+			name = TriponusTests;
 			productName = ProjectTests;
-			productReference = FAFD58B725208D9C006E4F94 /* ProjectTests.xctest */;
+			productReference = FAFD58B725208D9C006E4F94 /* TriponusTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		FAFD58C125208D9D006E4F94 /* ProjectUITests */ = {
+		FAFD58C125208D9D006E4F94 /* TriponusUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FAFD58D125208D9D006E4F94 /* Build configuration list for PBXNativeTarget "ProjectUITests" */;
+			buildConfigurationList = FAFD58D125208D9D006E4F94 /* Build configuration list for PBXNativeTarget "TriponusUITests" */;
 			buildPhases = (
 				26DCFB70A47926283BCD7572 /* [CP] Check Pods Manifest.lock */,
 				FAFD58BE25208D9D006E4F94 /* Sources */,
@@ -645,9 +645,9 @@
 			dependencies = (
 				FAFD58C425208D9D006E4F94 /* PBXTargetDependency */,
 			);
-			name = ProjectUITests;
+			name = TriponusUITests;
 			productName = ProjectUITests;
-			productReference = FAFD58C225208D9D006E4F94 /* ProjectUITests.xctest */;
+			productReference = FAFD58C225208D9D006E4F94 /* TriponusUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -672,7 +672,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FAFD589C25208D9B006E4F94 /* Build configuration list for PBXProject "Project" */;
+			buildConfigurationList = FAFD589C25208D9B006E4F94 /* Build configuration list for PBXProject "Triponus" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -685,9 +685,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FAFD58A025208D9B006E4F94 /* Project */,
-				FAFD58B625208D9C006E4F94 /* ProjectTests */,
-				FAFD58C125208D9D006E4F94 /* ProjectUITests */,
+				FAFD58A025208D9B006E4F94 /* Triponus */,
+				FAFD58B625208D9C006E4F94 /* TriponusTests */,
+				FAFD58C125208D9D006E4F94 /* TriponusUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -917,12 +917,12 @@
 /* Begin PBXTargetDependency section */
 		FAFD58B925208D9C006E4F94 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FAFD58A025208D9B006E4F94 /* Project */;
+			target = FAFD58A025208D9B006E4F94 /* Triponus */;
 			targetProxy = FAFD58B825208D9C006E4F94 /* PBXContainerItemProxy */;
 		};
 		FAFD58C425208D9D006E4F94 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FAFD58A025208D9B006E4F94 /* Project */;
+			target = FAFD58A025208D9B006E4F94 /* Triponus */;
 			targetProxy = FAFD58C325208D9D006E4F94 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1114,7 +1114,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Project.app/Project";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Triponus.app/Triponus";
 			};
 			name = Debug;
 		};
@@ -1137,7 +1137,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Project.app/Project";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Triponus.app/Triponus";
 			};
 			name = Release;
 		};
@@ -1186,7 +1186,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FAFD589C25208D9B006E4F94 /* Build configuration list for PBXProject "Project" */ = {
+		FAFD589C25208D9B006E4F94 /* Build configuration list for PBXProject "Triponus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FAFD58C925208D9D006E4F94 /* Debug */,
@@ -1195,7 +1195,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FAFD58CB25208D9D006E4F94 /* Build configuration list for PBXNativeTarget "Project" */ = {
+		FAFD58CB25208D9D006E4F94 /* Build configuration list for PBXNativeTarget "Triponus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FAFD58CC25208D9D006E4F94 /* Debug */,
@@ -1204,7 +1204,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FAFD58CE25208D9D006E4F94 /* Build configuration list for PBXNativeTarget "ProjectTests" */ = {
+		FAFD58CE25208D9D006E4F94 /* Build configuration list for PBXNativeTarget "TriponusTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FAFD58CF25208D9D006E4F94 /* Debug */,
@@ -1213,7 +1213,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FAFD58D125208D9D006E4F94 /* Build configuration list for PBXNativeTarget "ProjectUITests" */ = {
+		FAFD58D125208D9D006E4F94 /* Build configuration list for PBXNativeTarget "TriponusUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FAFD58D225208D9D006E4F94 /* Debug */,
