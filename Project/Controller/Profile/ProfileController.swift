@@ -123,7 +123,8 @@ class ProfileController: UICollectionViewController {
         
         self.collectionView.contentInsetAdjustmentBehavior = .never
         
-        self.collectionView.register(TweetCell1.self, forCellWithReuseIdentifier: cellIden)
+        TweetCollectionViewCell.registerCellByNib(self.collectionView)
+        
         self.collectionView.register(ProfileHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: collectionHeaderIden)
         
         guard let tabBarHeight = self.tabBarController?.tabBar.frame.height else { return }
@@ -161,9 +162,11 @@ extension ProfileController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIden, for: indexPath) as? TweetCell1 else {
-            return TweetCell1()
+        
+        guard let cell = TweetCollectionViewCell.loadCell(collectionView, indexPath: indexPath) as? TweetCollectionViewCell else {
+            return TweetCollectionViewCell()
         }
+        
 //        cell.tweet = self.currentDataSource[indexPath.item]
         return cell
     }
