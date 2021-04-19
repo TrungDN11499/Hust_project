@@ -47,7 +47,7 @@ class FeedViewModel: ViewModelProtocol {
             self.input.tweet.value = newValue
         }
     }
-    
+        
     var timestamp: String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.second, .minute, .hour, .day, .weekOfMonth]

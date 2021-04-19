@@ -192,6 +192,7 @@ extension FeedsViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - TweetCollectionViewCellDelegate
 extension FeedsViewController: TweetCollectionViewCellDelegate {
+    
     func handleReplyTapped(_ cell: TweetCollectionViewCell) {
         guard let tweet = cell.feedViewModel?.tweet else { return }
         guard let index = self.feedCollectionView.indexPath(for: cell) else { return }
@@ -204,20 +205,8 @@ extension FeedsViewController: TweetCollectionViewCellDelegate {
     }
     
     func handleLikeTweet(_ cell: TweetCollectionViewCell) {
-        guard let tweet = cell.feedViewModel?.tweet else { return }
-        guard let index = self.feedCollectionView.indexPath(for: cell) else { return }
-        TweetService1.shared.likeTweet(tweet: tweet) { (err, ref) in
-            cell.feedViewModel?.tweet.didLike.toggle()
-            let likes = tweet.didLike ? ((tweet.likes - 1) < 0 ? 0 : (tweet.likes - 1)) : tweet.likes + 1
-            cell.feedViewModel?.tweet.likes = likes
-            
-            self.tweets[index.item].likes = likes
-            self.tweets[index.item].didLike = !tweet.didLike
-            
-            // only upload notification when user like
-            guard !tweet.didLike else { return }
-            NotificationService.shared.uploadNotification(.like, tweet: tweet)
-        }
+        guard let index = self.feedCollectionView.indexPath(for: cell), let feedViewModel = cell.feedViewModel else { return }
+        self.viewModel.input.likeTweet.value = LikeTweetParam(feedViewModel: feedViewModel, indexPath: index)
     }
     
     func handleProfileImageTapped(_ cell: TweetCollectionViewCell) {
@@ -227,7 +216,6 @@ extension FeedsViewController: TweetCollectionViewCellDelegate {
     }
     
     func handleDeletePost(_ cell: TweetCollectionViewCell) {
-    
         self.presentMessage("Do you want to delete this post?") { action in
             guard let tweet = cell.feedViewModel?.tweet else { return }
             TweetService1.shared.deleteTweet(tweet: tweet) { [weak self] (error, ref) in
@@ -238,14 +226,14 @@ extension FeedsViewController: TweetCollectionViewCellDelegate {
                 }
             }
         }
-        
     }
+    
 }
 
 // MARK: - UploadTweetControllerDelegate
 extension FeedsViewController: UploadTweetControllerDelegate {
     func handleUpdateNumberOfComment(for index: Int) {
-        self.tweets[index].comments += 1
+        self.viewModel.output.fetchTweetsResult.value?[index].tweet.comments += 1
         DispatchQueue.main.async {
             self.feedCollectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
         }

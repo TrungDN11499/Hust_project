@@ -11,6 +11,7 @@ class FeedsViewModel: ViewModelProtocol {
     
     struct Input {
         var fetchTweets: Observable<Any> = Observable()
+        var likeTweet: Observable<LikeTweetParam> = Observable()
     }
     
     struct Output {
@@ -25,6 +26,7 @@ class FeedsViewModel: ViewModelProtocol {
         self.input = Input()
         self.output = Output()
         
+        // fetch tweets
         self.input.fetchTweets.bind { observer, value in
             var values = [FeedViewModel]()
             feedsService.fetchTweet { [unowned self] tweets in
@@ -33,6 +35,22 @@ class FeedsViewModel: ViewModelProtocol {
                     values.append(tweet)
                 }
                 self.output.fetchTweetsResult.value = values
+            }
+        }
+        
+        // like tweet
+        self.input.likeTweet.bind { observer, value  in
+            feedsService.likeTweet(tweet: value.feedViewModel.tweet) { error, reference in
+
+                let likes = value.feedViewModel.tweet.didLike ? ((value.feedViewModel.tweet.likes - 1) < 0 ? 0 : (value.feedViewModel.tweet.likes - 1)) : value.feedViewModel.tweet.likes + 1
+                
+                self.output.fetchTweetsResult.value?[value.indexPath.item].tweet.likes = likes
+                
+                self.output.fetchTweetsResult.value?[value.indexPath.item].tweet.didLike = !value.feedViewModel.tweet.didLike
+                
+                // only upload notification when user like
+                guard !value.feedViewModel.tweet.didLike else { return }
+                NotificationService.shared.uploadNotification(.like, tweet: value.feedViewModel.tweet)
             }
         }
     }

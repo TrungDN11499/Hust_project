@@ -11,9 +11,33 @@ import FirebaseDatabase
 import FirebaseStorage
 
 protocol FeedsServiceProtocol {
+    
+    /// fetch all tweets of current user and following user tweets
+    /// - Parameters:
+    ///   - completion: @escaping ([Tweet]) -> ()
+    /// - Returns: Void
     func fetchTweet(completion: @escaping ([Tweet]) -> ())
+    
+    /// fetch all tweets for user
+    /// - Parameters:
+    ///   - user: input user
+    ///   - completion: @escaping ([Tweet]) -> ()
+    /// - Returns: Void
     func fetchTweets(forUser user: User, completion: @escaping ([Tweet]) -> ())
+    
+    /// fetch  tweet for id
+    /// - Parameters:
+    ///   - tweetId: input id
+    ///   - completion: @escaping (Tweet) -> ()
+    /// - Returns: Void
     func fetchTweet(withTweetId tweetId: String, completion: @escaping (Tweet) -> ())
+    
+    /// like or unlike a tweet
+    /// - Parameters:
+    ///   - tweet: Tweet
+    ///   - completion: @escaping ((Error? ,DatabaseReference) -> Void)
+    /// - Returns: Void
+    func likeTweet(tweet: Tweet, completion: @escaping ((Error? ,DatabaseReference) -> Void))
 }
 
 class FeedsService: FeedsServiceProtocol {
@@ -48,8 +72,8 @@ class FeedsService: FeedsServiceProtocol {
             if success {
                 if let followingUserTweets = followingUserTweets {
                     tweets.append(contentsOf: followingUserTweets)
-                    finishFollowingCount = success
                 }
+                finishFollowingCount = success
             } else {
                 finalStatus = success
             }
@@ -60,22 +84,27 @@ class FeedsService: FeedsServiceProtocol {
             if success {
                 if let currentUserTweets =  currentUserTweets {
                     tweets.append(contentsOf: currentUserTweets)
-                    numberFinished += 1
                 }
+                numberFinished += 1
             } else {
                 finalStatus = false
             }
         }
     }
     
-    /// fetch current user tweets
+    /// fetch current user tweets.
     /// - Parameters:
-    ///   - completion: @escaping (Bool, [Tweet]) -> ()
+    ///   - completion: @escaping (Bool, [Tweet]?) -> ()
     /// - Returns: Void
     private func fetchUserTweets(completion: @escaping (Bool, [Tweet]?) -> ()) {
         guard let currentUid = Auth.auth().currentUser?.uid else { return }
         REF_USER_TWEETS.child(currentUid).observe(.value) { snapshot in
             var userTweets = [Tweet]()
+            
+            if snapshot.childrenCount == 0 {
+                completion(true, nil)
+            }
+            
             for child in snapshot.children {
                 if let snapshotChild = child as? DataSnapshot {
                     let tweetId = snapshotChild.key
@@ -96,16 +125,28 @@ class FeedsService: FeedsServiceProtocol {
         }
     }
     
+    /// fetch following user tweets.
+    /// - Parameters:
+    ///   - completion: @escaping (Bool, [Tweet]?) -> ()
+    /// - Returns: Void
     private func fetchFollowingUserTweets(completion: @escaping (Bool, [Tweet]?) -> ()) {
         var followingCount = 0
         var tweets = [Tweet]()
         guard let currentUid = Auth.auth().currentUser?.uid else { return }
         REF_USER_FOLLOWING.child(currentUid).observe(.value) { flowwingSnapshot in
+            
+            if flowwingSnapshot.childrenCount == 0 {
+                completion(true, nil)
+            }
+            
             for child in flowwingSnapshot.children {
+                
                 var followingTweets = [Tweet]()
                 if let snapshotChild = child as? DataSnapshot {
                     let followedUid = snapshotChild.key
+                    
                     REF_USER_TWEETS.child(followedUid).observe(.value) { tweetsSnapshot in
+                        
                         for child in tweetsSnapshot.children {
                             if let snapshotChild = child as? DataSnapshot {
                                 let tweetId = snapshotChild.key
@@ -128,13 +169,19 @@ class FeedsService: FeedsServiceProtocol {
                                 completion(false, nil)
                             }
                         }
+                        
                     }
                 }
             }
         }
     }
     
-    func checkIfUserLikeTweet(tweet: Tweet, completion: @escaping (Bool) -> ()) {
+    /// check tweet like of the current user
+    /// - Parameters:
+    ///   - tweet: Tweet
+    ///   - completion: @escaping (Bool) -> ()
+    /// - Returns: Void
+    private func checkIfUserLikeTweet(tweet: Tweet, completion: @escaping (Bool) -> ()) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         REF_USER_LIKES.child(uid).child(tweet.tweetId).observeSingleEvent(of: .value) { snapshot in
             dLogDebug(snapshot.exists())
@@ -164,6 +211,23 @@ class FeedsService: FeedsServiceProtocol {
                 guard let user = user else { return }
                 let tweet = Tweet(user: user, tweetId: tweetId, dictionary: dictionary)
                 completion(tweet)
+            }
+        }
+    }
+    
+    func likeTweet(tweet: Tweet, completion: @escaping ((Error? ,DatabaseReference) -> Void)) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let likes = tweet.didLike ? ((tweet.likes - 1) < 0 ? 0 : (tweet.likes - 1)) : tweet.likes + 1
+        
+        REF_TWEETS.child(tweet.tweetId).child("likes").setValue(likes)
+        
+        if tweet.didLike {
+            REF_USER_LIKES.child(uid).child(tweet.tweetId).removeValue { (err, ref) in
+                REF_TWEET_LIKES.child(tweet.tweetId).removeValue(completionBlock: completion)
+            }
+        } else {
+            REF_USER_LIKES.child(uid).updateChildValues([tweet.tweetId: 1]) { (err, ref) in
+                REF_TWEET_LIKES.child(tweet.tweetId).updateChildValues([uid: 1], withCompletionBlock: completion)
             }
         }
     }
