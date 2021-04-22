@@ -143,8 +143,8 @@ struct TweetService1 {
         var tweets = [Tweet]()
         REF_USER_LIKES.child(user.uid).observe(.childAdded) { snapshot in
             self.fetchTweet(withTweetId: snapshot.key) { tweet in
-                var likedTweet = tweet
-                likedTweet.didLike = true
+                let likedTweet = tweet
+                likedTweet.didLike.value = true
                 tweets.append(likedTweet)
                 completion(tweets)
             }
@@ -153,10 +153,10 @@ struct TweetService1 {
     
     func likeTweet(tweet: Tweet, completion: @escaping (Completion)) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        let likes = tweet.didLike ? ((tweet.likes - 1) < 0 ? 0 : (tweet.likes - 1)) : tweet.likes + 1
+        let likes = tweet.didLike.value ?? false ? ((tweet.likes - 1) < 0 ? 0 : (tweet.likes - 1)) : tweet.likes + 1
         REF_TWEETS.child(tweet.tweetId).child("likes").setValue(likes)
         
-        if tweet.didLike {
+        if tweet.didLike.value ?? false {
             REF_USER_LIKES.child(uid).child(tweet.tweetId).removeValue { (err, ref) in
                 REF_TWEET_LIKES.child(tweet.tweetId).removeValue(completionBlock: completion)
             }

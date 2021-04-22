@@ -176,7 +176,7 @@ extension FeedsViewController: UICollectionViewDelegateFlowLayout {
         
         let cellPadding: CGFloat = 12
         let infoLabelHeight: CGFloat = 17
-        let actionButtonSize: CGFloat = 20
+        let actionButtonSize: CGFloat = 30
         let profileImageSize: CGFloat = 48
         
         let textWidth = self.view.frame.width - (profileImageSize + actionButtonSize + cellPadding * 4)

@@ -15,7 +15,7 @@ class Tweet {
     var timestamp: Date!
     let retweets: Int
     var user: User!
-    var didLike = false
+    var didLike = Observable<Bool>()
     var replyingTo: String?
     
     var isReply: Bool {
@@ -23,6 +23,9 @@ class Tweet {
     }
     
     init(user: User, tweetId: String, dictionary: [String: Any]) {
+        
+        self.didLike.value = false
+        
         self.tweetId = tweetId
         self.user = user
         

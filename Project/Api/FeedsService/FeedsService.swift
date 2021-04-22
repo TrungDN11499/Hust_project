@@ -110,8 +110,8 @@ class FeedsService: FeedsServiceProtocol {
                     let tweetId = snapshotChild.key
                     self.fetchTweet(withTweetId: tweetId) { tweetsData in
                         self.checkIfUserLikeTweet(tweet: tweetsData) { didLike in
-                            var likedTweet = tweetsData
-                            likedTweet.didLike = didLike
+                            let likedTweet = tweetsData
+                            likedTweet.didLike.value = didLike
                             userTweets.append(likedTweet)
                             if userTweets.count == snapshot.childrenCount {
                                 completion(true, userTweets)
@@ -153,8 +153,8 @@ class FeedsService: FeedsServiceProtocol {
                                 self.fetchTweet(withTweetId: tweetId) { tweetsData in
     
                                     self.checkIfUserLikeTweet(tweet: tweetsData) { didLike in
-                                        var likedTweet = tweetsData
-                                        likedTweet.didLike = didLike
+                                        let likedTweet = tweetsData
+                                        likedTweet.didLike.value = didLike
                                         followingTweets.append(likedTweet)
                                         if followingTweets.count == tweetsSnapshot.childrenCount {
                                             tweets.append(contentsOf: followingTweets)
@@ -217,11 +217,11 @@ class FeedsService: FeedsServiceProtocol {
     
     func likeTweet(tweet: Tweet, completion: @escaping ((Error? ,DatabaseReference) -> Void)) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        let likes = tweet.didLike ? ((tweet.likes - 1) < 0 ? 0 : (tweet.likes - 1)) : tweet.likes + 1
+        let likes = tweet.didLike.value ?? false ? ((tweet.likes - 1) < 0 ? 0 : (tweet.likes - 1)) : tweet.likes + 1
         
         REF_TWEETS.child(tweet.tweetId).child("likes").setValue(likes)
         
-        if tweet.didLike {
+        if tweet.didLike.value ?? false {
             REF_USER_LIKES.child(uid).child(tweet.tweetId).removeValue { (err, ref) in
                 REF_TWEET_LIKES.child(tweet.tweetId).removeValue(completionBlock: completion)
             }

@@ -102,11 +102,20 @@ class FeedViewModel: ViewModelProtocol {
     }
     
     var likeButtonTintColor: UIColor {
-        return tweet.didLike ? .red : .lightGray
+        return tweet.didLike.value ?? false ? .red : .lightGray
     }
     
     var likeButtonImage: UIImage? {
-        let imageName = tweet.didLike ? "like_filled" : "like"
+        let imageName = tweet.didLike.value ?? false ? "like_filled" : "like"
+        return UIImage(named: imageName)
+    }
+    
+    func likeButtonTintColor(_ didLike: Bool) -> UIColor {
+        return didLike ? .red : .lightGray
+    }
+    
+    func likeButtonImage(_ didLike: Bool) -> UIImage? {
+        let imageName =  didLike ? "like_filled" : "like"
         return UIImage(named: imageName)
     }
     

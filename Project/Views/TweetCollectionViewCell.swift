@@ -74,11 +74,17 @@ extension TweetCollectionViewCell {
     
         self.profileImageView.sd_setImage(with: feedViewModel.profileImageUrl, completed: nil)
         infoLabel.attributedText = feedViewModel.userInfoText
-        
+                
         self.likeButton.tintColor = feedViewModel.likeButtonTintColor
         
         self.likeButton.setImage(feedViewModel.likeButtonImage, for: .normal)
         
+        feedViewModel.tweet.didLike.bind { (observer, value) in
+            dLogDebug(value)
+            self.likeButton.setImage(feedViewModel.likeButtonImage(value), for: .normal)
+            self.likeButton.tintColor = feedViewModel.likeButtonTintColor(value)
+        }
+    
         self.replyLabel.text = feedViewModel.replyText
         
         self.replyLabel.isHidden = feedViewModel.shouldHideReplyLabel
