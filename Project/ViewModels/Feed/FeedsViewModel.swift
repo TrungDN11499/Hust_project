@@ -44,10 +44,9 @@ class FeedsViewModel: ViewModelProtocol {
 
                 let likes = value.feedViewModel.tweet.didLike ? ((value.feedViewModel.tweet.likes - 1) < 0 ? 0 : (value.feedViewModel.tweet.likes - 1)) : value.feedViewModel.tweet.likes + 1
                 
-                self.output.fetchTweetsResult.value?[value.indexPath.item].tweet.likes = likes
-                
-                self.output.fetchTweetsResult.value?[value.indexPath.item].tweet.didLike = !value.feedViewModel.tweet.didLike
-                
+                self.viewModel(at: value.indexPath)?.tweet.likes = likes
+                self.viewModel(at: value.indexPath)?.tweet.didLike = !value.feedViewModel.tweet.didLike
+        
                 // only upload notification when user like
                 guard !value.feedViewModel.tweet.didLike else { return }
                 NotificationService.shared.uploadNotification(.like, tweet: value.feedViewModel.tweet)

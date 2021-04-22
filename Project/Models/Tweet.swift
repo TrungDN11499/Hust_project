@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Tweet {
+class Tweet {
     let caption: String
     let tweetId: String
     var likes: Int
