@@ -163,9 +163,9 @@ extension FeedsViewController: UICollectionViewDataSource {
         guard let cell = TweetCollectionViewCell.loadCell(collectionView, indexPath: indexPath) as? TweetCollectionViewCell else {
             return TweetCollectionViewCell()
         }
-        cell.feedViewModel = self.viewModel.viewModel(at: indexPath)
         cell.needDelete = true
         cell.delegate = self
+        cell.feedViewModel = self.viewModel.viewModel(at: indexPath)
         return cell
     }
 }
@@ -217,14 +217,8 @@ extension FeedsViewController: TweetCollectionViewCellDelegate {
     
     func handleDeletePost(_ cell: TweetCollectionViewCell) {
         self.presentMessage("Do you want to delete this post?") { action in
-            guard let tweet = cell.feedViewModel?.tweet else { return }
-            TweetService1.shared.deleteTweet(tweet: tweet) { [weak self] (error, ref) in
-                guard let `self` = self else { return }
-                self.tweets.remove(at: self.feedCollectionView.indexPath(for: cell)!.item)
-                DispatchQueue.main.async {
-                    self.feedCollectionView.reloadData()
-                }
-            }
+            guard let tweet = cell.feedViewModel?.tweet, let index = self.feedCollectionView.indexPath(for: cell) else { return }
+            self.viewModel.input.deleteTweet.value = DeleteParam(tweet: tweet, at: index)
         }
     }
     

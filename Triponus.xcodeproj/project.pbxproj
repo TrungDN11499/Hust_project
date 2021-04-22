@@ -57,6 +57,7 @@
 		FA9B7CFA2535FC85006DFFA2 /* CaptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B7CF92535FC85006DFFA2 /* CaptionTextView.swift */; };
 		FA9B7CFF25361604006DFFA2 /* TweetService1.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B7CFE25361604006DFFA2 /* TweetService1.swift */; };
 		FAA362672524D84A00580FE2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA362662524D84A00580FE2 /* Constants.swift */; };
+		FAA5DD662631FCAB00C919A0 /* DeleteParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA5DD652631FCAB00C919A0 /* DeleteParam.swift */; };
 		FAB9759E2602F87C006A66BB /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9759D2602F87C006A66BB /* SplashViewController.swift */; };
 		FAC53E9F26103A7500E32E21 /* FeedsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC53E9E26103A7500E32E21 /* FeedsService.swift */; };
 		FAC53EA42610417400E32E21 /* FeedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC53EA32610417400E32E21 /* FeedsViewModel.swift */; };
@@ -158,6 +159,7 @@
 		FA9B7CF92535FC85006DFFA2 /* CaptionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionTextView.swift; sourceTree = "<group>"; };
 		FA9B7CFE25361604006DFFA2 /* TweetService1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetService1.swift; sourceTree = "<group>"; };
 		FAA362662524D84A00580FE2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FAA5DD652631FCAB00C919A0 /* DeleteParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteParam.swift; sourceTree = "<group>"; };
 		FAB9759D2602F87C006A66BB /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		FAC53E9E26103A7500E32E21 /* FeedsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsService.swift; sourceTree = "<group>"; };
 		FAC53EA32610417400E32E21 /* FeedsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsViewModel.swift; sourceTree = "<group>"; };
@@ -341,6 +343,14 @@
 			path = UploadTweet;
 			sourceTree = "<group>";
 		};
+		FAA5DD642631FC9000C919A0 /* DeleteParam */ = {
+			isa = PBXGroup;
+			children = (
+				FAA5DD652631FCAB00C919A0 /* DeleteParam.swift */,
+			);
+			path = DeleteParam;
+			sourceTree = "<group>";
+		};
 		FAB9759C2602F86D006A66BB /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -472,6 +482,7 @@
 		FAFD58D725208E72006E4F94 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FAA5DD642631FC9000C919A0 /* DeleteParam */,
 				FA70492726288C080093D11A /* LikeTweetParam */,
 				FA0DC9FB25265FED00377539 /* User.swift */,
 				FA26202C25374A3B000E1755 /* Tweet.swift */,
@@ -885,6 +896,7 @@
 				FA0DC9FC25265FED00377539 /* User.swift in Sources */,
 				FA875FA6260B8088006DCBA9 /* DateExtension.swift in Sources */,
 				FA875FAB260B8122006DCBA9 /* BindingView.swift in Sources */,
+				FAA5DD662631FCAB00C919A0 /* DeleteParam.swift in Sources */,
 				FA2C25DC2532F6900042EC43 /* BindingButton.swift in Sources */,
 				FA408112253A04A8003DF3D7 /* ProfileFilterCell.swift in Sources */,
 				FAC53EA42610417400E32E21 /* FeedsViewModel.swift in Sources */,

@@ -38,6 +38,13 @@ protocol FeedsServiceProtocol {
     ///   - completion: @escaping ((Error? ,DatabaseReference) -> Void)
     /// - Returns: Void
     func likeTweet(tweet: Tweet, completion: @escaping ((Error? ,DatabaseReference) -> Void))
+    
+    /// delete tweet
+    /// - Parameters:
+    ///   - tweet: Tweet
+    ///   - completion: @escaping ((Error? ,DatabaseReference) -> Void)
+    /// - Returns: Void
+    func deleteTweet(tweet: Tweet, completion: @escaping ((Error? ,DatabaseReference) -> Void))
 }
 
 class FeedsService: FeedsServiceProtocol {
@@ -147,6 +154,10 @@ class FeedsService: FeedsServiceProtocol {
                     
                     REF_USER_TWEETS.child(followedUid).observe(.value) { tweetsSnapshot in
                         
+                        if tweetsSnapshot.childrenCount == 0 {
+                            completion(true, nil)
+                        }
+                        
                         for child in tweetsSnapshot.children {
                             if let snapshotChild = child as? DataSnapshot {
                                 let tweetId = snapshotChild.key
@@ -231,4 +242,19 @@ class FeedsService: FeedsServiceProtocol {
             }
         }
     }
+    
+    func deleteTweet(tweet: Tweet, completion: @escaping ((Error? ,DatabaseReference) -> Void)) {
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        REF_TWEET_LIKES.child(tweet.tweetId).removeValue  { error, dataReference in
+            REF_TWEETS.child(tweet.tweetId).removeValue { error, dataReference in
+                
+                REF_USER_LIKES.observe(.childAdded) { snapshot in
+                    REF_USER_LIKES.child(snapshot.key).child(tweet.tweetId).removeValue()
+                }
+                
+                REF_USER_TWEETS.child(currentUserId).child(tweet.tweetId).removeValue(completionBlock: completion)
+            }
+        }
+    }
+    
 }

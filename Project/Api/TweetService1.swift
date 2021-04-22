@@ -176,8 +176,12 @@ struct TweetService1 {
     
     func deleteTweet(tweet: Tweet, completion: @escaping Completion) {
         guard let currentUserId = Auth.auth().currentUser?.uid else { return }
-        REF_TWEETS.child(tweet.tweetId).removeValue { (error, dataReference) in
-            REF_USER_TWEETS.child(currentUserId).child(tweet.tweetId).removeValue(completionBlock: completion)
+        REF_TWEET_LIKES.child(tweet.tweetId).removeValue  { error, dataReference in
+            REF_TWEETS.child(tweet.tweetId).removeValue { error, dataReference in
+                REF_USER_LIKES.child(currentUserId).child(tweet.tweetId).removeValue { error, dataReference in
+                    REF_USER_TWEETS.child(currentUserId).child(tweet.tweetId).removeValue(completionBlock: completion)
+                }
+            }
         }
     }
     

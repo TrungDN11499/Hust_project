@@ -12,6 +12,7 @@ class FeedsViewModel: ViewModelProtocol {
     struct Input {
         var fetchTweets: Observable<Any> = Observable()
         var likeTweet: Observable<LikeTweetParam> = Observable()
+        var deleteTweet: Observable<DeleteParam> = Observable()
     }
     
     struct Output {
@@ -40,7 +41,7 @@ class FeedsViewModel: ViewModelProtocol {
         
         // like tweet
         self.input.likeTweet.bind { observer, value  in
-            feedsService.likeTweet(tweet: value.feedViewModel.tweet) { error, reference in
+            feedsService.likeTweet(tweet: value.feedViewModel.tweet) { [unowned self] error, reference in
 
                 let likes = value.feedViewModel.tweet.didLike.value ?? false ? ((value.feedViewModel.tweet.likes - 1) < 0 ? 0 : (value.feedViewModel.tweet.likes - 1)) : value.feedViewModel.tweet.likes + 1
                 
@@ -50,6 +51,17 @@ class FeedsViewModel: ViewModelProtocol {
                 // only upload notification when user like
                 guard let didLike = value.feedViewModel.tweet.didLike.value, didLike else { return }
                 NotificationService.shared.uploadNotification(.like, tweet: value.feedViewModel.tweet)
+            }
+        }
+        
+        // delete tweet
+        self.input.deleteTweet.bind { observer, value in
+            feedsService.deleteTweet(tweet: value.tweet) { [unowned self] error, ref in
+                
+                if error == nil {
+                    self.output.fetchTweetsResult.value?.remove(at: value.indexPath.item)
+                }
+                
             }
         }
     }
