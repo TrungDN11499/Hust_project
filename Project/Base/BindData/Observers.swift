@@ -11,12 +11,20 @@ class Observable<T> {
     
     typealias Observer = (_ observable: Observable<T>, T) -> ()
     
-    private var observers: [Observer]
+    var observers: [Observer]
     
     public var value: T? {
         didSet {
             if let value = value {
                 notifyObservers(value)
+            }
+        }
+    }
+    
+    func excecute() {
+        if !self.observers.isEmpty {
+            self.observers.forEach { [unowned self](observer) in
+                observer(self, EXECUTE_SIGNAL as! T)
             }
         }
     }
@@ -34,33 +42,6 @@ class Observable<T> {
         self.observers.forEach { [unowned self](observer) in
             observer(self, value)
         }
-    }
-    
-}
-
-
-class Dynamic<T>: Codable where T : Codable {
-    
-    typealias Listener = (T) -> ()
-    var listener: Listener?
-    
-    var value: T {
-        didSet {
-            listener?(value)
-        }
-    }
-    
-    func bind(_ listener: @escaping Listener) {
-        self.listener = listener
-        self.listener?(value)
-    }
-    
-    init(_ value: T) {
-        self.value = value
-    }
-    
-    private enum CodingKeys: CodingKey {
-        case value
     }
     
 }

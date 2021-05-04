@@ -1,0 +1,6 @@
+framework module Pods_TriponusTests {
+  umbrella header "Pods-TriponusTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

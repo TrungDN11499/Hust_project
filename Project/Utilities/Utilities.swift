@@ -37,7 +37,7 @@ class Utilities {
     
     func textField(withPlaceholder placeholder: String) -> BindingTextField {
         
-        let textField = BindingTextField()
+        let textField = BindingTextField(controlEvent: .editingChanged)
         textField.textColor = .black
         textField.font = UIFont.systemFont(ofSize: 16)
         textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
@@ -45,9 +45,9 @@ class Utilities {
         
     }
     
-    func attributeButton(_ firstPart: String, _ secondPart: String) -> UIButton {
+    func attributeButton(_ firstPart: String, _ secondPart: String) -> BindingButton {
         
-        let button = UIButton(type: .system)
+        let button = BindingButton(controlEvent: .touchUpInside)
         
         let attributedTitle = NSMutableAttributedString(string: firstPart, attributes: [NSMutableAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSMutableAttributedString.Key.foregroundColor: UIColor.darkGray])
         

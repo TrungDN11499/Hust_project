@@ -8,7 +8,6 @@
 import UIKit
 import FirebaseAuth
 
-private let cellIden = "TweetCell"
 private let collectionHeaderIden = "ProfileHeaderView"
 
 class ProfileController: UICollectionViewController {
@@ -24,16 +23,12 @@ class ProfileController: UICollectionViewController {
     
     private var likedTweets = [Tweet]()
     
-    private var replyTweet = [Tweet]()
-    
     private var currentDataSource: [Tweet] {
         switch self.selectedFilter {
         case .tweets:
             return self.tweets
         case .likes:
             return self.likedTweets
-        case .replies:
-            return self.replyTweet
         }
     }
     
@@ -56,7 +51,6 @@ class ProfileController: UICollectionViewController {
         self.configureCollectionView()
         self.fetchTweets()
         self.fetchLikeTweets()
-        self.fetchReply()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,29 +67,31 @@ class ProfileController: UICollectionViewController {
     
     private func fetchTweets() {
         guard let user = self.user else { return }
-        TweetService.shared.fetchTweets(forUser: user) { [weak self] in
+        TweetService1.shared.fetchTweets(forUser: user) { [weak self] tweets in
             guard let `self` = self else { return }
-            self.tweets = $0;
-            self.collectionView.reloadData()
+            
+            for tweet in tweets {
+                TweetService1.shared.checkIfUserLikeTweet(tweet: tweet) { didLike in
+                    if didLike {
+                        tweet.didLike.value = true
+                    }
+                    self.tweets.append(tweet)
+                    
+                    // TODO: This must be fixed.
+                    self.collectionView.reloadData()
+                }
+            }
         }
     }
     
     private func fetchLikeTweets() {
         guard let user = self.user else { return }
-        TweetService.shared.fetchLike(forUser: user) { [weak self]  in
+        TweetService1.shared.fetchLike(forUser: user) { [weak self]  in
             guard let `self` = self else { return }
             self.likedTweets = $0
         }
     }
-    
-    private func fetchReply() {
-        guard let user = self.user else { return }
-        TweetService.shared.fetchReply(forUser: user) { [weak self] in
-            guard let `self` = self else { return }
-            self.replyTweet = $0
-        }
-    }
-    
+        
     private func checkIfUserIsFollowing() {
         guard let user = self.user else { return }
         UserService.shared.checkFollowUser(uid: user.uid) { [weak self] isFollowed in
@@ -123,7 +119,8 @@ class ProfileController: UICollectionViewController {
         
         self.collectionView.contentInsetAdjustmentBehavior = .never
         
-        self.collectionView.register(TweetCell.self, forCellWithReuseIdentifier: cellIden)
+        TweetCollectionViewCell.registerCellByNib(self.collectionView)
+        
         self.collectionView.register(ProfileHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: collectionHeaderIden)
         
         guard let tabBarHeight = self.tabBarController?.tabBar.frame.height else { return }
@@ -161,10 +158,13 @@ extension ProfileController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIden, for: indexPath) as? TweetCell else {
-            return TweetCell()
+        
+        guard let cell = TweetCollectionViewCell.loadCell(collectionView, indexPath: indexPath) as? TweetCollectionViewCell else {
+            return TweetCollectionViewCell()
         }
-        cell.tweet = self.currentDataSource[indexPath.item]
+        
+        cell.feedViewModel = FeedViewModel(self.currentDataSource[indexPath.item])
+        
         return cell
     }
 }
@@ -225,17 +225,21 @@ extension ProfileController: ProfileHeaderViewDelegate {
     }
     
     func gotoLoginController() {
-        let loginControllerViewModel = LoginViewModel()
+        let loginService = LoginService()
+        let loginControllerViewModel = LoginViewModel(loginService: loginService)
         let loginController = LoginController.create(with: loginControllerViewModel)
         if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
             sceneDelegate.changeRootViewController(view: loginController)
         }
+        
+        self.changeRootViewControllerTo(rootViewController: loginController,
+                                        withOption: .transitionCrossDissolve,
+                                        duration: 0.2)
     }
     
 }
 
 // MARK: - EditProfileControllerDelegate.
-
 extension ProfileController: EditProfileControllerDelegate {
     
     func handleLogout() {
@@ -243,7 +247,7 @@ extension ProfileController: EditProfileControllerDelegate {
             try Auth.auth().signOut()
             self.gotoLoginController()
         } catch {
-            print("Logout fail.")
+            dLogWarning("sign out error")
         }
     }
     

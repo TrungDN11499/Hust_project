@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Tweet {
+class Tweet {
     let caption: String
     let tweetId: String
     var likes: Int
@@ -15,7 +15,7 @@ struct Tweet {
     var timestamp: Date!
     let retweets: Int
     var user: User!
-    var didLike = false
+    var didLike = Observable<Bool>()
     var replyingTo: String?
     
     var isReply: Bool {
@@ -23,6 +23,9 @@ struct Tweet {
     }
     
     init(user: User, tweetId: String, dictionary: [String: Any]) {
+        
+        self.didLike.value = false
+        
         self.tweetId = tweetId
         self.user = user
         

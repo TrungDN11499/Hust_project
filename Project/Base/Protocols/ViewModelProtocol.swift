@@ -16,4 +16,5 @@ import Foundation
 /// Output type should contain observables that emit events related to result of processing of inputs.
 protocol ViewModelProtocol: class {
     associatedtype Input
+    associatedtype Output
 }

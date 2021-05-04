@@ -14,6 +14,8 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureView()
+        self.bindViewModel()
+        self.configureUI()
     }
     
     // MARK: - Selectors
@@ -23,26 +25,29 @@ class BaseViewController: UIViewController {
     }
     
     // MARK: - Helpers
-    
+    /// for configuring  view options
     func configureView() {
         self.view.backgroundColor = .white
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleResignFirstResponder)))
     }
     
-    func changeRootViewControllerTo(rootViewController: UIViewController, withOption options: UIView.AnimationOptions = .curveLinear, duration: TimeInterval = 0) {
+    /// for programmatically configuring UI
+    func configureUI() {
         
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let sceneDelegate = windowScene.delegate as? SceneDelegate
-        else {
-            return
-        }
-    
-        sceneDelegate.window?.rootViewController = rootViewController
-        
-        UIView.transition(with: sceneDelegate.window!,
-                          duration: duration,
-                          options: options,
-                          animations: {},
-                          completion:{ completed in })
     }
+    
+    /// for binding view model
+    func bindViewModel() {
+        
+    }
+    
+    // go to home viewController
+    /// - Returns: Void
+    func gotoHomeController() {
+        let homeViewController = MainTabBarController()
+        self.changeRootViewControllerTo(rootViewController: homeViewController,
+                                        withOption: .transitionCrossDissolve,
+                                        duration: 0.2)
+    }
+    
 }

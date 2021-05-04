@@ -15,6 +15,7 @@ extension UIViewController {
     ///   - textFields: add  to text field
     ///   - dismissable: can be dissmisssed
     ///   - previousNextable: can move to other text field
+    /// - Returns: Void
     func addInputAccessoryForTextFields(textFields: [UITextField], dismissable: Bool = true, previousNextable: Bool = false) {
         for (index, textField) in textFields.enumerated() {
             let toolbar: UIToolbar = UIToolbar()
@@ -52,6 +53,10 @@ extension UIViewController {
         }
     }
     
+    /// present alert with one button
+    /// - Parameters:
+    ///   - error: errort to present
+    /// - Returns: Voic
     func presentError(_ error: Error) {
         let alertController = UIAlertController(title: "Error",
                                                 message: error.localizedDescription,
@@ -60,6 +65,10 @@ extension UIViewController {
         self.present(alertController, animated: true)
     }
     
+    /// present message with one button
+    /// - Parameters:
+    ///   - message: message to present
+    /// - Returns: Void
     func presentMessage(_ message: String) {
         let alertController = UIAlertController(title: "Message",
                                                 message: message,
@@ -68,6 +77,10 @@ extension UIViewController {
         self.present(alertController, animated: true)
     }
     
+    /// present message with two buttons
+    /// - Parameters:
+    ///   - message: message to present
+    /// - Returns: Void
     func presentMessage(_ message: String, handler: ((UIAlertAction) -> Void)?) {
         let alertController = UIAlertController(title: "Message",
                                                 message: message,
@@ -85,4 +98,26 @@ extension UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    /// Change root view controller
+    /// - Parameters:
+    ///   - rootViewController: change to view controller
+    ///   - options: animation option, default is curveLinear
+    ///   - duration: animation duration, default is 0
+    /// - Returns: Void
+    func changeRootViewControllerTo(rootViewController: UIViewController, withOption options: UIView.AnimationOptions = .curveLinear, duration: TimeInterval = 0) {
+        
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let sceneDelegate = windowScene.delegate as? SceneDelegate
+        else {
+            return
+        }
+    
+        sceneDelegate.window?.rootViewController = rootViewController
+        
+        UIView.transition(with: sceneDelegate.window!,
+                          duration: duration,
+                          options: options,
+                          animations: {},
+                          completion:{ completed in })
+    }
 }

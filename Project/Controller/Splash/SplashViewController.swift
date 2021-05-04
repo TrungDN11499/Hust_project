@@ -12,7 +12,7 @@ class SplashViewController: BaseViewController {
     
     let catImageViewSize: CGFloat = 120
     
-    let catImageView = UIImageView(image: UIImage(named: "ic_cat"))
+    let catImageView = UIImageView(image: UIImage(named: "ic_sun"))
 
     let splashView = UIView()
     

@@ -9,7 +9,7 @@ import UIKit
 
 class BindingButton: UIButton {
     
-    var didTapButton: () -> () = {  }
+    private var completion: (UIButton) -> () = { _ in }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,15 +21,20 @@ class BindingButton: UIButton {
         self.commontInit()
     }
     
-    func bind(callBack: @escaping () -> ()) {
-        self.didTapButton = callBack
+    init(controlEvent: UIControl.Event) {
+        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        self.addTarget(self, action: #selector(handleGesture(_:)), for: controlEvent)
+    }
+    
+    func bind(callBack: @escaping (UIButton) -> ()) {
+        self.completion = callBack
     }
     
     private func commontInit() {
-        self.addTarget(self, action: #selector(buttonDidTap(_:)), for: .touchUpInside)
+        self.addTarget(self, action: #selector(handleGesture(_:)), for: .touchUpInside)
     }
     
-    @objc private func buttonDidTap(_ sender: UIButton) {
-        self.didTapButton()
+    @objc private func handleGesture(_ sender: UIButton) {
+        self.completion(sender)
     }
 }

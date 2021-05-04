@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
-struct User {
+class User {
     let uid: String
     let email: String
     var fullName: String

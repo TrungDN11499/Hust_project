@@ -7,14 +7,14 @@
 
 import UIKit
 
-class LoginController: BaseViewController {
+class LoginController: BaseViewController, ControllerType {
     
-    typealias ViewModelType = LoginViewModel
-
     // MARK: - Properties
     private var viewModel: ViewModelType!
-    
     var moveLogoAnimator: UIViewPropertyAnimator!
+    
+    var logoImageViewCenterY: NSLayoutConstraint?
+    var logoImageViewTop: NSLayoutConstraint?
     
     private lazy var loginView: UIView = {
         let view = UIView()
@@ -31,7 +31,7 @@ class LoginController: BaseViewController {
     private lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.image = #imageLiteral(resourceName: "ic_cat")
+        imageView.image = #imageLiteral(resourceName: "ic_sun")
         return imageView
     }()
     
@@ -71,8 +71,8 @@ class LoginController: BaseViewController {
         return act
     }()
     
-    private lazy var loginButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var loginButton: BindingButton = {
+        let button = BindingButton(controlEvent: .touchUpInside)
         button.setTitle("Log in", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.backgroundColor = .twitterBlue
@@ -80,23 +80,25 @@ class LoginController: BaseViewController {
         button.layer.cornerRadius =  5
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.alpha = 0
-        button.addTarget(self, action: #selector(handleLogin(_:)), for: .touchUpInside)
         return button
     }()
     
-    private lazy var dontHaveAccountButton: UIButton = {
+    private lazy var dontHaveAccountButton: BindingButton = {
         let button = Utilities().attributeButton("Don't have an account? ", "Sign Up")
         button.alpha = 0
-        button.addTarget(self, action: #selector(handleShowSignUp(_:)), for: .touchUpInside)
         return button
     }()
-    
+  
     // MARK: - Lifecycles
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.configureUI()
+    override func bindViewModel() {
         self.configure(with: self.viewModel)
+    }
+    
+    override func configureUI() {
+        // set up navigation bar
+        self.navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.navigationBar.isHidden = true
+        self.addUIConstraints()
     }
     
     override func viewDidLayoutSubviews() {
@@ -109,7 +111,6 @@ class LoginController: BaseViewController {
     }
   
     override func viewDidAppear(_ animated: Bool) {
-        
         // animation.
         super.viewDidAppear(animated)
         UIView.animate(withDuration: 0.8, delay: 1, usingSpringWithDamping: 0.5, initialSpringVelocity: 2, options: .curveEaseOut, animations: {
@@ -119,58 +120,84 @@ class LoginController: BaseViewController {
             self.moveLogoAnimator.startAnimation()
         }
     }
-    // MARK: - Selector
+
+}
+
+// MARK: - ControllerType
+extension LoginController {
+    typealias ViewModelType = LoginViewModel
     
-    @objc private func handleLogin(_ sender: UIButton) {
-        guard let email = self.viewModel.input.email.value else { return }
-        guard let password = self.viewModel.input.password.value else { return }
-        
-        self.view.isUserInteractionEnabled = false
-        self.activityIndicator.isHidden = false
-        
-        AuthService.shared.login(email: email, password: password) { (result, error) in
-            if let error = error {
-                self.presentMessage(error.localizedDescription)
-                self.view.isUserInteractionEnabled = true
-                self.activityIndicator.isHidden = true
-                return
-            }
-            self.gotoHomeController()
-        }
+    static func create(with viewModel: ViewModelType) -> UIViewController {
+        let vc = LoginController()
+        vc.viewModel = viewModel
+        let nav = UINavigationController(rootViewController: vc)
+        return nav
     }
-    
-    func gotoHomeController() {
-        let homeController = MainTabBarController()
-        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-            sceneDelegate.changeRootViewController(view: homeController)
-        }
-    }
-    
-    
-    @objc private func handleShowSignUp(_ sender: UIButton) {
-        let regiterViewModel = RegisterViewModel()
-        let registrationController = RegistrationController.create(with: regiterViewModel)
-        self.navigationController?.pushViewController(registrationController, animated: true)
-    }
-    
-    // MARK: - Helpers
     
     func configure(with viewModel: ViewModelType) {
         self.emailTextField.bind(callBack: { viewModel.input.email.value = $0 })
         self.passwordTextField.bind(callBack: { viewModel.input.password.value = $0 })
+        
+        viewModel.output.errorsObservable.bind { [unowned self] observable, value in
+            self.presentMessage(value)
+            self.view.isUserInteractionEnabled = true
+            self.activityIndicator.isHidden = true
+        }
+        
+        viewModel.output.successObservable.bind { [unowned self] observable, value in
+            self.gotoHomeController()
+        }
+        
+        self.loginButton.bind { [unowned self] button in
+            self.view.isUserInteractionEnabled = false
+            self.activityIndicator.isHidden = false
+            viewModel.input.signInDidTap.excecute()
+        }
+        
+        self.dontHaveAccountButton.bind { [unowned self] button in
+            let registrationService = RegistrationService()
+            let regiterViewModel = RegisterViewModel(registrationService: registrationService)
+            let registrationController = RegistrationController.create(with: regiterViewModel)
+            self.navigationController?.pushViewController(registrationController, animated: true)
+        }
+    }
+}
+
+// MARK: - Helpers
+extension LoginController {
+        
+    /// Animation move logo image view
+    /// - Returns: Void
+    private func setUpMoveLogo() {
+        self.logoImageViewCenterY?.isActive = false
+        self.logoImageViewCenterY = nil
+        self.moveLogoAnimator = UIViewPropertyAnimator(duration: 2, curve: .easeIn, animations: nil)
+        self.moveLogoAnimator.addAnimations({
+            self.logoImageView.frame.origin.y = 20
+        }, delayFactor: 0.2) // delay the start of animation by 0.2 * 2 seconds.
+        
+        moveLogoAnimator.addAnimations({
+            self.emailContainerView.alpha = 1
+        }, delayFactor: 0.6) // delay the start of animation by 0.6 * 2 seconds.
+
+        moveLogoAnimator.addAnimations({
+            self.passwordContainerView.alpha = 1
+        }, delayFactor: 0.7) // delay the start of animation by 0.7 * 2 seconds.
+        
+        moveLogoAnimator.addAnimations({
+            self.loginButton.alpha = 1
+            self.dontHaveAccountButton.alpha = 1
+        }, delayFactor: 0.8) // delay the start of animation by 0.8 * 2 seconds.
+        self.moveLogoAnimator.addCompletion { final in
+            self.logoImageView.topAnchor.constraint(equalTo: self.loginView.topAnchor, constant: 20).isActive = true
+        }
     }
     
-    private func configureUI() {
-        
-        // set up navigation bar
-        self.navigationController?.navigationBar.barStyle = .black
-        self.navigationController?.navigationBar.isHidden = true
-        
+    private func addUIConstraints() {
         // content view contraints
         self.view.addSubview(self.loginView)
         self.loginView.centerX(inView: self.view)
         self.loginView.centerY(inView: self.view, leftAnchor: self.view.leftAnchor, paddingLeft: 32)
-        
         
         self.loginView.addSubview(self.logoImageFrameHoldView)
         self.logoImageFrameHoldView.setDimensions(width: 100, height: 100)
@@ -192,7 +219,8 @@ class LoginController: BaseViewController {
         self.loginView.addSubview(self.logoImageView)
         self.logoImageView.setDimensions(width: 100, height: 100)
         self.logoImageView.centerX(inView: self.loginView)
-        self.logoImageView.centerY(inView: self.loginView)
+        self.logoImageViewCenterY = self.logoImageView.centerYAnchor.constraint(equalTo: self.loginView.centerYAnchor)
+        self.logoImageViewCenterY?.isActive = true
 
         // activity.
         self.loginView.addSubview(self.activityIndicator)
@@ -207,35 +235,5 @@ class LoginController: BaseViewController {
         loginView.transform = CGAffineTransform(scaleX: 0, y: 0)
         
         self.addInputAccessoryForTextFields(textFields: [self.emailTextField, self.passwordTextField], dismissable: true, previousNextable: true)
-    }
-    
-    // animations.
-    private func setUpMoveLogo() {
-        self.moveLogoAnimator = UIViewPropertyAnimator(duration: 2, curve: .easeIn, animations: nil)
-        self.moveLogoAnimator.addAnimations({
-            self.logoImageView.frame.origin.y = 20
-        }, delayFactor: 0.2) // delay the start of animation by 0.2 * 2 seconds.
-        
-        moveLogoAnimator.addAnimations({
-            self.emailContainerView.alpha = 1
-        }, delayFactor: 0.6) // delay the start of animation by 0.6 * 2 seconds.
-
-        moveLogoAnimator.addAnimations({
-            self.passwordContainerView.alpha = 1
-        }, delayFactor: 0.7) // delay the start of animation by 0.7 * 2 seconds.
-        
-        moveLogoAnimator.addAnimations({
-            self.loginButton.alpha = 1
-            self.dontHaveAccountButton.alpha = 1
-        }, delayFactor: 0.8) // delay the start of animation by 0.8 * 2 seconds.
-    }
-}
-
-extension LoginController {
-    static func create(with viewModel: ViewModelType) -> UIViewController {
-        let vc = LoginController()
-        vc.viewModel = viewModel
-        let nav = UINavigationController(rootViewController: vc)
-        return nav
     }
 }

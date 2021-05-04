@@ -1,11 +1,11 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'Project' do
+target 'Triponus' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Project
+  # Pods for Triponus
   
   pod 'IQKeyboardManagerSwift'
   pod 'SDWebImage', '~> 5.0'
@@ -16,12 +16,12 @@ target 'Project' do
 	pod 'Firebase/Auth'
   pod 'ActiveLabel'
 
-  target 'ProjectTests' do
+  target 'TriponusTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'ProjectUITests' do
+  target 'TriponusUITests' do
     # Pods for testing
   end
 

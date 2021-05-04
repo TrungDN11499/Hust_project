@@ -8,7 +8,6 @@
 import UIKit
 
 private let headerIden = "TweetHeader"
-private let cellIden = "TweetCell"
 
 class TweetController: BaseViewController {
     
@@ -82,7 +81,7 @@ class TweetController: BaseViewController {
     // MARK: - API
     
     private func fetchReplies() {
-        TweetService.shared.fetchReply(forTweet: self.tweet) { replies in
+        TweetService1.shared.fetchReply(forTweet: self.tweet) { replies in
             self.replies = replies
         }
     }
@@ -118,7 +117,7 @@ class TweetController: BaseViewController {
         
         self.collectionView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor).isActive = true
 
-        self.collectionView.register(TweetCell.self, forCellWithReuseIdentifier: cellIden)
+        TweetCollectionViewCell.registerCellByNib(self.collectionView)
             
     }
     
@@ -137,11 +136,10 @@ extension TweetController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIden, for: indexPath) as? TweetCell else {
-            return UICollectionViewCell()
+        guard let cell = TweetCollectionViewCell.loadCell(collectionView, indexPath: indexPath) as? TweetCollectionViewCell else {
+            return TweetCollectionViewCell()
         }
-        
-        cell.tweet = self.replies[indexPath.row]
+//        cell.tweet = self.replies[indexPath.row]
         
         return cell
     }
