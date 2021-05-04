@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C4D9DFB4253F93F48A3853AB /* Pods_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96AC30DFC820042C0978FC9E /* Pods_Project.framework */; };
-		C75F5D2483AF89A11ED519CB /* Pods_Project_ProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D897E91DF7EDB35AC1ACEF77 /* Pods_Project_ProjectUITests.framework */; };
-		C7D0C3A3ABD463D1F56DFD36 /* Pods_ProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4609CD404CFD10BBE3B394CF /* Pods_ProjectTests.framework */; };
+		1C87D98FD40E964BE6C360FF /* Pods_Triponus_TriponusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10E226C9FC8EEAB0A642311B /* Pods_Triponus_TriponusUITests.framework */; };
+		26F122434903DBB4505C46AD /* Pods_TriponusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F671E29E78B6CB6EFD5179 /* Pods_TriponusTests.framework */; };
+		F46EF1B4D058863F0832EDB1 /* Pods_Triponus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AF713B0B2DB31752A47D72 /* Pods_Triponus.framework */; };
 		FA0DC9F7252658C400377539 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC9F6252658C400377539 /* UserService.swift */; };
 		FA0DC9FC25265FED00377539 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC9FB25265FED00377539 /* User.swift */; };
 		FA1108D92538C0AA00443971 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1108D82538C0AA00443971 /* ProfileController.swift */; };
@@ -103,15 +103,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10E226C9FC8EEAB0A642311B /* Pods_Triponus_TriponusUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Triponus_TriponusUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2071E2208C39E05A9E5B6A40 /* Pods-Triponus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus.release.xcconfig"; path = "Target Support Files/Pods-Triponus/Pods-Triponus.release.xcconfig"; sourceTree = "<group>"; };
 		22708268814D7642E590F26D /* Pods-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project.debug.xcconfig"; path = "Target Support Files/Pods-Project/Pods-Project.debug.xcconfig"; sourceTree = "<group>"; };
-		4609CD404CFD10BBE3B394CF /* Pods_ProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4141F717A3954A181127DF91 /* Pods-TriponusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TriponusTests.debug.xcconfig"; path = "Target Support Files/Pods-TriponusTests/Pods-TriponusTests.debug.xcconfig"; sourceTree = "<group>"; };
+		41AF713B0B2DB31752A47D72 /* Pods_Triponus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Triponus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A665F7EE67AC311EEFFA0AB /* Pods-Project-ProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-ProjectUITests.debug.xcconfig"; path = "Target Support Files/Pods-Project-ProjectUITests/Pods-Project-ProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6736330ED8F03D3579352F26 /* Pods-ProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-ProjectTests/Pods-ProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6AE6325A00A2FBCBA534BB92 /* Pods-Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project.release.xcconfig"; path = "Target Support Files/Pods-Project/Pods-Project.release.xcconfig"; sourceTree = "<group>"; };
+		711B76527B3FF7EA048663FB /* Pods-Triponus-TriponusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus-TriponusUITests.release.xcconfig"; path = "Target Support Files/Pods-Triponus-TriponusUITests/Pods-Triponus-TriponusUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7DA1743D1DE8ECF7CAC87E60 /* Pods-ProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTests.release.xcconfig"; path = "Target Support Files/Pods-ProjectTests/Pods-ProjectTests.release.xcconfig"; sourceTree = "<group>"; };
-		96AC30DFC820042C0978FC9E /* Pods_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8208C5C7B3396ABE31694A43 /* Pods-Triponus-TriponusUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus-TriponusUITests.debug.xcconfig"; path = "Target Support Files/Pods-Triponus-TriponusUITests/Pods-Triponus-TriponusUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8CD9F2183ADFE080F63E0776 /* Pods-Triponus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus.debug.xcconfig"; path = "Target Support Files/Pods-Triponus/Pods-Triponus.debug.xcconfig"; sourceTree = "<group>"; };
 		A8D4BBDFE92E37D8848B22A0 /* Pods-Project-ProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-ProjectUITests.release.xcconfig"; path = "Target Support Files/Pods-Project-ProjectUITests/Pods-Project-ProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
-		D897E91DF7EDB35AC1ACEF77 /* Pods_Project_ProjectUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_ProjectUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8F671E29E78B6CB6EFD5179 /* Pods_TriponusTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TriponusTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0DC9F6252658C400377539 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		FA0DC9FB25265FED00377539 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA1108D82538C0AA00443971 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
@@ -137,6 +142,7 @@
 		FA576D3D253F3E0E0069BA96 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		FA576D42253F4D160069BA96 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		FA576D47253F56A10069BA96 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		FA6055DCFBA86E8C73A97186 /* Pods-TriponusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TriponusTests.release.xcconfig"; path = "Target Support Files/Pods-TriponusTests/Pods-TriponusTests.release.xcconfig"; sourceTree = "<group>"; };
 		FA66C5DB2523827400C31151 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		FA66C5E02523829C00C31151 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		FA66C5F5252393B400C31151 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -198,7 +204,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4D9DFB4253F93F48A3853AB /* Pods_Project.framework in Frameworks */,
+				F46EF1B4D058863F0832EDB1 /* Pods_Triponus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,7 +212,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7D0C3A3ABD463D1F56DFD36 /* Pods_ProjectTests.framework in Frameworks */,
+				26F122434903DBB4505C46AD /* Pods_TriponusTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,7 +220,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C75F5D2483AF89A11ED519CB /* Pods_Project_ProjectUITests.framework in Frameworks */,
+				1C87D98FD40E964BE6C360FF /* Pods_Triponus_TriponusUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +236,12 @@
 				A8D4BBDFE92E37D8848B22A0 /* Pods-Project-ProjectUITests.release.xcconfig */,
 				6736330ED8F03D3579352F26 /* Pods-ProjectTests.debug.xcconfig */,
 				7DA1743D1DE8ECF7CAC87E60 /* Pods-ProjectTests.release.xcconfig */,
+				8CD9F2183ADFE080F63E0776 /* Pods-Triponus.debug.xcconfig */,
+				2071E2208C39E05A9E5B6A40 /* Pods-Triponus.release.xcconfig */,
+				8208C5C7B3396ABE31694A43 /* Pods-Triponus-TriponusUITests.debug.xcconfig */,
+				711B76527B3FF7EA048663FB /* Pods-Triponus-TriponusUITests.release.xcconfig */,
+				4141F717A3954A181127DF91 /* Pods-TriponusTests.debug.xcconfig */,
+				FA6055DCFBA86E8C73A97186 /* Pods-TriponusTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -237,9 +249,9 @@
 		CC2149352B0F2C2EFCA2C593 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				96AC30DFC820042C0978FC9E /* Pods_Project.framework */,
-				D897E91DF7EDB35AC1ACEF77 /* Pods_Project_ProjectUITests.framework */,
-				4609CD404CFD10BBE3B394CF /* Pods_ProjectTests.framework */,
+				41AF713B0B2DB31752A47D72 /* Pods_Triponus.framework */,
+				10E226C9FC8EEAB0A642311B /* Pods_Triponus_TriponusUITests.framework */,
+				A8F671E29E78B6CB6EFD5179 /* Pods_TriponusTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -758,7 +770,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Project-ProjectUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Triponus-TriponusUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -780,7 +792,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Project-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Triponus-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -793,15 +805,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Project/Pods-Project-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Triponus/Pods-Triponus-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Project/Pods-Project-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Triponus/Pods-Triponus-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Project/Pods-Project-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Triponus/Pods-Triponus-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		89C785D11E4021F12CE48891 /* [CP] Embed Pods Frameworks */ = {
@@ -810,15 +822,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Project-ProjectUITests/Pods-Project-ProjectUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Triponus-TriponusUITests/Pods-Triponus-TriponusUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Project-ProjectUITests/Pods-Project-ProjectUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Triponus-TriponusUITests/Pods-Triponus-TriponusUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Project-ProjectUITests/Pods-Project-ProjectUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Triponus-TriponusUITests/Pods-Triponus-TriponusUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B543874EF5230F6690D52B2B /* [CP] Check Pods Manifest.lock */ = {
@@ -836,7 +848,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ProjectTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-TriponusTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1081,7 +1093,7 @@
 		};
 		FAFD58CC25208D9D006E4F94 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 22708268814D7642E590F26D /* Pods-Project.debug.xcconfig */;
+			baseConfigurationReference = 8CD9F2183ADFE080F63E0776 /* Pods-Triponus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1101,7 +1113,7 @@
 		};
 		FAFD58CD25208D9D006E4F94 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6AE6325A00A2FBCBA534BB92 /* Pods-Project.release.xcconfig */;
+			baseConfigurationReference = 2071E2208C39E05A9E5B6A40 /* Pods-Triponus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1121,7 +1133,7 @@
 		};
 		FAFD58CF25208D9D006E4F94 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6736330ED8F03D3579352F26 /* Pods-ProjectTests.debug.xcconfig */;
+			baseConfigurationReference = 4141F717A3954A181127DF91 /* Pods-TriponusTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1144,7 +1156,7 @@
 		};
 		FAFD58D025208D9D006E4F94 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7DA1743D1DE8ECF7CAC87E60 /* Pods-ProjectTests.release.xcconfig */;
+			baseConfigurationReference = FA6055DCFBA86E8C73A97186 /* Pods-TriponusTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1167,7 +1179,7 @@
 		};
 		FAFD58D225208D9D006E4F94 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A665F7EE67AC311EEFFA0AB /* Pods-Project-ProjectUITests.debug.xcconfig */;
+			baseConfigurationReference = 8208C5C7B3396ABE31694A43 /* Pods-Triponus-TriponusUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1188,7 +1200,7 @@
 		};
 		FAFD58D325208D9D006E4F94 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8D4BBDFE92E37D8848B22A0 /* Pods-Project-ProjectUITests.release.xcconfig */;
+			baseConfigurationReference = 711B76527B3FF7EA048663FB /* Pods-Triponus-TriponusUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
