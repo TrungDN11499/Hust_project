@@ -158,6 +158,7 @@
             <size key="customSize" width="627" height="275"/>
             <connections>
                 <outlet property="captionLabel" destination="TzU-0M-kmv" id="ZzL-li-uz2"/>
+                <outlet property="contentStackView" destination="MsB-YN-MJV" id="Kjv-wv-kWT"/>
                 <outlet property="infoLabel" destination="cbM-50-qQx" id="3ao-JC-3x8"/>
                 <outlet property="likeButton" destination="t95-R1-EBG" id="9e7-TD-Lto"/>
                 <outlet property="optionsImageView" destination="2xR-TH-L31" id="yNm-1C-nDl"/>

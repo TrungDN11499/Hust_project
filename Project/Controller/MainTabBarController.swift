@@ -18,6 +18,10 @@ class MainTabBarController: UITabBarController {
     
     private var buttonConfig: ActionButtonConfiguration = .tweet
     
+    let feedsService = FeedsService()
+    lazy var feedsViewModel = FeedsViewModel(feedsService: feedsService)
+    lazy var feedsViewController = FeedsViewController.create(with: feedsViewModel)
+    
     var user: User? {
         didSet {
             guard let nav = self.viewControllers?[0] as? UINavigationController else { return }
@@ -59,16 +63,15 @@ class MainTabBarController: UITabBarController {
     // MARK: - Selector
     
     @objc private func handleTapActionButton(_ sender: UIButton) {
-        
-        let controller: UIViewController
+
         
         switch self.buttonConfig {
         case .message:
-//            controller = ExploreViewController()
         print("Message.")
         case .tweet:
             guard let user = self.user else { return }
-            controller = UploadTweetController(config: .tweet, user: user)
+            let controller = UploadTweetController(config: .tweet, user: user)
+            controller.delegate = feedsViewController as? UploadTweetControllerDelegate
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true, completion: nil)
@@ -88,10 +91,6 @@ class MainTabBarController: UITabBarController {
     private func configureViewController() {
         
         UITabBar.appearance().barTintColor = .systemGroupedBackground
-        
-        let feedsService = FeedsService()
-        let feedsViewModel = FeedsViewModel(feedsService: feedsService)
-        let feedsViewController = FeedsViewController.create(with: feedsViewModel)
         
         let exploreViewController = ExploreViewController()
         let notificationsViewController = NotificationsViewController()

@@ -12,18 +12,7 @@ class FeedsViewController: BaseViewController, ControllerType {
 
     // MARK: - Properties
     private var viewModel: ViewModelType!
-    
-    private var tweets = [Tweet]() {
-        didSet {
-            self.feedCollectionView.refreshControl?.endRefreshing()
-            if self.feedCollectionView.refreshControl == nil {
-                let refreshControl = UIRefreshControl()
-                refreshControl.addTarget(self, action: #selector(hanldeRefresh(_:)), for: .valueChanged)
-                self.feedCollectionView.refreshControl = refreshControl
-            }
-        }
-    }
-    
+        
     private lazy var feedCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collecionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -148,8 +137,7 @@ extension FeedsViewController {
 // MARK: - UICollectionViewDelegate
 extension FeedsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let controller = TweetController(self.tweets[indexPath.item])
-        self.navigationController?.pushViewController(controller, animated: true)
+
     }
 }
 
@@ -194,11 +182,8 @@ extension FeedsViewController: UICollectionViewDelegateFlowLayout {
 extension FeedsViewController: TweetCollectionViewCellDelegate {
     
     func handleReplyTapped(_ cell: TweetCollectionViewCell) {
-        guard let tweet = cell.feedViewModel?.tweet else { return }
-        guard let index = self.feedCollectionView.indexPath(for: cell) else { return }
-        
+        guard let tweet = cell.feedViewModel?.tweet, let index = self.feedCollectionView.indexPath(for: cell) else { return }
         let uploadTweetController = UploadTweetController(config: .reply(tweet), user: tweet.user, delegate: self, index: index.item)
-        
         let nav = UINavigationController(rootViewController: uploadTweetController)
         nav.modalPresentationStyle = .fullScreen
         self.present(nav, animated: true, completion: nil)
@@ -222,6 +207,12 @@ extension FeedsViewController: TweetCollectionViewCellDelegate {
         }
     }
     
+    func handleShowContent(_ cell: TweetCollectionViewCell) {
+        guard let tweet = cell.feedViewModel?.tweet else { return }
+        let controller = TweetController(tweet)
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
 }
 
 // MARK: - UploadTweetControllerDelegate
@@ -231,5 +222,10 @@ extension FeedsViewController: UploadTweetControllerDelegate {
         DispatchQueue.main.async {
             self.feedCollectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
         }
+    }
+    
+    func handleUpdateTweet(tweet: Tweet) {
+        let feedViewModel = FeedViewModel(tweet)
+        self.viewModel.output.fetchTweetsResult.value?.insert(feedViewModel, at: 0)
     }
 }

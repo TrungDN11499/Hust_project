@@ -13,6 +13,7 @@ protocol TweetCollectionViewCellDelegate: class {
     func handleReplyTapped(_ cell: TweetCollectionViewCell)
     func handleLikeTweet(_ cell: TweetCollectionViewCell)
     func handleDeletePost(_ cell: TweetCollectionViewCell)
+    func handleShowContent(_ cell: TweetCollectionViewCell)
 }
 
 class TweetCollectionViewCell: BaseCollectionViewCell {
@@ -23,6 +24,7 @@ class TweetCollectionViewCell: BaseCollectionViewCell {
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var optionsImageView: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var contentStackView: UIStackView!
     
     var needDelete: Bool = false
     
@@ -40,6 +42,7 @@ class TweetCollectionViewCell: BaseCollectionViewCell {
         super.awakeFromNib()
         self.profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleShowProfile(_:))))
         self.optionsImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDelete(_:))))
+        self.contentStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleShowContent(_:))))
     }
     
     @IBAction func handleLike(_ sender: Any) {
@@ -54,8 +57,12 @@ class TweetCollectionViewCell: BaseCollectionViewCell {
         self.delegate?.handleProfileImageTapped(self)
     }
     
-    @objc private func handleDelete(_ sender: UIButton) {
+    @objc private func handleDelete(_ sender: UITapGestureRecognizer) {
         self.delegate?.handleDeletePost(self)
+    }
+    
+    @objc private func handleShowContent(_ sender: UITapGestureRecognizer) {
+        self.delegate?.handleShowContent(self)
     }
 }
 
