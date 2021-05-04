@@ -100,7 +100,7 @@ class MainTabBarController: UITabBarController {
         let tabBarData: [(UIViewController, UIImage)] = [
             (feedsViewController, UIImage(named: "home_unselected")!),
             (exploreViewController, UIImage(named: "search_unselected")!),
-            (notificationsViewController, UIImage(named: "like_unselected")!),
+            (notificationsViewController, UIImage(named: "ic_heart")!),
             (conversationsViewController, UIImage(named: "ic_mail_outline_white_2x-1")!)
         ]
         

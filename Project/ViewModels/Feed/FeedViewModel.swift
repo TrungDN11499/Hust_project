@@ -106,7 +106,7 @@ class FeedViewModel: ViewModelProtocol {
     }
     
     var likeButtonImage: UIImage? {
-        let imageName = tweet.didLike.value ?? false ? "like_filled" : "like"
+        let imageName = tweet.didLike.value ?? false ? "ic_heart_filled" : "ic_heart"
         return UIImage(named: imageName)
     }
     
@@ -115,7 +115,7 @@ class FeedViewModel: ViewModelProtocol {
     }
     
     func likeButtonImage(_ didLike: Bool) -> UIImage? {
-        let imageName =  didLike ? "like_filled" : "like"
+        let imageName =  didLike ? "ic_heart_filled" : "ic_heart"
         return UIImage(named: imageName)
     }
     
