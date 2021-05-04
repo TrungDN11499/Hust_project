@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-protocol TweetCollectionViewCellDelegate: class {
+protocol TweetCollectionViewCellDelegate: AnyObject {
     func handleProfileImageTapped(_ cell: TweetCollectionViewCell)
     func handleReplyTapped(_ cell: TweetCollectionViewCell)
     func handleLikeTweet(_ cell: TweetCollectionViewCell)

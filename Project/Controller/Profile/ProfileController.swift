@@ -8,7 +8,6 @@
 import UIKit
 import FirebaseAuth
 
-private let cellIden = "TweetCell"
 private let collectionHeaderIden = "ProfileHeaderView"
 
 class ProfileController: UICollectionViewController {
@@ -24,16 +23,12 @@ class ProfileController: UICollectionViewController {
     
     private var likedTweets = [Tweet]()
     
-    private var replyTweet = [Tweet]()
-    
     private var currentDataSource: [Tweet] {
         switch self.selectedFilter {
         case .tweets:
             return self.tweets
         case .likes:
             return self.likedTweets
-        case .replies:
-            return self.replyTweet
         }
     }
     
@@ -56,7 +51,6 @@ class ProfileController: UICollectionViewController {
         self.configureCollectionView()
         self.fetchTweets()
         self.fetchLikeTweets()
-        self.fetchReply()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,10 +67,20 @@ class ProfileController: UICollectionViewController {
     
     private func fetchTweets() {
         guard let user = self.user else { return }
-        TweetService1.shared.fetchTweets(forUser: user) { [weak self] in
+        TweetService1.shared.fetchTweets(forUser: user) { [weak self] tweets in
             guard let `self` = self else { return }
-            self.tweets = $0;
-            self.collectionView.reloadData()
+            
+            for tweet in tweets {
+                TweetService1.shared.checkIfUserLikeTweet(tweet: tweet) { didLike in
+                    if didLike {
+                        tweet.didLike.value = true
+                    }
+                    self.tweets.append(tweet)
+                    
+                    // TODO: This must be fixed.
+                    self.collectionView.reloadData()
+                }
+            }
         }
     }
     
@@ -87,15 +91,7 @@ class ProfileController: UICollectionViewController {
             self.likedTweets = $0
         }
     }
-    
-    private func fetchReply() {
-        guard let user = self.user else { return }
-        TweetService1.shared.fetchReply(forUser: user) { [weak self] in
-            guard let `self` = self else { return }
-            self.replyTweet = $0
-        }
-    }
-    
+        
     private func checkIfUserIsFollowing() {
         guard let user = self.user else { return }
         UserService.shared.checkFollowUser(uid: user.uid) { [weak self] isFollowed in
@@ -167,7 +163,8 @@ extension ProfileController {
             return TweetCollectionViewCell()
         }
         
-//        cell.tweet = self.currentDataSource[indexPath.item]
+        cell.feedViewModel = FeedViewModel(self.currentDataSource[indexPath.item])
+        
         return cell
     }
 }

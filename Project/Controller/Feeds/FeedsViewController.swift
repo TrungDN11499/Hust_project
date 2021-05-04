@@ -136,9 +136,7 @@ extension FeedsViewController {
 
 // MARK: - UICollectionViewDelegate
 extension FeedsViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-    }
+   
 }
 
 // MARK: - UICollectionViewDataSource
