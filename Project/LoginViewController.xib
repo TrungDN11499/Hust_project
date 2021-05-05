@@ -41,21 +41,21 @@
                             </constraints>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mq6-Nj-WzK" customClass="CustomTextField" customModule="Triponus" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="142" width="390" height="28"/>
+                            <rect key="frame" x="0.0" y="136" width="390" height="28"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="28" id="RhO-Ht-Phn"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nju-Om-tMn" customClass="CustomTextField" customModule="Triponus" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="188" width="390" height="28"/>
+                            <rect key="frame" x="0.0" y="176" width="390" height="28"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="28" id="za4-UL-dW0"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c3p-nE-t6v">
-                            <rect key="frame" x="45" y="234" width="300" height="40"/>
+                            <rect key="frame" x="45" y="222" width="300" height="40"/>
                             <color key="backgroundColor" red="0.0" green="0.60784313725490191" blue="0.90588235294117647" alpha="0.75" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="oAD-EI-Jdt"/>
@@ -107,14 +107,14 @@
                         <constraint firstAttribute="trailing" secondItem="c3p-nE-t6v" secondAttribute="trailing" constant="45" id="0Jz-sH-3P0"/>
                         <constraint firstAttribute="height" constant="322" id="C9d-t9-eT5"/>
                         <constraint firstItem="nju-Om-tMn" firstAttribute="leading" secondItem="clD-yf-H4p" secondAttribute="leading" id="DSk-dv-7wk"/>
-                        <constraint firstItem="mq6-Nj-WzK" firstAttribute="top" secondItem="WeA-fe-uou" secondAttribute="bottom" constant="18" id="FHx-Hh-9kW"/>
+                        <constraint firstItem="mq6-Nj-WzK" firstAttribute="top" secondItem="WeA-fe-uou" secondAttribute="bottom" constant="12" id="FHx-Hh-9kW"/>
                         <constraint firstItem="c3p-nE-t6v" firstAttribute="top" secondItem="nju-Om-tMn" secondAttribute="bottom" constant="18" id="GhB-of-IB1"/>
                         <constraint firstItem="mq6-Nj-WzK" firstAttribute="leading" secondItem="clD-yf-H4p" secondAttribute="leading" id="N1s-Md-l61"/>
                         <constraint firstAttribute="trailing" secondItem="nju-Om-tMn" secondAttribute="trailing" id="P4i-Js-crw"/>
                         <constraint firstItem="c3p-nE-t6v" firstAttribute="leading" secondItem="clD-yf-H4p" secondAttribute="leading" constant="45" id="a5v-Lp-jvE"/>
                         <constraint firstItem="QIp-8J-LtF" firstAttribute="centerX" secondItem="clD-yf-H4p" secondAttribute="centerX" id="gsU-4L-pTi"/>
                         <constraint firstItem="WeA-fe-uou" firstAttribute="centerX" secondItem="clD-yf-H4p" secondAttribute="centerX" id="kzt-6B-cmZ"/>
-                        <constraint firstItem="nju-Om-tMn" firstAttribute="top" secondItem="mq6-Nj-WzK" secondAttribute="bottom" constant="18" id="riD-ZA-qet"/>
+                        <constraint firstItem="nju-Om-tMn" firstAttribute="top" secondItem="mq6-Nj-WzK" secondAttribute="bottom" constant="12" id="riD-ZA-qet"/>
                         <constraint firstItem="WeA-fe-uou" firstAttribute="top" secondItem="clD-yf-H4p" secondAttribute="top" constant="24" id="rjc-qz-Qhz"/>
                         <constraint firstAttribute="bottom" secondItem="QIp-8J-LtF" secondAttribute="bottom" constant="16" id="vXi-xC-4Ef"/>
                         <constraint firstAttribute="trailing" secondItem="mq6-Nj-WzK" secondAttribute="trailing" id="wWQ-81-aci"/>

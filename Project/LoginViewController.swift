@@ -24,6 +24,7 @@ class LoginViewController: UIViewController {
         loginFormView.clipsToBounds = true
         loginInButton.layer.cornerRadius = 18
         loginInButton.clipsToBounds = true
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         setUpTextView()
     }
     private func setUpTextView() {
@@ -31,9 +32,14 @@ class LoginViewController: UIViewController {
         passwordTextField.customImageView.image = UIImage(named: "lock 1")
         passwordTextField.customTextField.placeholder = "password"
     }
+    // MARK: handleLoginButton
     @IBAction func handleLoginButton(_ sender: UIButton) {
     }
+    
+    // MARK: handleSignUpButton
     @IBAction func handleSignUpButton(_ sender: UIButton) {
+        let vc = RegisterViewController(nibName: "RegisterViewController", bundle: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

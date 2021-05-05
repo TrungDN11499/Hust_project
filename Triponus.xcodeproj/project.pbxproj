@@ -476,13 +476,13 @@
 		FAFD58A325208D9B006E4F94 /* Project */ = {
 			isa = PBXGroup;
 			children = (
-				84E1882026419C84007A1A17 /* CustomTextField.swift */,
-				841CA66F26427D4A00B6A83B /* RegisterViewController.swift */,
-				841CA67026427D4A00B6A83B /* RegisterViewController.xib */,
 				84E188262641ACDB007A1A17 /* ViewExtendsion.swift */,
 				84E188242641ACA2007A1A17 /* CustomTextField.xib */,
+				84E1882026419C84007A1A17 /* CustomTextField.swift */,
 				84E826FD26426A5A00D6929D /* LoginViewController.swift */,
+				841CA66F26427D4A00B6A83B /* RegisterViewController.swift */,
 				84E826FE26426A5A00D6929D /* LoginViewController.xib */,
+				841CA67026427D4A00B6A83B /* RegisterViewController.xib */,
 				FAF417F72528C95D00FDDC97 /* Base */,
 				FAFD58D725208E72006E4F94 /* Models */,
 				FAFD58DD25208ED8006E4F94 /* Views */,
