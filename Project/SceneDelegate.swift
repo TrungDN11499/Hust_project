@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if Auth.auth().currentUser == nil {
             self.toLogin()
         } else {
-            self.window?.rootViewController = SplashViewController()
+            self.window?.rootViewController = LoginViewController()
         }
         
         self.window?.makeKeyAndVisible()

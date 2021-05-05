@@ -9,9 +9,16 @@
 /* Begin PBXBuildFile section */
 		1C87D98FD40E964BE6C360FF /* Pods_Triponus_TriponusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10E226C9FC8EEAB0A642311B /* Pods_Triponus_TriponusUITests.framework */; };
 		26F122434903DBB4505C46AD /* Pods_TriponusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F671E29E78B6CB6EFD5179 /* Pods_TriponusTests.framework */; };
+		841CA67126427D4A00B6A83B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CA66F26427D4A00B6A83B /* RegisterViewController.swift */; };
+		841CA67226427D4A00B6A83B /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CA67026427D4A00B6A83B /* RegisterViewController.xib */; };
 		84E1882126419C84007A1A17 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1882026419C84007A1A17 /* CustomTextField.swift */; };
 		84E188252641ACA2007A1A17 /* CustomTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E188242641ACA2007A1A17 /* CustomTextField.xib */; };
 		84E188272641ACDB007A1A17 /* ViewExtendsion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E188262641ACDB007A1A17 /* ViewExtendsion.swift */; };
+		84E826FF26426A5A00D6929D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E826FD26426A5A00D6929D /* LoginViewController.swift */; };
+		84E8270026426A5A00D6929D /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E826FE26426A5A00D6929D /* LoginViewController.xib */; };
+		84E8270426426EC100D6929D /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84E8270326426EC100D6929D /* Roboto-Medium.ttf */; };
+		84E8270626426ECC00D6929D /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84E8270526426ECC00D6929D /* Roboto-Regular.ttf */; };
+		84E8270826426EDD00D6929D /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84E8270726426EDD00D6929D /* Roboto-Bold.ttf */; };
 		F46EF1B4D058863F0832EDB1 /* Pods_Triponus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AF713B0B2DB31752A47D72 /* Pods_Triponus.framework */; };
 		FA0DC9F7252658C400377539 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC9F6252658C400377539 /* UserService.swift */; };
 		FA0DC9FC25265FED00377539 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC9FB25265FED00377539 /* User.swift */; };
@@ -117,9 +124,16 @@
 		711B76527B3FF7EA048663FB /* Pods-Triponus-TriponusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus-TriponusUITests.release.xcconfig"; path = "Target Support Files/Pods-Triponus-TriponusUITests/Pods-Triponus-TriponusUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7DA1743D1DE8ECF7CAC87E60 /* Pods-ProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTests.release.xcconfig"; path = "Target Support Files/Pods-ProjectTests/Pods-ProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		8208C5C7B3396ABE31694A43 /* Pods-Triponus-TriponusUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus-TriponusUITests.debug.xcconfig"; path = "Target Support Files/Pods-Triponus-TriponusUITests/Pods-Triponus-TriponusUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		841CA66F26427D4A00B6A83B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		841CA67026427D4A00B6A83B /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		84E1882026419C84007A1A17 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		84E188242641ACA2007A1A17 /* CustomTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTextField.xib; sourceTree = "<group>"; };
 		84E188262641ACDB007A1A17 /* ViewExtendsion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtendsion.swift; sourceTree = "<group>"; };
+		84E826FD26426A5A00D6929D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		84E826FE26426A5A00D6929D /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		84E8270326426EC100D6929D /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		84E8270526426ECC00D6929D /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		84E8270726426EDD00D6929D /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		8CD9F2183ADFE080F63E0776 /* Pods-Triponus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus.debug.xcconfig"; path = "Target Support Files/Pods-Triponus/Pods-Triponus.debug.xcconfig"; sourceTree = "<group>"; };
 		A8D4BBDFE92E37D8848B22A0 /* Pods-Project-ProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-ProjectUITests.release.xcconfig"; path = "Target Support Files/Pods-Project-ProjectUITests/Pods-Project-ProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A8F671E29E78B6CB6EFD5179 /* Pods_TriponusTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TriponusTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -463,8 +477,12 @@
 			isa = PBXGroup;
 			children = (
 				84E1882026419C84007A1A17 /* CustomTextField.swift */,
+				841CA66F26427D4A00B6A83B /* RegisterViewController.swift */,
+				841CA67026427D4A00B6A83B /* RegisterViewController.xib */,
 				84E188262641ACDB007A1A17 /* ViewExtendsion.swift */,
 				84E188242641ACA2007A1A17 /* CustomTextField.xib */,
+				84E826FD26426A5A00D6929D /* LoginViewController.swift */,
+				84E826FE26426A5A00D6929D /* LoginViewController.xib */,
 				FAF417F72528C95D00FDDC97 /* Base */,
 				FAFD58D725208E72006E4F94 /* Models */,
 				FAFD58DD25208ED8006E4F94 /* Views */,
@@ -477,6 +495,9 @@
 				FAFD58AD25208D9C006E4F94 /* Assets.xcassets */,
 				FAFD58AF25208D9C006E4F94 /* LaunchScreen.storyboard */,
 				FAFD58B225208D9C006E4F94 /* Info.plist */,
+				84E8270326426EC100D6929D /* Roboto-Medium.ttf */,
+				84E8270526426ECC00D6929D /* Roboto-Regular.ttf */,
+				84E8270726426EDD00D6929D /* Roboto-Bold.ttf */,
 				FA66C6062523AE2100C31151 /* GoogleService-Info.plist */,
 			);
 			path = Project;
@@ -741,7 +762,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				84E188252641ACA2007A1A17 /* CustomTextField.xib in Resources */,
+				841CA67226427D4A00B6A83B /* RegisterViewController.xib in Resources */,
 				FA39B50B261E0B94006B9698 /* TweetCollectionViewCell.xib in Resources */,
+				84E8270626426ECC00D6929D /* Roboto-Regular.ttf in Resources */,
+				84E8270026426A5A00D6929D /* LoginViewController.xib in Resources */,
+				84E8270426426EC100D6929D /* Roboto-Medium.ttf in Resources */,
+				84E8270826426EDD00D6929D /* Roboto-Bold.ttf in Resources */,
 				FAFD58B125208D9C006E4F94 /* LaunchScreen.storyboard in Resources */,
 				FAFD58AE25208D9C006E4F94 /* Assets.xcassets in Resources */,
 				FA66C6072523AE2100C31151 /* GoogleService-Info.plist in Resources */,
@@ -873,6 +899,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA8A03FA253C1F33006F3FAE /* ActionSheetLauncher.swift in Sources */,
+				841CA67126427D4A00B6A83B /* RegisterViewController.swift in Sources */,
 				FA8A03FF253C2E48006F3FAE /* ActionSheetCell.swift in Sources */,
 				FA576D43253F4D160069BA96 /* NotificationCell.swift in Sources */,
 				FA0DC9F7252658C400377539 /* UserService.swift in Sources */,
@@ -900,6 +927,7 @@
 				FA2C25B12532C76A0042EC43 /* ControllerProtocol.swift in Sources */,
 				FAFD58F72520935C006E4F94 /* ConversationsViewController.swift in Sources */,
 				FAFD58ED25209338006E4F94 /* ExploreViewController.swift in Sources */,
+				84E826FF26426A5A00D6929D /* LoginViewController.swift in Sources */,
 				FA1108E12538C57B00443971 /* ProfileHeaderView.swift in Sources */,
 				FA8A0404253C34E3006F3FAE /* ActionSheetViewModel.swift in Sources */,
 				FA80F18D2545CC860030A00D /* EditProfileCell.swift in Sources */,

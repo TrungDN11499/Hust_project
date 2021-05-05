@@ -9,6 +9,9 @@ import UIKit
 
 class CustomTextField: UIView {
 
+    @IBOutlet weak var customImageView: UIImageView!
+    @IBOutlet weak var customTextField: UITextField!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
