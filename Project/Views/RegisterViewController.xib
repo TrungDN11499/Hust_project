@@ -162,7 +162,7 @@
     </objects>
     <resources>
         <image name="Bg" width="563" height="1218"/>
-        <image name="user-images 1" width="100" height="100"/>
+        <image name="user-images 1" width="33" height="33"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

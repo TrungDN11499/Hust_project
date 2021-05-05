@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: BaseViewController {
     @IBOutlet weak var registerFormView: UIView!
     @IBOutlet weak var userUpdateImageView: UIImageView!
     @IBOutlet weak var emailTextField: CustomTextField!

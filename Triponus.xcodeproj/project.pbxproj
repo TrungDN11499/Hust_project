@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		1C87D98FD40E964BE6C360FF /* Pods_Triponus_TriponusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10E226C9FC8EEAB0A642311B /* Pods_Triponus_TriponusUITests.framework */; };
 		26F122434903DBB4505C46AD /* Pods_TriponusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F671E29E78B6CB6EFD5179 /* Pods_TriponusTests.framework */; };
+		8409D6002642E8C20036E3A1 /* Griffy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */; };
 		841CA67126427D4A00B6A83B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CA66F26427D4A00B6A83B /* RegisterViewController.swift */; };
 		841CA67226427D4A00B6A83B /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CA67026427D4A00B6A83B /* RegisterViewController.xib */; };
 		84E1882126419C84007A1A17 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1882026419C84007A1A17 /* CustomTextField.swift */; };
 		84E188252641ACA2007A1A17 /* CustomTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E188242641ACA2007A1A17 /* CustomTextField.xib */; };
-		84E188272641ACDB007A1A17 /* ViewExtendsion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E188262641ACDB007A1A17 /* ViewExtendsion.swift */; };
 		84E826FF26426A5A00D6929D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E826FD26426A5A00D6929D /* LoginViewController.swift */; };
 		84E8270026426A5A00D6929D /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E826FE26426A5A00D6929D /* LoginViewController.xib */; };
 		84E8270426426EC100D6929D /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84E8270326426EC100D6929D /* Roboto-Medium.ttf */; };
@@ -124,11 +124,11 @@
 		711B76527B3FF7EA048663FB /* Pods-Triponus-TriponusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus-TriponusUITests.release.xcconfig"; path = "Target Support Files/Pods-Triponus-TriponusUITests/Pods-Triponus-TriponusUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7DA1743D1DE8ECF7CAC87E60 /* Pods-ProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTests.release.xcconfig"; path = "Target Support Files/Pods-ProjectTests/Pods-ProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		8208C5C7B3396ABE31694A43 /* Pods-Triponus-TriponusUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus-TriponusUITests.debug.xcconfig"; path = "Target Support Files/Pods-Triponus-TriponusUITests/Pods-Triponus-TriponusUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Griffy-Regular.ttf"; sourceTree = "<group>"; };
 		841CA66F26427D4A00B6A83B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		841CA67026427D4A00B6A83B /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		84E1882026419C84007A1A17 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		84E188242641ACA2007A1A17 /* CustomTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTextField.xib; sourceTree = "<group>"; };
-		84E188262641ACDB007A1A17 /* ViewExtendsion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtendsion.swift; sourceTree = "<group>"; };
 		84E826FD26426A5A00D6929D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		84E826FE26426A5A00D6929D /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		84E8270326426EC100D6929D /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
@@ -266,6 +266,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8409D601264317FE0036E3A1 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				84E188242641ACA2007A1A17 /* CustomTextField.xib */,
+				84E1882026419C84007A1A17 /* CustomTextField.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
 		CC2149352B0F2C2EFCA2C593 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +342,8 @@
 			isa = PBXGroup;
 			children = (
 				FA66C5DB2523827400C31151 /* LoginController.swift */,
+				84E826FD26426A5A00D6929D /* LoginViewController.swift */,
+				841CA66F26427D4A00B6A83B /* RegisterViewController.swift */,
 				FA66C5E02523829C00C31151 /* RegistrationController.swift */,
 			);
 			path = Authentication;
@@ -428,6 +439,7 @@
 		FAF417F72528C95D00FDDC97 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				8409D601264317FE0036E3A1 /* CustomView */,
 				FAFDD70B254E4D2A000C39FF /* class */,
 				FA2C25C02532CA530042EC43 /* BindData */,
 				FAF417FD2528C9D700FDDC97 /* Extension */,
@@ -476,13 +488,6 @@
 		FAFD58A325208D9B006E4F94 /* Project */ = {
 			isa = PBXGroup;
 			children = (
-				84E188262641ACDB007A1A17 /* ViewExtendsion.swift */,
-				84E188242641ACA2007A1A17 /* CustomTextField.xib */,
-				84E1882026419C84007A1A17 /* CustomTextField.swift */,
-				84E826FD26426A5A00D6929D /* LoginViewController.swift */,
-				841CA66F26427D4A00B6A83B /* RegisterViewController.swift */,
-				84E826FE26426A5A00D6929D /* LoginViewController.xib */,
-				841CA67026427D4A00B6A83B /* RegisterViewController.xib */,
 				FAF417F72528C95D00FDDC97 /* Base */,
 				FAFD58D725208E72006E4F94 /* Models */,
 				FAFD58DD25208ED8006E4F94 /* Views */,
@@ -498,6 +503,7 @@
 				84E8270326426EC100D6929D /* Roboto-Medium.ttf */,
 				84E8270526426ECC00D6929D /* Roboto-Regular.ttf */,
 				84E8270726426EDD00D6929D /* Roboto-Bold.ttf */,
+				8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */,
 				FA66C6062523AE2100C31151 /* GoogleService-Info.plist */,
 			);
 			path = Project;
@@ -582,6 +588,8 @@
 			isa = PBXGroup;
 			children = (
 				FA80F17E2545C48F0030A00D /* Profile */,
+				84E826FE26426A5A00D6929D /* LoginViewController.xib */,
+				841CA67026427D4A00B6A83B /* RegisterViewController.xib */,
 				FA9B7CF92535FC85006DFFA2 /* CaptionTextView.swift */,
 				FA89486A253ACBA10071A5DB /* UserCell.swift */,
 				FAF38662253B382100E76AF1 /* TweetHeader.swift */,
@@ -765,6 +773,7 @@
 				841CA67226427D4A00B6A83B /* RegisterViewController.xib in Resources */,
 				FA39B50B261E0B94006B9698 /* TweetCollectionViewCell.xib in Resources */,
 				84E8270626426ECC00D6929D /* Roboto-Regular.ttf in Resources */,
+				8409D6002642E8C20036E3A1 /* Griffy-Regular.ttf in Resources */,
 				84E8270026426A5A00D6929D /* LoginViewController.xib in Resources */,
 				84E8270426426EC100D6929D /* Roboto-Medium.ttf in Resources */,
 				84E8270826426EDD00D6929D /* Roboto-Bold.ttf in Resources */,
@@ -968,7 +977,6 @@
 				FA2495C02523218C0060BECD /* UIViewExtension.swift in Sources */,
 				FA2C25C22532CA6A0042EC43 /* BindingTextField.swift in Sources */,
 				FAA362672524D84A00580FE2 /* Constants.swift in Sources */,
-				84E188272641ACDB007A1A17 /* ViewExtendsion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1138,7 +1146,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YJ3E54RM75;
+				DEVELOPMENT_TEAM = 97MV55V5HU;
 				INFOPLIST_FILE = Project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1158,7 +1166,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YJ3E54RM75;
+				DEVELOPMENT_TEAM = 97MV55V5HU;
 				INFOPLIST_FILE = Project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -30,7 +30,7 @@
                         <constraint firstAttribute="height" constant="20" id="Wcc-cy-Y6j"/>
                     </constraints>
                 </imageView>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="@example.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tK2-4n-Tst">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="@example.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tK2-4n-Tst" customClass="BindingTextField" customModule="Triponus" customModuleProvider="target">
                     <rect key="frame" x="37" y="4" width="365" height="20"/>
                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -40,9 +40,9 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </textField>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m0t-Qh-PEm" userLabel="LineView">
+                <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m0t-Qh-PEm" userLabel="LineView">
                     <rect key="frame" x="12" y="28" width="390" height="1"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="yZJ-0f-bDO"/>
                     </constraints>

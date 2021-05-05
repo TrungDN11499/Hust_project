@@ -227,7 +227,7 @@ extension ProfileController: ProfileHeaderViewDelegate {
     func gotoLoginController() {
         let loginService = LoginService()
         let loginControllerViewModel = LoginViewModel(loginService: loginService)
-        let loginController = LoginController.create(with: loginControllerViewModel)
+        let loginController = LoginViewController.create(with: loginControllerViewModel)
         if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
             sceneDelegate.changeRootViewController(view: loginController)
         }

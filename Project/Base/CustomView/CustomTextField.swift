@@ -10,7 +10,7 @@ import UIKit
 class CustomTextField: UIView {
 
     @IBOutlet weak var customImageView: UIImageView!
-    @IBOutlet weak var customTextField: UITextField!
+    @IBOutlet weak var customTextField: BindingTextField!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
