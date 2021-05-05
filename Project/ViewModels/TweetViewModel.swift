@@ -87,7 +87,7 @@ struct TweetViewModel {
     }
     
     var likeButtonImage: UIImage? {
-        let imageName = self.tweet.didLike.value ?? false ? "like_filled" : "like"
+        let imageName = self.tweet.didLike.value ?? false ? "ic_heart_filled" : "ic_heart"
         return UIImage(named: imageName)
     }
     

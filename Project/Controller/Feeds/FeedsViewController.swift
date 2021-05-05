@@ -16,7 +16,7 @@ class FeedsViewController: BaseViewController, ControllerType {
     private lazy var feedCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collecionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collecionView.backgroundColor = .white
+        collecionView.backgroundColor = .clear
         collecionView.delegate = self
         collecionView.dataSource = self
         return collecionView
@@ -70,7 +70,7 @@ class FeedsViewController: BaseViewController, ControllerType {
     // MARK: - Helpers
     private func configureViewController() {
         
-        self.feedCollectionView.backgroundColor = .white
+        self.view.backgroundColor = .mainBackgroundColor
         
         guard let logoImage = UIImage(named: "ic_sun") else {
             return
@@ -173,6 +173,10 @@ extension FeedsViewController: UICollectionViewDelegateFlowLayout {
         let cellHeight: CGFloat =  cellPadding * 3 + actionButtonSize + contentHeight + 0.5
         
         return CGSize(width: self.feedCollectionView.frame.width, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
     }
 }
 

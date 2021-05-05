@@ -9,7 +9,7 @@ import UIKit
 
 private let cellIden = "ProfileFilterCell"
 
-protocol ProfileFilterViewDelegate: class {
+protocol ProfileFilterViewDelegate: AnyObject {
     func filterView(_ filterView: ProfileFilterView, didSelectItemAt indexPath: IndexPath)
 }
 

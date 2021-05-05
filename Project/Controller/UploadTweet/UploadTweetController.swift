@@ -8,7 +8,7 @@
 import UIKit
 import ActiveLabel
 
-protocol UploadTweetControllerDelegate: class {
+protocol UploadTweetControllerDelegate: AnyObject {
     func handleUpdateNumberOfComment(for index: Int)
     func handleUpdateTweet(tweet: Tweet)
 }

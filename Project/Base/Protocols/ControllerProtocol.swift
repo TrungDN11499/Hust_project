@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol ControllerType: class {
+protocol ControllerType: AnyObject {
     associatedtype ViewModelType: ViewModelProtocol
     
     /// Configurates controller with specified ViewModelProtocol subclass
