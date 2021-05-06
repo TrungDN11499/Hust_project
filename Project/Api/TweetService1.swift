@@ -16,7 +16,7 @@ struct TweetService1 {
     
     static let shared = TweetService1()
     
-    func upload(caption: String, type: UploadTweetConfiguration, completion: @escaping (Error? ,String ,DatabaseReference) -> Void) {
+    func upload(caption: String, type: UploadTweetConfiguration, completion: @escaping (Error? ,String, Int ,DatabaseReference) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         var values = ["uid": uid,
@@ -33,25 +33,25 @@ struct TweetService1 {
                 guard let tweetId = ref.key else { return }
                 print(tweetId)
                 REF_USER_TWEETS.child(uid).updateChildValues([tweetId: 1]) { (error, ref) in
-                    completion(error, tweetId, ref)
+                    completion(error, tweetId, 0, ref)
                 }
             }
             
         case .reply(let tweet):
             
             values["replyingTo"] = tweet.user.username
-            
-            let comment = tweet.comments + 1
-            REF_TWEETS.child(tweet.tweetId).child("comments").setValue(comment)
-            
             REF_TWEET_REPLIES.child(tweet.tweetId).childByAutoId().updateChildValues(values) { (err, ref) in
                 guard let replyId = ref.key else { return }
                 REF_USER_REPLIES.child(uid).updateChildValues([tweet.tweetId: replyId]) { (error, ref) in
-                    completion(error, replyId, ref)
+                    REF_TWEET_REPLIES.child(tweet.tweetId).observeSingleEvent(of: .value) { snapshot in
+                        REF_TWEETS.child(tweet.tweetId).child("comments").setValue(snapshot.childrenCount) { err, dataRef in
+                            completion(error, replyId, Int(snapshot.childrenCount), ref)
+                        }
+                    }
                 }
             }
+            
         }
-        
     }
     
     func fetchTweet(completion: @escaping ([Tweet]) -> ()) {
@@ -158,12 +158,12 @@ struct TweetService1 {
     
     func likeTweet(tweet: Tweet, completion: @escaping (Completion)) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        let likes = tweet.didLike.value ?? false ? ((tweet.likes - 1) < 0 ? 0 : (tweet.likes - 1)) : tweet.likes + 1
+        let likes = tweet.didLike.value ?? false ? ((tweet.likes.value ?? 0 - 1) < 0 ? 0 : (tweet.likes.value ?? 0 - 1)) : tweet.likes.value ?? 0 + 1
         REF_TWEETS.child(tweet.tweetId).child("likes").setValue(likes)
         
         if tweet.didLike.value ?? false {
             REF_USER_LIKES.child(uid).child(tweet.tweetId).removeValue { (err, ref) in
-                REF_TWEET_LIKES.child(tweet.tweetId).removeValue(completionBlock: completion)
+                REF_TWEET_LIKES.child(tweet.tweetId).child(uid).removeValue(completionBlock: completion)
             }
         } else {
             REF_USER_LIKES.child(uid).updateChildValues([tweet.tweetId: 1]) { (err, ref) in

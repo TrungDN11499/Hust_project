@@ -9,7 +9,7 @@ import UIKit
 import ActiveLabel
 
 protocol UploadTweetControllerDelegate: AnyObject {
-    func handleUpdateNumberOfComment(for index: Int)
+    func handleUpdateNumberOfComment(for index: Int, numberOfComment: Int)
     func handleUpdateTweet(tweet: Tweet)
 }
 
@@ -94,14 +94,14 @@ class UploadTweetController: BaseViewController {
             return
         }
         
-        TweetService1.shared.upload(caption: caption, type: self.config) { [weak self] error, tweetId, data in
+        TweetService1.shared.upload(caption: caption, type: self.config) { [weak self] error, tweetId, numberOfComments, data in
             guard let `self` = self else { return }
             if error != nil {
                 return
             }
             
             if case .reply(let tweet) = self.config {
-                self.delegate?.handleUpdateNumberOfComment(for: self.index)
+                self.delegate?.handleUpdateNumberOfComment(for: self.index, numberOfComment: numberOfComments)
                 NotificationService.shared.uploadNotification(.reply, tweet: tweet)
             } else  {
                 REF_TWEETS.child(tweetId).observeSingleEvent(of: .value) { (snapshot) in

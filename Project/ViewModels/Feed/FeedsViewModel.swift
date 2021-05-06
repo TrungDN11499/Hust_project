@@ -41,11 +41,9 @@ class FeedsViewModel: ViewModelProtocol {
         
         // like tweet
         self.input.likeTweet.bind { observer, value  in
-            feedsService.likeTweet(tweet: value.feedViewModel.tweet) { [unowned self] error, reference in
+            feedsService.likeTweet(tweet: value.feedViewModel.tweet) { [unowned self] error, numberOfLikes, reference in
 
-                let likes = value.feedViewModel.tweet.didLike.value ?? false ? ((value.feedViewModel.tweet.likes - 1) < 0 ? 0 : (value.feedViewModel.tweet.likes - 1)) : value.feedViewModel.tweet.likes + 1
-                
-                self.viewModel(at: value.indexPath)?.tweet.likes = likes
+                self.viewModel(at: value.indexPath)?.tweet.likes.value = numberOfLikes
                 self.viewModel(at: value.indexPath)?.tweet.didLike.value = !(value.feedViewModel.tweet.didLike.value ?? false)
         
                 // only upload notification when user like
@@ -75,7 +73,19 @@ extension FeedsViewModel {
         
         let newTweets = tweets.filter { (Int(Date().timeIntervalSince1970) - Int($0.timestamp.timeIntervalSince1970)) <= 24 * 60 * 60 }.sorted { $0.timestamp > $1.timestamp }
         
-        let highInteractionTweets = tweets.filter { !((Int(Date().timeIntervalSince1970) - Int($0.timestamp.timeIntervalSince1970)) < 24 * 60 * 60) }.sorted { $0.timestamp > $1.timestamp }.sorted { $0.likes + $0.comments >  $1.likes + $1.comments }
+        let highInteractionTweets = tweets.filter { !((Int(Date().timeIntervalSince1970) - Int($0.timestamp.timeIntervalSince1970)) < 24 * 60 * 60) }.sorted { $0.timestamp > $1.timestamp }.sorted { lhs, rhs in
+            let lhsLikes = lhs.likes.value ?? 0
+            let lhsComments = lhs.comments.value ?? 0
+            
+            let rhsLikes = rhs.likes.value ?? 0
+            let rhsComments = rhs.comments.value ?? 0
+            
+            return lhsLikes + lhsComments > rhsLikes + rhsComments
+        }
+        
+        
+        
+//        $0.likes.value ?? 0 + $0.comments.value >  $1.likes.value ?? 0 + $1.comments
         
         return newTweets + highInteractionTweets
     }

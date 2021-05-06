@@ -43,11 +43,11 @@ struct TweetViewModel {
     }
     
     var retweetsAttributedString: NSAttributedString? {
-        return self.attributeText(withValue: self.tweet.retweets, text: "Retweets")
+        return self.attributeText(withValue: self.tweet.comments.value ?? 0, text: "Comments")
     }
     
     var likessAttributedString: NSAttributedString? {
-        return self.attributeText(withValue: self.tweet.likes, text: "Likes")
+        return self.attributeText(withValue: self.tweet.likes.value ?? 0, text: "Likes")
     }
     
     var usernameText: String {

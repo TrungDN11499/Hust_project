@@ -459,6 +459,7 @@
 				FA684A23260903670044B082 /* StringExtension.swift */,
 				FA88D41D261B860300A2FD6F /* AttributedString.swift */,
 				FA875FA5260B8088006DCBA9 /* DateExtension.swift */,
+				83775E932643D495000B402E /* FontExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -495,6 +496,7 @@
 				FAFD58DB25208ED4006E4F94 /* Controller */,
 				FAFD58D825208EC7006E4F94 /* Api */,
 				FAFD58DE25208EFB006E4F94 /* Utilities */,
+				83775E882643D30E000B402E /* Fonts */,
 				FAFD58A425208D9C006E4F94 /* AppDelegate.swift */,
 				FAFD58A625208D9C006E4F94 /* SceneDelegate.swift */,
 				FAFD58AD25208D9C006E4F94 /* Assets.xcassets */,
@@ -778,6 +780,8 @@
 				84E8270426426EC100D6929D /* Roboto-Medium.ttf in Resources */,
 				84E8270826426EDD00D6929D /* Roboto-Bold.ttf in Resources */,
 				FAFD58B125208D9C006E4F94 /* LaunchScreen.storyboard in Resources */,
+				83775E8F2643D3A8000B402E /* Roboto-Bold.ttf in Resources */,
+				83775E8C2643D388000B402E /* Roboto-Medium.ttf in Resources */,
 				FAFD58AE25208D9C006E4F94 /* Assets.xcassets in Resources */,
 				FA66C6072523AE2100C31151 /* GoogleService-Info.plist in Resources */,
 			);
@@ -940,6 +944,7 @@
 				FA1108E12538C57B00443971 /* ProfileHeaderView.swift in Sources */,
 				FA8A0404253C34E3006F3FAE /* ActionSheetViewModel.swift in Sources */,
 				FA80F18D2545CC860030A00D /* EditProfileCell.swift in Sources */,
+				83775E942643D495000B402E /* FontExtension.swift in Sources */,
 				FA39B50A261E0B94006B9698 /* TweetCollectionViewCell.swift in Sources */,
 				FA70492926288C180093D11A /* LikeTweetParam.swift in Sources */,
 				FAF38663253B382100E76AF1 /* TweetHeader.swift in Sources */,

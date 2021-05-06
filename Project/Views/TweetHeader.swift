@@ -69,7 +69,7 @@ class TweetHeader: UIView {
     private lazy var retweetsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.text = "2 retweets"
+        label.text = "2 comments"
         return label
     }()
     
@@ -100,7 +100,7 @@ class TweetHeader: UIView {
                         paddingLeft: 8,
                         height: 1)
         
-        let stack = UIStackView(arrangedSubviews: [retweetsLabel, likesLabel])
+        let stack = UIStackView(arrangedSubviews: [likesLabel, retweetsLabel])
         stack.axis = .horizontal
         stack.spacing = 12
         

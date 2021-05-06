@@ -161,14 +161,20 @@ extension FeedsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let cellPadding: CGFloat = 12
-        let infoLabelHeight: CGFloat = 17
-        let actionButtonSize: CGFloat = 30
-        let profileImageSize: CGFloat = 48
+        let actionButtonSize: CGFloat = 25
+        let profileImageSize: CGFloat = 40
+        let maxTextHeight: CGFloat = 200
         
-        let textWidth = self.view.frame.width - (profileImageSize + actionButtonSize + cellPadding * 4)
-        let textHeight = self.viewModel.viewModel(at: indexPath)?.caption.height(withConstrainedWidth: textWidth, font: UIFont.systemFont(ofSize: 17)) ?? 0
+        let textWidth = self.view.frame.width - (actionButtonSize + cellPadding * 3)
+        let textHeight = self.viewModel.viewModel(at: indexPath)?.caption.height(withConstrainedWidth: textWidth, font: UIFont.robotoRegular(point: 14)) ?? 0 > maxTextHeight ? maxTextHeight : self.viewModel.viewModel(at: indexPath)?.caption.height(withConstrainedWidth: textWidth, font: UIFont.robotoRegular(point: 14)) ?? 0
+                
+        var contentHeight: CGFloat = 0
         
-        let contentHeight = (infoLabelHeight + 4 + textHeight) > profileImageSize ? (infoLabelHeight + 4 + textHeight) : profileImageSize
+        if textHeight != maxTextHeight {
+            contentHeight = profileImageSize + 5 + textHeight
+        } else {
+            contentHeight = profileImageSize + 5 * 2 + textHeight + 17
+        }
         
         let cellHeight: CGFloat =  cellPadding * 3 + actionButtonSize + contentHeight + 0.5
         
@@ -219,8 +225,8 @@ extension FeedsViewController: TweetCollectionViewCellDelegate {
 
 // MARK: - UploadTweetControllerDelegate
 extension FeedsViewController: UploadTweetControllerDelegate {
-    func handleUpdateNumberOfComment(for index: Int) {
-        self.viewModel.output.fetchTweetsResult.value?[index].tweet.comments += 1
+    func handleUpdateNumberOfComment(for index: Int, numberOfComment: Int) {
+        self.viewModel.output.fetchTweetsResult.value?[index].tweet.comments.value = numberOfComment
         DispatchQueue.main.async {
             self.feedCollectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
         }
