@@ -69,7 +69,7 @@ class MainTabBarController: UITabBarController {
         switch self.buttonConfig {
         case .message:
             let controller = NewMessageController()
-//            controller.delegate = self
+            controller.delegate = self
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true, completion: nil)
@@ -139,5 +139,17 @@ extension MainTabBarController: UITabBarControllerDelegate {
         let image = index == 3 ? #imageLiteral(resourceName: "ic_mail_outline_white_2x-1") : #imageLiteral(resourceName: "new_tweet")
         self.actionButton.setImage(image, for: .normal)
         self.buttonConfig = index == 3 ? .message : .tweet
+    }
+}
+
+
+// MARK: - NewMessageControllerDelegate
+extension MainTabBarController: NewMessageControllerDelegate {
+    func showChat(with user: User) {
+        let chatLogViewController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+        chatLogViewController.user = user
+        let nav = UINavigationController(rootViewController: chatLogViewController)
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: true, completion: nil)
     }
 }
