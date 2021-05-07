@@ -384,7 +384,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
             
         } else {
             //incoming gray
-            cell.bubbleView.backgroundColor = UIColor.systemGray4
+            cell.bubbleView.backgroundColor = UIColor(red: 240, green: 240, blue: 240, alpha: 1)
             cell.textView.textColor = UIColor.black
             cell.profileImageView.isHidden = false
             
