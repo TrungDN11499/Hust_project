@@ -17,11 +17,12 @@
             <connections>
                 <outlet property="emailTextField" destination="8mq-MY-PVp" id="bql-zH-jJU"/>
                 <outlet property="fullNameTextField" destination="mEo-GH-OqZ" id="Ogn-cw-JFr"/>
+                <outlet property="logInButton" destination="X1f-8o-VAw" id="k1C-kR-mCr"/>
                 <outlet property="passwordTextField" destination="w8f-ip-1DC" id="M6b-Ex-xre"/>
                 <outlet property="registerButton" destination="9Xm-n9-lfz" id="Z38-Ss-pOF"/>
                 <outlet property="registerFormView" destination="zOv-OX-rIc" id="OlM-jh-Hbq"/>
+                <outlet property="updateImageButton" destination="aHe-cX-Ka1" id="8BO-4q-9u1"/>
                 <outlet property="userNameTextField" destination="N5X-A4-3kg" id="Pcu-cZ-DJ0"/>
-                <outlet property="userUpdateImageView" destination="5Hn-Hw-uGV" id="N35-Yl-uHW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -30,20 +31,12 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bg" translatesAutoresizingMaskIntoConstraints="NO" id="Viv-0j-aoQ">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Capri, Italy 1" translatesAutoresizingMaskIntoConstraints="NO" id="Viv-0j-aoQ">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zOv-OX-rIc">
                     <rect key="frame" x="12" y="248" width="390" height="400"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-images 1" translatesAutoresizingMaskIntoConstraints="NO" id="5Hn-Hw-uGV">
-                            <rect key="frame" x="145" y="24" width="100" height="100"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="100" id="SGs-Cm-3Zd"/>
-                                <constraint firstAttribute="height" constant="100" id="dVD-2H-xAA"/>
-                            </constraints>
-                        </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8mq-MY-PVp" customClass="CustomTextField" customModule="Triponus" customModuleProvider="target">
                             <rect key="frame" x="12" y="136" width="366" height="28"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -72,7 +65,7 @@
                                 <constraint firstAttribute="height" constant="28" id="LmZ-WV-PKo"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Xm-n9-lfz">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Xm-n9-lfz" customClass="BindingButton" customModule="Triponus" customModuleProvider="target">
                             <rect key="frame" x="45" y="302" width="300" height="40"/>
                             <color key="backgroundColor" red="0.0" green="0.60784313729999995" blue="0.90588235289999997" alpha="0.75" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -82,9 +75,6 @@
                             <state key="normal" title="Register">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
-                            <connections>
-                                <action selector="handleRegisterButton:" destination="-1" eventType="touchUpInside" id="Rlo-Qk-Cg4"/>
-                            </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D2M-Ci-XjW">
                             <rect key="frame" x="109.5" y="370" width="171" height="14"/>
@@ -95,15 +85,12 @@
                                     <color key="textColor" red="0.50196078430000002" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1f-8o-VAw">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1f-8o-VAw" customClass="BindingButton" customModule="Triponus" customModuleProvider="target">
                                     <rect key="frame" x="138" y="0.0" width="33" height="14"/>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                                     <state key="normal" title="Log In">
                                         <color key="titleColor" red="0.062745098040000002" green="0.20784313730000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
-                                    <connections>
-                                        <action selector="handleLoginButton:" destination="-1" eventType="touchUpInside" id="FSn-1j-9hh"/>
-                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -119,17 +106,28 @@
                                 <constraint firstItem="UwR-DV-Eox" firstAttribute="top" secondItem="D2M-Ci-XjW" secondAttribute="top" id="vRN-ep-I6B"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHe-cX-Ka1" customClass="BindingButton" customModule="Triponus" customModuleProvider="target">
+                            <rect key="frame" x="145" y="24" width="100" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="a7M-UB-GxL"/>
+                                <constraint firstAttribute="width" constant="100" id="ywD-cV-yuf"/>
+                            </constraints>
+                            <state key="normal" image="user-images 1"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="50"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="w8f-ip-1DC" secondAttribute="trailing" constant="12" id="2Jz-US-8kV"/>
                         <constraint firstAttribute="trailing" secondItem="N5X-A4-3kg" secondAttribute="trailing" constant="12" id="7m7-AC-D9Y"/>
-                        <constraint firstItem="5Hn-Hw-uGV" firstAttribute="top" secondItem="zOv-OX-rIc" secondAttribute="top" constant="24" id="7wy-61-azj"/>
                         <constraint firstAttribute="height" constant="400" id="9JV-cd-Ybk"/>
                         <constraint firstItem="w8f-ip-1DC" firstAttribute="leading" secondItem="zOv-OX-rIc" secondAttribute="leading" constant="12" id="Edb-QF-T0j"/>
                         <constraint firstAttribute="bottom" secondItem="D2M-Ci-XjW" secondAttribute="bottom" constant="16" id="HU4-sh-omY"/>
                         <constraint firstItem="9Xm-n9-lfz" firstAttribute="top" secondItem="mEo-GH-OqZ" secondAttribute="bottom" constant="18" id="J34-cc-N9q"/>
-                        <constraint firstItem="8mq-MY-PVp" firstAttribute="top" secondItem="5Hn-Hw-uGV" secondAttribute="bottom" constant="12" id="NPe-hc-f3d"/>
                         <constraint firstItem="mEo-GH-OqZ" firstAttribute="top" secondItem="N5X-A4-3kg" secondAttribute="bottom" constant="12" id="PrG-vv-ihG"/>
                         <constraint firstItem="9Xm-n9-lfz" firstAttribute="leading" secondItem="zOv-OX-rIc" secondAttribute="leading" constant="45" id="RkX-mA-eaX"/>
                         <constraint firstAttribute="trailing" secondItem="mEo-GH-OqZ" secondAttribute="trailing" constant="12" id="T53-hf-UYy"/>
@@ -137,9 +135,11 @@
                         <constraint firstItem="mEo-GH-OqZ" firstAttribute="leading" secondItem="zOv-OX-rIc" secondAttribute="leading" constant="12" id="Tgl-kF-9Pb"/>
                         <constraint firstAttribute="trailing" secondItem="8mq-MY-PVp" secondAttribute="trailing" constant="12" id="V2S-mx-80f"/>
                         <constraint firstItem="D2M-Ci-XjW" firstAttribute="centerX" secondItem="zOv-OX-rIc" secondAttribute="centerX" id="Wgn-L8-q7v"/>
+                        <constraint firstItem="aHe-cX-Ka1" firstAttribute="top" secondItem="zOv-OX-rIc" secondAttribute="top" constant="24" id="X5T-Td-Px8"/>
                         <constraint firstItem="N5X-A4-3kg" firstAttribute="leading" secondItem="zOv-OX-rIc" secondAttribute="leading" constant="12" id="e1X-si-AYk"/>
                         <constraint firstItem="w8f-ip-1DC" firstAttribute="top" secondItem="8mq-MY-PVp" secondAttribute="bottom" constant="12" id="fJw-uz-aOO"/>
-                        <constraint firstItem="5Hn-Hw-uGV" firstAttribute="centerX" secondItem="zOv-OX-rIc" secondAttribute="centerX" id="u2b-NT-gZC"/>
+                        <constraint firstItem="aHe-cX-Ka1" firstAttribute="centerX" secondItem="zOv-OX-rIc" secondAttribute="centerX" id="rkE-QA-xe7"/>
+                        <constraint firstItem="8mq-MY-PVp" firstAttribute="top" secondItem="aHe-cX-Ka1" secondAttribute="bottom" constant="12" id="vp0-rY-x08"/>
                         <constraint firstItem="8mq-MY-PVp" firstAttribute="leading" secondItem="zOv-OX-rIc" secondAttribute="leading" constant="12" id="xCq-V0-PoO"/>
                         <constraint firstAttribute="trailing" secondItem="9Xm-n9-lfz" secondAttribute="trailing" constant="45" id="yjY-nr-cms"/>
                     </constraints>
@@ -161,8 +161,8 @@
         </view>
     </objects>
     <resources>
-        <image name="Bg" width="563" height="1218"/>
-        <image name="user-images 1" width="33" height="33"/>
+        <image name="Capri, Italy 1" width="563" height="1218"/>
+        <image name="user-images 1" width="100" height="100"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

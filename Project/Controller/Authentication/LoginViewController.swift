@@ -108,7 +108,7 @@ extension LoginViewController {
         self.signUpButton.bind { [unowned self] button in
             let registrationService = RegistrationService()
             let regiterViewModel = RegisterViewModel(registrationService: registrationService)
-            let registrationController = RegistrationController.create(with: regiterViewModel)
+            let registrationController = RegisterViewController.create(with: regiterViewModel)
             self.navigationController?.pushViewController(registrationController, animated: true)
         }
     }
