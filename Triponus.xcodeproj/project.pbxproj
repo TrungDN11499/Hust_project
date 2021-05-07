@@ -58,6 +58,7 @@
 		5245B0FE264516F3006031CB /* ChatMessagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0FD264516F3006031CB /* ChatMessagCell.swift */; };
 		5245B1002645172A006031CB /* ChatInputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0FF2645172A006031CB /* ChatInputContainerView.swift */; };
 		5245B102264519A1006031CB /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B101264519A1006031CB /* UIImageViewExtension.swift */; };
+		526F37E52645204E00F7CCD1 /* UserMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526F37E42645204E00F7CCD1 /* UserMessageCell.swift */; };
 		F46EF1B4D058863F0832EDB1 /* Pods_Triponus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AF713B0B2DB31752A47D72 /* Pods_Triponus.framework */; };
 		FA0DC9F7252658C400377539 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC9F6252658C400377539 /* UserService.swift */; };
 		FA0DC9FC25265FED00377539 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC9FB25265FED00377539 /* User.swift */; };
@@ -165,6 +166,7 @@
 		5245B0FD264516F3006031CB /* ChatMessagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessagCell.swift; sourceTree = "<group>"; };
 		5245B0FF2645172A006031CB /* ChatInputContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputContainerView.swift; sourceTree = "<group>"; };
 		5245B101264519A1006031CB /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		526F37E42645204E00F7CCD1 /* UserMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMessageCell.swift; sourceTree = "<group>"; };
 		6736330ED8F03D3579352F26 /* Pods-ProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-ProjectTests/Pods-ProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6AE6325A00A2FBCBA534BB92 /* Pods-Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project.release.xcconfig"; path = "Target Support Files/Pods-Project/Pods-Project.release.xcconfig"; sourceTree = "<group>"; };
 		711B76527B3FF7EA048663FB /* Pods-Triponus-TriponusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus-TriponusUITests.release.xcconfig"; path = "Target Support Files/Pods-Triponus-TriponusUITests/Pods-Triponus-TriponusUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -773,6 +775,7 @@
 				FA80F1872545CBB20030A00D /* EditProfileViewModel.swift */,
 				5245B0FD264516F3006031CB /* ChatMessagCell.swift */,
 				5245B0FF2645172A006031CB /* ChatInputContainerView.swift */,
+				526F37E42645204E00F7CCD1 /* UserMessageCell.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1189,6 +1192,7 @@
 				FA875FAB260B8122006DCBA9 /* BindingView.swift in Sources */,
 				FAA5DD662631FCAB00C919A0 /* DeleteParam.swift in Sources */,
 				83EEB9EE264E8CBE0010A17C /* UINavigationBarExtension.swift in Sources */,
+				526F37E52645204E00F7CCD1 /* UserMessageCell.swift in Sources */,
 				FA2C25DC2532F6900042EC43 /* BindingButton.swift in Sources */,
 				FA408112253A04A8003DF3D7 /* ProfileFilterCell.swift in Sources */,
 				FAC53EA42610417400E32E21 /* FeedsViewModel.swift in Sources */,
