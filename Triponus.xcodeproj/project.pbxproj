@@ -66,6 +66,7 @@
 		5245B0FE264516F3006031CB /* ChatMessagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0FD264516F3006031CB /* ChatMessagCell.swift */; };
 		5245B1002645172A006031CB /* ChatInputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0FF2645172A006031CB /* ChatInputContainerView.swift */; };
 		5245B102264519A1006031CB /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B101264519A1006031CB /* UIImageViewExtension.swift */; };
+		526F37E52645204E00F7CCD1 /* UserMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526F37E42645204E00F7CCD1 /* UserMessageCell.swift */; };
 		F46EF1B4D058863F0832EDB1 /* Pods_Triponus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AF713B0B2DB31752A47D72 /* Pods_Triponus.framework */; };
 		FA0DC9F7252658C400377539 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC9F6252658C400377539 /* UserService.swift */; };
 		FA0DC9FC25265FED00377539 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC9FB25265FED00377539 /* User.swift */; };

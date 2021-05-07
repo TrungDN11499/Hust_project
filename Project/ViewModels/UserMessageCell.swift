@@ -46,7 +46,6 @@ class UserMessageCell: UITableViewCell {
                         self.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
                     }
                 }
-
                 }, withCancel: nil)
         }
     }
