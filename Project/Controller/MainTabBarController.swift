@@ -68,7 +68,11 @@ class MainTabBarController: UITabBarController {
         
         switch self.buttonConfig {
         case .message:
-        print("Message.")
+            let controller = NewMessageController()
+//            controller.delegate = self
+            let nav = UINavigationController(rootViewController: controller)
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true, completion: nil)
         case .tweet:
             guard let user = self.user else { return }
             let uploadTweetViewModel = UploadTweetViewModel(.tweet, user: user)
