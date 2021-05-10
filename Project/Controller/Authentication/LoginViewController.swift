@@ -66,8 +66,8 @@ class LoginViewController: BaseViewController, ControllerType {
         setUpTextView()
     }
     private func setUpTextView() {
-        emailTextField.customImageView.image = UIImage(named: "mail-2 1")
-        passwordTextField.customImageView.image = UIImage(named: "lock 1")
+        emailTextField.customImageView.image = UIImage(named: "ic_mail")
+        passwordTextField.customImageView.image = UIImage(named: "ic_lock")
         passwordTextField.customTextField.placeholder = "password"
         passwordTextField.customTextField.isSecureTextEntry = true
     }
