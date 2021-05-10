@@ -15,6 +15,7 @@ class RegisterViewController: BaseViewController, ControllerType {
     @IBOutlet weak var updateImageButton: BindingButton!
     @IBOutlet weak var emailTextField: CustomTextField!
     @IBOutlet weak var passwordTextField: CustomTextField!
+    @IBOutlet weak var comfirmPasswordField: CustomTextField!
     @IBOutlet weak var userNameTextField: CustomTextField!
     @IBOutlet weak var fullNameTextField: CustomTextField!
     @IBOutlet weak var registerButton: BindingButton!
@@ -34,7 +35,7 @@ class RegisterViewController: BaseViewController, ControllerType {
         super.viewDidLoad()
         setUpView()
         self.setUpImagePicker()
-        self.addInputAccessoryForTextFields(textFields: [self.emailTextField.customTextField, self.passwordTextField.customTextField, self.fullNameTextField.customTextField, self.userNameTextField.customTextField], dismissable: true, previousNextable: true)
+        self.addInputAccessoryForTextFields(textFields: [self.emailTextField.customTextField, self.passwordTextField.customTextField,self.comfirmPasswordField.customTextField, self.fullNameTextField.customTextField, self.userNameTextField.customTextField], dismissable: true, previousNextable: true)
         addActivityIndicator()
         // Do any additional setup after loading the view.
     }
@@ -65,6 +66,10 @@ class RegisterViewController: BaseViewController, ControllerType {
         emailTextField.customImageView.image = UIImage(named: "mail-2 1")
         passwordTextField.customImageView.image = UIImage(named: "lock 1")
         passwordTextField.customTextField.placeholder = "password"
+        passwordTextField.customTextField.isSecureTextEntry = true
+        comfirmPasswordField.customImageView.image = UIImage(named: "lock 1")
+        comfirmPasswordField.customTextField.placeholder = "comfirm password"
+        comfirmPasswordField.customTextField.isSecureTextEntry = true
         userNameTextField.customImageView.image = UIImage(named: "user 1")
         userNameTextField.customTextField.placeholder = "username"
         fullNameTextField.customImageView.image = UIImage(named: "user 1")
@@ -84,6 +89,7 @@ extension RegisterViewController {
     func configure(with viewModel: ViewModelType) {
         self.emailTextField.customTextField.bind(callBack: { viewModel.input.email.value = $0 })
         self.passwordTextField.customTextField.bind(callBack: { viewModel.input.password.value = $0 })
+        self.comfirmPasswordField.customTextField.bind(callBack: { viewModel.input.confirmPassword.value = $0})
         self.userNameTextField.customTextField.bind(callBack: { viewModel.input.userName.value = $0 })
         self.fullNameTextField.customTextField.bind(callBack: { viewModel.input.fullName.value = $0 })
         
