@@ -86,7 +86,6 @@ class ChatInputContainerView: UIView, UITextFieldDelegate {
         //x,y,w,h
 //        self.inputTextField.leftAnchor.constraint(equalTo: uploadImageView.rightAnchor, constant: 8).isActive = true
         self.inputTextField.leftAnchor.constraint(equalTo: optionsButton.rightAnchor, constant: 8).isActive = true
-
         self.inputTextField.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         self.inputTextField.rightAnchor.constraint(equalTo: sendButton.leftAnchor).isActive = true
         self.inputTextField.heightAnchor.constraint(equalTo: heightAnchor).isActive = true

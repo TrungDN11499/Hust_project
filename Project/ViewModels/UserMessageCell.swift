@@ -7,42 +7,46 @@
 
 import UIKit
 import Firebase
+//UserMessageCell
 
 class UserMessageCell: UITableViewCell {
-
     
     var message: Message? {
         didSet {
             setupNameAndProfileImage()
-            
-            detailTextLabel?.text = message?.text
-            
+
+            if message?.imageUrl != nil {
+                detailTextLabel?.text = "Đã gửi một file ảnh."
+            } else if message?.videoUrl != nil {
+                detailTextLabel?.text = "Đã gửi một video."
+            } else {
+                detailTextLabel?.text = message?.text
+            }
+
             if let seconds = message?.timestamp?.doubleValue {
                 let timestampDate = Date(timeIntervalSince1970: seconds)
-                
+
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "hh:mm:ss a"
                 timeLabel.text = dateFormatter.string(from: timestampDate)
             }
-            
-            
         }
     }
-    
+
     fileprivate func setupNameAndProfileImage() {
-        
+
         if let id = message?.chatPartnerId() {
             let ref = Database.database().reference().child("users").child(id)
             ref.observeSingleEvent(of: .value, with: { (snapshot) in
-                
+
                 if let dictionary = snapshot.value as? [String: AnyObject] {
-                    self.textLabel?.text = dictionary["name"] as? String
-                    
+                    self.textLabel?.text = dictionary["fullName"] as? String
+
                     if let profileImageUrl = dictionary["profileImageUrl"] as? String {
                         self.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
                     }
                 }
-                
+
                 }, withCancel: nil)
         }
     }
@@ -61,6 +65,7 @@ class UserMessageCell: UITableViewCell {
         imageView.layer.cornerRadius = 24
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = false
         return imageView
     }()
     
@@ -70,6 +75,7 @@ class UserMessageCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = UIColor.darkGray
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.isUserInteractionEnabled = false
         return label
     }()
     
@@ -79,6 +85,7 @@ class UserMessageCell: UITableViewCell {
         addSubview(profileImageView)
         addSubview(timeLabel)
         
+        self.backgroundColor = .systemGray6
         //ios 9 constraint anchors
         //need x,y,width,height anchors
         profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true

@@ -9,25 +9,25 @@ import UIKit
 import Firebase
 
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l < r
+    case (nil, _?):
+        return true
+    default:
+        return false
+    }
 }
 
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
+    switch (lhs, rhs) {
+    case let (l?, r?):
+        return l > r
+    default:
+        return rhs < lhs
+    }
 }
 
 class ConversationsViewController: BaseViewController {
@@ -35,11 +35,14 @@ class ConversationsViewController: BaseViewController {
     let cellId = "cellId"
     var messages = [Message]()
     var messagesDictionary = [String: Message]()
-
+    var timer: Timer?
+    
     // MARK: - Properties
     private lazy var MessageTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(UserMessageCell.self, forCellReuseIdentifier: cellId)
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .systemGray6
         tableView.delegate = self
         tableView.dataSource = self
         return tableView
@@ -62,6 +65,33 @@ class ConversationsViewController: BaseViewController {
     private func configureViewController() {
         self.navigationItem.title = "Messages"
     }
+}
+
+//MARK:- uitableview delegate, uitableview datasource
+extension ConversationsViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        let message = self.messages[indexPath.row]
+        
+        if let chatPartnerId = message.chatPartnerId() {
+            Database.database().reference().child("user-messages").child(uid).child(chatPartnerId).removeValue(completionBlock: { (error, ref) in
+                
+                if error != nil {
+                    print("Failed to delete message:", error!)
+                    return
+                }
+                
+                self.messagesDictionary.removeValue(forKey: chatPartnerId)
+                self.attemptReloadOfTable()
+                
+            })
+        }
+    }
     
     func observeUserMessages() {
         guard let uid = Auth.auth().currentUser?.uid else {
@@ -77,9 +107,9 @@ class ConversationsViewController: BaseViewController {
                 let messageId = snapshot.key
                 self.fetchMessageWithMessageId(messageId)
                 
-                }, withCancel: nil)
-            
             }, withCancel: nil)
+            
+        }, withCancel: nil)
     }
     
     fileprivate func fetchMessageWithMessageId(_ messageId: String) {
@@ -97,7 +127,7 @@ class ConversationsViewController: BaseViewController {
                 self.attemptReloadOfTable()
             }
             
-            }, withCancel: nil)
+        }, withCancel: nil)
     }
     
     fileprivate func attemptReloadOfTable() {
@@ -105,8 +135,6 @@ class ConversationsViewController: BaseViewController {
         
         self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadTable), userInfo: nil, repeats: false)
     }
-    
-    var timer: Timer?
     
     @objc func handleReloadTable() {
         self.messages = Array(self.messagesDictionary.values)
@@ -120,20 +148,16 @@ class ConversationsViewController: BaseViewController {
             self.MessageTableView.reloadData()
         })
     }
-}
-
-// uitableview delegate, uitableview datasource
-extension ConversationsViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserMessageCell
-        
+        cell.contentView.isUserInteractionEnabled = true
         let message = messages[indexPath.row]
         cell.message = message
-        
         return cell
     }
     
@@ -157,35 +181,9 @@ extension ConversationsViewController: UITableViewDelegate, UITableViewDataSourc
             let user = User(uid: chatPartnerId, dictionary: dictionary)
             self.showChatControllerForUser(user)
             
-            }, withCancel: nil)
+        }, withCancel: nil)
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        guard let uid = Auth.auth().currentUser?.uid else {
-            return
-        }
-        
-        let message = self.messages[indexPath.row]
-        
-        if let chatPartnerId = message.chatPartnerId() {
-            Database.database().reference().child("user-messages").child(uid).child(chatPartnerId).removeValue(completionBlock: { (error, ref) in
-                
-                if error != nil {
-                    print("Failed to delete message:", error!)
-                    return
-                }
-                
-                self.messagesDictionary.removeValue(forKey: chatPartnerId)
-                self.attemptReloadOfTable()
-                
-                //                //this is one way of updating the table, but its actually not that safe..
-                //                self.messages.removeAtIndex(indexPath.row)
-                //                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                
-            })
-        }
-    }
     
     func showChatControllerForUser(_ user: User) {
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())

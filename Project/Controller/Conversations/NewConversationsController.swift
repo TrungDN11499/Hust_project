@@ -68,7 +68,7 @@ class NewMessageController: UITableViewController {
     private func configureViewController() {
         self.view.backgroundColor = .white
         self.navigationItem.title = "Messages"
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel",
                                                             style: .done,
                                                             target: self,
                                                             action: #selector(dismissSelf))

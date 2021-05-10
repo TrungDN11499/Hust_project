@@ -94,11 +94,8 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         actionSheet.addAction(UIAlertAction(title: "Photo", style: .default, handler: { [weak self] _ in
             self?.handleUploadTap()
         }))
-        actionSheet.addAction(UIAlertAction(title: "Video", style: .default, handler: { [weak self]  _ in
-        }))
-        actionSheet.addAction(UIAlertAction(title: "Location", style: .default, handler: { [weak self]  _ in
-//            self?.presentLocationPicker()
-        }))
+//        actionSheet.addAction(UIAlertAction(title: "Video", style: .default, handler: { [weak self]  _ in
+//        }))
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(actionSheet, animated: true)
@@ -118,7 +115,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 // Local variable inserted by Swift 4.2 migrator.
 let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
+        
         
         if let videoUrl = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL {
             //we selected a video
@@ -136,7 +133,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         let ref = Storage.storage().reference().child("message_movies").child(filename)
         let uploadTask = ref.putFile(from: url, metadata: nil, completion: { (_, err) in
             if let err = err {
-                print("Failed to upload movie:", err)
+                print("Failed to upload movie: ", err)
                 return
             }
             
@@ -332,7 +329,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
             
         } else {
             //incoming gray
-            cell.bubbleView.backgroundColor = UIColor(red: 240, green: 240, blue: 240, alpha: 1)
+            cell.bubbleView.backgroundColor = UIColor.systemGray4
             cell.textView.textColor = UIColor.black
             cell.profileImageView.isHidden = false
             
@@ -503,18 +500,6 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Helper function inserted by Swift 4.2 migrator.
