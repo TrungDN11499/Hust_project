@@ -8,6 +8,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
         <array key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
         </array>
@@ -44,6 +47,11 @@
                                 <constraint firstAttribute="width" constant="100" id="3XO-iR-CHw"/>
                                 <constraint firstAttribute="height" constant="100" id="C2k-62-UPp"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="50"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </imageView>
                         <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mq6-Nj-WzK" customClass="CustomTextField" customModule="Triponus" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="134" width="390" height="28"/>
@@ -65,7 +73,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="oAD-EI-Jdt"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
                             <state key="normal" title="Log In">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -137,7 +145,7 @@
     </objects>
     <resources>
         <image name="Capri, Italy 1" width="563" height="1218"/>
-        <image name="Icon 1" width="33" height="33"/>
+        <image name="Icon 1" width="295" height="295"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
