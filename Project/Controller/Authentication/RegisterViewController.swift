@@ -35,7 +35,7 @@ class RegisterViewController: BaseViewController, ControllerType {
         super.viewDidLoad()
         setUpView()
         self.setUpImagePicker()
-        self.addInputAccessoryForTextFields(textFields: [self.emailTextField.customTextField, self.passwordTextField.customTextField,self.comfirmPasswordField.customTextField, self.fullNameTextField.customTextField, self.userNameTextField.customTextField], dismissable: true, previousNextable: true)
+        self.addInputAccessoryForTextFields(textFields: [self.emailTextField.customTextField, self.passwordTextField.customTextField,self.comfirmPasswordField.customTextField, self.userNameTextField.customTextField, self.fullNameTextField.customTextField], dismissable: true, previousNextable: true)
         addActivityIndicator()
         // Do any additional setup after loading the view.
     }
@@ -63,16 +63,16 @@ class RegisterViewController: BaseViewController, ControllerType {
     }
     //MARK: setUpTextField
     private func setUpTextField() {
-        emailTextField.customImageView.image = UIImage(named: "mail-2 1")
-        passwordTextField.customImageView.image = UIImage(named: "lock 1")
+        emailTextField.customImageView.image = UIImage(named: "ic_mail")
+        passwordTextField.customImageView.image = UIImage(named: "ic_lock")
         passwordTextField.customTextField.placeholder = "password"
         passwordTextField.customTextField.isSecureTextEntry = true
-        comfirmPasswordField.customImageView.image = UIImage(named: "lock 1")
+        comfirmPasswordField.customImageView.image = UIImage(named: "ic_lock")
         comfirmPasswordField.customTextField.placeholder = "comfirm password"
         comfirmPasswordField.customTextField.isSecureTextEntry = true
-        userNameTextField.customImageView.image = UIImage(named: "user 1")
+        userNameTextField.customImageView.image = UIImage(named: "ic_user")
         userNameTextField.customTextField.placeholder = "username"
-        fullNameTextField.customImageView.image = UIImage(named: "user 1")
+        fullNameTextField.customImageView.image = UIImage(named: "ic_user")
         fullNameTextField.customTextField.placeholder = "fullname"
     }
 }
