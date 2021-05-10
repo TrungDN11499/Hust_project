@@ -69,6 +69,33 @@ class ConversationsViewController: BaseViewController {
     private func configureViewController() {
         self.navigationItem.title = "Messages"
     }
+}
+
+//MARK:- uitableview delegate, uitableview datasource
+extension ConversationsViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        let message = self.messages[indexPath.row]
+        
+        if let chatPartnerId = message.chatPartnerId() {
+            Database.database().reference().child("user-messages").child(uid).child(chatPartnerId).removeValue(completionBlock: { (error, ref) in
+                
+                if error != nil {
+                    print("Failed to delete message:", error!)
+                    return
+                }
+                
+                self.messagesDictionary.removeValue(forKey: chatPartnerId)
+                self.attemptReloadOfTable()
+                
+            })
+        }
+    }
     
     func observeUserMessages() {
         guard let uid = Auth.auth().currentUser?.uid else {
@@ -84,9 +111,9 @@ class ConversationsViewController: BaseViewController {
                 let messageId = snapshot.key
                 self.fetchMessageWithMessageId(messageId)
                 
-                }, withCancel: nil)
-            
             }, withCancel: nil)
+            
+        }, withCancel: nil)
     }
     
     fileprivate func fetchMessageWithMessageId(_ messageId: String) {
@@ -104,7 +131,7 @@ class ConversationsViewController: BaseViewController {
                 self.attemptReloadOfTable()
             }
             
-            }, withCancel: nil)
+        }, withCancel: nil)
     }
     
     fileprivate func attemptReloadOfTable() {
@@ -112,8 +139,6 @@ class ConversationsViewController: BaseViewController {
         
         self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadTable), userInfo: nil, repeats: false)
     }
-    
-    var timer: Timer?
     
     @objc func handleReloadTable() {
         self.messages = Array(self.messagesDictionary.values)
@@ -247,32 +272,6 @@ extension ConversationsViewController: UITableViewDelegate, UITableViewDataSourc
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        guard let uid = Auth.auth().currentUser?.uid else {
-            return
-        }
-        
-        let message = self.messages[indexPath.row]
-        
-        if let chatPartnerId = message.chatPartnerId() {
-            Database.database().reference().child("user-messages").child(uid).child(chatPartnerId).removeValue(completionBlock: { (error, ref) in
-                
-                if error != nil {
-                    print("Failed to delete message:", error!)
-                    return
-                }
-                
-                self.messagesDictionary.removeValue(forKey: chatPartnerId)
-                self.attemptReloadOfTable()
-                
-                //                //this is one way of updating the table, but its actually not that safe..
-                //                self.messages.removeAtIndex(indexPath.row)
-                //                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                
-            })
-        }
-    }
     
     func showChatControllerForUser(_ user: User) {
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
