@@ -8,11 +8,10 @@
 import UIKit
 
 extension UIColor {
-    static var mainBackgroundColor: UIColor? {
-        return UIColor(hexString: "F2F5FE")
-    }
+    static let mainBackgroundColor = UIColor(hexString: "F2F5FE")
+    
+    static let twitterBlue = UIColor.rgb(red: 29, green: 161, blue: 242)
 }
-
 
 extension UIColor {
     

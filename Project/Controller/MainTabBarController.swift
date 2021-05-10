@@ -71,10 +71,16 @@ class MainTabBarController: UITabBarController {
         print("Message.")
         case .tweet:
             guard let user = self.user else { return }
-            let controller = UploadTweetController(config: .tweet, user: user)
-            controller.delegate = feedsViewController as? UploadTweetControllerDelegate
+//            let controller = UploadTweetController(config: .tweet, user: user)
+//            controller.delegate = feedsViewController as? UploadTweetControllerDelegate
+//            let nav = UINavigationController(rootViewController: controller)
+//            nav.modalPresentationStyle = .fullScreen
+            
+                        let controller = UploadTweetViewController()
+//             controller.delegate = feedsViewController as? UploadTweetControllerDelegate
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
+            
             self.present(nav, animated: true, completion: nil)
         }
     }

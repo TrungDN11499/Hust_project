@@ -19,6 +19,10 @@
 		84E8270426426EC100D6929D /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84E8270326426EC100D6929D /* Roboto-Medium.ttf */; };
 		84E8270626426ECC00D6929D /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84E8270526426ECC00D6929D /* Roboto-Regular.ttf */; };
 		84E8270826426EDD00D6929D /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84E8270726426EDD00D6929D /* Roboto-Bold.ttf */; };
+		83775E942643D495000B402E /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83775E932643D495000B402E /* FontExtension.swift */; };
+		83AF06E726457DF000A16E8B /* UploadFeedParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF06E626457DF000A16E8B /* UploadFeedParam.swift */; };
+		83AF06EA2645A21C00A16E8B /* UploadTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF06E82645A21C00A16E8B /* UploadTweetViewController.swift */; };
+		83AF06EB2645A21C00A16E8B /* UploadTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83AF06E92645A21C00A16E8B /* UploadTweetViewController.xib */; };
 		F46EF1B4D058863F0832EDB1 /* Pods_Triponus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AF713B0B2DB31752A47D72 /* Pods_Triponus.framework */; };
 		FA0DC9F7252658C400377539 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC9F6252658C400377539 /* UserService.swift */; };
 		FA0DC9FC25265FED00377539 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC9FB25265FED00377539 /* User.swift */; };
@@ -134,6 +138,10 @@
 		84E8270326426EC100D6929D /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		84E8270526426ECC00D6929D /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		84E8270726426EDD00D6929D /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		83775E932643D495000B402E /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
+		83AF06E626457DF000A16E8B /* UploadFeedParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFeedParam.swift; sourceTree = "<group>"; };
+		83AF06E82645A21C00A16E8B /* UploadTweetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetViewController.swift; sourceTree = "<group>"; };
+		83AF06E92645A21C00A16E8B /* UploadTweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadTweetViewController.xib; sourceTree = "<group>"; };
 		8CD9F2183ADFE080F63E0776 /* Pods-Triponus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus.debug.xcconfig"; path = "Target Support Files/Pods-Triponus/Pods-Triponus.debug.xcconfig"; sourceTree = "<group>"; };
 		A8D4BBDFE92E37D8848B22A0 /* Pods-Project-ProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-ProjectUITests.release.xcconfig"; path = "Target Support Files/Pods-Project-ProjectUITests/Pods-Project-ProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A8F671E29E78B6CB6EFD5179 /* Pods_TriponusTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TriponusTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -275,6 +283,14 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
+		83AF06E526457DD300A16E8B /* UploadFeedParam */ = {
+			isa = PBXGroup;
+			children = (
+				83AF06E626457DF000A16E8B /* UploadFeedParam.swift */,
+			);
+			path = UploadFeedParam;
+			sourceTree = "<group>";
+		};
 		CC2149352B0F2C2EFCA2C593 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,6 +398,8 @@
 			isa = PBXGroup;
 			children = (
 				FA9B7CF42535E7F9006DFFA2 /* UploadTweetController.swift */,
+				83AF06E82645A21C00A16E8B /* UploadTweetViewController.swift */,
+				83AF06E92645A21C00A16E8B /* UploadTweetViewController.xib */,
 			);
 			path = UploadTweet;
 			sourceTree = "<group>";
@@ -532,6 +550,7 @@
 		FAFD58D725208E72006E4F94 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				83AF06E526457DD300A16E8B /* UploadFeedParam */,
 				FAA5DD642631FC9000C919A0 /* DeleteParam */,
 				FA70492726288C080093D11A /* LikeTweetParam */,
 				FA0DC9FB25265FED00377539 /* User.swift */,
@@ -780,6 +799,7 @@
 				84E8270426426EC100D6929D /* Roboto-Medium.ttf in Resources */,
 				84E8270826426EDD00D6929D /* Roboto-Bold.ttf in Resources */,
 				FAFD58B125208D9C006E4F94 /* LaunchScreen.storyboard in Resources */,
+				83AF06EB2645A21C00A16E8B /* UploadTweetViewController.xib in Resources */,
 				83775E8F2643D3A8000B402E /* Roboto-Bold.ttf in Resources */,
 				83775E8C2643D388000B402E /* Roboto-Medium.ttf in Resources */,
 				FAFD58AE25208D9C006E4F94 /* Assets.xcassets in Resources */,
@@ -951,6 +971,7 @@
 				FA26204E25376B2C000E1755 /* TweetViewModel.swift in Sources */,
 				FA66C5DC2523827400C31151 /* LoginController.swift in Sources */,
 				FA2C25BC2532C89D0042EC43 /* LoginViewModel.swift in Sources */,
+				83AF06E726457DF000A16E8B /* UploadFeedParam.swift in Sources */,
 				FAC53E9F26103A7500E32E21 /* FeedsService.swift in Sources */,
 				FA2C25CF2532DEC30042EC43 /* Observers.swift in Sources */,
 				FAB9759E2602F87C006A66BB /* SplashViewController.swift in Sources */,
@@ -960,6 +981,7 @@
 				FA80F1882545CBB20030A00D /* EditProfileViewModel.swift in Sources */,
 				FA0DC9FC25265FED00377539 /* User.swift in Sources */,
 				FA875FA6260B8088006DCBA9 /* DateExtension.swift in Sources */,
+				83AF06EA2645A21C00A16E8B /* UploadTweetViewController.swift in Sources */,
 				FA875FAB260B8122006DCBA9 /* BindingView.swift in Sources */,
 				FAA5DD662631FCAB00C919A0 /* DeleteParam.swift in Sources */,
 				FA2C25DC2532F6900042EC43 /* BindingButton.swift in Sources */,

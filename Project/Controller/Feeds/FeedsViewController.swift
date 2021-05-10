@@ -19,6 +19,7 @@ class FeedsViewController: BaseViewController, ControllerType {
         collecionView.backgroundColor = .clear
         collecionView.delegate = self
         collecionView.dataSource = self
+        collecionView.showsVerticalScrollIndicator = false
         return collecionView
     }()
     

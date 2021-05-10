@@ -233,7 +233,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="ic_activity_setting" width="12" height="3"/>
+        <image name="ic_activity_setting" width="21" height="5"/>
         <image name="ic_comment" width="24" height="24.5"/>
         <image name="ic_heart" width="24" height="24.5"/>
     </resources>

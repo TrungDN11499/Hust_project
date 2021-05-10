@@ -27,11 +27,16 @@ class RegistrationService: RegistrationServiceProtocol {
         guard let imageData = credentials.profileImage.jpegData(compressionQuality: 0.1) else { return }
         let fileName = NSUUID().uuidString
         let storagre = STORAGE_PROFILE_IMAGES.child(fileName)
-        storagre.putData(imageData, metadata: nil) { (metaData, error) in
-            if let error = error {
-                completion(error, DatabaseReference())
-                return
-            }
+        
+        let upload = storagre.putData(imageData)
+        upload.observe(.progress) { snapshot in
+            
+            let percentComplete = (Double(snapshot.progress!.completedUnitCount) / Double(snapshot.progress!.totalUnitCount)) * 100.0
+            
+            print(percentComplete)
+        }
+        
+        upload.observe(.success) { snapshot in
             storagre.downloadURL { (url, error) in
                 
                 guard let imageUrl = url?.absoluteString else { return }
@@ -40,6 +45,7 @@ class RegistrationService: RegistrationServiceProtocol {
                     
                     if let error = error {
                         print("[DEBUG] error: \(error.localizedDescription)")
+                        storagre.delete(completion: nil)
                         completion(error, DatabaseReference())
                         return
                     }
@@ -55,6 +61,11 @@ class RegistrationService: RegistrationServiceProtocol {
                     REF_USERS.child(uid).updateChildValues(values, withCompletionBlock: completion)
                 }
             }
+        }
+
+        // Errors only occur in the "Failure" case
+        upload.observe(.failure) { snapshot in
+            completion(snapshot.error, DatabaseReference())
         }
     }
 }
