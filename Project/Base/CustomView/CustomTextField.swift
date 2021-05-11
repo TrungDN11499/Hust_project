@@ -8,13 +8,15 @@
 import UIKit
 
 class CustomTextField: UIView {
-
+    
     @IBOutlet weak var customImageView: UIImageView!
     @IBOutlet weak var customTextField: BindingTextField!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
+        customTextField.attributedPlaceholder = NSAttributedString(string: "placeholder text",
+                                                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
     }
     
     required init?(coder: NSCoder) {

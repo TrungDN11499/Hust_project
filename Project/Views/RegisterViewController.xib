@@ -89,17 +89,17 @@
                             </state>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D2M-Ci-XjW">
-                            <rect key="frame" x="109.5" y="422" width="171" height="14"/>
+                            <rect key="frame" x="95" y="422" width="200" height="14"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UwR-DV-Eox">
-                                    <rect key="frame" x="0.0" y="0.0" width="136" height="14"/>
-                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="159" height="14"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                     <color key="textColor" red="0.50196078430000002" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1f-8o-VAw" customClass="BindingButton" customModule="Triponus" customModuleProvider="target">
-                                    <rect key="frame" x="138" y="0.0" width="33" height="14"/>
-                                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                    <rect key="frame" x="161" y="0.0" width="39" height="14"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
                                     <state key="normal" title="Log In">
                                         <color key="titleColor" red="0.062745098040000002" green="0.20784313730000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
@@ -124,7 +124,7 @@
                                 <constraint firstAttribute="height" constant="100" id="a7M-UB-GxL"/>
                                 <constraint firstAttribute="width" constant="100" id="ywD-cV-yuf"/>
                             </constraints>
-                            <state key="normal" image="user-images 1"/>
+                            <state key="normal" image="ic_userIamge"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                     <real key="value" value="50"/>
@@ -177,7 +177,7 @@
     </objects>
     <resources>
         <image name="Capri, Italy 1" width="563" height="1218"/>
-        <image name="user-images 1" width="100" height="100"/>
+        <image name="ic_userIamge" width="100" height="100"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
