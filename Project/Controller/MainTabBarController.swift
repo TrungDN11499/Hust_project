@@ -18,6 +18,7 @@ class MainTabBarController: UITabBarController {
     
     private var buttonConfig: ActionButtonConfiguration = .tweet
     
+    
     let feedsService = FeedsService()
     lazy var feedsViewModel = FeedsViewModel(feedsService: feedsService)
     lazy var feedsViewController = FeedsViewController.create(with: feedsViewModel)
