@@ -15,8 +15,6 @@ class CustomTextField: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
-        customTextField.attributedPlaceholder = NSAttributedString(string: "placeholder text",
-                                                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
     }
     
     required init?(coder: NSCoder) {
@@ -28,5 +26,7 @@ class CustomTextField: UIView {
         guard let view = self.loadViewFromNib(nibName: "CustomTextField") else {return}
         view.frame = self.bounds
         self.addSubview(view)
+        customTextField.attributedPlaceholder = NSAttributedString(string: "email",
+                                                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
     }
 }
