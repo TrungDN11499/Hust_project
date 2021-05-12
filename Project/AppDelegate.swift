@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.goNext()
         IQKeyboardManager.shared.goPrevious()
+        IQKeyboardManager.shared.disabledToolbarClasses = [UploadTweetViewController.self]
         return true
     }
 

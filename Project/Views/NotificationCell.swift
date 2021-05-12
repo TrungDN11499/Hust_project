@@ -18,7 +18,7 @@ class NotificationCell: UITableViewCell {
     
     weak var delegate: NotificationCellDelegate?
     
-    var notification: Notification? {
+    var notification: NotificationModel? {
         didSet { self.configure() }
     }
     

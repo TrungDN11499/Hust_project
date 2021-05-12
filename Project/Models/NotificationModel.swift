@@ -15,7 +15,7 @@ enum NotificationType: Int {
     case mention
 }
 
-class Notification {
+class NotificationModel {
     var tweetId: String?
     var timestamp: Date!
     var user: User

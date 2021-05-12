@@ -8,7 +8,7 @@
 import UIKit
 
 struct NotificationViewModel {
-    private let notification: Notification
+    private let notification: NotificationModel
     private let type: NotificationType
     private let user: User
     
@@ -63,7 +63,7 @@ struct NotificationViewModel {
         return self.user.isFollowed ? "Following" : "Follow"
     }
     
-    init (_ notification: Notification) {
+    init (_ notification: NotificationModel) {
         self.notification = notification
         self.type = notification.type
         self.user = notification.user

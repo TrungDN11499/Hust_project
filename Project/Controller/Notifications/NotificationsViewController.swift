@@ -13,7 +13,7 @@ class NotificationsViewController: UITableViewController {
 
     // MARK: - Properties
     
-    private var notifications = [Notification]() {
+    private var notifications = [NotificationModel]() {
         didSet {
             self.tableView.reloadData()
             refreshControl?.endRefreshing()
@@ -48,7 +48,7 @@ class NotificationsViewController: UITableViewController {
         })
     }
     
-    private func checkIfUserIsFollowed(notifications: [Notification]) {
+    private func checkIfUserIsFollowed(notifications: [NotificationModel]) {
         
         guard !notifications.isEmpty else { return }
         

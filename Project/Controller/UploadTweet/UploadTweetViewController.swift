@@ -16,6 +16,53 @@ protocol UploadTweetViewControllerDelegate: AnyObject {
 class UploadTweetViewController: BaseViewController {
     
     // MARK: - Properties
+    lazy var addPhotoLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.text = "Add your photo"
+        label.font = .robotoMedium(point: 14)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var inputContainerView: UIView = {
+        let containerView = UIView()
+        
+        containerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.haveStatusBar ? 34 + 30 : 30)
+        containerView.backgroundColor = .white
+        containerView.autoresizingMask = [.flexibleHeight]
+        
+        let addImageButton = UIImageView()
+        addImageButton.image = UIImage(named: "ic_chose_image")
+        addImageButton.translatesAutoresizingMaskIntoConstraints = false
+        addImageButton.isUserInteractionEnabled = true
+        containerView.addSubview(addImageButton)
+        
+        addImageButton.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 12).isActive = true
+        addImageButton.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+        addImageButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        addImageButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        let seperatorView = UIView()
+        seperatorView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        seperatorView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(seperatorView)
+        
+        seperatorView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
+        seperatorView.bottomAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+        seperatorView.widthAnchor.constraint(equalTo: containerView.widthAnchor).isActive = true
+        seperatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        
+        containerView.addSubview(self.addPhotoLabel)
+        
+        self.addPhotoLabel.leftAnchor.constraint(equalTo: addImageButton.rightAnchor, constant: 8).isActive = true
+        self.addPhotoLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
+        self.addPhotoLabel.centerYAnchor.constraint(equalTo: addImageButton.centerYAnchor).isActive = true
+        
+        containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleAddImage(_:))))
+        
+        return containerView
+    }()
     
     weak var delegate: UploadTweetViewControllerDelegate?
     
@@ -43,10 +90,32 @@ class UploadTweetViewController: BaseViewController {
         return button
     }()
     
+    
+//    @objc private func something() {
+//        inputContainerView.frame.size.height = 64
+//
+//        UIView.performWithoutAnimation {
+//            //                     self.captionTextView.reloadInputViews()
+//            self.reloadInputViews()
+//        }
+//        //        print(self.inputContainerView.frame.height)
+//                self.view.endEditing(true)
+//    }
+    
+    // MARK: - Helpers
+    /// for configuring  view options
+    
+    override var inputAccessoryView: UIView? {
+        return self.inputContainerView
+    }
+    
+    override var canBecomeFirstResponder: Bool { return true }
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.captionTextView.inputAccessoryView = self.inputContainerView
     }
     
     override func viewDidLayoutSubviews() {
@@ -54,6 +123,10 @@ class UploadTweetViewController: BaseViewController {
     }
     
     // MARK: - Selectors
+    @objc private func handleAddImage(_ sender: UITapGestureRecognizer) {
+        print("chose image")
+    }
+    
     @objc private func handleDissmiss(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -109,6 +182,33 @@ class UploadTweetViewController: BaseViewController {
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: self.uploadButton)
     }
+    
+    override func keyboardWillShow(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
+
+    }
+    
+    override func keyboardDidShow(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
+        updateInputViewFrame()
+    }
+
+    override func keyboardHide(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
+        updateInputViewFrame()
+    }
+    
+    override func keyboardWillChageFrame(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
+        updateInputViewFrame()
+    }
+    
+    func updateInputViewFrame() {
+            // calculate the accessory view height based on safe insets
+            let newHeight = inputContainerView.safeAreaInsets.bottom + 30
+            if newHeight != inputContainerView.frame.size.height {
+                inputContainerView.frame = CGRect(x: 0.0, y: 0.0, width: self.view.bounds.size.width, height: newHeight)
+                captionTextView.reloadInputViews()
+                self.reloadInputViews()
+            }
+        }
+        
     
 }
 

@@ -32,8 +32,8 @@ struct NotificationService {
         
     }
     
-    func fetchNotification(completion: @escaping([Notification]) -> ()) {
-        var notifications = [Notification]()
+    func fetchNotification(completion: @escaping([NotificationModel]) -> ()) {
+        var notifications = [NotificationModel]()
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         REF_NOTIFICATION.child(uid).observeSingleEvent(of: .value) { snapshot in
@@ -46,7 +46,7 @@ struct NotificationService {
                     
                     UserService.shared.fetchUser(userId: uid) { user in
                         guard let user = user else { return }
-                        let notification = Notification(user: user, dictionary: dictionary)
+                        let notification = NotificationModel(user: user, dictionary: dictionary)
                         notifications.append(notification)
                         completion(notifications)
                     }
