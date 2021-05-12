@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1C87D98FD40E964BE6C360FF /* Pods_Triponus_TriponusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10E226C9FC8EEAB0A642311B /* Pods_Triponus_TriponusUITests.framework */; };
 		26F122434903DBB4505C46AD /* Pods_TriponusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F671E29E78B6CB6EFD5179 /* Pods_TriponusTests.framework */; };
+		83775E942643D495000B402E /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83775E932643D495000B402E /* FontExtension.swift */; };
+		83AF06E726457DF000A16E8B /* UploadFeedParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF06E626457DF000A16E8B /* UploadFeedParam.swift */; };
+		83AF06EA2645A21C00A16E8B /* UploadTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF06E82645A21C00A16E8B /* UploadTweetViewController.swift */; };
+		83AF06EB2645A21C00A16E8B /* UploadTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83AF06E92645A21C00A16E8B /* UploadTweetViewController.xib */; };
 		8409D6002642E8C20036E3A1 /* Griffy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */; };
 		841CA67126427D4A00B6A83B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CA66F26427D4A00B6A83B /* RegisterViewController.swift */; };
 		841CA67226427D4A00B6A83B /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CA67026427D4A00B6A83B /* RegisterViewController.xib */; };
@@ -19,10 +23,6 @@
 		84E8270426426EC100D6929D /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84E8270326426EC100D6929D /* Roboto-Medium.ttf */; };
 		84E8270626426ECC00D6929D /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84E8270526426ECC00D6929D /* Roboto-Regular.ttf */; };
 		84E8270826426EDD00D6929D /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84E8270726426EDD00D6929D /* Roboto-Bold.ttf */; };
-		83775E942643D495000B402E /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83775E932643D495000B402E /* FontExtension.swift */; };
-		83AF06E726457DF000A16E8B /* UploadFeedParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF06E626457DF000A16E8B /* UploadFeedParam.swift */; };
-		83AF06EA2645A21C00A16E8B /* UploadTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF06E82645A21C00A16E8B /* UploadTweetViewController.swift */; };
-		83AF06EB2645A21C00A16E8B /* UploadTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83AF06E92645A21C00A16E8B /* UploadTweetViewController.xib */; };
 		F46EF1B4D058863F0832EDB1 /* Pods_Triponus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AF713B0B2DB31752A47D72 /* Pods_Triponus.framework */; };
 		FA0DC9F7252658C400377539 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC9F6252658C400377539 /* UserService.swift */; };
 		FA0DC9FC25265FED00377539 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC9FB25265FED00377539 /* User.swift */; };
@@ -128,6 +128,10 @@
 		711B76527B3FF7EA048663FB /* Pods-Triponus-TriponusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus-TriponusUITests.release.xcconfig"; path = "Target Support Files/Pods-Triponus-TriponusUITests/Pods-Triponus-TriponusUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7DA1743D1DE8ECF7CAC87E60 /* Pods-ProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTests.release.xcconfig"; path = "Target Support Files/Pods-ProjectTests/Pods-ProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		8208C5C7B3396ABE31694A43 /* Pods-Triponus-TriponusUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus-TriponusUITests.debug.xcconfig"; path = "Target Support Files/Pods-Triponus-TriponusUITests/Pods-Triponus-TriponusUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		83775E932643D495000B402E /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
+		83AF06E626457DF000A16E8B /* UploadFeedParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFeedParam.swift; sourceTree = "<group>"; };
+		83AF06E82645A21C00A16E8B /* UploadTweetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetViewController.swift; sourceTree = "<group>"; };
+		83AF06E92645A21C00A16E8B /* UploadTweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadTweetViewController.xib; sourceTree = "<group>"; };
 		8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Griffy-Regular.ttf"; sourceTree = "<group>"; };
 		841CA66F26427D4A00B6A83B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		841CA67026427D4A00B6A83B /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
@@ -138,10 +142,6 @@
 		84E8270326426EC100D6929D /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		84E8270526426ECC00D6929D /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		84E8270726426EDD00D6929D /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
-		83775E932643D495000B402E /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
-		83AF06E626457DF000A16E8B /* UploadFeedParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFeedParam.swift; sourceTree = "<group>"; };
-		83AF06E82645A21C00A16E8B /* UploadTweetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetViewController.swift; sourceTree = "<group>"; };
-		83AF06E92645A21C00A16E8B /* UploadTweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadTweetViewController.xib; sourceTree = "<group>"; };
 		8CD9F2183ADFE080F63E0776 /* Pods-Triponus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus.debug.xcconfig"; path = "Target Support Files/Pods-Triponus/Pods-Triponus.debug.xcconfig"; sourceTree = "<group>"; };
 		A8D4BBDFE92E37D8848B22A0 /* Pods-Project-ProjectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-ProjectUITests.release.xcconfig"; path = "Target Support Files/Pods-Project-ProjectUITests/Pods-Project-ProjectUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A8F671E29E78B6CB6EFD5179 /* Pods_TriponusTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TriponusTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -274,6 +274,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		83AF06E526457DD300A16E8B /* UploadFeedParam */ = {
+			isa = PBXGroup;
+			children = (
+				83AF06E626457DF000A16E8B /* UploadFeedParam.swift */,
+			);
+			path = UploadFeedParam;
+			sourceTree = "<group>";
+		};
 		8409D601264317FE0036E3A1 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,14 +289,6 @@
 				84E1882026419C84007A1A17 /* CustomTextField.swift */,
 			);
 			path = CustomView;
-			sourceTree = "<group>";
-		};
-		83AF06E526457DD300A16E8B /* UploadFeedParam */ = {
-			isa = PBXGroup;
-			children = (
-				83AF06E626457DF000A16E8B /* UploadFeedParam.swift */,
-			);
-			path = UploadFeedParam;
 			sourceTree = "<group>";
 		};
 		CC2149352B0F2C2EFCA2C593 /* Frameworks */ = {
@@ -514,7 +514,6 @@
 				FAFD58DB25208ED4006E4F94 /* Controller */,
 				FAFD58D825208EC7006E4F94 /* Api */,
 				FAFD58DE25208EFB006E4F94 /* Utilities */,
-				83775E882643D30E000B402E /* Fonts */,
 				FAFD58A425208D9C006E4F94 /* AppDelegate.swift */,
 				FAFD58A625208D9C006E4F94 /* SceneDelegate.swift */,
 				FAFD58AD25208D9C006E4F94 /* Assets.xcassets */,
@@ -800,8 +799,6 @@
 				84E8270826426EDD00D6929D /* Roboto-Bold.ttf in Resources */,
 				FAFD58B125208D9C006E4F94 /* LaunchScreen.storyboard in Resources */,
 				83AF06EB2645A21C00A16E8B /* UploadTweetViewController.xib in Resources */,
-				83775E8F2643D3A8000B402E /* Roboto-Bold.ttf in Resources */,
-				83775E8C2643D388000B402E /* Roboto-Medium.ttf in Resources */,
 				FAFD58AE25208D9C006E4F94 /* Assets.xcassets in Resources */,
 				FA66C6072523AE2100C31151 /* GoogleService-Info.plist in Resources */,
 			);
@@ -1173,7 +1170,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 97MV55V5HU;
+				DEVELOPMENT_TEAM = YJ3E54RM75;
 				INFOPLIST_FILE = Project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1193,7 +1190,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 97MV55V5HU;
+				DEVELOPMENT_TEAM = YJ3E54RM75;
 				INFOPLIST_FILE = Project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
