@@ -76,11 +76,11 @@ class MainTabBarController: UITabBarController {
 //            let nav = UINavigationController(rootViewController: controller)
 //            nav.modalPresentationStyle = .fullScreen
             
-                        let controller = UploadTweetViewController()
-//             controller.delegate = feedsViewController as? UploadTweetControllerDelegate
+            let uploadTweetViewModel = UploadTweetViewModel(.tweet, user: user)
+            let controller = UploadTweetViewController.create(with: uploadTweetViewModel) as! UploadTweetViewController
+            controller.delegate = feedsViewController as? UploadTweetViewControllerDelegate
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
-            
             self.present(nav, animated: true, completion: nil)
         }
     }

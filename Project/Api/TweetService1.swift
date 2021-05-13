@@ -16,29 +16,56 @@ struct TweetService1 {
     
     static let shared = TweetService1()
     
-    func upload(caption: String, type: UploadTweetConfiguration, completion: @escaping (Error? ,String, Int ,DatabaseReference) -> Void) {
+    func upload(caption: String, images: [UIImage], type: UploadTweetConfiguration, completion: @escaping (Error? ,String, Int ,DatabaseReference) -> Void) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         var values = ["uid": uid,
                      "timestamp": Int(NSDate().timeIntervalSince1970),
                      "likes": 0,
                      "comments": 0,
-                     "retweets": 0,
-                     "caption": caption] as [String: Any]
+                     "retweets": 0] as [String: Any]
         
         switch type {
         case .tweet:
-            
-            REF_TWEETS.childByAutoId().updateChildValues(values) { (error, ref) in
-                guard let tweetId = ref.key else { return }
-                print(tweetId)
-                REF_USER_TWEETS.child(uid).updateChildValues([tweetId: 1]) { (error, ref) in
-                    completion(error, tweetId, 0, ref)
+            if !images.isEmpty {
+                guard let imageData = images[0].jpegData(compressionQuality: 0.1) else { return }
+                
+                let imageWidth = images[0].size.width
+                let imageHeight = images[0].size.height
+                let fileName = NSUUID().uuidString
+                let storagre = STORAGE_FEED_IMAMGES.child(fileName)
+                let upload = storagre.putData(imageData)
+                
+                upload.observe(.progress) { snapshot in
+                    
+                    let percentComplete = (Double(snapshot.progress!.completedUnitCount) / Double(snapshot.progress!.totalUnitCount)) * 100.0
+                    
+                    print(percentComplete)
                 }
+                
+                upload.observe(.success) { snapshot in
+                    storagre.downloadURL { (url, error) in
+                        
+                        guard let imageUrl = url?.absoluteString else { return }
+                        let imageParam = ImageParam(imageUrl: imageUrl, width: imageWidth, height: imageHeight)
+                        let paramData = UploadFeedParam(caption: caption, images: [imageParam])
+                        for (key, value) in paramData.toDictionary() {
+                            values[key] = value
+                        }
+                        self.uploadTweet(with: values, completion: completion)
+                    }
+                }
+
+                // Errors only occur in the "Failure" case
+                upload.observe(.failure) { snapshot in
+                    completion(snapshot.error, "", 0, DatabaseReference())
+                }
+            } else {
+                values["caption"] = caption
+                self.uploadTweet(with: values, completion: completion)
             }
-            
         case .reply(let tweet):
-            
+            values["caption"] = caption
             values["replyingTo"] = tweet.user.username
             REF_TWEET_REPLIES.child(tweet.tweetId).childByAutoId().updateChildValues(values) { (err, ref) in
                 guard let replyId = ref.key else { return }
@@ -51,6 +78,16 @@ struct TweetService1 {
                 }
             }
             
+        }
+    }
+    
+    private func uploadTweet(with dictionary: [String: Any], completion: @escaping (Error? ,String, Int ,DatabaseReference) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        REF_TWEETS.childByAutoId().updateChildValues(dictionary) { (error, ref) in
+            guard let tweetId = ref.key else { return }
+            REF_USER_TWEETS.child(uid).updateChildValues([tweetId: 1]) { (error, ref) in
+                completion(error, tweetId, 0, ref)
+            }
         }
     }
     

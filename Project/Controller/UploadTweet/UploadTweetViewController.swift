@@ -7,6 +7,7 @@
 
 import UIKit
 import ActiveLabel
+import MobileCoreServices
 
 protocol UploadTweetViewControllerDelegate: AnyObject {
     func handleUpdateNumberOfComment(for index: Int, numberOfComment: Int)
@@ -28,7 +29,7 @@ class UploadTweetViewController: BaseViewController {
     private lazy var inputContainerView: UIView = {
         let containerView = UIView()
         
-        containerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.haveStatusBar ? 34 + 30 : 30)
+        containerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.haveStatusBar ? 34 + 40 : 40)
         containerView.backgroundColor = .white
         containerView.autoresizingMask = [.flexibleHeight]
         
@@ -39,7 +40,7 @@ class UploadTweetViewController: BaseViewController {
         containerView.addSubview(addImageButton)
         
         addImageButton.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 12).isActive = true
-        addImageButton.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
+        addImageButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 5).isActive = true
         addImageButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         addImageButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
@@ -60,23 +61,23 @@ class UploadTweetViewController: BaseViewController {
         self.addPhotoLabel.centerYAnchor.constraint(equalTo: addImageButton.centerYAnchor).isActive = true
         
         containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleAddImage(_:))))
-        
         return containerView
     }()
     
     weak var delegate: UploadTweetViewControllerDelegate?
     
+    @IBOutlet weak var replyLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var infoLabel: UILabel!
+    
     @IBOutlet weak var captionTextView: CaptionTextView!
+    @IBOutlet weak var imageContentView: UIView!
     @IBOutlet weak var uploadImageView: UIImageView!
     @IBOutlet weak var uploadImageViewHeightConstraint: NSLayoutConstraint!
+        
+    var index = Int()
     
-    private let user: User! = nil
-    
-    private var index = Int()
-    
-    private let config: UploadTweetConfiguration! = nil
-    
-    private lazy var viewModel = UploadTweetViewModel(self.config)
+    private var viewModel: ViewModelType!
     
     private lazy var uploadButton: UIButton = {
         let button = UIButton(type: .system)
@@ -89,18 +90,6 @@ class UploadTweetViewController: BaseViewController {
         button.addTarget(self, action: #selector(handleUpload(_:)), for: .touchUpInside)
         return button
     }()
-    
-    
-//    @objc private func something() {
-//        inputContainerView.frame.size.height = 64
-//
-//        UIView.performWithoutAnimation {
-//            //                     self.captionTextView.reloadInputViews()
-//            self.reloadInputViews()
-//        }
-//        //        print(self.inputContainerView.frame.height)
-//                self.view.endEditing(true)
-//    }
     
     // MARK: - Helpers
     /// for configuring  view options
@@ -115,7 +104,15 @@ class UploadTweetViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.captionTextView.inputAccessoryView = self.inputContainerView
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.captionTextView.becomeFirstResponder()
     }
     
     override func viewDidLayoutSubviews() {
@@ -124,27 +121,48 @@ class UploadTweetViewController: BaseViewController {
     
     // MARK: - Selectors
     @objc private func handleAddImage(_ sender: UITapGestureRecognizer) {
-        print("chose image")
+        let imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+        // TODO: turn on sending video.
+        imagePicker.mediaTypes = [kUTTypeImage as String
+//                                  , kUTTypeMovie as String
+        ]
+        imagePicker.modalPresentationStyle = .fullScreen
+        self.captionTextView.resignFirstResponder()
+        self.showLoading()
+        present(imagePicker, animated: true) {
+            self.hideLoading()
+        }
     }
     
     @objc private func handleDissmiss(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func handleRemoveImage(_ sender: Any) {
+        self.uploadImageView.image = nil
+        self.imageContentView.isHidden = true
+        self.uploadImageViewHeightConstraint.constant = 0
+    }
+    
     @objc private func handleUpload(_ sender: UIButton) {
-        guard let caption = self.captionTextView.text else { return }
-        
-        if caption.isEmpty {
-            return
+        if String.isNilOrEmpty(self.captionTextView.text) && self.uploadImageView.image == nil { return }
+        self.captionTextView.resignFirstResponder()
+        self.showLoading()
+        let caption = self.captionTextView.text ?? ""
+        var images = [UIImage]()
+        if let image = self.uploadImageView.image {
+            images.append(image)
         }
-        
-        TweetService1.shared.upload(caption: caption, type: self.config) { [weak self] error, tweetId, numberOfComments, data in
+        TweetService1.shared.upload(caption: caption, images: images, type: self.viewModel.config) { [weak self] error, tweetId, numberOfComments, data in
             guard let `self` = self else { return }
             if error != nil {
                 return
             }
             
-            if case .reply(let tweet) = self.config {
+            if case .reply(let tweet) = self.viewModel.config {
+                
                 self.delegate?.handleUpdateNumberOfComment(for: self.index, numberOfComment: numberOfComments)
                 NotificationService.shared.uploadNotification(.reply, tweet: tweet)
             } else  {
@@ -160,7 +178,7 @@ class UploadTweetViewController: BaseViewController {
                     }
                 }
             }
-            
+            self.hideLoading()
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -170,11 +188,18 @@ class UploadTweetViewController: BaseViewController {
     // MARK: - Helpers
     override func configureView() {
         super.configureView()
+        if case .tweet = self.viewModel.config {
+            self.inputContainerView.isHidden = false
+        } else {
+            self.inputContainerView.isHidden = true
+        }
         self.configureNavigationBar()
+        self.setData()
     }
     
     /// set up navigation bar.
     private func configureNavigationBar() {
+        
         self.navigationController?.navigationBar.barTintColor = .white
         self.navigationController?.navigationBar.isTranslucent = false
         
@@ -183,32 +208,89 @@ class UploadTweetViewController: BaseViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: self.uploadButton)
     }
     
-    override func keyboardWillShow(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
-
+    private func setData() {
+        guard let url = URL(string: self.viewModel.user.profileImageUrl) else { return }
+        self.profileImageView.sd_setImage(with: url, completed: nil)
+        
+        self.uploadButton.setTitle(self.viewModel.actionButtonText, for: .normal)
+        self.captionTextView.placeHolderLabel.text = self.viewModel.placeholderText
+        
+        self.infoLabel.attributedText = self.viewModel.userInfoText
+        self.replyLabel.isHidden = !self.viewModel.shouldShowReplyLabel
+        guard let text = self.viewModel.reply else { return }
+        self.replyLabel.text = text
     }
     
-    override func keyboardDidShow(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
+    override func keyboardWillShow(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
         updateInputViewFrame()
     }
-
+    
     override func keyboardHide(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
         updateInputViewFrame()
     }
     
-    override func keyboardWillChageFrame(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
-        updateInputViewFrame()
-    }
-    
     func updateInputViewFrame() {
-            // calculate the accessory view height based on safe insets
-            let newHeight = inputContainerView.safeAreaInsets.bottom + 30
-            if newHeight != inputContainerView.frame.size.height {
-                inputContainerView.frame = CGRect(x: 0.0, y: 0.0, width: self.view.bounds.size.width, height: newHeight)
-                captionTextView.reloadInputViews()
+        // calculate the accessory view height based on safe insets
+        let newHeight = inputContainerView.safeAreaInsets.bottom + 40
+        if newHeight != inputContainerView.frame.size.height {
+            inputContainerView.frame = CGRect(x: 0.0, y: 0.0, width: self.view.bounds.size.width, height: newHeight)
+            UIView.performWithoutAnimation {
+                self.captionTextView.reloadInputViews()
                 self.reloadInputViews()
             }
         }
-        
-    
+    }
 }
 
+extension UploadTweetViewController: ControllerType {
+    
+    typealias ViewModelType = UploadTweetViewModel
+ 
+    func configure(with viewModel: ViewModelType) {
+        
+    }
+    
+    static func create(with viewModel: ViewModelType) -> UIViewController {
+        let vc = UploadTweetViewController()
+        vc.viewModel = viewModel
+        return vc
+    }
+}
+
+// MARK: - UIImagePickerControllerDelegate
+extension UploadTweetViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+         var selectedImageFromPicker: UIImage?
+              
+              if let edittedImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
+                  // set the image.
+                  selectedImageFromPicker = edittedImage
+              }
+              else if let originalImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerOriginalImage")] as? UIImage {
+                  // set the image.
+                  selectedImageFromPicker = originalImage
+              }
+              
+              if let selectedImage = selectedImageFromPicker {
+                self.imageContentView.isHidden = false
+                self.uploadImageView.image = selectedImage
+                
+                let margin: CGFloat = 12
+                let imageRatio = selectedImage.size.width / selectedImage.size.height
+                self.uploadImageViewHeightConstraint.constant = (self.view.frame.width - margin * 2) / imageRatio
+              }
+        self.dismiss(animated: true) {
+            self.captionTextView.becomeFirstResponder()
+        }
+    }
+}
+
+// MARK: - UINavigationControllerDelegate
+extension UploadTweetViewController: UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true) {
+            self.captionTextView.becomeFirstResponder()
+        }
+    }
+}

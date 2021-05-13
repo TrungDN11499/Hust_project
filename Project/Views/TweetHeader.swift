@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol TweetHeaderDelegate: class {
+protocol TweetHeaderDelegate: AnyObject {
     func showActionSheet(_ view: TweetHeader)
 }
 

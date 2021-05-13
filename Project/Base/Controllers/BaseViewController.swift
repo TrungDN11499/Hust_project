@@ -49,6 +49,14 @@ class BaseViewController: UIViewController {
         self.configureUI()
     }
     
+    func showLoading() {
+        Helper.shared.showLoading(inView: self.view)
+    }
+    
+    func hideLoading() {
+        Helper.shared.hideLoading(inView: self.view)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -69,7 +77,6 @@ class BaseViewController: UIViewController {
     }
     
     // MARK: - Selectors
-
     @objc private func handleResignFirstResponder() {
         self.view.endEditing(true)
     }

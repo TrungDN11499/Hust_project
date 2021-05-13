@@ -21,11 +21,11 @@ class UploadTweetController: BaseViewController {
     
     private let user: User
     
-    private var index = Int()
+    var index = Int()
     
     private let config: UploadTweetConfiguration
     
-    private lazy var viewModel = UploadTweetViewModel(self.config)
+    private lazy var viewModel = UploadTweetViewModel(self.config, user: self.user)
     
     private lazy var uploadButton: UIButton = {
         let button = UIButton(type: .system)
@@ -94,31 +94,31 @@ class UploadTweetController: BaseViewController {
             return
         }
         
-        TweetService1.shared.upload(caption: caption, type: self.config) { [weak self] error, tweetId, numberOfComments, data in
-            guard let `self` = self else { return }
-            if error != nil {
-                return
-            }
-            
-            if case .reply(let tweet) = self.config {
-                self.delegate?.handleUpdateNumberOfComment(for: self.index, numberOfComment: numberOfComments)
-                NotificationService.shared.uploadNotification(.reply, tweet: tweet)
-            } else  {
-                REF_TWEETS.child(tweetId).observeSingleEvent(of: .value) { (snapshot) in
-                    guard let dictionary = snapshot.value as? [String: Any] else { return }
-                    guard let uid = dictionary["uid"] as? String else { return }
-                    let tweetId = snapshot.key
-                    
-                    UserService.shared.fetchUser(userId: uid) { user in
-                        guard let user = user else { return }
-                        let tweet = Tweet(user: user, tweetId: tweetId, dictionary: dictionary)
-                        self.delegate?.handleUpdateTweet(tweet: tweet)
-                    }
-                }
-            }
-            
-            self.dismiss(animated: true, completion: nil)
-        }
+//        TweetService1.shared.upload(caption: caption, type: self.config) { [weak self] error, tweetId, numberOfComments, data in
+//            guard let `self` = self else { return }
+//            if error != nil {
+//                return
+//            }
+//
+//            if case .reply(let tweet) = self.config {
+//                self.delegate?.handleUpdateNumberOfComment(for: self.index, numberOfComment: numberOfComments)
+//                NotificationService.shared.uploadNotification(.reply, tweet: tweet)
+//            } else  {
+//                REF_TWEETS.child(tweetId).observeSingleEvent(of: .value) { (snapshot) in
+//                    guard let dictionary = snapshot.value as? [String: Any] else { return }
+//                    guard let uid = dictionary["uid"] as? String else { return }
+//                    let tweetId = snapshot.key
+//
+//                    UserService.shared.fetchUser(userId: uid) { user in
+//                        guard let user = user else { return }
+//                        let tweet = Tweet(user: user, tweetId: tweetId, dictionary: dictionary)
+//                        self.delegate?.handleUpdateTweet(tweet: tweet)
+//                    }
+//                }
+//            }
+//
+//            self.dismiss(animated: true, completion: nil)
+//        }
     }
     
     // MARK: - Api

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RegisterViewController: BaseViewController, ControllerType {
+class RegisterViewController: BaseViewController {
     
     private var viewModel: ViewModelType!
     @IBOutlet weak var registerFormView: UIView!
@@ -77,7 +77,7 @@ class RegisterViewController: BaseViewController, ControllerType {
     }
 }
 // MARK: ControllerType
-extension RegisterViewController {
+extension RegisterViewController: ControllerType {
     typealias ViewModelType = RegisterViewModel
     
     static func create(with viewModel: ViewModelType) -> UIViewController {

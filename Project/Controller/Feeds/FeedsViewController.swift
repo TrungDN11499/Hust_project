@@ -177,7 +177,19 @@ extension FeedsViewController: UICollectionViewDelegateFlowLayout {
             contentHeight = profileImageSize + 5 * 2 + textHeight + 17
         }
         
-        let cellHeight: CGFloat =  cellPadding * 3 + actionButtonSize + contentHeight + 0.5
+        var imageHeight: CGFloat = 0
+        if let images = self.viewModel.viewModel(at: indexPath)?.tweet.images {
+            if !images.isEmpty {
+                let ratio = images[0].width / images[0].height
+                imageHeight = (self.view.frame.width / ratio) + 8
+            } else {
+                imageHeight = 0
+            }
+        } else {
+            imageHeight = 0
+        }
+        
+        let cellHeight: CGFloat =  cellPadding * 3 + actionButtonSize + contentHeight + imageHeight + 0.5
         
         return CGSize(width: self.feedCollectionView.frame.width, height: cellHeight)
     }
@@ -191,10 +203,14 @@ extension FeedsViewController: UICollectionViewDelegateFlowLayout {
 extension FeedsViewController: TweetCollectionViewCellDelegate {
     
     func handleReplyTapped(_ cell: TweetCollectionViewCell) {
-        guard let tweet = cell.feedViewModel?.tweet, let index = self.feedCollectionView.indexPath(for: cell) else { return }
-        let uploadTweetController = UploadTweetController(config: .reply(tweet), user: tweet.user, delegate: self, index: index.item)
-        let nav = UINavigationController(rootViewController: uploadTweetController)
+        guard let tweet = cell.feedViewModel?.tweet, let index = self.feedCollectionView.indexPath(for: cell) else { return }        
+        let uploadTweetViewModel = UploadTweetViewModel(.reply(tweet), user: tweet.user)
+        let controller = UploadTweetViewController.create(with: uploadTweetViewModel) as! UploadTweetViewController
+        controller.delegate = self
+        controller.index = index.item
+        let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
+        
         self.present(nav, animated: true, completion: nil)
     }
     
@@ -225,7 +241,7 @@ extension FeedsViewController: TweetCollectionViewCellDelegate {
 }
 
 // MARK: - UploadTweetControllerDelegate
-extension FeedsViewController: UploadTweetControllerDelegate {
+extension FeedsViewController: UploadTweetViewControllerDelegate {
     func handleUpdateNumberOfComment(for index: Int, numberOfComment: Int) {
         self.viewModel.output.fetchTweetsResult.value?[index].tweet.comments.value = numberOfComment
         DispatchQueue.main.async {

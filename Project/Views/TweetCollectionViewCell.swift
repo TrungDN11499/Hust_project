@@ -29,6 +29,10 @@ class TweetCollectionViewCell: BaseCollectionViewCell {
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var seeMoreButton: UIButton!
     
+    @IBOutlet weak var imageContentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var contentImageView: UIView!
+    @IBOutlet weak var tweetImageView: UIImageView!
+    
     var needDelete: Bool = false
     
     weak var delegate: TweetCollectionViewCellDelegate?
@@ -113,6 +117,16 @@ extension TweetCollectionViewCell {
         self.replyLabel.text = feedViewModel.replyText
         
         self.replyLabel.isHidden = feedViewModel.shouldHideReplyLabel
+        
+        if feedViewModel.tweet.images.isEmpty {
+            self.imageContentViewHeightConstraint.constant = 0
+            self.contentImageView.isHidden = true
+        } else {
+            self.contentImageView.isHidden = false
+            self.tweetImageView.sd_setImage(with: URL(string: feedViewModel.tweet.images[0].imageUrl), completed: nil)
+            let imageRatio = feedViewModel.tweet.images[0].width / feedViewModel.tweet.images[0].height
+            self.imageContentViewHeightConstraint.constant = UIScreen.main.bounds.width / imageRatio
+        }
         
     }
 }
