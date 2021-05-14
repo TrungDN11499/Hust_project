@@ -49,6 +49,8 @@ class TweetCollectionViewCell: BaseCollectionViewCell {
         super.awakeFromNib()
         self.profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleShowProfile(_:))))
         self.optionsImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDelete(_:))))
+        
+        self.contentImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleShowContent(_:))))
         self.contentStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleShowContent(_:))))
         self.captionLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleShowContent(_:))))
     }
@@ -98,19 +100,19 @@ extension TweetCollectionViewCell {
                 
         self.likeButton.tintColor = feedViewModel.likeButtonTintColor
         self.likeButton.setImage(feedViewModel.likeButtonImage, for: .normal)
-        feedViewModel.tweet.didLike.bind { [unowned self] (observer, value) in
+        feedViewModel.tweet.didLike.bind { (observer, value) in
             dLogDebug(value)
             self.likeButton.setImage(feedViewModel.likeButtonImage(value), for: .normal)
             self.likeButton.tintColor = feedViewModel.likeButtonTintColor(value)
         }
         
         self.likesLabel.text = feedViewModel.likes
-        feedViewModel.tweet.likes.bind { [unowned self] observer, value in
+        feedViewModel.tweet.likes.bind {  observer, value in
             self.likesLabel.text = feedViewModel.likes
         }
         
         self.commentLabel.text = feedViewModel.comments
-        feedViewModel.tweet.comments.bind { [unowned self] observer, value in
+        feedViewModel.tweet.comments.bind { observer, value in
             self.commentLabel.text = feedViewModel.comments
         }
         

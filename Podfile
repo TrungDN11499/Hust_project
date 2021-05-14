@@ -16,6 +16,7 @@ target 'Triponus' do
 	pod 'Firebase/Auth'
 	pod 'MBProgressHUD'
   	pod 'ActiveLabel'
+	pod 'DZNEmptyDataSet'
 
   target 'TriponusTests' do
     inherit! :search_paths

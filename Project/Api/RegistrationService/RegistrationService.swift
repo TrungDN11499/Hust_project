@@ -44,7 +44,7 @@ class RegistrationService: RegistrationServiceProtocol {
                 Auth.auth().createUser(withEmail: credentials.email, password: credentials.password) { (result, error) in
                     
                     if let error = error {
-                        print("[DEBUG] error: \(error.localizedDescription)")
+                        dLogError(error.localizedDescription)
                         storagre.delete(completion: nil)
                         completion(error, DatabaseReference())
                         return

@@ -107,6 +107,17 @@ class BaseViewController: UIViewController {
                                         duration: 0.2)
     }
     
+    func getMessageNoData(message : String) -> NSAttributedString {
+        let font = UIFont.robotoMedium(point: 16)
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: font,
+            .foregroundColor: UIColor(hexString: "#C4C4C4") ?? .lightGray
+        ]
+        let attributedMessage = NSAttributedString(string: message, attributes: attributes)
+        return attributedMessage;
+    }
+    
+    
     @objc fileprivate func keyboardWillAppear(_ notification: Notification) {
         let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         let keyboardRectangle = keyboardFrame?.cgRectValue

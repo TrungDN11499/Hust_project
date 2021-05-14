@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import DZNEmptyDataSet
 
 class FeedsViewController: BaseViewController, ControllerType {
 
@@ -19,6 +20,8 @@ class FeedsViewController: BaseViewController, ControllerType {
         collecionView.backgroundColor = .clear
         collecionView.delegate = self
         collecionView.dataSource = self
+        collecionView.emptyDataSetSource = self
+        collecionView.emptyDataSetDelegate = self
         collecionView.showsVerticalScrollIndicator = false
         return collecionView
     }()
@@ -73,7 +76,7 @@ class FeedsViewController: BaseViewController, ControllerType {
         
         self.view.backgroundColor = .mainBackgroundColor
         
-        guard let logoImage = UIImage(named: "ic_sun") else {
+        guard let logoImage = UIImage(named: "ic_appic") else {
             return
         }
         
@@ -161,27 +164,37 @@ extension FeedsViewController: UICollectionViewDataSource {
 extension FeedsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
+        // cell constants
         let cellPadding: CGFloat = 12
         let actionButtonSize: CGFloat = 25
+        let optionButtonSize: CGFloat = 20
         let profileImageSize: CGFloat = 40
         let maxTextHeight: CGFloat = 200
+        let seperatorHeight: CGFloat = 0.5
+        let seeMoreButtonHeight: CGFloat = 17
+        let contentTextPadding: CGFloat = 5
+        let contentImagePadding: CGFloat = 8
         
-        let textWidth = self.view.frame.width - (actionButtonSize + cellPadding * 3)
+        // calculate caption text width
+        let textWidth = self.view.frame.width - (optionButtonSize + cellPadding * 2 + contentTextPadding)
+        
+        // calculate caption text height
         let textHeight = self.viewModel.viewModel(at: indexPath)?.caption.height(withConstrainedWidth: textWidth, font: UIFont.robotoRegular(point: 14)) ?? 0 > maxTextHeight ? maxTextHeight : self.viewModel.viewModel(at: indexPath)?.caption.height(withConstrainedWidth: textWidth, font: UIFont.robotoRegular(point: 14)) ?? 0
-                
+             
+        // calculate content text height
         var contentHeight: CGFloat = 0
-        
         if textHeight != maxTextHeight {
-            contentHeight = profileImageSize + 5 + textHeight
+            contentHeight = profileImageSize + contentTextPadding + textHeight
         } else {
-            contentHeight = profileImageSize + 5 * 2 + textHeight + 17
+            contentHeight = profileImageSize + contentTextPadding * 2 + textHeight + seeMoreButtonHeight
         }
         
+        // calculate image content height
         var imageHeight: CGFloat = 0
         if let images = self.viewModel.viewModel(at: indexPath)?.tweet.images {
             if !images.isEmpty {
                 let ratio = images[0].width / images[0].height
-                imageHeight = (self.view.frame.width / ratio) + 8
+                imageHeight = (self.view.frame.width / ratio) + contentImagePadding
             } else {
                 imageHeight = 0
             }
@@ -189,9 +202,10 @@ extension FeedsViewController: UICollectionViewDelegateFlowLayout {
             imageHeight = 0
         }
         
-        let cellHeight: CGFloat =  cellPadding * 3 + actionButtonSize + contentHeight + imageHeight + 0.5
+        // calculate cell height
+        let cellHeight: CGFloat =  cellPadding * 3 + actionButtonSize + contentHeight + imageHeight + seperatorHeight
         
-        return CGSize(width: self.feedCollectionView.frame.width, height: cellHeight)
+        return CGSize(width: self.view.frame.width, height: cellHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -252,5 +266,18 @@ extension FeedsViewController: UploadTweetViewControllerDelegate {
     func handleUpdateTweet(tweet: Tweet) {
         let feedViewModel = FeedViewModel(tweet)
         self.viewModel.output.fetchTweetsResult.value?.insert(feedViewModel, at: 0)
+    }
+}
+
+// MARK: - DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+extension FeedsViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return self.getMessageNoData(message: "No post yet");
+    }
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "ic_list_empty")
+    }
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
     }
 }
