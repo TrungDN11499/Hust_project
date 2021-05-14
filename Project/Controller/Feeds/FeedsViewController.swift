@@ -35,6 +35,7 @@ class FeedsViewController: BaseViewController, ControllerType {
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.showLoading()
         self.viewModel.input.fetchTweets.excecute()
         self.configureViewController()
     }
@@ -131,6 +132,7 @@ extension FeedsViewController {
                     refreshControl.addTarget(self, action: #selector(hanldeRefresh(_:)), for: .valueChanged)
                     self.feedCollectionView.refreshControl = refreshControl
                 }
+                self.hideLoading()
                 self.feedCollectionView.reloadData()
             }
         }
@@ -254,7 +256,7 @@ extension FeedsViewController: TweetCollectionViewCellDelegate {
     
 }
 
-// MARK: - UploadTweetControllerDelegate
+// MARK: - UploadTweetViewControllerDelegate
 extension FeedsViewController: UploadTweetViewControllerDelegate {
     func handleUpdateNumberOfComment(for index: Int, numberOfComment: Int) {
         self.viewModel.output.fetchTweetsResult.value?[index].tweet.comments.value = numberOfComment

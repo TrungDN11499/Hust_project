@@ -14,6 +14,7 @@
 		83AF06EA2645A21C00A16E8B /* UploadTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF06E82645A21C00A16E8B /* UploadTweetViewController.swift */; };
 		83AF06EB2645A21C00A16E8B /* UploadTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83AF06E92645A21C00A16E8B /* UploadTweetViewController.xib */; };
 		83EEB9E6264D72EF0010A17C /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EEB9E5264D72EF0010A17C /* Helper.swift */; };
+		83EEB9E8264E601D0010A17C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EEB9E7264E601D0010A17C /* UIImageExtension.swift */; };
 		8409D6002642E8C20036E3A1 /* Griffy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */; };
 		841CA67126427D4A00B6A83B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CA66F26427D4A00B6A83B /* RegisterViewController.swift */; };
 		841CA67226427D4A00B6A83B /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CA67026427D4A00B6A83B /* RegisterViewController.xib */; };
@@ -134,6 +135,7 @@
 		83AF06E82645A21C00A16E8B /* UploadTweetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetViewController.swift; sourceTree = "<group>"; };
 		83AF06E92645A21C00A16E8B /* UploadTweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadTweetViewController.xib; sourceTree = "<group>"; };
 		83EEB9E5264D72EF0010A17C /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		83EEB9E7264E601D0010A17C /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Griffy-Regular.ttf"; sourceTree = "<group>"; };
 		841CA66F26427D4A00B6A83B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		841CA67026427D4A00B6A83B /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
@@ -489,6 +491,7 @@
 				FA88D41D261B860300A2FD6F /* AttributedString.swift */,
 				FA875FA5260B8088006DCBA9 /* DateExtension.swift */,
 				83775E932643D495000B402E /* FontExtension.swift */,
+				83EEB9E7264E601D0010A17C /* UIImageExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1007,6 +1010,7 @@
 				FAF38668253B61BB00E76AF1 /* UploadTweetViewModel.swift in Sources */,
 				FA408117253A0F09003DF3D7 /* ProfileHeaderViewModel.swift in Sources */,
 				FA88D41E261B860300A2FD6F /* AttributedString.swift in Sources */,
+				83EEB9E8264E601D0010A17C /* UIImageExtension.swift in Sources */,
 				FA2C25C82532CC1A0042EC43 /* LoginService.swift in Sources */,
 				FAF417FF2528CA0600FDDC97 /* ViewControllerExtension.swift in Sources */,
 				FA89486B253ACBA10071A5DB /* UserCell.swift in Sources */,
