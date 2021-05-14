@@ -25,6 +25,13 @@ class TweetCollectionViewCell: BaseCollectionViewCell {
     @IBOutlet weak var optionsImageView: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var contentStackView: UIStackView!
+    @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet weak var seeMoreButton: UIButton!
+    
+    @IBOutlet weak var imageContentViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var contentImageView: UIView!
+    @IBOutlet weak var tweetImageView: UIImageView!
     
     var needDelete: Bool = false
     
@@ -42,15 +49,22 @@ class TweetCollectionViewCell: BaseCollectionViewCell {
         super.awakeFromNib()
         self.profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleShowProfile(_:))))
         self.optionsImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDelete(_:))))
+        
+        self.contentImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleShowContent(_:))))
         self.contentStackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleShowContent(_:))))
+        self.captionLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleShowContent(_:))))
     }
     
-    @IBAction func handleLike(_ sender: Any) {
+    @IBAction func handleLike(_ sender: UIButton) {
         self.delegate?.handleLikeTweet(self)
     }
     
-    @IBAction func handleComment(_ sender: Any) {
+    @IBAction func handleComment(_ sender: UIButton) {
         self.delegate?.handleReplyTapped(self)
+    }
+    
+    @IBAction func handleSeeMore(_ sender: UIButton) {
+        self.delegate?.handleShowContent(self)
     }
     
     @objc private func handleShowProfile(_ sender: UIImageView) {
@@ -77,24 +91,44 @@ extension TweetCollectionViewCell {
             self.optionsImageView.isHidden = true
         }
         
+        self.seeMoreButton.isHidden = feedViewModel.hideSeeMore
+        
         self.captionLabel.text = feedViewModel.caption
     
         self.profileImageView.sd_setImage(with: feedViewModel.profileImageUrl, completed: nil)
         infoLabel.attributedText = feedViewModel.userInfoText
                 
         self.likeButton.tintColor = feedViewModel.likeButtonTintColor
-        
         self.likeButton.setImage(feedViewModel.likeButtonImage, for: .normal)
-        
         feedViewModel.tweet.didLike.bind { (observer, value) in
             dLogDebug(value)
             self.likeButton.setImage(feedViewModel.likeButtonImage(value), for: .normal)
             self.likeButton.tintColor = feedViewModel.likeButtonTintColor(value)
         }
-    
+        
+        self.likesLabel.text = feedViewModel.likes
+        feedViewModel.tweet.likes.bind {  observer, value in
+            self.likesLabel.text = feedViewModel.likes
+        }
+        
+        self.commentLabel.text = feedViewModel.comments
+        feedViewModel.tweet.comments.bind { observer, value in
+            self.commentLabel.text = feedViewModel.comments
+        }
+        
         self.replyLabel.text = feedViewModel.replyText
         
         self.replyLabel.isHidden = feedViewModel.shouldHideReplyLabel
+        
+        if feedViewModel.tweet.images.isEmpty {
+            self.imageContentViewHeightConstraint.constant = 0
+            self.contentImageView.isHidden = true
+        } else {
+            self.contentImageView.isHidden = false
+            self.tweetImageView.sd_setImage(with: URL(string: feedViewModel.tweet.images[0].imageUrl), completed: nil)
+            let imageRatio = feedViewModel.tweet.images[0].width / feedViewModel.tweet.images[0].height
+            self.imageContentViewHeightConstraint.constant = UIScreen.main.bounds.width / imageRatio
+        }
         
     }
 }

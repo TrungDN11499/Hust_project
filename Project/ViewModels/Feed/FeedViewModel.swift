@@ -69,11 +69,22 @@ class FeedViewModel: ViewModelProtocol {
     }
     
     var userInfoText: NSMutableAttributedString {
-        let attributeString = NSMutableAttributedString(string: self.user.fullName, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.black])
+        let attributeString = NSMutableAttributedString(string: "\(self.user.fullName)\n", attributes: [NSAttributedString.Key.font: UIFont.robotoBold(point: 14), NSAttributedString.Key.foregroundColor: UIColor.black])
         
-        attributeString.append(NSAttributedString(string: " @\(self.user.username.lowercased()) • \(self.timestamp)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
+        attributeString.append(NSAttributedString(string: "@\(self.user.username.lowercased()) • \(self.timestamp)", attributes: [NSAttributedString.Key.font: UIFont.robotoRegular(point: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
         
         return attributeString
+    }
+    
+    var hideSeeMore: Bool {
+        let screenRect = UIScreen.main.bounds
+        let screenWidth = screenRect.size.width
+    
+        let cellPadding: CGFloat = 12
+        let actionButtonSize: CGFloat = 25
+        
+        let textWidth = screenWidth - (actionButtonSize + cellPadding * 3)
+        return !(self.caption.height(withConstrainedWidth: textWidth, font: UIFont.robotoRegular(point: 14)) > 200)
     }
     
     var retweetsAttributedString: NSAttributedString? {
@@ -81,7 +92,7 @@ class FeedViewModel: ViewModelProtocol {
     }
     
     var likessAttributedString: NSAttributedString? {
-        return self.attributeText(withValue: tweet.likes, text: "Likes")
+        return self.attributeText(withValue: tweet.likes.value ?? 0, text: "Likes")
     }
     
     var usernameText: String {
@@ -90,6 +101,14 @@ class FeedViewModel: ViewModelProtocol {
     
     var caption: String {
         return tweet.caption
+    }
+    
+    var likes: String {
+        return self.tweet.likes.value ?? 0 != 0 ? String(self.tweet.likes.value ?? 0) : ""
+    }
+    
+    var comments: String {
+        return self.tweet.comments.value ?? 0 != 0 ? String(self.tweet.comments.value ?? 0) : ""
     }
     
     var shouldHideReplyLabel: Bool {
@@ -106,7 +125,7 @@ class FeedViewModel: ViewModelProtocol {
     }
     
     var likeButtonImage: UIImage? {
-        let imageName = tweet.didLike.value ?? false ? "like_filled" : "like"
+        let imageName = tweet.didLike.value ?? false ? "ic_heart_filled" : "ic_heart"
         return UIImage(named: imageName)
     }
     
@@ -115,7 +134,7 @@ class FeedViewModel: ViewModelProtocol {
     }
     
     func likeButtonImage(_ didLike: Bool) -> UIImage? {
-        let imageName =  didLike ? "like_filled" : "like"
+        let imageName =  didLike ? "ic_heart_filled" : "ic_heart"
         return UIImage(named: imageName)
     }
     

@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ProfileHeaderViewDelegate: class {
+protocol ProfileHeaderViewDelegate: AnyObject {
     func profileHeaderView(dissmiss view: ProfileHeaderView)
     func handleEditFollowProfile(_ view: ProfileHeaderView)
     func didSelect(filter: ProfileFilterOptions)

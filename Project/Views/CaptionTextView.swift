@@ -23,8 +23,27 @@ class CaptionTextView: UITextView {
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
-        
+        self.commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.commonInit()
+    }
+    
+    // MARK: - Selectors
+    @objc private func handleChangeText() {
+        self.placeHolderLabel.isHidden = !self.text.isEmpty
+    }
+}
+
+// MARK: - Helper
+extension CaptionTextView {
+    private func commonInit() {
         self.backgroundColor = .white
+        self.textColor = .black
+        
+        self.showsVerticalScrollIndicator = false
         
         self.font = UIFont.systemFont(ofSize: 16)
         
@@ -38,15 +57,5 @@ class CaptionTextView: UITextView {
                                      paddingLeft: 4)
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleChangeText), name: UITextView.textDidChangeNotification, object: nil)
-    };
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-    
-    // MARK: - Selectors
-    
-    @objc private func handleChangeText() {
-        self.placeHolderLabel.isHidden = !self.text.isEmpty
     }
 }

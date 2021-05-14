@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		1C87D98FD40E964BE6C360FF /* Pods_Triponus_TriponusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10E226C9FC8EEAB0A642311B /* Pods_Triponus_TriponusUITests.framework */; };
 		26F122434903DBB4505C46AD /* Pods_TriponusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F671E29E78B6CB6EFD5179 /* Pods_TriponusTests.framework */; };
+		83775E942643D495000B402E /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83775E932643D495000B402E /* FontExtension.swift */; };
+		83AF06E726457DF000A16E8B /* UploadFeedParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF06E626457DF000A16E8B /* UploadFeedParam.swift */; };
+		83AF06EA2645A21C00A16E8B /* UploadTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF06E82645A21C00A16E8B /* UploadTweetViewController.swift */; };
+		83AF06EB2645A21C00A16E8B /* UploadTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83AF06E92645A21C00A16E8B /* UploadTweetViewController.xib */; };
+		83EEB9E6264D72EF0010A17C /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EEB9E5264D72EF0010A17C /* Helper.swift */; };
+		83EEB9E8264E601D0010A17C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EEB9E7264E601D0010A17C /* UIImageExtension.swift */; };
 		8409D6002642E8C20036E3A1 /* Griffy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */; };
 		841CA67126427D4A00B6A83B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CA66F26427D4A00B6A83B /* RegisterViewController.swift */; };
 		841CA67226427D4A00B6A83B /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CA67026427D4A00B6A83B /* RegisterViewController.xib */; };
@@ -41,7 +47,7 @@
 		FA40810D253A01D9003DF3D7 /* ProfileFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA40810C253A01D9003DF3D7 /* ProfileFilterView.swift */; };
 		FA408112253A04A8003DF3D7 /* ProfileFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA408111253A04A8003DF3D7 /* ProfileFilterCell.swift */; };
 		FA408117253A0F09003DF3D7 /* ProfileHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA408116253A0F09003DF3D7 /* ProfileHeaderViewModel.swift */; };
-		FA576D39253F3A770069BA96 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA576D38253F3A770069BA96 /* Notification.swift */; };
+		FA576D39253F3A770069BA96 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA576D38253F3A770069BA96 /* NotificationModel.swift */; };
 		FA576D3E253F3E0E0069BA96 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA576D3D253F3E0E0069BA96 /* NotificationService.swift */; };
 		FA576D43253F4D160069BA96 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA576D42253F4D160069BA96 /* NotificationCell.swift */; };
 		FA576D48253F56A10069BA96 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA576D47253F56A10069BA96 /* NotificationViewModel.swift */; };
@@ -124,6 +130,12 @@
 		711B76527B3FF7EA048663FB /* Pods-Triponus-TriponusUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus-TriponusUITests.release.xcconfig"; path = "Target Support Files/Pods-Triponus-TriponusUITests/Pods-Triponus-TriponusUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7DA1743D1DE8ECF7CAC87E60 /* Pods-ProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjectTests.release.xcconfig"; path = "Target Support Files/Pods-ProjectTests/Pods-ProjectTests.release.xcconfig"; sourceTree = "<group>"; };
 		8208C5C7B3396ABE31694A43 /* Pods-Triponus-TriponusUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus-TriponusUITests.debug.xcconfig"; path = "Target Support Files/Pods-Triponus-TriponusUITests/Pods-Triponus-TriponusUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		83775E932643D495000B402E /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
+		83AF06E626457DF000A16E8B /* UploadFeedParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFeedParam.swift; sourceTree = "<group>"; };
+		83AF06E82645A21C00A16E8B /* UploadTweetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetViewController.swift; sourceTree = "<group>"; };
+		83AF06E92645A21C00A16E8B /* UploadTweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadTweetViewController.xib; sourceTree = "<group>"; };
+		83EEB9E5264D72EF0010A17C /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		83EEB9E7264E601D0010A17C /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Griffy-Regular.ttf"; sourceTree = "<group>"; };
 		841CA66F26427D4A00B6A83B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		841CA67026427D4A00B6A83B /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
@@ -158,7 +170,7 @@
 		FA40810C253A01D9003DF3D7 /* ProfileFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilterView.swift; sourceTree = "<group>"; };
 		FA408111253A04A8003DF3D7 /* ProfileFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilterCell.swift; sourceTree = "<group>"; };
 		FA408116253A0F09003DF3D7 /* ProfileHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModel.swift; sourceTree = "<group>"; };
-		FA576D38253F3A770069BA96 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		FA576D38253F3A770069BA96 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		FA576D3D253F3E0E0069BA96 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		FA576D42253F4D160069BA96 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		FA576D47253F56A10069BA96 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
@@ -264,6 +276,22 @@
 				FA6055DCFBA86E8C73A97186 /* Pods-TriponusTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		83AF06E526457DD300A16E8B /* UploadFeedParam */ = {
+			isa = PBXGroup;
+			children = (
+				83AF06E626457DF000A16E8B /* UploadFeedParam.swift */,
+			);
+			path = UploadFeedParam;
+			sourceTree = "<group>";
+		};
+		83EEB9E4264D72CE0010A17C /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				83EEB9E5264D72EF0010A17C /* Helper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		8409D601264317FE0036E3A1 /* CustomView */ = {
@@ -382,6 +410,8 @@
 			isa = PBXGroup;
 			children = (
 				FA9B7CF42535E7F9006DFFA2 /* UploadTweetController.swift */,
+				83AF06E82645A21C00A16E8B /* UploadTweetViewController.swift */,
+				83AF06E92645A21C00A16E8B /* UploadTweetViewController.xib */,
 			);
 			path = UploadTweet;
 			sourceTree = "<group>";
@@ -439,6 +469,7 @@
 		FAF417F72528C95D00FDDC97 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				83EEB9E4264D72CE0010A17C /* Helper */,
 				8409D601264317FE0036E3A1 /* CustomView */,
 				FAFDD70B254E4D2A000C39FF /* class */,
 				FA2C25C02532CA530042EC43 /* BindData */,
@@ -459,6 +490,8 @@
 				FA684A23260903670044B082 /* StringExtension.swift */,
 				FA88D41D261B860300A2FD6F /* AttributedString.swift */,
 				FA875FA5260B8088006DCBA9 /* DateExtension.swift */,
+				83775E932643D495000B402E /* FontExtension.swift */,
+				83EEB9E7264E601D0010A17C /* UIImageExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -530,11 +563,12 @@
 		FAFD58D725208E72006E4F94 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				83AF06E526457DD300A16E8B /* UploadFeedParam */,
 				FAA5DD642631FC9000C919A0 /* DeleteParam */,
 				FA70492726288C080093D11A /* LikeTweetParam */,
 				FA0DC9FB25265FED00377539 /* User.swift */,
 				FA26202C25374A3B000E1755 /* Tweet.swift */,
-				FA576D38253F3A770069BA96 /* Notification.swift */,
+				FA576D38253F3A770069BA96 /* NotificationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -778,6 +812,7 @@
 				84E8270426426EC100D6929D /* Roboto-Medium.ttf in Resources */,
 				84E8270826426EDD00D6929D /* Roboto-Bold.ttf in Resources */,
 				FAFD58B125208D9C006E4F94 /* LaunchScreen.storyboard in Resources */,
+				83AF06EB2645A21C00A16E8B /* UploadTweetViewController.xib in Resources */,
 				FAFD58AE25208D9C006E4F94 /* Assets.xcassets in Resources */,
 				FA66C6072523AE2100C31151 /* GoogleService-Info.plist in Resources */,
 			);
@@ -923,7 +958,7 @@
 				FA576D48253F56A10069BA96 /* NotificationViewModel.swift in Sources */,
 				FA684A24260903670044B082 /* StringExtension.swift in Sources */,
 				FA3CABB3260CE8DC009FC9B7 /* RegistrationService.swift in Sources */,
-				FA576D39253F3A770069BA96 /* Notification.swift in Sources */,
+				FA576D39253F3A770069BA96 /* NotificationModel.swift in Sources */,
 				FAFDD725254E5039000C39FF /* UIColorExention.swift in Sources */,
 				FA875FA1260B7F98006DCBA9 /* DLog.swift in Sources */,
 				FA66C5F6252393B400C31151 /* Utilities.swift in Sources */,
@@ -940,12 +975,14 @@
 				FA1108E12538C57B00443971 /* ProfileHeaderView.swift in Sources */,
 				FA8A0404253C34E3006F3FAE /* ActionSheetViewModel.swift in Sources */,
 				FA80F18D2545CC860030A00D /* EditProfileCell.swift in Sources */,
+				83775E942643D495000B402E /* FontExtension.swift in Sources */,
 				FA39B50A261E0B94006B9698 /* TweetCollectionViewCell.swift in Sources */,
 				FA70492926288C180093D11A /* LikeTweetParam.swift in Sources */,
 				FAF38663253B382100E76AF1 /* TweetHeader.swift in Sources */,
 				FA26204E25376B2C000E1755 /* TweetViewModel.swift in Sources */,
 				FA66C5DC2523827400C31151 /* LoginController.swift in Sources */,
 				FA2C25BC2532C89D0042EC43 /* LoginViewModel.swift in Sources */,
+				83AF06E726457DF000A16E8B /* UploadFeedParam.swift in Sources */,
 				FAC53E9F26103A7500E32E21 /* FeedsService.swift in Sources */,
 				FA2C25CF2532DEC30042EC43 /* Observers.swift in Sources */,
 				FAB9759E2602F87C006A66BB /* SplashViewController.swift in Sources */,
@@ -955,6 +992,7 @@
 				FA80F1882545CBB20030A00D /* EditProfileViewModel.swift in Sources */,
 				FA0DC9FC25265FED00377539 /* User.swift in Sources */,
 				FA875FA6260B8088006DCBA9 /* DateExtension.swift in Sources */,
+				83AF06EA2645A21C00A16E8B /* UploadTweetViewController.swift in Sources */,
 				FA875FAB260B8122006DCBA9 /* BindingView.swift in Sources */,
 				FAA5DD662631FCAB00C919A0 /* DeleteParam.swift in Sources */,
 				FA2C25DC2532F6900042EC43 /* BindingButton.swift in Sources */,
@@ -965,12 +1003,14 @@
 				FAFD3A06254863100030F4DF /* EditProfileFooterView.swift in Sources */,
 				FAFD58E325208F9C006E4F94 /* MainTabBarController.swift in Sources */,
 				FA66C5E12523829C00C31151 /* RegistrationController.swift in Sources */,
+				83EEB9E6264D72EF0010A17C /* Helper.swift in Sources */,
 				FAFDD72A254E5292000C39FF /* UIControllExtension.swift in Sources */,
 				FAFDD715254E4E4B000C39FF /* BaseTableViewCell.swift in Sources */,
 				FAF417F92528C96E00FDDC97 /* BaseViewController.swift in Sources */,
 				FAF38668253B61BB00E76AF1 /* UploadTweetViewModel.swift in Sources */,
 				FA408117253A0F09003DF3D7 /* ProfileHeaderViewModel.swift in Sources */,
 				FA88D41E261B860300A2FD6F /* AttributedString.swift in Sources */,
+				83EEB9E8264E601D0010A17C /* UIImageExtension.swift in Sources */,
 				FA2C25C82532CC1A0042EC43 /* LoginService.swift in Sources */,
 				FAF417FF2528CA0600FDDC97 /* ViewControllerExtension.swift in Sources */,
 				FA89486B253ACBA10071A5DB /* UserCell.swift in Sources */,
@@ -1146,7 +1186,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 97MV55V5HU;
+				DEVELOPMENT_TEAM = YJ3E54RM75;
 				INFOPLIST_FILE = Project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1166,7 +1206,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 97MV55V5HU;
+				DEVELOPMENT_TEAM = YJ3E54RM75;
 				INFOPLIST_FILE = Project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

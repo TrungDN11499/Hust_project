@@ -71,8 +71,9 @@ class MainTabBarController: UITabBarController {
         print("Message.")
         case .tweet:
             guard let user = self.user else { return }
-            let controller = UploadTweetController(config: .tweet, user: user)
-            controller.delegate = feedsViewController as? UploadTweetControllerDelegate
+            let uploadTweetViewModel = UploadTweetViewModel(.tweet, user: user)
+            let controller = UploadTweetViewController.create(with: uploadTweetViewModel) as! UploadTweetViewController
+            controller.delegate = feedsViewController as? UploadTweetViewControllerDelegate
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true, completion: nil)
@@ -91,7 +92,11 @@ class MainTabBarController: UITabBarController {
     /// configure.
     private func configureViewController() {
         
-        UITabBar.appearance().barTintColor = .systemGroupedBackground
+        UITabBar.appearance().isTranslucent = false
+        UITabBar.appearance().backgroundImage = UIImage(color: UIColor.white)
+    
+        self.tabBar.layer.borderWidth = 0.5
+        self.tabBar.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.3).cgColor
         
         let exploreViewController = ExploreViewController()
         let notificationsViewController = NotificationsViewController()
@@ -100,7 +105,7 @@ class MainTabBarController: UITabBarController {
         let tabBarData: [(UIViewController, UIImage)] = [
             (feedsViewController, UIImage(named: "home_unselected")!),
             (exploreViewController, UIImage(named: "search_unselected")!),
-            (notificationsViewController, UIImage(named: "like_unselected")!),
+            (notificationsViewController, UIImage(named: "ic_heart")!),
             (conversationsViewController, UIImage(named: "ic_mail_outline_white_2x-1")!)
         ]
         

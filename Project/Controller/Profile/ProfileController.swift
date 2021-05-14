@@ -164,6 +164,7 @@ extension ProfileController {
         }
         
         cell.feedViewModel = FeedViewModel(self.currentDataSource[indexPath.item])
+        cell.needDelete = false
         
         return cell
     }

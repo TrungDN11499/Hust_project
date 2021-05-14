@@ -89,19 +89,19 @@
                             </state>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D2M-Ci-XjW">
-                            <rect key="frame" x="95" y="422" width="200" height="14"/>
+                            <rect key="frame" x="95" y="411" width="200" height="25"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UwR-DV-Eox">
-                                    <rect key="frame" x="0.0" y="0.0" width="159" height="14"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="159" height="25"/>
                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                     <color key="textColor" red="0.50196078430000002" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1f-8o-VAw" customClass="BindingButton" customModule="Triponus" customModuleProvider="target">
-                                    <rect key="frame" x="161" y="0.0" width="39" height="14"/>
+                                    <rect key="frame" x="161" y="0.0" width="39" height="25"/>
                                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
                                     <state key="normal" title="Log In">
-                                        <color key="titleColor" red="0.062745098040000002" green="0.20784313730000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="0.0" green="0.60784313725490191" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                 </button>
                             </subviews>
@@ -113,7 +113,7 @@
                                 <constraint firstAttribute="bottom" secondItem="X1f-8o-VAw" secondAttribute="bottom" id="Y1e-sf-ZhI"/>
                                 <constraint firstItem="X1f-8o-VAw" firstAttribute="top" secondItem="D2M-Ci-XjW" secondAttribute="top" id="ZOe-gx-3io"/>
                                 <constraint firstAttribute="bottom" secondItem="UwR-DV-Eox" secondAttribute="bottom" id="e9w-Ql-aEf"/>
-                                <constraint firstAttribute="height" constant="14" id="kVH-3I-l70"/>
+                                <constraint firstAttribute="height" constant="25" id="kVH-3I-l70"/>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="116" id="sSx-uI-hex"/>
                                 <constraint firstItem="UwR-DV-Eox" firstAttribute="top" secondItem="D2M-Ci-XjW" secondAttribute="top" id="vRN-ep-I6B"/>
                             </constraints>

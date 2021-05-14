@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import DZNEmptyDataSet
 
 class FeedsViewController: BaseViewController, ControllerType {
 
@@ -16,9 +17,12 @@ class FeedsViewController: BaseViewController, ControllerType {
     private lazy var feedCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collecionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collecionView.backgroundColor = .white
+        collecionView.backgroundColor = .clear
         collecionView.delegate = self
         collecionView.dataSource = self
+        collecionView.emptyDataSetSource = self
+        collecionView.emptyDataSetDelegate = self
+        collecionView.showsVerticalScrollIndicator = false
         return collecionView
     }()
     
@@ -31,6 +35,7 @@ class FeedsViewController: BaseViewController, ControllerType {
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.showLoading()
         self.viewModel.input.fetchTweets.excecute()
         self.configureViewController()
     }
@@ -70,9 +75,9 @@ class FeedsViewController: BaseViewController, ControllerType {
     // MARK: - Helpers
     private func configureViewController() {
         
-        self.feedCollectionView.backgroundColor = .white
+        self.view.backgroundColor = .mainBackgroundColor
         
-        guard let logoImage = UIImage(named: "ic_sun") else {
+        guard let logoImage = UIImage(named: "ic_appic") else {
             return
         }
         
@@ -127,6 +132,7 @@ extension FeedsViewController {
                     refreshControl.addTarget(self, action: #selector(hanldeRefresh(_:)), for: .valueChanged)
                     self.feedCollectionView.refreshControl = refreshControl
                 }
+                self.hideLoading()
                 self.feedCollectionView.reloadData()
             }
         }
@@ -160,19 +166,52 @@ extension FeedsViewController: UICollectionViewDataSource {
 extension FeedsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
+        // cell constants
         let cellPadding: CGFloat = 12
-        let infoLabelHeight: CGFloat = 17
-        let actionButtonSize: CGFloat = 30
-        let profileImageSize: CGFloat = 48
+        let actionButtonSize: CGFloat = 25
+        let optionButtonSize: CGFloat = 20
+        let profileImageSize: CGFloat = 40
+        let maxTextHeight: CGFloat = 200
+        let seperatorHeight: CGFloat = 0.5
+        let seeMoreButtonHeight: CGFloat = 17
+        let contentTextPadding: CGFloat = 5
+        let contentImagePadding: CGFloat = 8
         
-        let textWidth = self.view.frame.width - (profileImageSize + actionButtonSize + cellPadding * 4)
-        let textHeight = self.viewModel.viewModel(at: indexPath)?.caption.height(withConstrainedWidth: textWidth, font: UIFont.systemFont(ofSize: 17)) ?? 0
+        // calculate caption text width
+        let textWidth = self.view.frame.width - (optionButtonSize + cellPadding * 2 + contentTextPadding)
         
-        let contentHeight = (infoLabelHeight + 4 + textHeight) > profileImageSize ? (infoLabelHeight + 4 + textHeight) : profileImageSize
+        // calculate caption text height
+        let textHeight = self.viewModel.viewModel(at: indexPath)?.caption.height(withConstrainedWidth: textWidth, font: UIFont.robotoRegular(point: 14)) ?? 0 > maxTextHeight ? maxTextHeight : self.viewModel.viewModel(at: indexPath)?.caption.height(withConstrainedWidth: textWidth, font: UIFont.robotoRegular(point: 14)) ?? 0
+             
+        // calculate content text height
+        var contentHeight: CGFloat = 0
+        if textHeight != maxTextHeight {
+            contentHeight = profileImageSize + contentTextPadding + textHeight
+        } else {
+            contentHeight = profileImageSize + contentTextPadding * 2 + textHeight + seeMoreButtonHeight
+        }
         
-        let cellHeight: CGFloat =  cellPadding * 3 + actionButtonSize + contentHeight + 0.5
+        // calculate image content height
+        var imageHeight: CGFloat = 0
+        if let images = self.viewModel.viewModel(at: indexPath)?.tweet.images {
+            if !images.isEmpty {
+                let ratio = images[0].width / images[0].height
+                imageHeight = (self.view.frame.width / ratio) + contentImagePadding
+            } else {
+                imageHeight = 0
+            }
+        } else {
+            imageHeight = 0
+        }
         
-        return CGSize(width: self.feedCollectionView.frame.width, height: cellHeight)
+        // calculate cell height
+        let cellHeight: CGFloat =  cellPadding * 3 + actionButtonSize + contentHeight + imageHeight + seperatorHeight
+        
+        return CGSize(width: self.view.frame.width, height: cellHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
     }
 }
 
@@ -180,10 +219,14 @@ extension FeedsViewController: UICollectionViewDelegateFlowLayout {
 extension FeedsViewController: TweetCollectionViewCellDelegate {
     
     func handleReplyTapped(_ cell: TweetCollectionViewCell) {
-        guard let tweet = cell.feedViewModel?.tweet, let index = self.feedCollectionView.indexPath(for: cell) else { return }
-        let uploadTweetController = UploadTweetController(config: .reply(tweet), user: tweet.user, delegate: self, index: index.item)
-        let nav = UINavigationController(rootViewController: uploadTweetController)
+        guard let tweet = cell.feedViewModel?.tweet, let index = self.feedCollectionView.indexPath(for: cell) else { return }        
+        let uploadTweetViewModel = UploadTweetViewModel(.reply(tweet), user: tweet.user)
+        let controller = UploadTweetViewController.create(with: uploadTweetViewModel) as! UploadTweetViewController
+        controller.delegate = self
+        controller.index = index.item
+        let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
+        
         self.present(nav, animated: true, completion: nil)
     }
     
@@ -213,10 +256,10 @@ extension FeedsViewController: TweetCollectionViewCellDelegate {
     
 }
 
-// MARK: - UploadTweetControllerDelegate
-extension FeedsViewController: UploadTweetControllerDelegate {
-    func handleUpdateNumberOfComment(for index: Int) {
-        self.viewModel.output.fetchTweetsResult.value?[index].tweet.comments += 1
+// MARK: - UploadTweetViewControllerDelegate
+extension FeedsViewController: UploadTweetViewControllerDelegate {
+    func handleUpdateNumberOfComment(for index: Int, numberOfComment: Int) {
+        self.viewModel.output.fetchTweetsResult.value?[index].tweet.comments.value = numberOfComment
         DispatchQueue.main.async {
             self.feedCollectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
         }
@@ -225,5 +268,18 @@ extension FeedsViewController: UploadTweetControllerDelegate {
     func handleUpdateTweet(tweet: Tweet) {
         let feedViewModel = FeedViewModel(tweet)
         self.viewModel.output.fetchTweetsResult.value?.insert(feedViewModel, at: 0)
+    }
+}
+
+// MARK: - DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
+extension FeedsViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return self.getMessageNoData(message: "No post yet");
+    }
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "ic_list_empty")
+    }
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
     }
 }

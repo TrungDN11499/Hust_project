@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol TweetHeaderDelegate: class {
+protocol TweetHeaderDelegate: AnyObject {
     func showActionSheet(_ view: TweetHeader)
 }
 
@@ -69,7 +69,7 @@ class TweetHeader: UIView {
     private lazy var retweetsLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.text = "2 retweets"
+        label.text = "2 comments"
         return label
     }()
     
@@ -100,7 +100,7 @@ class TweetHeader: UIView {
                         paddingLeft: 8,
                         height: 1)
         
-        let stack = UIStackView(arrangedSubviews: [retweetsLabel, likesLabel])
+        let stack = UIStackView(arrangedSubviews: [likesLabel, retweetsLabel])
         stack.axis = .horizontal
         stack.spacing = 12
         
@@ -124,13 +124,7 @@ class TweetHeader: UIView {
         button.addTarget(self, action: #selector(handleComment(_:)), for: .touchUpInside)
         return button
     }()
-    
-    private lazy var retweetButton: UIButton = {
-        let button = self.createButton(withImageName: "retweet")
-        button.addTarget(self, action: #selector(handleRetweet(_:)), for: .touchUpInside)
-        return button
-    }()
-    
+        
     private lazy var likeButton: UIButton = {
         let button = self.createButton(withImageName: "like")
         button.addTarget(self, action: #selector(handleLike(_:)), for: .touchUpInside)
@@ -171,15 +165,15 @@ class TweetHeader: UIView {
         stack.distribution = .fillProportionally
         
         self.addSubview(stack)
-        stack.anchor(top: self.topAnchor, left: self.leftAnchor, paddingTop: 16, paddingLeft: 16)
+        stack.anchor(top: self.topAnchor, left: self.leftAnchor, paddingTop: 16, paddingLeft: 12)
         
         self.addSubview(self.captionLabel)
         self.captionLabel.anchor(top: stack.bottomAnchor,
                                  left: self.leftAnchor,
                                  right: self.rightAnchor,
                                  paddingTop: 12,
-                                 paddingLeft: 16,
-                                 paddingRight: 16)
+                                 paddingLeft: 12,
+                                 paddingRight: 12)
         
         self.addSubview(self.dateLabel)
         self.dateLabel.anchor(top: self.captionLabel.bottomAnchor,
@@ -198,14 +192,13 @@ class TweetHeader: UIView {
                               paddingTop: 12,
                               height: 40)
         
-        let actionStack = UIStackView(arrangedSubviews: [commentButton, retweetButton, likeButton, shareButton])
+        let actionStack = UIStackView(arrangedSubviews: [likeButton, commentButton])
         actionStack.axis = .horizontal
-        actionStack.spacing = 72
+        actionStack.spacing = 20
         actionStack.distribution = .fillEqually
         
         self.addSubview(actionStack)
-        actionStack.centerX(inView: self)
-        actionStack.anchor(top: statsView.bottomAnchor, bottom: self.bottomAnchor, paddingTop: 12)
+        actionStack.anchor(top: statsView.bottomAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, paddingTop: 12, paddingLeft: 12)
     }
     
     required init?(coder: NSCoder) {
@@ -225,11 +218,7 @@ class TweetHeader: UIView {
     @objc private func handleComment(_ sender: UIButton) {
         
     }
-    
-    @objc private func handleRetweet(_ sender: UIButton) {
         
-    }
-    
     @objc private func handleLike(_ sender: UIButton) {
         
     }

@@ -35,9 +35,9 @@ protocol FeedsServiceProtocol {
     /// like or unlike a tweet
     /// - Parameters:
     ///   - tweet: Tweet
-    ///   - completion: @escaping ((Error? ,DatabaseReference) -> Void)
+    ///   - completion: @escaping ((Error? , Int, DatabaseReference) -> Void)
     /// - Returns: Void
-    func likeTweet(tweet: Tweet, completion: @escaping ((Error? ,DatabaseReference) -> Void))
+    func likeTweet(tweet: Tweet, completion: @escaping ((Error?, Int, DatabaseReference) -> Void))
     
     /// delete tweet
     /// - Parameters:
@@ -226,21 +226,34 @@ class FeedsService: FeedsServiceProtocol {
         }
     }
     
-    func likeTweet(tweet: Tweet, completion: @escaping ((Error? ,DatabaseReference) -> Void)) {
+    func likeTweet(tweet: Tweet, completion: @escaping ((Error?, Int, DatabaseReference) -> Void)) {
+        
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        let likes = tweet.didLike.value ?? false ? ((tweet.likes - 1) < 0 ? 0 : (tweet.likes - 1)) : tweet.likes + 1
-        
-        REF_TWEETS.child(tweet.tweetId).child("likes").setValue(likes)
-        
         if tweet.didLike.value ?? false {
             REF_USER_LIKES.child(uid).child(tweet.tweetId).removeValue { (err, ref) in
-                REF_TWEET_LIKES.child(tweet.tweetId).removeValue(completionBlock: completion)
+                REF_TWEET_LIKES.child(tweet.tweetId).child(uid).removeValue { err, ref in
+                    REF_TWEET_LIKES.child(tweet.tweetId).observeSingleEvent(of: .value) { snapshot in
+                        let numberOfLikes = snapshot.childrenCount
+                        REF_TWEETS.child(tweet.tweetId).child("likes").setValue(numberOfLikes) { err, dataRef in
+                            completion(err, Int(numberOfLikes), dataRef)
+                        }
+                    }
+                    
+                }
             }
         } else {
             REF_USER_LIKES.child(uid).updateChildValues([tweet.tweetId: 1]) { (err, ref) in
-                REF_TWEET_LIKES.child(tweet.tweetId).updateChildValues([uid: 1], withCompletionBlock: completion)
+                REF_TWEET_LIKES.child(tweet.tweetId).updateChildValues([uid: 1]) { err, ref in
+                    REF_TWEET_LIKES.child(tweet.tweetId).observeSingleEvent(of: .value) { snapshot in
+                        let numberOfLikes = snapshot.childrenCount
+                        REF_TWEETS.child(tweet.tweetId).child("likes").setValue(numberOfLikes) { err, dataRef in
+                            completion(err, Int(numberOfLikes), dataRef)
+                        }
+                    }
+                }
             }
         }
+        
     }
     
     func deleteTweet(tweet: Tweet, completion: @escaping ((Error? ,DatabaseReference) -> Void)) {

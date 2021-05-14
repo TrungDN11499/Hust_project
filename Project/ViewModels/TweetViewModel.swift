@@ -43,11 +43,11 @@ struct TweetViewModel {
     }
     
     var retweetsAttributedString: NSAttributedString? {
-        return self.attributeText(withValue: self.tweet.retweets, text: "Retweets")
+        return self.attributeText(withValue: self.tweet.comments.value ?? 0, text: "Comments")
     }
     
     var likessAttributedString: NSAttributedString? {
-        return self.attributeText(withValue: self.tweet.likes, text: "Likes")
+        return self.attributeText(withValue: self.tweet.likes.value ?? 0, text: "Likes")
     }
     
     var usernameText: String {
@@ -87,7 +87,7 @@ struct TweetViewModel {
     }
     
     var likeButtonImage: UIImage? {
-        let imageName = self.tweet.didLike.value ?? false ? "like_filled" : "like"
+        let imageName = self.tweet.didLike.value ?? false ? "ic_heart_filled" : "ic_heart"
         return UIImage(named: imageName)
     }
     

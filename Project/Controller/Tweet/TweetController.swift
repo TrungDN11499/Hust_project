@@ -7,8 +7,6 @@
 
 import UIKit
 
-private let headerIden = "TweetHeader"
-
 class TweetController: BaseViewController {
     
     // MARK: - Properties
@@ -139,7 +137,9 @@ extension TweetController: UICollectionViewDataSource {
         guard let cell = TweetCollectionViewCell.loadCell(collectionView, indexPath: indexPath) as? TweetCollectionViewCell else {
             return TweetCollectionViewCell()
         }
-//        cell.tweet = self.replies[indexPath.row]
+        
+        cell.feedViewModel = FeedViewModel(self.replies[indexPath.row])
+        cell.needDelete = false
         
         return cell
     }
@@ -169,7 +169,7 @@ extension TweetController: TweetHeaderDelegate {
         } else {
             UserService.shared.checkFollowUser(uid: self.tweet.user.uid) { isFollowed in
                 let tweetUser = self.tweet.user
-                guard var user = tweetUser else {return}
+                guard let user = tweetUser else {return}
                 user.isFollowed = isFollowed
                 self.actionSheetLaucher = ActionSheetLaucher(user)
                 self.actionSheetLaucher.delegate = self

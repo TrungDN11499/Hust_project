@@ -19,7 +19,7 @@ class ActionSheetCell: UITableViewCell {
     private lazy var optionImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
-        imageView.image = #imageLiteral(resourceName: "ic_sun")
+        imageView.image = #imageLiteral(resourceName: "ic_appic")
         return imageView
     }()
     

@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol NotificationCellDelegate: class {
+protocol NotificationCellDelegate: AnyObject {
     func didTapProfileImage(_ cell: NotificationCell)
     func didTapFollow(_ cell: NotificationCell)
 }
@@ -18,7 +18,7 @@ class NotificationCell: UITableViewCell {
     
     weak var delegate: NotificationCellDelegate?
     
-    var notification: Notification? {
+    var notification: NotificationModel? {
         didSet { self.configure() }
     }
     

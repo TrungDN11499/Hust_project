@@ -10,13 +10,14 @@ import Foundation
 class Tweet {
     let caption: String
     let tweetId: String
-    var likes: Int
-    var comments: Int
+    var likes = Observable<Int>()
+    var comments = Observable<Int>()
     var timestamp: Date!
     let retweets: Int
     var user: User!
     var didLike = Observable<Bool>()
     var replyingTo: String?
+    var images = [ImageParam]()
     
     var isReply: Bool {
         return self.replyingTo != nil
@@ -34,9 +35,14 @@ class Tweet {
         }
         
         self.caption = dictionary["caption"] as? String ?? ""
-        self.likes = dictionary["likes"] as? Int ?? 0
-        self.comments = dictionary["comments"] as? Int ?? 0
+        self.likes.value = dictionary["likes"] as? Int ?? 0
+        self.comments.value = dictionary["comments"] as? Int ?? 0
         self.retweets = dictionary["retweets"] as? Int ?? 0
+        
+        let imageDictionary = dictionary["images"] as? [[String :Any]]
+        if let imageDictionary = imageDictionary {
+            self.images = imageDictionary.map { ImageParam($0) }
+        }
         
         if let timestamp = dictionary["timestamp"] as? Double {
             self.timestamp = Date(timeIntervalSince1970: timestamp)

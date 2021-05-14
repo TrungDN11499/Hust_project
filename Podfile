@@ -7,14 +7,16 @@ target 'Triponus' do
 
   # Pods for Triponus
   
-  pod 'IQKeyboardManagerSwift'
-  pod 'SDWebImage', '~> 5.0'
-  pod 'Firebase/Analytics'
+  	pod 'IQKeyboardManagerSwift'
+  	pod 'SDWebImage', '~> 5.0'
+  	pod 'Firebase/Analytics'
 	pod 'Firebase/Core'
 	pod 'Firebase/Database'
 	pod 'Firebase/Storage'
 	pod 'Firebase/Auth'
-  pod 'ActiveLabel'
+	pod 'MBProgressHUD'
+  	pod 'ActiveLabel'
+	pod 'DZNEmptyDataSet'
 
   target 'TriponusTests' do
     inherit! :search_paths
