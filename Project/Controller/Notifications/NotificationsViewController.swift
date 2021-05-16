@@ -72,9 +72,7 @@ class NotificationsViewController: UITableViewController {
     private func configureViewController() {
         self.navigationItem.title = "Notifications"
         self.tableView.backgroundColor = .white
-//        self.tableView.rowHeight = 60
         self.tableView.separatorStyle = .none
-//        self.tableView.register(NotificationCell.self, forCellReuseIdentifier: cellIden)
         self.tableView.register(UINib.init(nibName: "NotificationTBVCell", bundle: nil), forCellReuseIdentifier: cellIden)
 
         let refreshControl = UIRefreshControl()
