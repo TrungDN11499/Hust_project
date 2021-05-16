@@ -72,10 +72,11 @@ class NotificationsViewController: UITableViewController {
     private func configureViewController() {
         self.navigationItem.title = "Notifications"
         self.tableView.backgroundColor = .white
-        self.tableView.rowHeight = 60
+//        self.tableView.rowHeight = 60
         self.tableView.separatorStyle = .none
-        self.tableView.register(NotificationCell.self, forCellReuseIdentifier: cellIden)
-        
+//        self.tableView.register(NotificationCell.self, forCellReuseIdentifier: cellIden)
+        self.tableView.register(UINib.init(nibName: "NotificationTBVCell", bundle: nil), forCellReuseIdentifier: cellIden)
+
         let refreshControl = UIRefreshControl()
         self.tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: .valueChanged)
@@ -124,12 +125,15 @@ extension NotificationsViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIden, for: indexPath) as? NotificationCell else {
-            return NotificationCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIden, for: indexPath) as? NotificationTBVCell else {
+            return NotificationTBVCell()
         }
         cell.notification = self.notifications[indexPath.row]
         cell.delegate = self
         return cell
+    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50 + 24
     }
 }
 
@@ -138,13 +142,13 @@ extension NotificationsViewController {
 
 extension NotificationsViewController: NotificationCellDelegate {
     
-    func didTapProfileImage(_ cell: NotificationCell) {
+    func didTapProfileImage(_ cell: NotificationTBVCell) {
         guard let user = cell.notification?.user else { return }
         let profileController = ProfileController(user)
         self.navigationController?.pushViewController(profileController, animated: true)
     }
     
-    func didTapFollow(_ cell: NotificationCell) {
+    func didTapFollow(_ cell: NotificationTBVCell) {
         guard let user = cell.notification?.user else { return }
         
         if user.isFollowed {

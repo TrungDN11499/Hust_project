@@ -23,6 +23,9 @@
 		8409D6002642E8C20036E3A1 /* Griffy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */; };
 		841CA67126427D4A00B6A83B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CA66F26427D4A00B6A83B /* RegisterViewController.swift */; };
 		841CA67226427D4A00B6A83B /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CA67026427D4A00B6A83B /* RegisterViewController.xib */; };
+		845F6CA926516FEF0015BD58 /* NotificationTBVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F6CA726516FEF0015BD58 /* NotificationTBVCell.swift */; };
+		845F6CAA26516FEF0015BD58 /* NotificationTBVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845F6CA826516FEF0015BD58 /* NotificationTBVCell.xib */; };
+		845F6CB026517C080015BD58 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F6CAF26517C080015BD58 /* UIColorExtension.swift */; };
 		84E1882126419C84007A1A17 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1882026419C84007A1A17 /* CustomTextField.swift */; };
 		84E188252641ACA2007A1A17 /* CustomTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E188242641ACA2007A1A17 /* CustomTextField.xib */; };
 		84E826FF26426A5A00D6929D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E826FD26426A5A00D6929D /* LoginViewController.swift */; };
@@ -149,6 +152,9 @@
 		8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Griffy-Regular.ttf"; sourceTree = "<group>"; };
 		841CA66F26427D4A00B6A83B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		841CA67026427D4A00B6A83B /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
+		845F6CA726516FEF0015BD58 /* NotificationTBVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTBVCell.swift; sourceTree = "<group>"; };
+		845F6CA826516FEF0015BD58 /* NotificationTBVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTBVCell.xib; sourceTree = "<group>"; };
+		845F6CAF26517C080015BD58 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		84E1882026419C84007A1A17 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		84E188242641ACA2007A1A17 /* CustomTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTextField.xib; sourceTree = "<group>"; };
 		84E826FD26426A5A00D6929D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -522,6 +528,7 @@
 				83EEB9E7264E601D0010A17C /* UIImageExtension.swift */,
 				83EEB9EB264E8CA20010A17C /* UIBezierPathExtension.swift */,
 				83EEB9ED264E8CBE0010A17C /* UINavigationBarExtension.swift */,
+				845F6CAF26517C080015BD58 /* UIColorExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -659,6 +666,8 @@
 				FAF38662253B382100E76AF1 /* TweetHeader.swift */,
 				FA8A03FE253C2E48006F3FAE /* ActionSheetCell.swift */,
 				FA576D42253F4D160069BA96 /* NotificationCell.swift */,
+				845F6CA726516FEF0015BD58 /* NotificationTBVCell.swift */,
+				845F6CA826516FEF0015BD58 /* NotificationTBVCell.xib */,
 				FA39B508261E0B94006B9698 /* TweetCollectionViewCell.swift */,
 				FA39B509261E0B94006B9698 /* TweetCollectionViewCell.xib */,
 			);
@@ -846,6 +855,7 @@
 				FAFD58B125208D9C006E4F94 /* LaunchScreen.storyboard in Resources */,
 				83AF06EB2645A21C00A16E8B /* UploadTweetViewController.xib in Resources */,
 				FAFD58AE25208D9C006E4F94 /* Assets.xcassets in Resources */,
+				845F6CAA26516FEF0015BD58 /* NotificationTBVCell.xib in Resources */,
 				FA66C6072523AE2100C31151 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -977,10 +987,12 @@
 				FA8A03FA253C1F33006F3FAE /* ActionSheetLauncher.swift in Sources */,
 				841CA67126427D4A00B6A83B /* RegisterViewController.swift in Sources */,
 				FA8A03FF253C2E48006F3FAE /* ActionSheetCell.swift in Sources */,
+				845F6CA926516FEF0015BD58 /* NotificationTBVCell.swift in Sources */,
 				FA576D43253F4D160069BA96 /* NotificationCell.swift in Sources */,
 				FA0DC9F7252658C400377539 /* UserService.swift in Sources */,
 				FA2C25E1253309450042EC43 /* RegisterViewModel.swift in Sources */,
 				FA80F1802545C4C10030A00D /* EditProfileHeader.swift in Sources */,
+				845F6CB026517C080015BD58 /* UIColorExtension.swift in Sources */,
 				FA40810D253A01D9003DF3D7 /* ProfileFilterView.swift in Sources */,
 				FA9B7CF52535E7F9006DFFA2 /* UploadTweetController.swift in Sources */,
 				84E1882126419C84007A1A17 /* CustomTextField.swift in Sources */,
