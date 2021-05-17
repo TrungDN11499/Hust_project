@@ -114,6 +114,8 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
 // Local variable inserted by Swift 4.2 migrator.
 let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         
+//        info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL
+//        if let videoURL = info[UIImagePickerControllerMediaURL] as? NSURL { }
         
         if let videoUrl = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL {
             //we selected a video
