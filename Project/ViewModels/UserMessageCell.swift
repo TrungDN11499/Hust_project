@@ -16,7 +16,7 @@ class UserMessageCell: UITableViewCell {
             setupNameAndProfileImage()
 
             if message?.imageUrl != nil {
-                detailTextLabel?.text = "Đã gửi một hình ảnh."
+                detailTextLabel?.text = "Đã gửi một file Media."
             } else if message?.videoUrl != nil {
                 detailTextLabel?.text = "Đã gửi một video."
             } else {

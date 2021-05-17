@@ -85,7 +85,6 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         chatInputContainerView.chatLogController = self
         return chatInputContainerView
     }()
-    
 
     @objc func handleOptionsSend() {
         let actionSheet = UIAlertController(title: "Attach Media",
@@ -115,14 +114,16 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
 // Local variable inserted by Swift 4.2 migrator.
 let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         
-//        info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL
-//        if let videoURL = info[UIImagePickerControllerMediaURL] as? NSURL { }
         
         if let videoUrl = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL {
             //we selected a video
             print("Here is videos url, \(videoUrl) ")
-            
-            handleVideoSelectedForUrl(videoUrl)
+            uploadTOFireBaseVideo(url: videoUrl) { success in
+                print("upload success")
+            } failure: { error in
+                print(error)
+            }
+
         } else {
             //we selected an image
             handleImageSelectedForInfo(info as [String : AnyObject])
@@ -168,6 +169,57 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         
         uploadTask.observe(.success) { (snapshot) in
             self.navigationItem.title = self.user?.fullName
+        }
+    }
+    
+    func uploadTOFireBaseVideo(url: URL,
+                               success : @escaping (String) -> Void,
+                               failure : @escaping (Error) -> Void) {
+        
+        let name = "\(Int(Date().timeIntervalSince1970)).mp4"
+        let path = NSTemporaryDirectory() + name
+        
+        let data = NSData(contentsOf: url)
+        
+        do {
+            
+            try data?.write(to: URL(fileURLWithPath: path), options: .atomic)
+            
+        } catch {
+            
+            print(error)
+        }
+        let filename = UUID().uuidString + ".mov"
+        
+        let storageRef = Storage.storage().reference().child("message_movies").child(filename)
+        if let uploadData = data as Data? {
+            storageRef.putData(uploadData, metadata: nil
+                               , completion: { (metadata, error) in
+                                if let error = error {
+                                    failure(error)
+                                } else {
+                                    
+                                    storageRef.downloadURL(completion: { (downloadUrl, err) in
+                                        if let err = err {
+                                            print("Failed to get download url:", err)
+                                            return
+                                        }
+                                        
+                                        guard let downloadUrl = downloadUrl else { return }
+                                        
+                                        if let thumbnailImage = self.thumbnailImageForFileUrl(url) {
+                                            
+                                            self.uploadToFirebaseStorageUsingImage(thumbnailImage, completion: { (imageUrl) in
+                                                let properties: [String: Any] = ["imageUrl": imageUrl, "imageWidth": thumbnailImage.size.width, "imageHeight": thumbnailImage.size.height, "videoUrl": downloadUrl.absoluteString]
+                                                self.sendMessageWithProperties(properties)
+                                                
+                                            })
+                                        }
+                                        
+                                    })
+                                    
+                                }
+                               })
         }
     }
     
