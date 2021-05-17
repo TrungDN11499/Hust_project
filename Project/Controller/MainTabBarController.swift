@@ -74,7 +74,7 @@ class MainTabBarController: UITabBarController {
             let uploadTweetViewModel = UploadTweetViewModel(.tweet, user: user)
             let controller = UploadTweetViewController.create(with: uploadTweetViewModel) as! UploadTweetViewController
             controller.delegate = feedsViewController as? UploadTweetViewControllerDelegate
-            let nav = UINavigationController(rootViewController: controller)
+            let nav = CustomNavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true, completion: nil)
         }
@@ -98,6 +98,8 @@ class MainTabBarController: UITabBarController {
         self.tabBar.layer.borderWidth = 0.5
         self.tabBar.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.3).cgColor
         
+        self.view.backgroundColor = .mainBackgroundColor
+        
         let exploreViewController = ExploreViewController()
         let notificationsViewController = NotificationsViewController()
         let conversationsViewController = ConversationsViewController()
@@ -109,15 +111,19 @@ class MainTabBarController: UITabBarController {
             (conversationsViewController, UIImage(named: "ic_mail_outline_white_2x-1")!)
         ]
         
-        self.viewControllers = tabBarData.map({ (vc, image) -> UINavigationController in
+        self.viewControllers = tabBarData.map({ (vc, image) -> CustomNavigationController in
             return self.templateNavigationController(image: image, rootViewController: vc)
         })
+        
+//        self.viewControllers = tabBarData.map({ (vc, image) -> UINavigationController in
+//            return self.templateNavigationController(image: image, rootViewController: vc)
+//        })
         self.configureUI()
     }
     
     /// create navigation bar.
-    private func templateNavigationController(image: UIImage, rootViewController: UIViewController) -> UINavigationController {
-        let nav = UINavigationController(rootViewController: rootViewController)
+    private func templateNavigationController(image: UIImage, rootViewController: UIViewController) -> CustomNavigationController {
+        let nav = CustomNavigationController(rootViewController: rootViewController)
         nav.tabBarItem.image = image
         nav.navigationBar.barTintColor = .white
         return nav
