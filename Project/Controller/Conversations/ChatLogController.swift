@@ -81,7 +81,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     }
     
     lazy var inputContainerView: ChatInputContainerView = {
-        let chatInputContainerView = ChatInputContainerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+        let chatInputContainerView = ChatInputContainerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 90))
         chatInputContainerView.chatLogController = self
         return chatInputContainerView
     }()
@@ -91,11 +91,10 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         let actionSheet = UIAlertController(title: "Attach Media",
                                             message: "What would you like to attach?",
                                             preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Photo", style: .default, handler: { [weak self] _ in
+        actionSheet.addAction(UIAlertAction(title: "Library", style: .default, handler: { [weak self] _ in
             self?.handleUploadTap()
         }))
-//        actionSheet.addAction(UIAlertAction(title: "Video", style: .default, handler: { [weak self]  _ in
-//        }))
+        
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(actionSheet, animated: true)
@@ -116,9 +115,13 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
 // Local variable inserted by Swift 4.2 migrator.
 let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         
+//        info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL
+//        if let videoURL = info[UIImagePickerControllerMediaURL] as? NSURL { }
         
         if let videoUrl = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL {
             //we selected a video
+            print("Here is videos url, \(videoUrl) ")
+            
             handleVideoSelectedForUrl(videoUrl)
         } else {
             //we selected an image

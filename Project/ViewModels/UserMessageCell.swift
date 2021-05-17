@@ -16,7 +16,7 @@ class UserMessageCell: UITableViewCell {
             setupNameAndProfileImage()
 
             if message?.imageUrl != nil {
-                detailTextLabel?.text = "Đã gửi một file ảnh."
+                detailTextLabel?.text = "Đã gửi một hình ảnh."
             } else if message?.videoUrl != nil {
                 detailTextLabel?.text = "Đã gửi một video."
             } else {
@@ -66,6 +66,7 @@ class UserMessageCell: UITableViewCell {
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = false
+        imageView.backgroundColor = .systemGray5
         return imageView
     }()
     

@@ -71,7 +71,7 @@ class ChatMessageCell: UICollectionViewCell {
         return tv
     }()
     
-//    static let blueColor = UIColor(red: 0, green: 137, blue: 249, alpha: 1)
+    //    static let blueColor = UIColor(red: 0, green: 137, blue: 249, alpha: 1)
     
     let bubbleView: UIView = {
         let view = UIView()
@@ -98,6 +98,7 @@ class ChatMessageCell: UICollectionViewCell {
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
+        imageView.backgroundColor = .systemGray2
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomTap)))
         
         return imageView
@@ -147,12 +148,12 @@ class ChatMessageCell: UICollectionViewCell {
         
         //x,y,w,h
         
-            bubbleViewRightAnchor = bubbleView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)
-            
+        bubbleViewRightAnchor = bubbleView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)
+        
         bubbleViewRightAnchor?.isActive = true
         
         bubbleViewLeftAnchor = bubbleView.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 8)
-//        bubbleViewLeftAnchor?.active = false
+        //        bubbleViewLeftAnchor?.active = false
         
         
         bubbleView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -164,12 +165,12 @@ class ChatMessageCell: UICollectionViewCell {
         
         //ios 9 constraints
         //x,y,w,h
-//        textView.rightAnchor.constraintEqualToAnchor(self.rightAnchor).active = true
+        //        textView.rightAnchor.constraintEqualToAnchor(self.rightAnchor).active = true
         textView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor, constant: 8).isActive = true
         textView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         
         textView.rightAnchor.constraint(equalTo: bubbleView.rightAnchor).isActive = true
-//        textView.widthAnchor.constraintEqualToConstant(200).active = true
+        //        textView.widthAnchor.constraintEqualToConstant(200).active = true
         
         
         textView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true

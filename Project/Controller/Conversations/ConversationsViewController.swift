@@ -57,6 +57,10 @@ class ConversationsViewController: BaseViewController {
         self.configureViewController()
     }
     
+    override func configureView() {
+        //
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
     }
@@ -182,6 +186,7 @@ extension ConversationsViewController: UITableViewDelegate, UITableViewDataSourc
             self.showChatControllerForUser(user)
             
         }, withCancel: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     
