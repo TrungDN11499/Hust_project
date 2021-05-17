@@ -15,6 +15,18 @@ extension UIColor {
 
 extension UIColor {
     
+    static var primary: UIColor {
+        return UIColor.init(hexString: "009BE7")!
+    }
+
+    static var secondary: UIColor {
+        return UIColor.init(hexString: "6DD5FA")!
+    }
+    
+    static var navigationBarColor: UIColor {
+        return UIColor.init(hexString: "B6DEEE")!
+    }
+    
     /// Sort way to create a color with R G B input
     /// - Parameters:
     ///   - red: red color

@@ -30,8 +30,6 @@ class NotificationsViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.navigationBar.barStyle = .default
         
     }
     
@@ -81,6 +79,26 @@ class NotificationsViewController: UITableViewController {
         let refreshControl = UIRefreshControl()
         self.tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(handleRefresh(_:)), for: .valueChanged)
+        
+        
+        if let navigationBar = self.navigationController?.navigationBar {
+            let gradient = CAGradientLayer()
+            var bounds = navigationBar.bounds
+            bounds.size.height += UIApplication.shared.statusBarFrame.size.height
+            gradient.frame = bounds
+            gradient.colors = [UIColor.primary.cgColor, UIColor.secondary.cgColor]
+            gradient.startPoint = CGPoint(x: 0, y: 0)
+            gradient.endPoint = CGPoint(x: 1, y: 0)
+
+            if let image = UIImage.getImageFrom(gradientLayer: gradient) {
+                let app = UINavigationBarAppearance()
+                app.backgroundImage = image
+                self.navigationController?.navigationBar.scrollEdgeAppearance = app
+                self.navigationController?.navigationBar.standardAppearance = app
+
+            }
+            navigationBar.applyNavBarCornerRadius(radius: 12)
+        }
     }
 
 }

@@ -15,6 +15,9 @@
 		83AF06EB2645A21C00A16E8B /* UploadTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83AF06E92645A21C00A16E8B /* UploadTweetViewController.xib */; };
 		83EEB9E6264D72EF0010A17C /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EEB9E5264D72EF0010A17C /* Helper.swift */; };
 		83EEB9E8264E601D0010A17C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EEB9E7264E601D0010A17C /* UIImageExtension.swift */; };
+		83EEB9EC264E8CA20010A17C /* UIBezierPathExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EEB9EB264E8CA20010A17C /* UIBezierPathExtension.swift */; };
+		83EEB9EE264E8CBE0010A17C /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EEB9ED264E8CBE0010A17C /* UINavigationBarExtension.swift */; };
+		83EEB9F1264E8D400010A17C /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EEB9F0264E8D400010A17C /* CustomNavigationController.swift */; };
 		8409D6002642E8C20036E3A1 /* Griffy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */; };
 		841CA67126427D4A00B6A83B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CA66F26427D4A00B6A83B /* RegisterViewController.swift */; };
 		841CA67226427D4A00B6A83B /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CA67026427D4A00B6A83B /* RegisterViewController.xib */; };
@@ -136,6 +139,9 @@
 		83AF06E92645A21C00A16E8B /* UploadTweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadTweetViewController.xib; sourceTree = "<group>"; };
 		83EEB9E5264D72EF0010A17C /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		83EEB9E7264E601D0010A17C /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		83EEB9EB264E8CA20010A17C /* UIBezierPathExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPathExtension.swift; sourceTree = "<group>"; };
+		83EEB9ED264E8CBE0010A17C /* UINavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtension.swift; sourceTree = "<group>"; };
+		83EEB9F0264E8D400010A17C /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Griffy-Regular.ttf"; sourceTree = "<group>"; };
 		841CA66F26427D4A00B6A83B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		841CA67026427D4A00B6A83B /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
@@ -294,9 +300,18 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		83EEB9EF264E8D240010A17C /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				83EEB9F0264E8D400010A17C /* CustomNavigationController.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		8409D601264317FE0036E3A1 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				83EEB9EF264E8D240010A17C /* Navigation */,
 				84E188242641ACA2007A1A17 /* CustomTextField.xib */,
 				84E1882026419C84007A1A17 /* CustomTextField.swift */,
 			);
@@ -492,6 +507,8 @@
 				FA875FA5260B8088006DCBA9 /* DateExtension.swift */,
 				83775E932643D495000B402E /* FontExtension.swift */,
 				83EEB9E7264E601D0010A17C /* UIImageExtension.swift */,
+				83EEB9EB264E8CA20010A17C /* UIBezierPathExtension.swift */,
+				83EEB9ED264E8CBE0010A17C /* UINavigationBarExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -954,6 +971,7 @@
 				84E1882126419C84007A1A17 /* CustomTextField.swift in Sources */,
 				FAFD58A525208D9C006E4F94 /* AppDelegate.swift in Sources */,
 				FAFDD71D254E4E5C000C39FF /* BaseCollectionViewCell.swift in Sources */,
+				83EEB9F1264E8D400010A17C /* CustomNavigationController.swift in Sources */,
 				FAFD58A725208D9C006E4F94 /* SceneDelegate.swift in Sources */,
 				FA576D48253F56A10069BA96 /* NotificationViewModel.swift in Sources */,
 				FA684A24260903670044B082 /* StringExtension.swift in Sources */,
@@ -995,6 +1013,7 @@
 				83AF06EA2645A21C00A16E8B /* UploadTweetViewController.swift in Sources */,
 				FA875FAB260B8122006DCBA9 /* BindingView.swift in Sources */,
 				FAA5DD662631FCAB00C919A0 /* DeleteParam.swift in Sources */,
+				83EEB9EE264E8CBE0010A17C /* UINavigationBarExtension.swift in Sources */,
 				FA2C25DC2532F6900042EC43 /* BindingButton.swift in Sources */,
 				FA408112253A04A8003DF3D7 /* ProfileFilterCell.swift in Sources */,
 				FAC53EA42610417400E32E21 /* FeedsViewModel.swift in Sources */,
@@ -1009,6 +1028,7 @@
 				FAF417F92528C96E00FDDC97 /* BaseViewController.swift in Sources */,
 				FAF38668253B61BB00E76AF1 /* UploadTweetViewModel.swift in Sources */,
 				FA408117253A0F09003DF3D7 /* ProfileHeaderViewModel.swift in Sources */,
+				83EEB9EC264E8CA20010A17C /* UIBezierPathExtension.swift in Sources */,
 				FA88D41E261B860300A2FD6F /* AttributedString.swift in Sources */,
 				83EEB9E8264E601D0010A17C /* UIImageExtension.swift in Sources */,
 				FA2C25C82532CC1A0042EC43 /* LoginService.swift in Sources */,
@@ -1114,7 +1134,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1169,7 +1189,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
