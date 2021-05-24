@@ -42,21 +42,30 @@ class NotificationsViewController: UITableViewController {
             self.notifications = $0.sorted {
                 $0.timestamp > $1.timestamp
             }
+            
             self.checkIfUserIsFollowed(notifications: $0)
         })
     }
     
     private func checkIfUserIsFollowed(notifications: [NotificationModel]) {
-        
         guard !notifications.isEmpty else { return }
-        
         notifications.forEach { notification in
             guard case .follow = notification.type else { return }
-            
             let user = notification.user
             UserService.shared.checkFollowUser(uid: user.uid) { isFollowed in
-                if let index = self.notifications.firstIndex(where: { $0.user.uid == notification.user.uid }) {
-                    self.notifications[index].user.isFollowed = true
+//                if let index = self.notifications.firstIndex(where: { $0.user.uid == notification.user.uid }) {
+//                    self.notifications[index].user.isFollowed = true
+//                    DispatchQueue.main.async {
+//                        self.tableView.reloadData()
+//                    }
+//                }
+                for item in self.notifications {
+                    if item.user.uid == notification.user.uid {
+                        item.user.isFollowed = true
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                 }
             }
         }
@@ -85,7 +94,7 @@ class NotificationsViewController: UITableViewController {
             var bounds = navigationBar.bounds
             bounds.size.height += UIApplication.shared.statusBarFrame.size.height
             gradient.frame = bounds
-            gradient.colors = [UIColor.primary.cgColor, UIColor.secondary.cgColor]
+            gradient.colors = [UIColor.navigationBarColor.cgColor,UIColor.navigationBarColor.cgColor]
             gradient.startPoint = CGPoint(x: 0, y: 0)
             gradient.endPoint = CGPoint(x: 1, y: 0)
 
@@ -127,6 +136,7 @@ extension NotificationsViewController {
             return NotificationTBVCell()
         }
         cell.notification = self.notifications[indexPath.row]
+    
         cell.delegate = self
         return cell
     }
@@ -149,13 +159,17 @@ extension NotificationsViewController: NotificationCellDelegate {
     func didTapFollow(_ cell: NotificationTBVCell) {
         guard let user = cell.notification?.user else { return }
         
+        
         if user.isFollowed {
             UserService.shared.unfollowUser(uid: user.uid) { err, ref in
                 cell.notification?.user.isFollowed = false
+//                cell.actionButton.setTitle(viewModel.followButtonText, for: .normal)
+                cell.actionButton.setTitle("Follow", for: .normal)
             }
         } else {
             UserService.shared.followUser(uid: user.uid) { err, ref in
                 cell.notification?.user.isFollowed = true
+                cell.actionButton.setTitle("Following", for: .normal)
             }
         }
     }

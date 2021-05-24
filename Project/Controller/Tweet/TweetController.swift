@@ -169,7 +169,7 @@ extension TweetController: TweetHeaderDelegate {
         } else {
             UserService.shared.checkFollowUser(uid: self.tweet.user.uid) { isFollowed in
                 let tweetUser = self.tweet.user
-                guard let user = tweetUser else {return}
+                guard var user = tweetUser else {return}
                 user.isFollowed = isFollowed
                 self.actionSheetLaucher = ActionSheetLaucher(user)
                 self.actionSheetLaucher.delegate = self

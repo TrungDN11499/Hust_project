@@ -61,6 +61,11 @@ class ProfileController: UICollectionViewController {
         self.fetchUserStats()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
     // MARK: - Selectors
     
     // MARK: - API

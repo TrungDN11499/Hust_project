@@ -66,11 +66,14 @@ class NotificationTBVCell: UITableViewCell {
     private func configure() {
         guard let notification = self.notification else { return }
         let viewModel = NotificationViewModel(notification)
-        
         self.userIamgeView.sd_setImage(with: viewModel.profileImageUrl, completed: nil)
         notifyLabel.attributedText = viewModel.notificationText
-        
         self.actionButton.isHidden = viewModel.shouldHideFollowButton
         self.actionButton.setTitle(viewModel.followButtonText, for: .normal)
+//        if notification.user.isFollowed {
+//            self.actionButton.setTitle("Following", for: .normal)
+//        } else {
+//            self.actionButton.setTitle("Follow", for: .normal)
+//        }
     }
 }

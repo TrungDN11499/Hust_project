@@ -62,7 +62,11 @@ struct NotificationViewModel {
     }
     
     var followButtonText: String {
-        return self.user.isFollowed ? "Following" : "Follow"
+        if self.user.isFollowed {
+            return "Following"
+        } else {
+            return "Follow"
+        }
     }
     
     init (_ notification: NotificationModel) {
