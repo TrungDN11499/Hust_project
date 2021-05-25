@@ -57,9 +57,13 @@ class FeedsViewController: BaseViewController, ControllerType {
         self.navigationController?.navigationBar.barStyle = .default
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.navigationBar.isHidden = false
     }
     
     // MARK: - Selectors
