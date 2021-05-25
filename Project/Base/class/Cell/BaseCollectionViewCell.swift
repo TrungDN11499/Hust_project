@@ -37,13 +37,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
         setUpViews()
     }
     
-    
     // MARK: - Helpers.
-    
-    private static func nibName() -> String {
-        return String(describing: self.self)
-    }
-    
     static func registerCellByNib(_ collectionView: UICollectionView) {
         collectionView.register(UINib(nibName: self.nibName(), bundle: nil), forCellWithReuseIdentifier: self.nibName())
     }

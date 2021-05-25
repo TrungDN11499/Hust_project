@@ -36,6 +36,7 @@ class MainTabBarController: UITabBarController {
         button.setImage(UIImage(named: "new_tweet"), for: .normal)
         button.tintColor = .white
         button.backgroundColor = .twitterBlue
+        button.isHidden = true
         button.addTarget(self, action: #selector(handleTapActionButton(_:)), for: .touchUpInside)
         return button
     }()

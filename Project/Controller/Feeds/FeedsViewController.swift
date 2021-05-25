@@ -17,7 +17,7 @@ class FeedsViewController: BaseViewController, ControllerType {
     private lazy var feedCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collecionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collecionView.backgroundColor = .clear
+        collecionView.backgroundColor = .mainBackgroundColor
         collecionView.delegate = self
         collecionView.dataSource = self
         collecionView.emptyDataSetSource = self
@@ -28,7 +28,7 @@ class FeedsViewController: BaseViewController, ControllerType {
     
     var user: User? {
         didSet {
-            self.configureLeftBarButton()
+            self.feedCollectionView.reloadData()
         }
     }
     
@@ -47,17 +47,24 @@ class FeedsViewController: BaseViewController, ControllerType {
     override func configureUI() {
         // set up navigation bar
         self.configureViewController()
-        self.configureLeftBarButton()
         self.addUIConstraints()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.navigationBar.barStyle = .default
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
     
     // MARK: - Selectors
     @objc private func hanldeRefresh(_ sender: UIRefreshControl) {
@@ -75,7 +82,7 @@ class FeedsViewController: BaseViewController, ControllerType {
     // MARK: - Helpers
     private func configureViewController() {
         
-        self.view.backgroundColor = .mainBackgroundColor
+        self.view.backgroundColor = .navigationBarColor
         
         guard let logoImage = UIImage(named: "ic_appic") else {
             return
@@ -87,24 +94,7 @@ class FeedsViewController: BaseViewController, ControllerType {
         self.navigationItem.titleView = imageView
         
         TweetCollectionViewCell.registerCellByNib(self.feedCollectionView)
-    }
-    
-    private func configureLeftBarButton() {
-        guard let user = self.user else { return }
-        
-        let profileImageView = UIImageView()
-        profileImageView.setDimensions(width: 32, height: 32)
-        profileImageView.layer.cornerRadius = 32 / 2
-        profileImageView.layer.masksToBounds = true
-        
-        profileImageView.isUserInteractionEnabled = true
-        profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleGoToProfile(_:))))
-        
-        guard let imageUrl = URL(string: user.profileImageUrl) else { return }
-        
-        profileImageView.sd_setImage(with: imageUrl)
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
+        self.feedCollectionView.register(UINib(nibName: "FeedsHeaderCollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
     }
     
     private func addUIConstraints() {
@@ -149,6 +139,19 @@ extension FeedsViewController: UICollectionViewDelegate {
 extension FeedsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.viewModel.output.fetchTweetsResult.value?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as? FeedsHeaderCollectionReusableView else {
+            return FeedsHeaderCollectionReusableView()
+        }
+        header.user = self.user
+        header.delegate = self
+        return header
+    }
+   
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return .init(width: self.view.frame.width, height: 100)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -213,6 +216,10 @@ extension FeedsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10.0, left: 0, bottom: 0, right: 0)
+    }
 }
 
 // MARK: - TweetCollectionViewCellDelegate
@@ -268,6 +275,26 @@ extension FeedsViewController: UploadTweetViewControllerDelegate {
     func handleUpdateTweet(tweet: Tweet) {
         let feedViewModel = FeedViewModel(tweet)
         self.viewModel.output.fetchTweetsResult.value?.insert(feedViewModel, at: 0)
+    }
+}
+
+extension FeedsViewController: FeedsHeaderCollectionReusableViewDelegate {
+    func feedHeaderCollectionView(showProfileOf user: User, view: FeedsHeaderCollectionReusableView) {
+        let profileController = ProfileController(user)
+        self.navigationController?.pushViewController(profileController, animated: true)
+    }
+    
+    func feedHeaderCollectionView(user: User, tweet view: FeedsHeaderCollectionReusableView) {
+        let uploadTweetViewModel = UploadTweetViewModel(.tweet, user: user)
+        let controller = UploadTweetViewController.create(with: uploadTweetViewModel) as! UploadTweetViewController
+        controller.delegate = self
+        let nav = CustomNavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: true, completion: nil)
+    }
+    
+    func feedHeaderCollectionView(message view: FeedsHeaderCollectionReusableView) {
+        // TODO: Message
     }
 }
 
