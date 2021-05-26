@@ -102,6 +102,7 @@ class MainTabBarController: UITabBarController {
         self.view.backgroundColor = .mainBackgroundColor
         
         let exploreViewController = ExploreViewController()
+        let groupViewController = GroupsViewController()
         let notificationsViewController = NotificationsViewController()
         let settingViewController = SettingViewController()
         let bookingViewController = BookingViewController(nibName: "BookingViewController", bundle: nil)
@@ -109,6 +110,7 @@ class MainTabBarController: UITabBarController {
         let tabBarData: [(UIViewController, UIImage)] = [
             (feedsViewController, UIImage(named: "ic_home_untouch")!),
             (exploreViewController, UIImage(named: "ic_search_untouch")!),
+            (groupViewController, UIImage(named: "ic_default_user")!),
             (notificationsViewController, UIImage(named: "ic_bell_untouch")!),
             (bookingViewController, UIImage(named: "ic_booking_untouch")!),
             (settingViewController, UIImage(named: "ic_control_untouch")!)

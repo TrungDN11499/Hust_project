@@ -50,7 +50,6 @@ class FeedsViewController: BaseViewController, ControllerType {
         self.addUIConstraints()
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
@@ -81,18 +80,7 @@ class FeedsViewController: BaseViewController, ControllerType {
         
     // MARK: - Helpers
     private func configureViewController() {
-        
         self.view.backgroundColor = .navigationBarColor
-        
-        guard let logoImage = UIImage(named: "ic_appic") else {
-            return
-        }
-        
-        let imageView = UIImageView(image: logoImage)
-        imageView.contentMode = .scaleAspectFit
-        imageView.setDimensions(width: 44, height: 44)
-        self.navigationItem.titleView = imageView
-        
         TweetCollectionViewCell.registerCellByNib(self.feedCollectionView)
         self.feedCollectionView.register(UINib(nibName: "FeedsHeaderCollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
     }
@@ -101,6 +89,7 @@ class FeedsViewController: BaseViewController, ControllerType {
         self.view.addSubview(self.feedCollectionView)
         self.feedCollectionView.fillSuperView()
     }
+    
 }
 
 // MARK: - ControllerType
