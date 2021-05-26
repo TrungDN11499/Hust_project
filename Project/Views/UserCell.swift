@@ -23,20 +23,22 @@ class UserCell: UITableViewCell {
         imageView.setDimensions(width: 40, height: 40)
         imageView.layer.cornerRadius = 40 / 2
         imageView.backgroundColor = .twitterBlue
+        imageView.borderWidth = 1
+        imageView.borderColor = UIColor(rgb: 0xC4C4C4)
         return imageView
     }()
     
-    private let userNameLabel: UILabel = {
+    private let fullNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.init(name: "Roboto-Medium", size: 14)
         label.textColor = .black
         label.text = "Username"
         return label
     }()
     
-    private let fullNameLabel: UILabel = {
+    private let userNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.init(name: "Roboto-Regular", size: 12)
         label.textColor = .lightGray
         label.text = "Full Name"
         label.numberOfLines = 0
@@ -57,14 +59,14 @@ class UserCell: UITableViewCell {
                                       leftAnchor: self.contentView.leftAnchor,
                                       paddingLeft: 12)
         
-        let stackView = UIStackView(arrangedSubviews: [self.userNameLabel, self.fullNameLabel])
+        let stackView = UIStackView(arrangedSubviews: [self.fullNameLabel, self.userNameLabel])
         stackView.axis = .vertical
-        stackView.spacing = 2
+        stackView.spacing = 5
         
         self.contentView.addSubview(stackView)
         stackView.centerY(inView: self.profileImageView,
                           leftAnchor: self.profileImageView.rightAnchor,
-                          paddingLeft: 12)
+                          paddingLeft: 8)
     }
     
     required init?(coder: NSCoder) {
@@ -80,7 +82,7 @@ class UserCell: UITableViewCell {
         guard let imageUrl = URL(string: user.profileImageUrl) else { return }
         
         self.profileImageView.sd_setImage(with: imageUrl, completed: nil)
-        userNameLabel.text = user.username
         fullNameLabel.text = user.fullName
+        userNameLabel.text = "@\(user.username)"
     }
 }

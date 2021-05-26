@@ -106,10 +106,10 @@ class MainTabBarController: UITabBarController {
         let conversationsViewController = ConversationsViewController()
         
         let tabBarData: [(UIViewController, UIImage)] = [
-            (feedsViewController, UIImage(named: "home_unselected")!),
-            (exploreViewController, UIImage(named: "search_unselected")!),
-            (notificationsViewController, UIImage(named: "ic_heart")!),
-            (conversationsViewController, UIImage(named: "ic_mail_outline_white_2x-1")!)
+            (feedsViewController, UIImage(named: "ic_home_untouch")!),
+            (exploreViewController, UIImage(named: "ic_booking_untouch")!),
+            (notificationsViewController, UIImage(named: "ic_bell_untouch")!),
+            (conversationsViewController, UIImage(named: "ic_control_untouch")!)
         ]
         
         self.viewControllers = tabBarData.map({ (vc, image) -> CustomNavigationController in
