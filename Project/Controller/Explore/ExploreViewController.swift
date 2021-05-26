@@ -61,7 +61,7 @@ class ExploreViewController: UITableViewController {
         
         self.tableView.register(UserCell.self, forCellReuseIdentifier: cellIden)
         self.tableView.rowHeight = 60
-        tableView.separatorStyle = .none
+//        tableView.separatorStyle = .none
         self.tableView.estimatedRowHeight = UITableView.automaticDimension
         
         self.configureSearchController()
@@ -71,7 +71,7 @@ class ExploreViewController: UITableViewController {
         self.searchController.searchResultsUpdater = self
         self.searchController.obscuresBackgroundDuringPresentation = false
         self.searchController.hidesNavigationBarDuringPresentation = false
-        self.searchController.searchBar.placeholder = "Search for user"
+        self.searchController.searchBar.placeholder = "Who are you looking for"
         self.navigationItem.searchController = self.searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.searchController.searchBar.barTintColor = UIColor.clear
@@ -83,7 +83,7 @@ class ExploreViewController: UITableViewController {
             var bounds = navigationBar.bounds
             bounds.size.height += UIApplication.shared.statusBarFrame.size.height
             gradient.frame = bounds
-            gradient.colors = [UIColor.primary.cgColor, UIColor.secondary.cgColor]
+            gradient.colors = [UIColor.navigationBarColor.cgColor,UIColor.navigationBarColor.cgColor]
             gradient.startPoint = CGPoint(x: 0, y: 0)
             gradient.endPoint = CGPoint(x: 1, y: 0)
 
@@ -134,6 +134,8 @@ extension ExploreViewController {
 extension ExploreViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text?.lowercased() else { return }
-        self.filterUsers = self.users.filter { $0.username.contains(searchText) }
+        let filteredResults = self.users.filter { $0.fullName.replacingOccurrences(of: " ", with: "").lowercased().contains(searchText.replacingOccurrences(of: " ", with: "").lowercased())
+        }
+        self.filterUsers = filteredResults
     }
 }

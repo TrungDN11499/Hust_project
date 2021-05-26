@@ -7,10 +7,10 @@
 
 import UIKit
 
-protocol NotificationCellDelegate: AnyObject {
-    func didTapProfileImage(_ cell: NotificationCell)
-    func didTapFollow(_ cell: NotificationCell)
-}
+//protocol NotificationCellDelegate: AnyObject {
+//    func didTapProfileImage(_ cell: NotificationCell)
+//    func didTapFollow(_ cell: NotificationCell)
+//}
 
 class NotificationCell: UITableViewCell {
     
@@ -28,7 +28,7 @@ class NotificationCell: UITableViewCell {
         imageView.setDimensions(width: 40, height: 40)
         imageView.layer.cornerRadius = 40 / 2
         imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleShowProfile(_:))))
+//        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleShowProfile(_:))))
         return imageView
     }()
     
@@ -47,7 +47,7 @@ class NotificationCell: UITableViewCell {
         button.backgroundColor = .white
         button.layer.borderColor = UIColor.twitterBlue.cgColor
         button.layer.borderWidth = 2
-        button.addTarget(self, action: #selector(handleFollowButtonTapped(_:)), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(handleFollowButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -81,14 +81,14 @@ class NotificationCell: UITableViewCell {
     
     // MARK: - Selectors
     
-    @objc private func handleShowProfile(_ sender: UIImageView) {
-        self.delegate?.didTapProfileImage(self)
-    }
-    
-    @objc private func handleFollowButtonTapped(_ sender: UIButton) {
-        self.delegate?.didTapFollow(self)
-    }
-    
+//    @objc private func handleShowProfile(_ sender: UIImageView) {
+//        self.delegate?.didTapProfileImage(self)
+//    }
+//
+//    @objc private func handleFollowButtonTapped(_ sender: UIButton) {
+//        self.delegate?.didTapFollow(self)
+//    }
+//
     // MARK: - Helpers
     
     private func configure() {

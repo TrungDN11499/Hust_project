@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.goPrevious()
         IQKeyboardManager.shared.disabledToolbarClasses = [UploadTweetViewController.self]
         return true
+        
     }
 
     // MARK: UISceneSession Lifecycle

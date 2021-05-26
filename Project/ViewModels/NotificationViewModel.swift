@@ -26,9 +26,9 @@ struct NotificationViewModel {
         case .follow:
             return " stated following you"
         case .like:
-            return " liked your tweet"
+            return " started loving your post, let’s check it !"
         case .reply:
-            return " reply to your tweet"
+            return "  just comment ot your post, wanna check it ? "
         case .retweet:
             return " retweeted your tweet"
         case .mention:
@@ -37,10 +37,12 @@ struct NotificationViewModel {
     }
     
     var notificationText: NSAttributedString? {
-        let attributeString = NSMutableAttributedString(string: user.username, attributes: [.font: UIFont.boldSystemFont(ofSize: 12),
+        let attributeString = NSMutableAttributedString(string: user.fullName, attributes: [.font: UIFont.init(name: "Roboto-Medium", size: 14) as Any,
                                                                                             .foregroundColor: UIColor.black])
-        
-        attributeString.append(NSAttributedString(string: self.notificationString, attributes: [.font: UIFont.systemFont(ofSize: 12),
+        attributeString.append(NSAttributedString(string: "\n@\(user.username)", attributes: [.font: UIFont.init(name: "Roboto-Regular", size: 12) as Any,
+                                                                                              .foregroundColor: UIColor(rgb: 0xC4C4C4)]
+        ))
+        attributeString.append(NSAttributedString(string: self.notificationString, attributes: [.font: UIFont.init(name: "Roboto-Regular", size: 12) as Any,
                                                                                                 .foregroundColor: UIColor.black]
         ))
         
@@ -60,7 +62,11 @@ struct NotificationViewModel {
     }
     
     var followButtonText: String {
-        return self.user.isFollowed ? "Following" : "Follow"
+        if self.user.isFollowed {
+            return "Following"
+        } else {
+            return "Follow"
+        }
     }
     
     init (_ notification: NotificationModel) {
