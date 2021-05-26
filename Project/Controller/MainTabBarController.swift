@@ -104,11 +104,13 @@ class MainTabBarController: UITabBarController {
         let exploreViewController = ExploreViewController()
         let notificationsViewController = NotificationsViewController()
         let conversationsViewController = ConversationsViewController()
+        let bookingViewController = BookingViewController(nibName: "BookingViewController", bundle: nil)
         
         let tabBarData: [(UIViewController, UIImage)] = [
             (feedsViewController, UIImage(named: "ic_home_untouch")!),
-            (exploreViewController, UIImage(named: "ic_booking_untouch")!),
+            (exploreViewController, UIImage(named: "ic_search_untouch")!),
             (notificationsViewController, UIImage(named: "ic_bell_untouch")!),
+            (bookingViewController, UIImage(named: "ic_booking_untouch")!),
             (conversationsViewController, UIImage(named: "ic_control_untouch")!)
         ]
         

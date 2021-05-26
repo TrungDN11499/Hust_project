@@ -20,6 +20,8 @@
 		83EEB9EC264E8CA20010A17C /* UIBezierPathExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EEB9EB264E8CA20010A17C /* UIBezierPathExtension.swift */; };
 		83EEB9EE264E8CBE0010A17C /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EEB9ED264E8CBE0010A17C /* UINavigationBarExtension.swift */; };
 		83EEB9F1264E8D400010A17C /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EEB9F0264E8D400010A17C /* CustomNavigationController.swift */; };
+		840421A7265E9BEE002E8ECE /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840421A5265E9BED002E8ECE /* BookingViewController.swift */; };
+		840421A8265E9BEE002E8ECE /* BookingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840421A6265E9BEE002E8ECE /* BookingViewController.xib */; };
 		8409D6002642E8C20036E3A1 /* Griffy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */; };
 		841CA67126427D4A00B6A83B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CA66F26427D4A00B6A83B /* RegisterViewController.swift */; };
 		841CA67226427D4A00B6A83B /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CA67026427D4A00B6A83B /* RegisterViewController.xib */; };
@@ -149,6 +151,8 @@
 		83EEB9EB264E8CA20010A17C /* UIBezierPathExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPathExtension.swift; sourceTree = "<group>"; };
 		83EEB9ED264E8CBE0010A17C /* UINavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtension.swift; sourceTree = "<group>"; };
 		83EEB9F0264E8D400010A17C /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
+		840421A5265E9BED002E8ECE /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewController.swift; sourceTree = "<group>"; };
+		840421A6265E9BEE002E8ECE /* BookingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookingViewController.xib; sourceTree = "<group>"; };
 		8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Griffy-Regular.ttf"; sourceTree = "<group>"; };
 		841CA66F26427D4A00B6A83B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		841CA67026427D4A00B6A83B /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
@@ -627,6 +631,8 @@
 			isa = PBXGroup;
 			children = (
 				FAFD58E225208F9C006E4F94 /* MainTabBarController.swift */,
+				840421A5265E9BED002E8ECE /* BookingViewController.swift */,
+				840421A6265E9BEE002E8ECE /* BookingViewController.xib */,
 				FAB9759C2602F86D006A66BB /* Splash */,
 				FA9B7CF32535E7DE006DFFA2 /* UploadTweet */,
 				FA66C5DA2523822C00C31151 /* Authentication */,
@@ -855,6 +861,7 @@
 				FAFD58B125208D9C006E4F94 /* LaunchScreen.storyboard in Resources */,
 				83AF06EB2645A21C00A16E8B /* UploadTweetViewController.xib in Resources */,
 				FAFD58AE25208D9C006E4F94 /* Assets.xcassets in Resources */,
+				840421A8265E9BEE002E8ECE /* BookingViewController.xib in Resources */,
 				845F6CAA26516FEF0015BD58 /* NotificationTBVCell.xib in Resources */,
 				FA66C6072523AE2100C31151 /* GoogleService-Info.plist in Resources */,
 			);
@@ -1026,6 +1033,7 @@
 				FA70492926288C180093D11A /* LikeTweetParam.swift in Sources */,
 				FAF38663253B382100E76AF1 /* TweetHeader.swift in Sources */,
 				FA26204E25376B2C000E1755 /* TweetViewModel.swift in Sources */,
+				840421A7265E9BEE002E8ECE /* BookingViewController.swift in Sources */,
 				FA66C5DC2523827400C31151 /* LoginController.swift in Sources */,
 				FA2C25BC2532C89D0042EC43 /* LoginViewModel.swift in Sources */,
 				83AF06E726457DF000A16E8B /* UploadFeedParam.swift in Sources */,
