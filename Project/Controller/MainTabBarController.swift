@@ -103,7 +103,7 @@ class MainTabBarController: UITabBarController {
         
         let exploreViewController = ExploreViewController()
         let notificationsViewController = NotificationsViewController()
-        let conversationsViewController = ConversationsViewController()
+        let settingViewController = SettingViewController()
         let bookingViewController = BookingViewController(nibName: "BookingViewController", bundle: nil)
         
         let tabBarData: [(UIViewController, UIImage)] = [
@@ -111,7 +111,7 @@ class MainTabBarController: UITabBarController {
             (exploreViewController, UIImage(named: "ic_search_untouch")!),
             (notificationsViewController, UIImage(named: "ic_bell_untouch")!),
             (bookingViewController, UIImage(named: "ic_booking_untouch")!),
-            (conversationsViewController, UIImage(named: "ic_control_untouch")!)
+            (settingViewController, UIImage(named: "ic_control_untouch")!)
         ]
         
         self.viewControllers = tabBarData.map({ (vc, image) -> CustomNavigationController in

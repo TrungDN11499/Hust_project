@@ -79,7 +79,7 @@ class EditProfileController: UITableViewController {
         if !imageChanged && userInfoChange {
             UserService.shared.saveUserData(user: self.user) { [weak self] err, ref  in
                 guard let `self` = self else { return }
-                self.delegate?.controller(self, wantToUpdate: self.user)
+//                self.delegate?.controller(self, wantToUpdate: self.user)
             }
         }
         
@@ -98,7 +98,7 @@ class EditProfileController: UITableViewController {
         UserService.shared.updateProfileImage(image: image) { [weak self] urlString in
             guard let `self` = self else { return }
             self.user.profileImageUrl = urlString
-            self.delegate?.controller(self, wantToUpdate: self.user)
+//            self.delegate?.controller(self, wantToUpdate: self.user)
         }
     }
     
