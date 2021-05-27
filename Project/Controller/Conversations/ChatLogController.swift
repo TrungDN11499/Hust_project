@@ -65,8 +65,26 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         
         collectionView?.keyboardDismissMode = .interactive
         
-        setupKeyboardObservers()
         configViewController()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChageFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     func configViewController() {
@@ -81,10 +99,101 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     }
     
     lazy var inputContainerView: ChatInputContainerView = {
-        let chatInputContainerView = ChatInputContainerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 90))
+        let chatInputContainerView = ChatInputContainerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.haveStatusBar ? 34 + 50 : 50))
         chatInputContainerView.chatLogController = self
+        chatInputContainerView.autoresizingMask = [.flexibleHeight]
         return chatInputContainerView
     }()
+    
+    var haveStatusBar: Bool {
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 1136:
+                print("iPhone 5 or 5S or 5C")
+                return false
+            case 1334:
+                print("iPhone 6/6S/7/8")
+                return false
+            case 1920, 2208:
+                print("iPhone 6+/6S+/7+/8+")
+                return false
+            case 2436:
+                print("iPhone X/XS/11 Pro")
+                return true
+            case 2688:
+                print("iPhone XS Max/11 Pro Max")
+                return true
+            case 1792:
+                print("iPhone XR/ 11 ")
+                return true
+            case 2532:
+                return true
+            case 2778:
+                return true
+            default:
+                return false
+            }
+        }
+        return false
+    }
+    
+    func keyboardWillShow(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
+        updateInputViewFrame()
+    }
+
+    func keyboardHide(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
+        updateInputViewFrame()
+    }
+
+    func updateInputViewFrame() {
+        // calculate the accessory view height based on safe insets
+        let newHeight = inputContainerView.safeAreaInsets.bottom + 70
+        if newHeight != inputContainerView.frame.size.height {
+            inputContainerView.frame = CGRect(x: 0.0, y: 0.0, width: self.view.bounds.size.width, height: newHeight)
+            UIView.performWithoutAnimation {
+                self.inputContainerView.inputTextField.reloadInputViews()
+                self.reloadInputViews()
+            }
+        }
+    }
+    
+    
+    @objc fileprivate func keyboardWillDisappear(_ notification: Notification) {
+        let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+        let keyboardRectangle = keyboardFrame?.cgRectValue
+        let keyboardHeight = keyboardRectangle?.height
+        let durationNumber = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber
+        let duration = durationNumber?.doubleValue
+        let keyboardCurveNumber = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
+        let keyboardCurve = keyboardCurveNumber?.uintValue
+
+        self.keyboardHide(keyboardHeight: keyboardHeight, duration: duration, keyboardCurve: keyboardCurve)
+    }
+
+    @objc fileprivate func keyboardWillAppear(_ notification: Notification) {
+        let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+        let keyboardRectangle = keyboardFrame?.cgRectValue
+        let keyboardHeight = keyboardRectangle?.height
+        let durationNumber = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber
+        let duration = durationNumber?.doubleValue
+        let keyboardCurveNumber = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
+        let keyboardCurve = keyboardCurveNumber?.uintValue
+
+        self.keyboardWillShow(keyboardHeight: keyboardHeight, duration: duration, keyboardCurve: keyboardCurve)
+    }
+
+
+    @objc fileprivate func keyboardDidShow(_ notification: Notification) {
+        let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+        let keyboardRectangle = keyboardFrame?.cgRectValue
+        let keyboardHeight = keyboardRectangle?.height
+        let durationNumber = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber
+        let duration = durationNumber?.doubleValue
+        let keyboardCurveNumber = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
+        let keyboardCurve = keyboardCurveNumber?.uintValue
+
+    }
+
 
     @objc func handleOptionsSend() {
         let actionSheet = UIAlertController(title: "Attach Media",
@@ -288,27 +397,33 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     }
     
     override var inputAccessoryView: UIView? {
-        get {
+    
             return inputContainerView
-        }
+
     }
     
     override var canBecomeFirstResponder : Bool {
         return true
     }
     
-    func setupKeyboardObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
-        
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(handleKeyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
+//    func setupKeyboardObservers() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
 //
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(handleKeyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
-    }
+////        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//
+////        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
+//
+////        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        //
+////        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(handleKeyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
+//    }
     
     @objc func handleKeyboardDidShow() {
         if messages.count > 0 {
-//            let indexPath = IndexPath(item: messages.count - 1, section: 0)
-//            collectionView?.scrollToItem(at: indexPath, at: .top, animated: true)
+            let indexPath = NSIndexPath(item: messages.count - 1, section: 0)
+            self.collectionView.scrollToItem(at: indexPath as IndexPath, at: .top, animated: true)
+//            let notify = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+//            self.keyBoardHieght = notify?.cgRectValue.height
         }
     }
     
@@ -318,15 +433,19 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         NotificationCenter.default.removeObserver(self)
     }
     
-    func handleKeyboardWillShow(_ notification: Notification) {
-        let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
-        let keyboardDuration = (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
+    @objc func handleKeyboardWillShow(_ notification: Notification) {
+//        let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+//        let keyboardDuration = (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
         
+        self.inputContainerView.frame.size.height = 50
+        UIView.performWithoutAnimation {
+            self.inputContainerView.inputTextField.reloadInputViews()
+        }
         
-        containerViewBottomAnchor?.constant = -keyboardFrame!.height
-        UIView.animate(withDuration: keyboardDuration!, animations: {
-            self.view.layoutIfNeeded()
-        })
+//        containerViewBottomAnchor?.constant = -keyboardFrame!.height
+//        UIView.animate(withDuration: keyboardDuration!, animations: {
+//            self.view.layoutIfNeeded()
+//        })
     }
     
     func handleKeyboardWillHide(_ notification: Notification) {
@@ -337,6 +456,11 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
             self.view.layoutIfNeeded()
         })
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        self.collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
@@ -403,9 +527,6 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         }
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        collectionView?.collectionViewLayout.invalidateLayout()
-    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
