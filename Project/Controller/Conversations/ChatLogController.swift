@@ -16,7 +16,6 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     var user: User? {
         didSet {
             navigationItem.title = user?.fullName
-            
             observeMessages()
         }
     }
@@ -64,7 +63,8 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellId)
         
         collectionView?.keyboardDismissMode = .interactive
-        
+        navigationController?.navigationBar.barTintColor = UIColor(hex: 0xB6DEEE)
+
         configViewController()
     }
     
@@ -88,14 +88,12 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     }
     
     func configViewController() {
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
-                                                            style: .done,
-                                                            target: self,
-                                                            action: #selector(dismissSelf))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_back"), style: .done, target: self, action: #selector(dismissSelf))
     }
     
     @objc private func dismissSelf() {
         dismiss(animated: true, completion: nil)
+        inputContainerView.isHidden = true
     }
     
     lazy var inputContainerView: ChatInputContainerView = {

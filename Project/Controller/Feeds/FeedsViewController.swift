@@ -303,6 +303,11 @@ extension FeedsViewController: FeedsHeaderCollectionReusableViewDelegate {
     
     func feedHeaderCollectionView(message view: FeedsHeaderCollectionReusableView) {
         // TODO: Message
+        let conversationViewController = ConversationsViewController()
+        let nav = UINavigationController(rootViewController: conversationViewController)
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: true, completion: nil)
+        
     }
 }
 

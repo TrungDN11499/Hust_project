@@ -22,7 +22,7 @@ class ChatInputContainerView: UIView, UITextFieldDelegate {
         textField.placeholder = "Enter message..."
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.delegate = self
-        textField.backgroundColor = .systemGray6
+        textField.backgroundColor = UIColor(hex: 0xEFEEEE)
         textField.clipsToBounds = true
         textField.layer.cornerRadius = 15
         return textField
@@ -38,13 +38,14 @@ class ChatInputContainerView: UIView, UITextFieldDelegate {
     lazy var containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = UIColor(hex: 0xEFEEEE)
         view.clipsToBounds = true
         view.layer.cornerRadius = 15
         return view
     }()
     
     let sendButton = UIButton(type: .system)
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,7 +59,10 @@ class ChatInputContainerView: UIView, UITextFieldDelegate {
         optionsButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
         optionsButton.heightAnchor.constraint(equalTo: heightAnchor, constant: -20).isActive = true
 
-        sendButton.setTitle("Send", for: .normal)
+
+//        sendButton.setTitle("Send", for: .normal)
+        sendButton.setImage(UIImage(systemName: "paperplane.fill"), for: .normal)
+        sendButton.contentMode = .center
         sendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         sendButton.translatesAutoresizingMaskIntoConstraints = false
         

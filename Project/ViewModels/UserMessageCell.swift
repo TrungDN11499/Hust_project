@@ -41,7 +41,7 @@ class UserMessageCell: UITableViewCell {
 
                 if let dictionary = snapshot.value as? [String: AnyObject] {
                     self.textLabel?.text = dictionary["fullName"] as? String
-
+                    self.textLabel?.textColor = UIColor.darkText
                     if let profileImageUrl = dictionary["profileImageUrl"] as? String {
                         self.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
                     }
@@ -56,6 +56,7 @@ class UserMessageCell: UITableViewCell {
         textLabel?.frame = CGRect(x: 64, y: textLabel!.frame.origin.y - 2, width: textLabel!.frame.width, height: textLabel!.frame.height)
         
         detailTextLabel?.frame = CGRect(x: 64, y: detailTextLabel!.frame.origin.y + 2, width: detailTextLabel!.frame.width, height: detailTextLabel!.frame.height)
+        detailTextLabel?.textColor = UIColor.darkText
     }
     
     let profileImageView: UIImageView = {
@@ -73,7 +74,7 @@ class UserMessageCell: UITableViewCell {
         let label = UILabel()
 //        label.text = "HH:MM:SS"
         label.font = UIFont.systemFont(ofSize: 13)
-        label.textColor = UIColor.darkGray
+        label.textColor = UIColor.darkText
         label.translatesAutoresizingMaskIntoConstraints = false
         label.isUserInteractionEnabled = false
         return label
@@ -85,7 +86,7 @@ class UserMessageCell: UITableViewCell {
         addSubview(profileImageView)
         addSubview(timeLabel)
         
-        self.backgroundColor = .systemGray6
+        self.backgroundColor = .white
         //ios 9 constraint anchors
         //need x,y,width,height anchors
         profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
