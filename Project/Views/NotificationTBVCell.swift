@@ -70,10 +70,6 @@ class NotificationTBVCell: UITableViewCell {
         notifyLabel.attributedText = viewModel.notificationText
         self.actionButton.isHidden = viewModel.shouldHideFollowButton
         self.actionButton.setTitle(viewModel.followButtonText, for: .normal)
-//        if notification.user.isFollowed {
-//            self.actionButton.setTitle("Following", for: .normal)
-//        } else {
-//            self.actionButton.setTitle("Follow", for: .normal)
-//        }
+        self.actionButton.isHidden = true
     }
 }

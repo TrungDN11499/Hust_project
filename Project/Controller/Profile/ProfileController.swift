@@ -10,7 +10,7 @@ import FirebaseAuth
 
 private let collectionHeaderIden = "ProfileHeaderView"
 
-class ProfileController: UICollectionViewController {
+class ProfileController: UICollectionViewController, EditProfileControllerDelegate {
     // MARK: - Properties
     
     private var selectedFilter: ProfileFilterOptions = .tweets {
@@ -246,8 +246,9 @@ extension ProfileController: ProfileHeaderViewDelegate {
 }
 
 // MARK: - EditProfileControllerDelegate.
-extension ProfileController: EditProfileControllerDelegate {
+extension ProfileController {
     
+
     func handleLogout() {
         do {
             try Auth.auth().signOut()
@@ -255,6 +256,12 @@ extension ProfileController: EditProfileControllerDelegate {
         } catch {
             dLogWarning("sign out error")
         }
+    }
+    
+    func controller(_ controller: SettingViewController, wantToUpdate user: User) {
+        controller.dismiss(animated: true, completion: nil)
+        self.user = user
+        self.collectionView.reloadData()
     }
     
     func controller(_ controller: EditProfileController, wantToUpdate user: User) {
