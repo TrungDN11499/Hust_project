@@ -73,7 +73,7 @@ class ExploreViewController: UITableViewController {
         self.searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.searchBar.placeholder = "Who are you looking for"
         self.navigationItem.searchController = self.searchController
-        self.navigationItem.hidesSearchBarWhenScrolling = false
+        self.navigationItem.hidesSearchBarWhenScrolling = true
         self.searchController.searchBar.barTintColor = UIColor.clear
         self.searchController.searchBar.backgroundImage = UIImage()
         searchController.searchBar.backgroundColor = UIColor.clear 

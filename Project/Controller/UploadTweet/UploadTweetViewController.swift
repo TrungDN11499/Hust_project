@@ -93,7 +93,6 @@ class UploadTweetViewController: BaseViewController {
     
     // MARK: - Helpers
     /// for configuring  view options
-    
     override var inputAccessoryView: UIView? {
         return self.inputContainerView
     }
@@ -117,6 +116,11 @@ class UploadTweetViewController: BaseViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.resignFirstResponder()
     }
     
     // MARK: - Selectors

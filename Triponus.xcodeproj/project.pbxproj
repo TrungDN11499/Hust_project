@@ -11,6 +11,9 @@
 		26F122434903DBB4505C46AD /* Pods_TriponusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F671E29E78B6CB6EFD5179 /* Pods_TriponusTests.framework */; };
 		8301731E265C0AB20048136A /* FeedsHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8301731C265C0AB20048136A /* FeedsHeaderCollectionReusableView.swift */; };
 		8301731F265C0AB20048136A /* FeedsHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8301731D265C0AB20048136A /* FeedsHeaderCollectionReusableView.xib */; };
+		832D1C30265FFA2D004FD551 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D1C2F265FFA2D004FD551 /* UITextFieldExtension.swift */; };
+		832D1C3326600228004FD551 /* CreateGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D1C3226600228004FD551 /* CreateGroupViewModel.swift */; };
+		832D1C36266005DF004FD551 /* CreateGroupParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D1C35266005DF004FD551 /* CreateGroupParams.swift */; };
 		836C986F265E975D00D625E0 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836C986D265E975D00D625E0 /* CreateGroupViewController.swift */; };
 		836C9870265E975D00D625E0 /* CreateGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 836C986E265E975D00D625E0 /* CreateGroupViewController.xib */; };
 		836C9873265E977B00D625E0 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836C9871265E977B00D625E0 /* GroupsViewController.swift */; };
@@ -150,6 +153,9 @@
 		8208C5C7B3396ABE31694A43 /* Pods-Triponus-TriponusUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus-TriponusUITests.debug.xcconfig"; path = "Target Support Files/Pods-Triponus-TriponusUITests/Pods-Triponus-TriponusUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8301731C265C0AB20048136A /* FeedsHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		8301731D265C0AB20048136A /* FeedsHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedsHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
+		832D1C2F265FFA2D004FD551 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
+		832D1C3226600228004FD551 /* CreateGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewModel.swift; sourceTree = "<group>"; };
+		832D1C35266005DF004FD551 /* CreateGroupParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupParams.swift; sourceTree = "<group>"; };
 		836C986D265E975D00D625E0 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		836C986E265E975D00D625E0 /* CreateGroupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateGroupViewController.xib; sourceTree = "<group>"; };
 		836C9871265E977B00D625E0 /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
@@ -323,6 +329,22 @@
 			path = FeedsHeaderView;
 			sourceTree = "<group>";
 		};
+		832D1C3126600218004FD551 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				832D1C3226600228004FD551 /* CreateGroupViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		832D1C34266005CC004FD551 /* Param */ = {
+			isa = PBXGroup;
+			children = (
+				832D1C35266005DF004FD551 /* CreateGroupParams.swift */,
+			);
+			path = Param;
+			sourceTree = "<group>";
+		};
 		836C9869265E96FE00D625E0 /* Group */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,6 +358,8 @@
 		836C986A265E971500D625E0 /* CreateGroup */ = {
 			isa = PBXGroup;
 			children = (
+				832D1C34266005CC004FD551 /* Param */,
+				832D1C3126600218004FD551 /* ViewModel */,
 				836C986D265E975D00D625E0 /* CreateGroupViewController.swift */,
 				836C986E265E975D00D625E0 /* CreateGroupViewController.xib */,
 			);
@@ -576,6 +600,7 @@
 				83EEB9EB264E8CA20010A17C /* UIBezierPathExtension.swift */,
 				83EEB9ED264E8CBE0010A17C /* UINavigationBarExtension.swift */,
 				845F6CAF26517C080015BD58 /* UIColorExtension.swift */,
+				832D1C2F265FFA2D004FD551 /* UITextFieldExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1047,6 +1072,7 @@
 				FA8A03FF253C2E48006F3FAE /* ActionSheetCell.swift in Sources */,
 				845F6CA926516FEF0015BD58 /* NotificationTBVCell.swift in Sources */,
 				FA576D43253F4D160069BA96 /* NotificationCell.swift in Sources */,
+				832D1C30265FFA2D004FD551 /* UITextFieldExtension.swift in Sources */,
 				FA0DC9F7252658C400377539 /* UserService.swift in Sources */,
 				FA2C25E1253309450042EC43 /* RegisterViewModel.swift in Sources */,
 				FA80F1802545C4C10030A00D /* EditProfileHeader.swift in Sources */,
@@ -1066,6 +1092,7 @@
 				FA3CABB3260CE8DC009FC9B7 /* RegistrationService.swift in Sources */,
 				FA576D39253F3A770069BA96 /* NotificationModel.swift in Sources */,
 				FAFDD725254E5039000C39FF /* UIColorExention.swift in Sources */,
+				832D1C3326600228004FD551 /* CreateGroupViewModel.swift in Sources */,
 				FA875FA1260B7F98006DCBA9 /* DLog.swift in Sources */,
 				FA66C5F6252393B400C31151 /* Utilities.swift in Sources */,
 				FA9B7CFA2535FC85006DFFA2 /* CaptionTextView.swift in Sources */,
@@ -1093,6 +1120,7 @@
 				83AF06E726457DF000A16E8B /* UploadFeedParam.swift in Sources */,
 				FAC53E9F26103A7500E32E21 /* FeedsService.swift in Sources */,
 				FA2C25CF2532DEC30042EC43 /* Observers.swift in Sources */,
+				832D1C36266005DF004FD551 /* CreateGroupParams.swift in Sources */,
 				FAB9759E2602F87C006A66BB /* SplashViewController.swift in Sources */,
 				FAE337E32613730F00BCA038 /* FeedViewModel.swift in Sources */,
 				FA2C25A92532C7400042EC43 /* ViewModelProtocol.swift in Sources */,

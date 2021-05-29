@@ -10,6 +10,8 @@ import UIKit
 class GroupsViewController: UIViewController {
     
     // MARK: -- Properties
+    @IBOutlet weak var tweetCollectionView: UICollectionView!
+    
     private var inSearchMode: Bool {
         return self.searchController.isActive && !self.searchController.searchBar.text!.isEmpty
     }
@@ -26,14 +28,14 @@ class GroupsViewController: UIViewController {
         super.viewDidLoad()
         self.configureView()
     }
-    
-    func configureView() {
-        self.setUpSearchBar()
-    }
 }
 
 // MARK: -- Helpers
 extension GroupsViewController {
+    private func configureView() {
+        self.setUpSearchBar()
+    }
+    
     private func setUpSearchBar() {
         self.searchController.searchResultsUpdater = self
         self.searchController.obscuresBackgroundDuringPresentation = false
@@ -50,7 +52,7 @@ extension GroupsViewController {
             var bounds = navigationBar.bounds
             bounds.size.height += UIApplication.shared.statusBarFrame.size.height
             gradient.frame = bounds
-            gradient.colors = [UIColor.primary.cgColor, UIColor.secondary.cgColor]
+            gradient.colors = [UIColor.navigationBarColor.cgColor, UIColor.navigationBarColor.cgColor]
             gradient.startPoint = CGPoint(x: 0, y: 0)
             gradient.endPoint = CGPoint(x: 1, y: 0)
 
@@ -63,10 +65,20 @@ extension GroupsViewController {
             }
             navigationBar.applyNavBarCornerRadius(with: 44, radius: 12)
         }
-        
-        
         self.definesPresentationContext = false
 
+        let addButon = UIBarButtonItem(image: UIImage(named: "ic_add"), style: .plain, target: self, action: #selector(handleCreateGroup(_:)))
+        self.navigationItem.rightBarButtonItem = addButon
+        
+    }
+}
+
+// MARK: -- Selectors
+extension GroupsViewController {
+    @objc private func handleCreateGroup(_ sender: UIBarButtonItem) {
+        let viewModel = CreateGroupViewModel()
+        let createGroupViewController = CreateGroupViewController.create(with: viewModel)
+        self.present(createGroupViewController, animated: true, completion: nil)
     }
 }
 
