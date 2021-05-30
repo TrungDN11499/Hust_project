@@ -43,7 +43,7 @@ class ActionSheetLaucher: NSObject {
         button.setTitle("Cancel", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .systemGroupedBackground
+        button.backgroundColor = .white
         button.addTarget(self, action: #selector(handleDissmiss), for: .touchUpInside)
         return button
     }()

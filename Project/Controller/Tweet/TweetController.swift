@@ -51,7 +51,6 @@ class TweetController: BaseViewController {
     }()
     
     // MARK: - Lifecycles
-    
     init(_ tweet: Tweet) {
         self.tweet = tweet
         self.actionSheetLaucher = ActionSheetLaucher(tweet.user)
@@ -159,7 +158,6 @@ extension TweetController: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - TweetHeaderDelegate
-
 extension TweetController: TweetHeaderDelegate {
     func showActionSheet(_ view: TweetHeader) {
         if self.tweet.user.isCurrentUser {
@@ -180,7 +178,6 @@ extension TweetController: TweetHeaderDelegate {
 }
 
 // MARK: - ActionSheetLaucherDelegate
-
 extension TweetController: ActionSheetLaucherDelegate {
     func didSelect(option: ActionSheetOption) {
         switch option {

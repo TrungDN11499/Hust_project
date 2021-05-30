@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="140" id="KGk-i7-Jjw" customClass="CommentTableViewCell" customModule="Triponus" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="388" height="140"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="388" height="140"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sfC-FP-BW4">
+                        <rect key="frame" x="12" y="12" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="sfC-FP-BW4" secondAttribute="height" id="510-dR-sLp"/>
+                            <constraint firstAttribute="height" constant="40" id="VEP-he-yZJ"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sWU-tm-gu3">
+                        <rect key="frame" x="62" y="12" width="61.5" height="116"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gmx-cI-qMS">
+                                <rect key="frame" x="10" y="10" width="41.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xvp-94-0C5">
+                                <rect key="frame" x="10" y="36" width="41.5" height="70"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.89411764705882346" green="0.89411764705882346" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Gmx-cI-qMS" firstAttribute="top" secondItem="sWU-tm-gu3" secondAttribute="top" constant="10" id="0Qy-5R-tAJ"/>
+                            <constraint firstAttribute="bottom" secondItem="Xvp-94-0C5" secondAttribute="bottom" constant="10" id="AqA-Zc-DRb"/>
+                            <constraint firstItem="Xvp-94-0C5" firstAttribute="top" secondItem="Gmx-cI-qMS" secondAttribute="bottom" constant="5" id="T30-7i-8wK"/>
+                            <constraint firstItem="Xvp-94-0C5" firstAttribute="leading" secondItem="Gmx-cI-qMS" secondAttribute="leading" id="VQv-fV-zpE"/>
+                            <constraint firstAttribute="trailing" secondItem="Gmx-cI-qMS" secondAttribute="trailing" constant="10" id="pM7-3w-fip"/>
+                            <constraint firstItem="Xvp-94-0C5" firstAttribute="trailing" secondItem="Gmx-cI-qMS" secondAttribute="trailing" id="pWg-nJ-3Zp"/>
+                            <constraint firstItem="Gmx-cI-qMS" firstAttribute="leading" secondItem="sWU-tm-gu3" secondAttribute="leading" constant="10" id="x9o-KV-QYw"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="16"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="sfC-FP-BW4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="3gu-pn-E4O"/>
+                    <constraint firstItem="sWU-tm-gu3" firstAttribute="leading" secondItem="sfC-FP-BW4" secondAttribute="trailing" constant="10" id="8aE-Az-WYc"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sWU-tm-gu3" secondAttribute="trailing" constant="12" id="RZ7-84-uUm"/>
+                    <constraint firstItem="sfC-FP-BW4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="aqU-Ry-rOS"/>
+                    <constraint firstAttribute="bottom" secondItem="sWU-tm-gu3" secondAttribute="bottom" constant="12" id="how-Y8-PMI"/>
+                    <constraint firstItem="sWU-tm-gu3" firstAttribute="top" secondItem="sfC-FP-BW4" secondAttribute="top" id="tHp-E7-KTA"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="captionLabel" destination="Xvp-94-0C5" id="OeM-53-jv5"/>
+                <outlet property="infoLabel" destination="Gmx-cI-qMS" id="ENF-0d-adg"/>
+                <outlet property="profileImageView" destination="sfC-FP-BW4" id="yXu-Nc-fgT"/>
+            </connections>
+            <point key="canvasLocation" x="81" y="9"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -10,7 +10,7 @@ import SDWebImage
 import DZNEmptyDataSet
 
 class FeedsViewController: BaseViewController, ControllerType {
-
+  
     // MARK: - Properties
     private var viewModel: ViewModelType!
         
@@ -50,7 +50,6 @@ class FeedsViewController: BaseViewController, ControllerType {
         self.addUIConstraints()
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
@@ -59,10 +58,10 @@ class FeedsViewController: BaseViewController, ControllerType {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.navigationController?.navigationBar.isHidden = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
         super.viewWillDisappear(animated)
     }
     
@@ -81,18 +80,7 @@ class FeedsViewController: BaseViewController, ControllerType {
         
     // MARK: - Helpers
     private func configureViewController() {
-        
         self.view.backgroundColor = .navigationBarColor
-        
-        guard let logoImage = UIImage(named: "ic_appic") else {
-            return
-        }
-        
-        let imageView = UIImageView(image: logoImage)
-        imageView.contentMode = .scaleAspectFit
-        imageView.setDimensions(width: 44, height: 44)
-        self.navigationItem.titleView = imageView
-        
         TweetCollectionViewCell.registerCellByNib(self.feedCollectionView)
         self.feedCollectionView.register(UINib(nibName: "FeedsHeaderCollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
     }
@@ -101,6 +89,7 @@ class FeedsViewController: BaseViewController, ControllerType {
         self.view.addSubview(self.feedCollectionView)
         self.feedCollectionView.fillSuperView()
     }
+    
 }
 
 // MARK: - ControllerType
@@ -233,7 +222,6 @@ extension FeedsViewController: TweetCollectionViewCellDelegate {
         controller.index = index.item
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
-        
         self.present(nav, animated: true, completion: nil)
     }
     
@@ -256,11 +244,25 @@ extension FeedsViewController: TweetCollectionViewCellDelegate {
     }
     
     func handleShowContent(_ cell: TweetCollectionViewCell) {
-        guard let tweet = cell.feedViewModel?.tweet else { return }
-        let controller = TweetController(tweet)
+        guard let tweet = cell.feedViewModel?.tweet, let index = self.feedCollectionView.indexPath(for: cell) else { return }
+        let feedsService = FeedsService()
+        let feedViewModel = FeedViewModel(tweet, feedsService: feedsService)
+        let controller = TweetViewController.create(with: feedViewModel) as! TweetViewController
+        controller.delegate = self
+        controller.tweetIndex = index
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
+}
+
+// MARK: -- TweetViewControllerDelegate
+extension FeedsViewController: TweetViewControllerDelegate {
+    func handleLike(Tweet: Tweet, at index: IndexPath) {
+    }
+    
+    func handleDelete(tweet: Tweet, at index: IndexPath) {
+        self.viewModel.input.deleteTweet.value = DeleteParam(tweet: tweet, at: index)
+    }
 }
 
 // MARK: - UploadTweetViewControllerDelegate

@@ -1,5 +1,6 @@
 PODS:
   - ActiveLabel (1.1.0)
+  - DTPhotoViewerController (3.1.0)
   - DZNEmptyDataSet (1.8.1)
   - Firebase/Analytics (7.11.0):
     - Firebase/Core
@@ -99,7 +100,6 @@ PODS:
   - GoogleUtilities/UserDefaults (7.4.0):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.5.0)
-  - IQKeyboardManagerSwift (6.5.6)
   - leveldb-library (1.22.1)
   - MBProgressHUD (1.2.0)
   - nanopb (2.30908.0):
@@ -114,19 +114,20 @@ PODS:
 
 DEPENDENCIES:
   - ActiveLabel
+  - DTPhotoViewerController
   - DZNEmptyDataSet
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
-  - IQKeyboardManagerSwift
   - MBProgressHUD
   - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   trunk:
     - ActiveLabel
+    - DTPhotoViewerController
     - DZNEmptyDataSet
     - Firebase
     - FirebaseAnalytics
@@ -140,7 +141,6 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - GTMSessionFetcher
-    - IQKeyboardManagerSwift
     - leveldb-library
     - MBProgressHUD
     - nanopb
@@ -149,6 +149,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
+  DTPhotoViewerController: 2b5e64792ee89fcab1f154538577d1856e04e15b
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Firebase: c121feb35e4126c0b355e3313fa9b487d47319fd
   FirebaseAnalytics: cd3bd84d722a24a8923918af8af8e5236f615d77
@@ -162,13 +163,12 @@ SPEC CHECKSUMS:
   GoogleDataTransport: cd9db2180fcecd8da1b561aea31e3e56cf834aa7
   GoogleUtilities: 284cddc7fffc14ae1907efb6f78ab95c1fccaedc
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
-  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
 
-PODFILE CHECKSUM: db7d9d66f3f52ac5884da01ff71cc99440632846
+PODFILE CHECKSUM: f78c3a01da66bd268229893e3301d64f7598ab2a
 
 COCOAPODS: 1.10.1

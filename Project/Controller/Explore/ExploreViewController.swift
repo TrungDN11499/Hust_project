@@ -73,7 +73,7 @@ class ExploreViewController: UITableViewController {
         self.searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.searchBar.placeholder = "Who are you looking for"
         self.navigationItem.searchController = self.searchController
-        self.navigationItem.hidesSearchBarWhenScrolling = false
+        self.navigationItem.hidesSearchBarWhenScrolling = true
         self.searchController.searchBar.barTintColor = UIColor.clear
         self.searchController.searchBar.backgroundImage = UIImage()
         searchController.searchBar.backgroundColor = UIColor.clear 
@@ -92,9 +92,7 @@ class ExploreViewController: UITableViewController {
                 app.backgroundImage = image
                 self.navigationController?.navigationBar.scrollEdgeAppearance = app
                 self.navigationController?.navigationBar.standardAppearance = app
-
             }
-            navigationBar.applyNavBarCornerRadius(with: 44, radius: 12)
         }
         
         
@@ -130,7 +128,6 @@ extension ExploreViewController {
 }
 
 // MARK: - UISearchResultsUpdating
-
 extension ExploreViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text?.lowercased() else { return }

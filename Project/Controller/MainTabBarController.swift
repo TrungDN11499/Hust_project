@@ -18,7 +18,6 @@ class MainTabBarController: UITabBarController {
     
     private var buttonConfig: ActionButtonConfiguration = .tweet
     
-    
     let feedsService = FeedsService()
     lazy var feedsViewModel = FeedsViewModel(feedsService: feedsService)
     lazy var feedsViewController = FeedsViewController.create(with: feedsViewModel)
@@ -118,9 +117,6 @@ class MainTabBarController: UITabBarController {
             return self.templateNavigationController(image: image, rootViewController: vc)
         })
         
-//        self.viewControllers = tabBarData.map({ (vc, image) -> UINavigationController in
-//            return self.templateNavigationController(image: image, rootViewController: vc)
-//        })
         self.configureUI()
     }
     
