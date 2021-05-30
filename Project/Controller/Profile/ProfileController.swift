@@ -11,6 +11,9 @@ import FirebaseAuth
 private let collectionHeaderIden = "ProfileHeaderView"
 
 class ProfileController: UICollectionViewController, EditProfileControllerDelegate {
+    
+    
+    
     // MARK: - Properties
     
     private var selectedFilter: ProfileFilterOptions = .tweets {
@@ -176,7 +179,7 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: self.collectionView.frame.width, height: 300)
+        return CGSize(width: self.collectionView.frame.width, height: 350)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -235,11 +238,10 @@ extension ProfileController: ProfileHeaderViewDelegate {
         guard let user = self.user else { return }
         
         if user.isCurrentUser {
-            let editProfileController = EditProfileController(user: user)
-            editProfileController.delegate = self
-            let navigationController = UINavigationController(rootViewController: editProfileController)
-            navigationController.modalPresentationStyle = .fullScreen
-            self.present(navigationController, animated: true, completion: nil)
+            let vc = EditProfileViewController(nibName: "EditProfileViewController", bundle: nil)
+            vc.modalPresentationStyle = .fullScreen
+            vc.user = self.user
+            self.present(vc, animated: true, completion: nil)
             return
         }
         
@@ -301,6 +303,10 @@ extension ProfileController {
     
     func controller(_ controller: EditProfileController, wantToUpdate user: User) {
         controller.dismiss(animated: true, completion: nil)
+        self.user = user
+        self.collectionView.reloadData()
+    }
+    func controller(_ controller: EditProfileViewController, wantToUpdate user: User) {
         self.user = user
         self.collectionView.reloadData()
     }

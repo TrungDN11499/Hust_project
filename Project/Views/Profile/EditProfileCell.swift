@@ -25,14 +25,15 @@ class EditProfileCell: UITableViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor(rgb: 0xBFB2B2)
+        label.font = UIFont.init(name: "Roboto-Regular", size: 14)
         return label
     }()
     
     lazy var infoTextField: UITextField = {
        let textField = UITextField()
         textField.borderStyle = .none
-        textField.font = UIFont.systemFont(ofSize: 14)
+        textField.font = UIFont.init(name: "Roboto-Regular", size: 16)
         textField.textAlignment = .left
         textField.textColor = .twitterBlue
         textField.text = "Test Info"
@@ -42,10 +43,19 @@ class EditProfileCell: UITableViewCell {
     
     let bioTextView: CaptionTextView = {
         let textView = CaptionTextView()
-        textView.font = UIFont.systemFont(ofSize: 14)
+        textView.font = UIFont.init(name: "Roboto-Regular", size: 16)
+        textView.backgroundColor = UIColor(rgb: 0xF2F5FE)
         textView.textColor = .twitterBlue
         textView.placeHolderLabel.text = "Bio"
+        textView.layer.cornerRadius = 12
+        textView.clipsToBounds = true
         return textView
+    }()
+    
+    let lineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        return view
     }()
     
     // MARK: - Lifecycles.
@@ -53,33 +63,36 @@ class EditProfileCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
-        
+        self.backgroundColor = .white
         self.contentView.addSubview(self.titleLabel)
         self.titleLabel.anchor(top: self.contentView.topAnchor,
                                left: self.contentView.leftAnchor,
                                paddingTop: 12,
-                               paddingLeft: 16,
-                               width: 100)
+                               paddingLeft: 0,
+                               height: 16 )
         
         self.contentView.addSubview(self.infoTextField)
-        
-        self.infoTextField.anchor(top: self.contentView.topAnchor,
-                                  left: self.titleLabel.rightAnchor,
-                                  bottom: self.contentView.bottomAnchor,
+        self.infoTextField.anchor(top: self.titleLabel.bottomAnchor,
+                                  left: self.contentView.leftAnchor,
                                   right: self.contentView.rightAnchor,
-                                  paddingTop: 4,
-                                  paddingLeft: 16,
-                                  paddingRight: 8)
+                                  paddingTop: 8,
+                                  paddingLeft: 0,
+                                  paddingRight: 0,
+                                  height: 20)
         
         self.contentView.addSubview(self.bioTextView)
-        self.bioTextView.anchor(top: self.contentView.topAnchor,
-                                left: self.titleLabel.rightAnchor,
+        self.bioTextView.anchor(top: self.titleLabel.bottomAnchor,
+                                left: self.contentView.leftAnchor,
                                 bottom: self.contentView.bottomAnchor,
                                 right: self.contentView.rightAnchor,
-                                paddingTop: 4,
-                                paddingLeft: 14,
-                                paddingRight: 8)
-        
+                                paddingTop: 8,
+                                paddingLeft: 0,
+                                paddingRight: 0)
+        self.contentView.addSubview(self.lineView)
+        self.lineView.anchor(left: self.contentView.leftAnchor,
+                             bottom: self.contentView.bottomAnchor,
+                             right: self.contentView.rightAnchor,
+                             height: 0.5)
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateUserInfo), name: UITextView.textDidEndEditingNotification, object: nil)
         
     }

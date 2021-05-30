@@ -14,6 +14,7 @@ class SettingTVC: UITableViewCell {
     @IBOutlet weak var objectImageView: UIImageView!
     @IBOutlet weak var objectLabel: UILabel!
     @IBOutlet weak var nextArrowImage: UIImageView!
+    @IBOutlet weak var lineView: UIView!
     var setting: SettingModel? {
         didSet {
             guard let unrappedSetting = setting else {return}

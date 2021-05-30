@@ -9,10 +9,9 @@ import UIKit
 
 private let cellIden = "EditProfileCell"
 
-protocol EditProfileControllerDelegate: class {
-    func controller(_ controller: EditProfileController, wantToUpdate user: User)
-    func handleLogout()
-}
+//protocol EditProfileControllerDelegate: class {
+//    func controller(_ controller: EditProfileController, wantToUpdate user: User)
+//}
 
 class EditProfileController: UITableViewController {
     
@@ -157,7 +156,6 @@ extension EditProfileController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return EditProfileOptions.allCases.count
     }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIden, for: indexPath) as? EditProfileCell else {
             return EditProfileCell()
@@ -225,7 +223,7 @@ extension EditProfileController: EditProfileFooterViewDelegate {
         
         let logoutAction = UIAlertAction(title: "Logout", style: .default) { action in
             self.dismiss(animated: true) {
-                self.delegate?.handleLogout()
+//                self.delegate?.handleLogout()
             }
         }
         alert.addAction(logoutAction)

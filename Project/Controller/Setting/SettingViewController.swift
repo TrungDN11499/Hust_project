@@ -21,12 +21,13 @@ class SettingViewController: UITableViewController {
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViewController()
         fetchUser()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.configureViewController()
+        fetchUser()
     }
     
     // MARK: - Api
@@ -95,7 +96,10 @@ extension SettingViewController {
         case 0:
             print("profile")
         case 1:
-            print("edit")
+            let vc = EditProfileViewController(nibName: "EditProfileViewController", bundle: nil)
+            vc.modalPresentationStyle = .fullScreen
+            vc.user = self.user
+            self.present(vc, animated: true, completion: nil)
         case 2:
             print("edit")
             let groupViewController = GroupsViewController()
@@ -144,7 +148,7 @@ extension SettingViewController {
             cell.setting = setting
             cell.nextArrowImage.isHidden = true
         }
-        return cell
+         return cell
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.item == 0 {
