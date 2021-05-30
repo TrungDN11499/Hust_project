@@ -54,6 +54,7 @@ class FeedsViewController: BaseViewController, ControllerType {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.navigationBar.barStyle = .default
+        fetchUser()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -77,6 +78,11 @@ class FeedsViewController: BaseViewController, ControllerType {
     }
     
     // MARK: -  Api
+    private func fetchUser() {
+        UserService.shared.fetchUser { user in
+            self.user = user
+        }
+    }
         
     // MARK: - Helpers
     private func configureViewController() {

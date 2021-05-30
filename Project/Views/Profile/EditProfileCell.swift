@@ -63,7 +63,7 @@ class EditProfileCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
-        
+        self.backgroundColor = .white
         self.contentView.addSubview(self.titleLabel)
         self.titleLabel.anchor(top: self.contentView.topAnchor,
                                left: self.contentView.leftAnchor,

@@ -26,7 +26,7 @@ class MainTabBarController: UITabBarController {
         didSet {
             guard let nav = self.viewControllers?[0] as? UINavigationController else { return }
             guard let feedsViewController = nav.viewControllers.first as? FeedsViewController else { return }
-            feedsViewController.user = user
+//            feedsViewController.user = user
         }
     }
     

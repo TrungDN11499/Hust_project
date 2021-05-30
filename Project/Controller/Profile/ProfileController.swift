@@ -238,11 +238,10 @@ extension ProfileController: ProfileHeaderViewDelegate {
         guard let user = self.user else { return }
         
         if user.isCurrentUser {
-            let editProfileController = EditProfileController(user: user)
-            editProfileController.delegate = self
-            let navigationController = UINavigationController(rootViewController: editProfileController)
-            navigationController.modalPresentationStyle = .fullScreen
-            self.present(navigationController, animated: true, completion: nil)
+            let vc = EditProfileViewController(nibName: "EditProfileViewController", bundle: nil)
+            vc.modalPresentationStyle = .fullScreen
+            vc.user = self.user
+            self.present(vc, animated: true, completion: nil)
             return
         }
         
