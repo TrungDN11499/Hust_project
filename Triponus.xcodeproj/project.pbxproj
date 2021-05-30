@@ -55,6 +55,10 @@
 		845F6CB026517C080015BD58 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F6CAF26517C080015BD58 /* UIColorExtension.swift */; };
 		84E1882126419C84007A1A17 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1882026419C84007A1A17 /* CustomTextField.swift */; };
 		84E188252641ACA2007A1A17 /* CustomTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E188242641ACA2007A1A17 /* CustomTextField.xib */; };
+		84E1F1A026641D0300FF1A7A /* BookingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1F19F26641D0300FF1A7A /* BookingModel.swift */; };
+		84E1F1A326641E5100FF1A7A /* BookingCLVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1F1A126641E5100FF1A7A /* BookingCLVCell.swift */; };
+		84E1F1A426641E5100FF1A7A /* BookingCLVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E1F1A226641E5100FF1A7A /* BookingCLVCell.xib */; };
+		84E1F1A62664219800FF1A7A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1F1A52664219800FF1A7A /* WebViewController.swift */; };
 		84E826FF26426A5A00D6929D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E826FD26426A5A00D6929D /* LoginViewController.swift */; };
 		84E8270026426A5A00D6929D /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E826FE26426A5A00D6929D /* LoginViewController.xib */; };
 		84E8270426426EC100D6929D /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84E8270326426EC100D6929D /* Roboto-Medium.ttf */; };
@@ -217,6 +221,10 @@
 		845F6CAF26517C080015BD58 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		84E1882026419C84007A1A17 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		84E188242641ACA2007A1A17 /* CustomTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTextField.xib; sourceTree = "<group>"; };
+		84E1F19F26641D0300FF1A7A /* BookingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingModel.swift; sourceTree = "<group>"; };
+		84E1F1A126641E5100FF1A7A /* BookingCLVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingCLVCell.swift; sourceTree = "<group>"; };
+		84E1F1A226641E5100FF1A7A /* BookingCLVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookingCLVCell.xib; sourceTree = "<group>"; };
+		84E1F1A52664219800FF1A7A /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		84E826FD26426A5A00D6929D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		84E826FE26426A5A00D6929D /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		84E8270326426EC100D6929D /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
@@ -726,6 +734,7 @@
 				FA0DC9FB25265FED00377539 /* User.swift */,
 				FA26202C25374A3B000E1755 /* Tweet.swift */,
 				FA576D38253F3A770069BA96 /* NotificationModel.swift */,
+				84E1F19F26641D0300FF1A7A /* BookingModel.swift */,
 				845620E0265FFC4E004E3583 /* SettingModel.swift */,
 				5245B0FB264516AE006031CB /* Message.swift */,
 				52A60AD72652AFD400219C3D /* NotificationModel.swift */,
@@ -753,6 +762,7 @@
 				845620D9265FF61A004E3583 /* Setting */,
 				FAFD58E225208F9C006E4F94 /* MainTabBarController.swift */,
 				840421A5265E9BED002E8ECE /* BookingViewController.swift */,
+				84E1F1A52664219800FF1A7A /* WebViewController.swift */,
 				840421A6265E9BEE002E8ECE /* BookingViewController.xib */,
 				FAB9759C2602F86D006A66BB /* Splash */,
 				FA9B7CF32535E7DE006DFFA2 /* UploadTweet */,
@@ -802,6 +812,8 @@
 				845620DD265FF97D004E3583 /* SettingTVC.xib */,
 				845F6CA826516FEF0015BD58 /* NotificationTBVCell.xib */,
 				FA39B508261E0B94006B9698 /* TweetCollectionViewCell.swift */,
+				84E1F1A126641E5100FF1A7A /* BookingCLVCell.swift */,
+				84E1F1A226641E5100FF1A7A /* BookingCLVCell.xib */,
 				FA39B509261E0B94006B9698 /* TweetCollectionViewCell.xib */,
 			);
 			path = Views;
@@ -981,6 +993,7 @@
 				84E188252641ACA2007A1A17 /* CustomTextField.xib in Resources */,
 				841CA67226427D4A00B6A83B /* RegisterViewController.xib in Resources */,
 				FA39B50B261E0B94006B9698 /* TweetCollectionViewCell.xib in Resources */,
+				84E1F1A426641E5100FF1A7A /* BookingCLVCell.xib in Resources */,
 				84E8270626426ECC00D6929D /* Roboto-Regular.ttf in Resources */,
 				8409D6002642E8C20036E3A1 /* Griffy-Regular.ttf in Resources */,
 				83346DC226637AE60067C041 /* TweetViewController.xib in Resources */,
@@ -1147,6 +1160,7 @@
 				FAFDD71D254E4E5C000C39FF /* BaseCollectionViewCell.swift in Sources */,
 				83EEB9F1264E8D400010A17C /* CustomNavigationController.swift in Sources */,
 				845620DB265FF634004E3583 /* SettingViewController.swift in Sources */,
+				84E1F1A326641E5100FF1A7A /* BookingCLVCell.swift in Sources */,
 				8301731E265C0AB20048136A /* FeedsHeaderCollectionReusableView.swift in Sources */,
 				FAFD58A725208D9C006E4F94 /* SceneDelegate.swift in Sources */,
 				FA576D48253F56A10069BA96 /* NotificationViewModel.swift in Sources */,
@@ -1159,6 +1173,7 @@
 				FA66C5F6252393B400C31151 /* Utilities.swift in Sources */,
 				FA9B7CFA2535FC85006DFFA2 /* CaptionTextView.swift in Sources */,
 				FA1108D92538C0AA00443971 /* ProfileController.swift in Sources */,
+				84E1F1A026641D0300FF1A7A /* BookingModel.swift in Sources */,
 				FA26202D25374A3B000E1755 /* Tweet.swift in Sources */,
 				FA576D3E253F3E0E0069BA96 /* NotificationService.swift in Sources */,
 				FA9B7CFF25361604006DFFA2 /* TweetService1.swift in Sources */,
@@ -1209,6 +1224,7 @@
 				FA66C5E12523829C00C31151 /* RegistrationController.swift in Sources */,
 				83EEB9E6264D72EF0010A17C /* Helper.swift in Sources */,
 				84405EF62663E0D500A68928 /* EditProfileViewController.swift in Sources */,
+				84E1F1A62664219800FF1A7A /* WebViewController.swift in Sources */,
 				FAFDD72A254E5292000C39FF /* UIControllExtension.swift in Sources */,
 				FAFDD715254E4E4B000C39FF /* BaseTableViewCell.swift in Sources */,
 				5245B1002645172A006031CB /* ChatInputContainerView.swift in Sources */,
