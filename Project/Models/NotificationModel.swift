@@ -16,6 +16,7 @@ enum NotificationType: Int {
 }
 
 class NotificationModel {
+
     var tweetId: String?
     var timestamp: Date!
     var user: User

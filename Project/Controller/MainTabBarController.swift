@@ -46,6 +46,7 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         self.configureViewController()
         self.fetchUser()
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -68,7 +69,11 @@ class MainTabBarController: UITabBarController {
         
         switch self.buttonConfig {
         case .message:
-        print("Message.")
+            let controller = NewMessageController()
+//            controller.delegate = self
+            let nav = UINavigationController(rootViewController: controller)
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true, completion: nil)
         case .tweet:
             guard let user = self.user else { return }
             let uploadTweetViewModel = UploadTweetViewModel(.tweet, user: user)
@@ -137,3 +142,16 @@ extension MainTabBarController: UITabBarControllerDelegate {
         self.buttonConfig = index == 3 ? .message : .tweet
     }
 }
+
+
+//// MARK: - NewMessageControllerDelegate
+//extension MainTabBarController: NewMessageControllerDelegate {
+//    func showChat(with user: User) {
+//
+//        let chatLogViewController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+//        chatLogViewController.user = user
+//        let nav = UINavigationController(rootViewController: chatLogViewController)
+//        nav.modalPresentationStyle = .fullScreen
+//        self.present(nav, animated: true, completion: nil)
+//    }
+//}
