@@ -1,5 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-Triponus-TriponusUITests/Pods-Triponus-TriponusUITests-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/ActiveLabel/ActiveLabel.framework
+${BUILT_PRODUCTS_DIR}/DTPhotoViewerController/DTPhotoViewerController.framework
 ${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseAuth/FirebaseAuth.framework
 ${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework

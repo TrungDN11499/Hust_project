@@ -176,6 +176,7 @@ struct TweetService1 {
                 guard let user = user else { return }
                 let tweet = Tweet(user: user, tweetId: tweetId, dictionary: dictionary)
                 tweets.append(tweet)
+                tweets.sort { $0.timestamp > $1.timestamp }
                 completion(tweets)
             }
         }

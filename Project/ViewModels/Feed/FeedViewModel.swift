@@ -12,6 +12,7 @@ class FeedViewModel: ViewModelProtocol {
     // MARK: - ViewModelProtocol
     struct Input {
         fileprivate var tweet: Observable<Tweet> = Observable()
+        var likeTweet: Observable<LikeTweetParam> = Observable()
     }
     
     struct Output  {
@@ -22,10 +23,24 @@ class FeedViewModel: ViewModelProtocol {
     let output: Output
     
     // MARK: - Initializers
-    init(_ tweet: Tweet) {
+    init(_ tweet: Tweet, feedsService: FeedsService? = nil) {
         self.input = Input()
         self.output = Output()
         
+        // like tweet
+        if let feedsService = feedsService {
+            self.input.likeTweet.bind { observer, value  in
+                feedsService.likeTweet(tweet: value.feedViewModel.tweet) { [unowned self] error, numberOfLikes, reference in
+
+                    self.tweet.likes.value = numberOfLikes
+                    self.tweet.didLike.value = !(value.feedViewModel.tweet.didLike.value ?? false)
+            
+                    // only upload notification when user like
+                    guard let didLike = value.feedViewModel.tweet.didLike.value, didLike else { return }
+                    NotificationService.shared.uploadNotification(.like, tweet: value.feedViewModel.tweet)
+                }
+            }
+        }
         self.input.tweet.value = tweet
     }
     

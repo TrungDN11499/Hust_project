@@ -14,6 +14,10 @@
 		832D1C30265FFA2D004FD551 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D1C2F265FFA2D004FD551 /* UITextFieldExtension.swift */; };
 		832D1C3326600228004FD551 /* CreateGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D1C3226600228004FD551 /* CreateGroupViewModel.swift */; };
 		832D1C36266005DF004FD551 /* CreateGroupParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D1C35266005DF004FD551 /* CreateGroupParams.swift */; };
+		83346DC126637AE60067C041 /* TweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83346DBF26637AE60067C041 /* TweetViewController.swift */; };
+		83346DC226637AE60067C041 /* TweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83346DC026637AE60067C041 /* TweetViewController.xib */; };
+		83346DC626639D120067C041 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83346DC426639D120067C041 /* CommentTableViewCell.swift */; };
+		83346DC726639D120067C041 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83346DC526639D120067C041 /* CommentTableViewCell.xib */; };
 		836C986F265E975D00D625E0 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836C986D265E975D00D625E0 /* CreateGroupViewController.swift */; };
 		836C9870265E975D00D625E0 /* CreateGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 836C986E265E975D00D625E0 /* CreateGroupViewController.xib */; };
 		836C9873265E977B00D625E0 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836C9871265E977B00D625E0 /* GroupsViewController.swift */; };
@@ -156,6 +160,10 @@
 		832D1C2F265FFA2D004FD551 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		832D1C3226600228004FD551 /* CreateGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewModel.swift; sourceTree = "<group>"; };
 		832D1C35266005DF004FD551 /* CreateGroupParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupParams.swift; sourceTree = "<group>"; };
+		83346DBF26637AE60067C041 /* TweetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetViewController.swift; sourceTree = "<group>"; };
+		83346DC026637AE60067C041 /* TweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetViewController.xib; sourceTree = "<group>"; };
+		83346DC426639D120067C041 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		83346DC526639D120067C041 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		836C986D265E975D00D625E0 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		836C986E265E975D00D625E0 /* CreateGroupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateGroupViewController.xib; sourceTree = "<group>"; };
 		836C9871265E977B00D625E0 /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
@@ -343,6 +351,15 @@
 				832D1C35266005DF004FD551 /* CreateGroupParams.swift */,
 			);
 			path = Param;
+			sourceTree = "<group>";
+		};
+		83346DC326639CF70067C041 /* CommentCell */ = {
+			isa = PBXGroup;
+			children = (
+				83346DC426639D120067C041 /* CommentTableViewCell.swift */,
+				83346DC526639D120067C041 /* CommentTableViewCell.xib */,
+			);
+			path = CommentCell;
 			sourceTree = "<group>";
 		};
 		836C9869265E96FE00D625E0 /* Group */ = {
@@ -566,7 +583,10 @@
 		FAF38659253B32EC00E76AF1 /* Tweet */ = {
 			isa = PBXGroup;
 			children = (
+				83346DC326639CF70067C041 /* CommentCell */,
 				FAF3865A253B330200E76AF1 /* TweetController.swift */,
+				83346DBF26637AE60067C041 /* TweetViewController.swift */,
+				83346DC026637AE60067C041 /* TweetViewController.xib */,
 			);
 			path = Tweet;
 			sourceTree = "<group>";
@@ -927,6 +947,7 @@
 				FA39B50B261E0B94006B9698 /* TweetCollectionViewCell.xib in Resources */,
 				84E8270626426ECC00D6929D /* Roboto-Regular.ttf in Resources */,
 				8409D6002642E8C20036E3A1 /* Griffy-Regular.ttf in Resources */,
+				83346DC226637AE60067C041 /* TweetViewController.xib in Resources */,
 				84E8270026426A5A00D6929D /* LoginViewController.xib in Resources */,
 				8301731F265C0AB20048136A /* FeedsHeaderCollectionReusableView.xib in Resources */,
 				836C9874265E977B00D625E0 /* GroupsViewController.xib in Resources */,
@@ -940,6 +961,7 @@
 				840421A8265E9BEE002E8ECE /* BookingViewController.xib in Resources */,
 				845F6CAA26516FEF0015BD58 /* NotificationTBVCell.xib in Resources */,
 				FA66C6072523AE2100C31151 /* GoogleService-Info.plist in Resources */,
+				83346DC726639D120067C041 /* CommentTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1070,6 +1092,7 @@
 				FA8A03FA253C1F33006F3FAE /* ActionSheetLauncher.swift in Sources */,
 				841CA67126427D4A00B6A83B /* RegisterViewController.swift in Sources */,
 				FA8A03FF253C2E48006F3FAE /* ActionSheetCell.swift in Sources */,
+				83346DC626639D120067C041 /* CommentTableViewCell.swift in Sources */,
 				845F6CA926516FEF0015BD58 /* NotificationTBVCell.swift in Sources */,
 				FA576D43253F4D160069BA96 /* NotificationCell.swift in Sources */,
 				832D1C30265FFA2D004FD551 /* UITextFieldExtension.swift in Sources */,
@@ -1155,6 +1178,7 @@
 				FAF417FF2528CA0600FDDC97 /* ViewControllerExtension.swift in Sources */,
 				FA89486B253ACBA10071A5DB /* UserCell.swift in Sources */,
 				FA2495C02523218C0060BECD /* UIViewExtension.swift in Sources */,
+				83346DC126637AE60067C041 /* TweetViewController.swift in Sources */,
 				FA2C25C22532CA6A0042EC43 /* BindingTextField.swift in Sources */,
 				FAA362672524D84A00580FE2 /* Constants.swift in Sources */,
 			);
