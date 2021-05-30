@@ -10,6 +10,7 @@ import UIKit
 class LoginViewController: BaseViewController, ControllerType {
     
     private var viewModel: ViewModelType!
+    @IBOutlet weak var contentScrollView: UIScrollView!
     var moveLogoAnimator: UIViewPropertyAnimator!
     
     @IBOutlet weak var logoImageViewCenterY: NSLayoutConstraint!
@@ -71,7 +72,19 @@ class LoginViewController: BaseViewController, ControllerType {
         passwordTextField.customTextField.placeholder = "password"
         passwordTextField.customTextField.isSecureTextEntry = true
     }
-
+    
+    override func keyboardWillShow(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
+        guard let keyBoardHeight = keyboardHeight else { return }
+        let keyBoardMaxY = self.view.frame.height - keyBoardHeight
+        let contentViewMaxY = self.loginFormView.frame.maxY
+        if contentViewMaxY - keyBoardMaxY > 0 {
+            self.contentScrollView.setContentOffset(CGPoint(x: 0, y: (contentViewMaxY - keyBoardMaxY) + 15), animated: true)
+        }
+    }
+    
+    override func keyboardHide(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
+        self.contentScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
     
 }
 // MARK: - ControllerType

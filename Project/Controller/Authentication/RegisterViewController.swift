@@ -12,6 +12,7 @@ class RegisterViewController: BaseViewController {
     private var viewModel: ViewModelType!
     @IBOutlet weak var registerFormView: UIView!
 
+    @IBOutlet weak var contentScrollView: UIScrollView!
     @IBOutlet weak var updateImageButton: BindingButton!
     @IBOutlet weak var emailTextField: CustomTextField!
     @IBOutlet weak var passwordTextField: CustomTextField!
@@ -75,6 +76,20 @@ class RegisterViewController: BaseViewController {
         fullNameTextField.customImageView.image = UIImage(named: "ic_user")
         fullNameTextField.customTextField.placeholder = "fullname"
     }
+    
+    override func keyboardWillShow(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
+        guard let keyBoardHeight = keyboardHeight else { return }
+        let keyBoardMaxY = self.view.frame.height - keyBoardHeight
+        let contentViewMaxY = self.registerFormView.frame.maxY
+        if contentViewMaxY - keyBoardMaxY > 0 {
+            self.contentScrollView.setContentOffset(CGPoint(x: 0, y: (contentViewMaxY - keyBoardMaxY) + 15), animated: true)
+        }
+    }
+    
+    override func keyboardHide(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
+        self.contentScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
 }
 // MARK: ControllerType
 extension RegisterViewController: ControllerType {

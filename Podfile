@@ -7,7 +7,6 @@ target 'Triponus' do
   
   # Pods for Triponus
   
-  pod 'IQKeyboardManagerSwift'
   pod 'SDWebImage', '~> 5.0'
   pod 'Firebase/Analytics'
   pod 'Firebase/Core'
