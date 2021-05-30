@@ -30,7 +30,15 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 }
 
-class ConversationsViewController: BaseViewController {
+class ConversationsViewController: BaseViewController, NewMessageControllerDelegate {
+    func showChat(with user: User) {
+        let chatLogViewController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+        chatLogViewController.user = user
+        let nav = UINavigationController(rootViewController: chatLogViewController)
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: true, completion: nil)
+    }
+    
     
     let cellId = "cellId"
     var messages = [Message]()
@@ -48,6 +56,17 @@ class ConversationsViewController: BaseViewController {
         return tableView
     }()
     
+    
+    private lazy var noConversationsLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "No Conversations"
+        label.textAlignment = .center
+        label.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        label.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        return label
+    }()
+    
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,11 +79,19 @@ class ConversationsViewController: BaseViewController {
     override func configureView() {
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_back"), style: .done, target: self, action: #selector(dismissSelf))
-        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(handleNewConversation))
     }
     
     @objc private func dismissSelf() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func handleNewConversation() {
+        let conversationViewController = NewMessageController()
+        conversationViewController.delegate = self
+        let nav = UINavigationController(rootViewController: conversationViewController)
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: true, completion: nil)
     }
     
     override func viewDidLayoutSubviews() {
@@ -119,7 +146,12 @@ extension ConversationsViewController: UITableViewDelegate, UITableViewDataSourc
 
             }, withCancel: nil)
 
-        }, withCancel: nil)
+        }) { Error in
+            
+            self.view.addSubview(self.noConversationsLabel)
+            self.noConversationsLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+            self.noConversationsLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        }
     }
 
     fileprivate func fetchMessageWithMessageId(_ messageId: String) {
@@ -153,7 +185,6 @@ extension ConversationsViewController: UITableViewDelegate, UITableViewDataSourc
             return message1.timestamp?.int32Value > message2.timestamp?.int32Value
         })
 
-        //this will crash because of background thread, so lets call this on dispatch_async main thread
         DispatchQueue.main.async(execute: {
             self.MessageTableView.reloadData()
         })

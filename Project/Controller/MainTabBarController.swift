@@ -46,6 +46,7 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         self.configureViewController()
         self.fetchUser()
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -69,7 +70,7 @@ class MainTabBarController: UITabBarController {
         switch self.buttonConfig {
         case .message:
             let controller = NewMessageController()
-            controller.delegate = self
+//            controller.delegate = self
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true, completion: nil)
@@ -143,13 +144,14 @@ extension MainTabBarController: UITabBarControllerDelegate {
 }
 
 
-// MARK: - NewMessageControllerDelegate
-extension MainTabBarController: NewMessageControllerDelegate {
-    func showChat(with user: User) {
-        let chatLogViewController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
-        chatLogViewController.user = user
-        let nav = UINavigationController(rootViewController: chatLogViewController)
-        nav.modalPresentationStyle = .fullScreen
-        self.present(nav, animated: true, completion: nil)
-    }
-}
+//// MARK: - NewMessageControllerDelegate
+//extension MainTabBarController: NewMessageControllerDelegate {
+//    func showChat(with user: User) {
+//
+//        let chatLogViewController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+//        chatLogViewController.user = user
+//        let nav = UINavigationController(rootViewController: chatLogViewController)
+//        nav.modalPresentationStyle = .fullScreen
+//        self.present(nav, animated: true, completion: nil)
+//    }
+//}

@@ -52,6 +52,7 @@ class NewMessageController: UITableViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.barTintColor = UIColor(hex: 0xB6DEEE)
 
     }
     
@@ -68,10 +69,7 @@ class NewMessageController: UITableViewController {
     private func configureViewController() {
         self.view.backgroundColor = .white
         self.navigationItem.title = "Messages"
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel",
-                                                            style: .done,
-                                                            target: self,
-                                                            action: #selector(dismissSelf))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_back"), style: .done, target: self, action: #selector(dismissSelf))
         
         self.tableView.register(UserCell.self, forCellReuseIdentifier: cellIden)
         self.tableView.rowHeight = 60
@@ -90,12 +88,13 @@ extension NewMessageController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = self.inSearchMode ? self.filterUsers[indexPath.row] : self.users[indexPath.row]
-//        let chatUser = self.users[indexPath.row]
-//        self.conversationController?.showChatControllerForUser(chatUser)
-        
+        let chatUser = self.users[indexPath.row]
+        self.conversationController?.showChatControllerForUser(chatUser)
+
         self.dismiss(animated: true) {
             self.delegate?.showChat(with: user)
         }
+        
     }
 }
 

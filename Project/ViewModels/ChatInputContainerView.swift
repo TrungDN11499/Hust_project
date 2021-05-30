@@ -52,36 +52,17 @@ class ChatInputContainerView: UIView, UITextFieldDelegate {
         
         backgroundColor = .white
         
-        addSubview(optionsButton)
-        
-        optionsButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
-        optionsButton.centerYAnchor.constraint(equalTo: centerYAnchor,constant: -10).isActive = true
-        optionsButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        optionsButton.heightAnchor.constraint(equalTo: heightAnchor, constant: -20).isActive = true
-
-
-//        sendButton.setTitle("Send", for: .normal)
-        sendButton.setImage(UIImage(systemName: "paperplane.fill"), for: .normal)
-        sendButton.contentMode = .center
-        sendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        sendButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        //what is handleSend?
-        
-        addSubview(sendButton)
-        //x,y,w,h
-
-        sendButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        sendButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10).isActive = true
-        sendButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        sendButton.heightAnchor.constraint(equalTo: heightAnchor, constant: -20).isActive = true
-
         addSubview(self.containerView)
+        addSubview(optionsButton)
+        optionsButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        optionsButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        optionsButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 12).isActive = true
         
         self.containerView.leftAnchor.constraint(equalTo: optionsButton.rightAnchor, constant: 8).isActive = true
-        self.containerView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10).isActive = true
-        self.containerView.rightAnchor.constraint(equalTo: sendButton.leftAnchor).isActive = true
-        self.containerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        self.containerView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
+        
+        self.containerView.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         containerView.addSubview(inputTextField)
         
@@ -90,9 +71,28 @@ class ChatInputContainerView: UIView, UITextFieldDelegate {
         self.inputTextField.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
         self.inputTextField.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10).isActive = true
     
+        optionsButton.centerYAnchor.constraint(equalTo: self.containerView.centerYAnchor).isActive = true
+      
+
+
+        sendButton.setImage(UIImage(systemName: "paperplane.fill"), for: .normal)
+        sendButton.contentMode = .center
+        sendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        sendButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        addSubview(sendButton)
+        //x,y,w,h
+
+        sendButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        sendButton.leftAnchor.constraint(equalTo: self.containerView.rightAnchor, constant: 0).isActive = true
+        sendButton.centerYAnchor.constraint(equalTo: self.containerView.centerYAnchor).isActive = true
+        sendButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        sendButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+
+
+       
         let separatorLineView = UIView()
-        separatorLineView.backgroundColor = UIColor(red: 220, green: 220, blue: 220, alpha: 0)
-//        separatorLineView.backgroundColor = .red
         separatorLineView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(separatorLineView)
         //x,y,w,h

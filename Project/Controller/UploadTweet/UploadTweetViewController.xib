@@ -49,7 +49,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="DKS-OX-Yy0">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="40"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="nTz-kR-92K">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nTz-kR-92K">
                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="nTz-kR-92K" secondAttribute="height" id="QDa-9o-XHp"/>
@@ -168,7 +168,6 @@
         </view>
     </objects>
     <resources>
-        <image name="back" width="128" height="128"/>
         <image name="ic_remove_image" width="24.5" height="24"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

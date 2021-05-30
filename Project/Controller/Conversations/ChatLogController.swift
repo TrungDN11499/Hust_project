@@ -41,9 +41,9 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                 self.messages.append(Message(dictionary: dictionary))
                 DispatchQueue.main.async(execute: {
                     self.collectionView?.reloadData()
-                    //scroll to the last index
-//                    let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
-//                    self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+//                    scroll to the last index
+                    let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
+                    self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
                 })
                 
                 }, withCancel: nil)
@@ -57,7 +57,6 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         super.viewDidLoad()
         
         collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
-//        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
         collectionView?.alwaysBounceVertical = true
         collectionView?.backgroundColor = UIColor.white
         collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellId)
@@ -66,7 +65,9 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         navigationController?.navigationBar.barTintColor = UIColor(hex: 0xB6DEEE)
 
         configViewController()
+        
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -74,8 +75,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
-        
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChageFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -96,6 +96,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         inputContainerView.isHidden = true
     }
     
+    
     lazy var inputContainerView: ChatInputContainerView = {
         let chatInputContainerView = ChatInputContainerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.haveStatusBar ? 34 + 50 : 50))
         chatInputContainerView.chatLogController = self
@@ -103,6 +104,8 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         return chatInputContainerView
     }()
     
+//    self.haveStatusBar ? 34 +
+        
     var haveStatusBar: Bool {
         if UIDevice().userInterfaceIdiom == .phone {
             switch UIScreen.main.nativeBounds.height {
@@ -145,7 +148,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
 
     func updateInputViewFrame() {
         // calculate the accessory view height based on safe insets
-        let newHeight = inputContainerView.safeAreaInsets.bottom + 70
+        let newHeight = inputContainerView.safeAreaInsets.bottom + 50
         if newHeight != inputContainerView.frame.size.height {
             inputContainerView.frame = CGRect(x: 0.0, y: 0.0, width: self.view.bounds.size.width, height: newHeight)
             UIView.performWithoutAnimation {
@@ -249,7 +252,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
                 print("Failed to upload movie: ", err)
                 return
             }
-            
+                        
             ref.downloadURL(completion: { (downloadUrl, err) in
                 if let err = err {
                     print("Failed to get download url:", err)
@@ -404,24 +407,10 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         return true
     }
     
-//    func setupKeyboardObservers() {
-//        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
-//
-////        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//
-////        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
-//
-////        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        //
-////        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(handleKeyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
-//    }
-    
     @objc func handleKeyboardDidShow() {
         if messages.count > 0 {
             let indexPath = NSIndexPath(item: messages.count - 1, section: 0)
             self.collectionView.scrollToItem(at: indexPath as IndexPath, at: .top, animated: true)
-//            let notify = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
-//            self.keyBoardHieght = notify?.cgRectValue.height
         }
     }
     
@@ -432,18 +421,12 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     }
     
     @objc func handleKeyboardWillShow(_ notification: Notification) {
-//        let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
-//        let keyboardDuration = (notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
         
-        self.inputContainerView.frame.size.height = 50
+        self.inputContainerView.frame.size.height = 40
         UIView.performWithoutAnimation {
             self.inputContainerView.inputTextField.reloadInputViews()
         }
         
-//        containerViewBottomAnchor?.constant = -keyboardFrame!.height
-//        UIView.animate(withDuration: keyboardDuration!, animations: {
-//            self.view.layoutIfNeeded()
-//        })
     }
     
     func handleKeyboardWillHide(_ notification: Notification) {
