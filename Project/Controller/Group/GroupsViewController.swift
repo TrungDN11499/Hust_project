@@ -63,7 +63,6 @@ extension GroupsViewController {
                 self.navigationController?.navigationBar.standardAppearance = app
 
             }
-            navigationBar.applyNavBarCornerRadius(with: 44, radius: 12)
         }
         self.definesPresentationContext = false
 

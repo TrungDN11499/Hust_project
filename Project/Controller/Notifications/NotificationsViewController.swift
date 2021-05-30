@@ -105,7 +105,6 @@ class NotificationsViewController: UITableViewController {
                 self.navigationController?.navigationBar.standardAppearance = app
 
             }
-            navigationBar.applyNavBarCornerRadius(radius: 12)
         }
     }
 

@@ -53,7 +53,6 @@ class CustomNavigationController: UINavigationController {
         self.view.backgroundColor = .white
         navigationBar.shadowImage = UIImage(color: UIColor.white)
         navigationBar.barTintColor = .white
-        navigationBar.applyNavBarCornerRadius(radius: 12)
         navigationBar.tintColor = .white
     }
 }

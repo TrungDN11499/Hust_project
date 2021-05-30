@@ -21,13 +21,12 @@ class SettingViewController: UITableViewController {
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureViewController()
         fetchUser()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.configureViewController()
     }
     
     // MARK: - Api
@@ -84,7 +83,6 @@ class SettingViewController: UITableViewController {
                 self.navigationController?.navigationBar.standardAppearance = app
 
             }
-            navigationBar.applyNavBarCornerRadius(radius: 12)
         }
     }
 }
@@ -99,7 +97,9 @@ extension SettingViewController {
         case 1:
             print("edit")
         case 2:
-            print("group")
+            print("edit")
+            let groupViewController = GroupsViewController()
+            self.navigationController?.pushViewController(groupViewController, animated: true)
         default:
             print("logout")
             let alert = UIAlertController(title: nil, message: "Are your sure you want to log out?", preferredStyle: .actionSheet)

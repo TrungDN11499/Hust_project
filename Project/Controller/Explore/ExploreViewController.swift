@@ -92,9 +92,7 @@ class ExploreViewController: UITableViewController {
                 app.backgroundImage = image
                 self.navigationController?.navigationBar.scrollEdgeAppearance = app
                 self.navigationController?.navigationBar.standardAppearance = app
-
             }
-            navigationBar.applyNavBarCornerRadius(with: 44, radius: 12)
         }
         
         
