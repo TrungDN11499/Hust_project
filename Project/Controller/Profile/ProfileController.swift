@@ -48,6 +48,7 @@ class ProfileController: UICollectionViewController, EditProfileControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Helper.shared.showLoading(inView: self.view)
         self.configureCollectionView()
         self.fetchTweets()
         self.fetchLikeTweets()
@@ -57,6 +58,7 @@ class ProfileController: UICollectionViewController, EditProfileControllerDelega
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.barStyle = .black
         self.navigationController?.navigationBar.isHidden = true
+        self.collectionView.backgroundColor = .mainBackgroundColor
         self.checkIfUserIsFollowing()
         self.fetchUserStats()
     }
@@ -74,18 +76,9 @@ class ProfileController: UICollectionViewController, EditProfileControllerDelega
         guard let user = self.user else { return }
         TweetService1.shared.fetchTweets(forUser: user) { [weak self] tweets in
             guard let `self` = self else { return }
-            
-            for tweet in tweets {
-                TweetService1.shared.checkIfUserLikeTweet(tweet: tweet) { didLike in
-                    if didLike {
-                        tweet.didLike.value = true
-                    }
-                    self.tweets.append(tweet)
-                    
-                    // TODO: This must be fixed.
-                    self.collectionView.reloadData()
-                }
-            }
+            self.tweets = tweets
+            self.collectionView.reloadData()
+            Helper.shared.hideLoading(inView: self.view)
         }
     }
     
@@ -170,7 +163,7 @@ extension ProfileController {
         
         cell.feedViewModel = FeedViewModel(self.currentDataSource[indexPath.item])
         cell.needDelete = false
-        
+
         return cell
     }
 }
@@ -178,12 +171,54 @@ extension ProfileController {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension ProfileController: UICollectionViewDelegateFlowLayout {
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10.0, left: 0, bottom: 0, right: 0)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: self.collectionView.frame.width, height: 350)
+        return CGSize(width: self.collectionView.frame.width, height: 300)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.collectionView.frame.width, height: 120)
+        
+        // cell constants
+        let cellPadding: CGFloat = 12
+        let actionButtonSize: CGFloat = 25
+        let optionButtonSize: CGFloat = 20
+        let profileImageSize: CGFloat = 40
+        let maxTextHeight: CGFloat = 200
+        let seperatorHeight: CGFloat = 0.5
+        let seeMoreButtonHeight: CGFloat = 17
+        let contentTextPadding: CGFloat = 5
+        let contentImagePadding: CGFloat = 8
+        
+        // calculate caption text width
+        let textWidth = self.view.frame.width - (optionButtonSize + cellPadding * 2 + contentTextPadding)
+        
+        // calculate caption text height
+        let textHeight = self.currentDataSource[indexPath.item].caption.height(withConstrainedWidth: textWidth, font: UIFont.robotoRegular(point: 14)) > maxTextHeight ? maxTextHeight : self.currentDataSource[indexPath.item].caption.height(withConstrainedWidth: textWidth, font: UIFont.robotoRegular(point: 14))
+             
+        // calculate content text height
+        var contentHeight: CGFloat = 0
+        if textHeight != maxTextHeight {
+            contentHeight = profileImageSize + contentTextPadding + textHeight
+        } else {
+            contentHeight = profileImageSize + contentTextPadding * 2 + textHeight + seeMoreButtonHeight
+        }
+        
+        // calculate image content height
+        var imageHeight: CGFloat = 0
+        let images = self.currentDataSource[indexPath.item].images
+        if !images.isEmpty {
+            let ratio = images[0].width / images[0].height
+            imageHeight = (self.view.frame.width / ratio) + contentImagePadding
+        } else {
+            imageHeight = 0
+        }
+        // calculate cell height
+        let cellHeight: CGFloat =  cellPadding * 3 + actionButtonSize + contentHeight + imageHeight + seperatorHeight
+        
+        return CGSize(width: self.view.frame.width, height: cellHeight)
     }
     
 }

@@ -123,8 +123,14 @@ struct TweetService1 {
             let tweetId = snapshot.key
             
             self.fetchTweet(withTweetId: tweetId) { tweet in
-                tweets.append(tweet)
-                completion(tweets)
+                TweetService1.shared.checkIfUserLikeTweet(tweet: tweet) { didLike in
+                    if didLike {
+                        tweet.didLike.value = true
+                    }
+                    tweets.append(tweet)
+                    completion(tweets)
+                }
+                
             }
             
         }
