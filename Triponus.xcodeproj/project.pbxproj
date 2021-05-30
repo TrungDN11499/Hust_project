@@ -36,6 +36,8 @@
 		8409D6002642E8C20036E3A1 /* Griffy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */; };
 		841CA67126427D4A00B6A83B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CA66F26427D4A00B6A83B /* RegisterViewController.swift */; };
 		841CA67226427D4A00B6A83B /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841CA67026427D4A00B6A83B /* RegisterViewController.xib */; };
+		84405EF62663E0D500A68928 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84405EF42663E0D500A68928 /* EditProfileViewController.swift */; };
+		84405EF72663E0D500A68928 /* EditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84405EF52663E0D500A68928 /* EditProfileViewController.xib */; };
 		845620DB265FF634004E3583 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845620DA265FF634004E3583 /* SettingViewController.swift */; };
 		845620DE265FF97D004E3583 /* SettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845620DC265FF97D004E3583 /* SettingTVC.swift */; };
 		845620DF265FF97D004E3583 /* SettingTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845620DD265FF97D004E3583 /* SettingTVC.xib */; };
@@ -182,6 +184,8 @@
 		8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Griffy-Regular.ttf"; sourceTree = "<group>"; };
 		841CA66F26427D4A00B6A83B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		841CA67026427D4A00B6A83B /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
+		84405EF42663E0D500A68928 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		84405EF52663E0D500A68928 /* EditProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileViewController.xib; sourceTree = "<group>"; };
 		845620DA265FF634004E3583 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		845620DC265FF97D004E3583 /* SettingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTVC.swift; sourceTree = "<group>"; };
 		845620DD265FF97D004E3583 /* SettingTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTVC.xib; sourceTree = "<group>"; };
@@ -440,6 +444,8 @@
 			children = (
 				FA1108D82538C0AA00443971 /* ProfileController.swift */,
 				FA80F1792545BE4E0030A00D /* EditProfileController.swift */,
+				84405EF42663E0D500A68928 /* EditProfileViewController.swift */,
+				84405EF52663E0D500A68928 /* EditProfileViewController.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -959,6 +965,7 @@
 				83AF06EB2645A21C00A16E8B /* UploadTweetViewController.xib in Resources */,
 				FAFD58AE25208D9C006E4F94 /* Assets.xcassets in Resources */,
 				840421A8265E9BEE002E8ECE /* BookingViewController.xib in Resources */,
+				84405EF72663E0D500A68928 /* EditProfileViewController.xib in Resources */,
 				845F6CAA26516FEF0015BD58 /* NotificationTBVCell.xib in Resources */,
 				FA66C6072523AE2100C31151 /* GoogleService-Info.plist in Resources */,
 				83346DC726639D120067C041 /* CommentTableViewCell.xib in Resources */,
@@ -1165,6 +1172,7 @@
 				FAFD58E325208F9C006E4F94 /* MainTabBarController.swift in Sources */,
 				FA66C5E12523829C00C31151 /* RegistrationController.swift in Sources */,
 				83EEB9E6264D72EF0010A17C /* Helper.swift in Sources */,
+				84405EF62663E0D500A68928 /* EditProfileViewController.swift in Sources */,
 				FAFDD72A254E5292000C39FF /* UIControllExtension.swift in Sources */,
 				FAFDD715254E4E4B000C39FF /* BaseTableViewCell.swift in Sources */,
 				FAF417F92528C96E00FDDC97 /* BaseViewController.swift in Sources */,

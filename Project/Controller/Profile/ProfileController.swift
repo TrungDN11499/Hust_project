@@ -11,6 +11,9 @@ import FirebaseAuth
 private let collectionHeaderIden = "ProfileHeaderView"
 
 class ProfileController: UICollectionViewController, EditProfileControllerDelegate {
+    
+    
+    
     // MARK: - Properties
     
     private var selectedFilter: ProfileFilterOptions = .tweets {
@@ -176,7 +179,7 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: self.collectionView.frame.width, height: 300)
+        return CGSize(width: self.collectionView.frame.width, height: 350)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -301,6 +304,10 @@ extension ProfileController {
     
     func controller(_ controller: EditProfileController, wantToUpdate user: User) {
         controller.dismiss(animated: true, completion: nil)
+        self.user = user
+        self.collectionView.reloadData()
+    }
+    func controller(_ controller: EditProfileViewController, wantToUpdate user: User) {
         self.user = user
         self.collectionView.reloadData()
     }

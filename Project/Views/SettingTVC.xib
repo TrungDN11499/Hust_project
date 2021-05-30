@@ -68,6 +68,7 @@
             <connections>
                 <outlet property="imageViewHeightAnchor" destination="EUN-f6-wmP" id="LzR-y7-RtG"/>
                 <outlet property="imageViewWidthAnchor" destination="Zpm-eX-Fyh" id="UZt-kj-6Qo"/>
+                <outlet property="lineView" destination="3qR-mH-nnT" id="MD8-ks-bda"/>
                 <outlet property="nextArrowImage" destination="KIP-J6-hbP" id="hDP-Mz-dnd"/>
                 <outlet property="objectImageView" destination="8LV-cC-Xo4" id="5Us-Rz-yWN"/>
                 <outlet property="objectLabel" destination="sqS-wN-3jd" id="AH6-uh-K9X"/>

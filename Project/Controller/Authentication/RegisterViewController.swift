@@ -38,12 +38,8 @@ class RegisterViewController: BaseViewController {
         self.setUpImagePicker()
         self.addInputAccessoryForTextFields(textFields: [self.emailTextField.customTextField, self.passwordTextField.customTextField,self.comfirmPasswordField.customTextField, self.userNameTextField.customTextField, self.fullNameTextField.customTextField], dismissable: true, previousNextable: true)
         addActivityIndicator()
-        // Do any additional setup after loading the view.
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        self.view.isUserInteractionEnabled = true
-//    }
+
     override func bindViewModel() {
         self.configure(with: self.viewModel)
     }
