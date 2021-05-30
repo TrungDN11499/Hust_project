@@ -43,7 +43,7 @@ enum ActionSheetOption {
         case .unfollow(let user):
             return "Unfollow @\(user.username)"
         case .report:
-            return "Report Tweet"
+            return "Edit Tweet"
         case .delete:
             return "Delete Tweet"
         }

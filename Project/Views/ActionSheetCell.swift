@@ -25,6 +25,7 @@ class ActionSheetCell: UITableViewCell {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .black
         label.text = "Label"
         return label
     }()
@@ -33,6 +34,8 @@ class ActionSheetCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.backgroundColor = .white
         
         self.contentView.addSubview(self.optionImageView)
         
