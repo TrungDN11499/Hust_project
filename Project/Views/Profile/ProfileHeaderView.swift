@@ -29,7 +29,7 @@ class ProfileHeaderView: UICollectionReusableView {
     
     private lazy var navigationContainerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .twitterBlue
+        view.backgroundColor = .navigationBarColor
         view.addSubview(self.backButton)
         self.backButton.anchor(top:view.topAnchor, left: view.leftAnchor, paddingTop: 42, paddingLeft: 16)
         return view
