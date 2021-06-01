@@ -146,8 +146,9 @@ class FeedsService: FeedsServiceProtocol {
                 completion(true, nil)
             }
             
+            var existChỉlds = flowwingSnapshot.childrenCount
+            var nonExistChilds = 0
             for child in flowwingSnapshot.children {
-                
                 var followingTweets = [Tweet]()
                 if let snapshotChild = child as? DataSnapshot {
                     let followedUid = snapshotChild.key
@@ -155,7 +156,11 @@ class FeedsService: FeedsServiceProtocol {
                     REF_USER_TWEETS.child(followedUid).observe(.value) { tweetsSnapshot in
                         
                         if tweetsSnapshot.childrenCount == 0 {
-                            completion(true, nil)
+                            nonExistChilds += 1
+                            existChỉlds -= 1
+                            if nonExistChilds == flowwingSnapshot.childrenCount {
+                                completion(true, nil)
+                            }
                         }
                         
                         for child in tweetsSnapshot.children {
@@ -170,7 +175,7 @@ class FeedsService: FeedsServiceProtocol {
                                         if followingTweets.count == tweetsSnapshot.childrenCount {
                                             tweets.append(contentsOf: followingTweets)
                                             followingCount += 1
-                                            if followingCount == flowwingSnapshot.childrenCount {
+                                            if followingCount == existChỉlds {
                                                 completion(true, tweets)
                                             }
                                         }
