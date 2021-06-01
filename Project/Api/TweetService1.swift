@@ -118,21 +118,28 @@ struct TweetService1 {
     }
     
     func fetchTweets(forUser user: User, completion: @escaping ([Tweet]) -> ()) {
-        var tweets = [Tweet]()
-        REF_USER_TWEETS.child(user.uid).observe(.childAdded) { (snapshot) in
-            let tweetId = snapshot.key
+        var tweets = [Tweet]()        
+        REF_USER_TWEETS.child(user.uid).observe(.value) { (snapshot) in
             
-            self.fetchTweet(withTweetId: tweetId) { tweet in
-                TweetService1.shared.checkIfUserLikeTweet(tweet: tweet) { didLike in
-                    if didLike {
-                        tweet.didLike.value = true
-                    }
-                    tweets.append(tweet)
-                    completion(tweets)
-                }
-                
+            guard snapshot.exists() else {
+                completion(tweets)
+                return
             }
-            
+            for child in snapshot.children {
+                if let snapshotChild = child as? DataSnapshot {
+                    let tweetId = snapshotChild.key
+                    self.fetchTweet(withTweetId: tweetId) { tweet in
+                        TweetService1.shared.checkIfUserLikeTweet(tweet: tweet) { didLike in
+                            if didLike {
+                                tweet.didLike.value = true
+                            }
+                            tweets.append(tweet)
+                            completion(tweets)
+                        }
+                        
+                    }
+                }
+            }
         }
     }
     
