@@ -117,8 +117,9 @@ extension NotificationsViewController {
         let notification = self.notifications[indexPath.row]
         guard let tweetId = notification.tweetId else { return }
         TweetService1.shared.fetchTweet(withTweetId: tweetId) { tweet in
-            let tweetController = TweetController(tweet)
-            self.navigationController?.pushViewController(tweetController, animated: true)
+            let feedViewModel = FeedViewModel(tweet)
+            let controller = TweetViewController.create(with: feedViewModel) as! TweetViewController
+            self.navigationController?.pushViewController(controller, animated: true)
         }
     }
 }
