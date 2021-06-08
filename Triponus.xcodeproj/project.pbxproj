@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		1C87D98FD40E964BE6C360FF /* Pods_Triponus_TriponusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10E226C9FC8EEAB0A642311B /* Pods_Triponus_TriponusUITests.framework */; };
 		26F122434903DBB4505C46AD /* Pods_TriponusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F671E29E78B6CB6EFD5179 /* Pods_TriponusTests.framework */; };
+		5245B0F826451291006031CB /* NewConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0F726451291006031CB /* NewConversationsController.swift */; };
+		5245B0FA26451674006031CB /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0F926451674006031CB /* ChatLogController.swift */; };
+		5245B0FC264516AE006031CB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0FB264516AE006031CB /* Message.swift */; };
+		5245B0FE264516F3006031CB /* ChatMessagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0FD264516F3006031CB /* ChatMessagCell.swift */; };
+		5245B1002645172A006031CB /* ChatInputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0FF2645172A006031CB /* ChatInputContainerView.swift */; };
+		5245B102264519A1006031CB /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B101264519A1006031CB /* UIImageViewExtension.swift */; };
+		526F37E52645204E00F7CCD1 /* UserMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526F37E42645204E00F7CCD1 /* UserMessageCell.swift */; };
+		52A60AD82652AFD400219C3D /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A60AD72652AFD400219C3D /* NotificationModel.swift */; };
 		8301731E265C0AB20048136A /* FeedsHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8301731C265C0AB20048136A /* FeedsHeaderCollectionReusableView.swift */; };
 		8301731F265C0AB20048136A /* FeedsHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8301731D265C0AB20048136A /* FeedsHeaderCollectionReusableView.xib */; };
 		832D1C30265FFA2D004FD551 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832D1C2F265FFA2D004FD551 /* UITextFieldExtension.swift */; };
@@ -22,14 +30,6 @@
 		836C9870265E975D00D625E0 /* CreateGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 836C986E265E975D00D625E0 /* CreateGroupViewController.xib */; };
 		836C9873265E977B00D625E0 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836C9871265E977B00D625E0 /* GroupsViewController.swift */; };
 		836C9874265E977B00D625E0 /* GroupsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 836C9872265E977B00D625E0 /* GroupsViewController.xib */; };
-		5245B0F826451291006031CB /* NewConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0F726451291006031CB /* NewConversationsController.swift */; };
-		5245B0FA26451674006031CB /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0F926451674006031CB /* ChatLogController.swift */; };
-		5245B0FC264516AE006031CB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0FB264516AE006031CB /* Message.swift */; };
-		5245B0FE264516F3006031CB /* ChatMessagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0FD264516F3006031CB /* ChatMessagCell.swift */; };
-		5245B1002645172A006031CB /* ChatInputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0FF2645172A006031CB /* ChatInputContainerView.swift */; };
-		5245B102264519A1006031CB /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B101264519A1006031CB /* UIImageViewExtension.swift */; };
-		526F37E52645204E00F7CCD1 /* UserMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526F37E42645204E00F7CCD1 /* UserMessageCell.swift */; };
-		52A60AD82652AFD400219C3D /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A60AD72652AFD400219C3D /* NotificationModel.swift */; };
 		83775E942643D495000B402E /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83775E932643D495000B402E /* FontExtension.swift */; };
 		83AF06E726457DF000A16E8B /* UploadFeedParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF06E626457DF000A16E8B /* UploadFeedParam.swift */; };
 		83AF06EA2645A21C00A16E8B /* UploadTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF06E82645A21C00A16E8B /* UploadTweetViewController.swift */; };
@@ -52,7 +52,6 @@
 		845620E1265FFC4E004E3583 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845620E0265FFC4E004E3583 /* SettingModel.swift */; };
 		845F6CA926516FEF0015BD58 /* NotificationTBVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F6CA726516FEF0015BD58 /* NotificationTBVCell.swift */; };
 		845F6CAA26516FEF0015BD58 /* NotificationTBVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845F6CA826516FEF0015BD58 /* NotificationTBVCell.xib */; };
-		845F6CB026517C080015BD58 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F6CAF26517C080015BD58 /* UIColorExtension.swift */; };
 		84E1882126419C84007A1A17 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1882026419C84007A1A17 /* CustomTextField.swift */; };
 		84E188252641ACA2007A1A17 /* CustomTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E188242641ACA2007A1A17 /* CustomTextField.xib */; };
 		84E1F1A026641D0300FF1A7A /* BookingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1F19F26641D0300FF1A7A /* BookingModel.swift */; };
@@ -64,13 +63,6 @@
 		84E8270426426EC100D6929D /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84E8270326426EC100D6929D /* Roboto-Medium.ttf */; };
 		84E8270626426ECC00D6929D /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84E8270526426ECC00D6929D /* Roboto-Regular.ttf */; };
 		84E8270826426EDD00D6929D /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84E8270726426EDD00D6929D /* Roboto-Bold.ttf */; };
-		5245B0F826451291006031CB /* NewConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0F726451291006031CB /* NewConversationsController.swift */; };
-		5245B0FA26451674006031CB /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0F926451674006031CB /* ChatLogController.swift */; };
-		5245B0FC264516AE006031CB /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0FB264516AE006031CB /* Message.swift */; };
-		5245B0FE264516F3006031CB /* ChatMessagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0FD264516F3006031CB /* ChatMessagCell.swift */; };
-		5245B1002645172A006031CB /* ChatInputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0FF2645172A006031CB /* ChatInputContainerView.swift */; };
-		5245B102264519A1006031CB /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B101264519A1006031CB /* UIImageViewExtension.swift */; };
-		526F37E52645204E00F7CCD1 /* UserMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526F37E42645204E00F7CCD1 /* UserMessageCell.swift */; };
 		F46EF1B4D058863F0832EDB1 /* Pods_Triponus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AF713B0B2DB31752A47D72 /* Pods_Triponus.framework */; };
 		FA0DC9F7252658C400377539 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC9F6252658C400377539 /* UserService.swift */; };
 		FA0DC9FC25265FED00377539 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC9FB25265FED00377539 /* User.swift */; };
@@ -78,7 +70,6 @@
 		FA1108E12538C57B00443971 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1108E02538C57B00443971 /* ProfileHeaderView.swift */; };
 		FA2495C02523218C0060BECD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2495BF2523218C0060BECD /* UIViewExtension.swift */; };
 		FA26202D25374A3B000E1755 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA26202C25374A3B000E1755 /* Tweet.swift */; };
-		FA26204E25376B2C000E1755 /* TweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA26204D25376B2C000E1755 /* TweetViewModel.swift */; };
 		FA2C25A92532C7400042EC43 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C25A82532C7400042EC43 /* ViewModelProtocol.swift */; };
 		FA2C25B12532C76A0042EC43 /* ControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C25B02532C76A0042EC43 /* ControllerProtocol.swift */; };
 		FA2C25BC2532C89D0042EC43 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C25BB2532C89D0042EC43 /* LoginViewModel.swift */; };
@@ -94,16 +85,11 @@
 		FA408112253A04A8003DF3D7 /* ProfileFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA408111253A04A8003DF3D7 /* ProfileFilterCell.swift */; };
 		FA408117253A0F09003DF3D7 /* ProfileHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA408116253A0F09003DF3D7 /* ProfileHeaderViewModel.swift */; };
 		FA576D3E253F3E0E0069BA96 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA576D3D253F3E0E0069BA96 /* NotificationService.swift */; };
-		FA576D43253F4D160069BA96 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA576D42253F4D160069BA96 /* NotificationCell.swift */; };
 		FA576D48253F56A10069BA96 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA576D47253F56A10069BA96 /* NotificationViewModel.swift */; };
-		FA66C5DC2523827400C31151 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA66C5DB2523827400C31151 /* LoginController.swift */; };
-		FA66C5E12523829C00C31151 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA66C5E02523829C00C31151 /* RegistrationController.swift */; };
 		FA66C5F6252393B400C31151 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA66C5F5252393B400C31151 /* Utilities.swift */; };
 		FA66C6072523AE2100C31151 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA66C6062523AE2100C31151 /* GoogleService-Info.plist */; };
 		FA684A24260903670044B082 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA684A23260903670044B082 /* StringExtension.swift */; };
 		FA70492926288C180093D11A /* LikeTweetParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70492826288C180093D11A /* LikeTweetParam.swift */; };
-		FA80F17A2545BE4E0030A00D /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA80F1792545BE4E0030A00D /* EditProfileController.swift */; };
-		FA80F1802545C4C10030A00D /* EditProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA80F17F2545C4C10030A00D /* EditProfileHeader.swift */; };
 		FA80F1882545CBB20030A00D /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA80F1872545CBB20030A00D /* EditProfileViewModel.swift */; };
 		FA80F18D2545CC860030A00D /* EditProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA80F18C2545CC860030A00D /* EditProfileCell.swift */; };
 		FA875FA1260B7F98006DCBA9 /* DLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA875FA0260B7F98006DCBA9 /* DLog.swift */; };
@@ -114,7 +100,6 @@
 		FA8A03FA253C1F33006F3FAE /* ActionSheetLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8A03F9253C1F33006F3FAE /* ActionSheetLauncher.swift */; };
 		FA8A03FF253C2E48006F3FAE /* ActionSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8A03FE253C2E48006F3FAE /* ActionSheetCell.swift */; };
 		FA8A0404253C34E3006F3FAE /* ActionSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8A0403253C34E3006F3FAE /* ActionSheetViewModel.swift */; };
-		FA9B7CF52535E7F9006DFFA2 /* UploadTweetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B7CF42535E7F9006DFFA2 /* UploadTweetController.swift */; };
 		FA9B7CFA2535FC85006DFFA2 /* CaptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B7CF92535FC85006DFFA2 /* CaptionTextView.swift */; };
 		FA9B7CFF25361604006DFFA2 /* TweetService1.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B7CFE25361604006DFFA2 /* TweetService1.swift */; };
 		FAA362672524D84A00580FE2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA362662524D84A00580FE2 /* Constants.swift */; };
@@ -123,12 +108,9 @@
 		FAC53E9F26103A7500E32E21 /* FeedsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC53E9E26103A7500E32E21 /* FeedsService.swift */; };
 		FAC53EA42610417400E32E21 /* FeedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC53EA32610417400E32E21 /* FeedsViewModel.swift */; };
 		FAE337E32613730F00BCA038 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE337E22613730F00BCA038 /* FeedViewModel.swift */; };
-		FAF3865B253B330200E76AF1 /* TweetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF3865A253B330200E76AF1 /* TweetController.swift */; };
-		FAF38663253B382100E76AF1 /* TweetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF38662253B382100E76AF1 /* TweetHeader.swift */; };
 		FAF38668253B61BB00E76AF1 /* UploadTweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF38667253B61BB00E76AF1 /* UploadTweetViewModel.swift */; };
 		FAF417F92528C96E00FDDC97 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF417F82528C96E00FDDC97 /* BaseViewController.swift */; };
 		FAF417FF2528CA0600FDDC97 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF417FE2528CA0600FDDC97 /* ViewControllerExtension.swift */; };
-		FAFD3A06254863100030F4DF /* EditProfileFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD3A05254863100030F4DF /* EditProfileFooterView.swift */; };
 		FAFD58A525208D9C006E4F94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD58A425208D9C006E4F94 /* AppDelegate.swift */; };
 		FAFD58A725208D9C006E4F94 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD58A625208D9C006E4F94 /* SceneDelegate.swift */; };
 		FAFD58AE25208D9C006E4F94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAFD58AD25208D9C006E4F94 /* Assets.xcassets */; };
@@ -142,7 +124,7 @@
 		FAFD58F72520935C006E4F94 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD58F62520935C006E4F94 /* ConversationsViewController.swift */; };
 		FAFDD715254E4E4B000C39FF /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFDD714254E4E4B000C39FF /* BaseTableViewCell.swift */; };
 		FAFDD71D254E4E5C000C39FF /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFDD71C254E4E5C000C39FF /* BaseCollectionViewCell.swift */; };
-		FAFDD725254E5039000C39FF /* UIColorExention.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFDD724254E5039000C39FF /* UIColorExention.swift */; };
+		FAFDD725254E5039000C39FF /* UIColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFDD724254E5039000C39FF /* UIColorExtention.swift */; };
 		FAFDD72A254E5292000C39FF /* UIControllExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFDD729254E5292000C39FF /* UIControllExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -218,7 +200,6 @@
 		845620E0265FFC4E004E3583 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 		845F6CA726516FEF0015BD58 /* NotificationTBVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTBVCell.swift; sourceTree = "<group>"; };
 		845F6CA826516FEF0015BD58 /* NotificationTBVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTBVCell.xib; sourceTree = "<group>"; };
-		845F6CAF26517C080015BD58 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		84E1882026419C84007A1A17 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		84E188242641ACA2007A1A17 /* CustomTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTextField.xib; sourceTree = "<group>"; };
 		84E1F19F26641D0300FF1A7A /* BookingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingModel.swift; sourceTree = "<group>"; };
@@ -239,7 +220,6 @@
 		FA1108E02538C57B00443971 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		FA2495BF2523218C0060BECD /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		FA26202C25374A3B000E1755 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
-		FA26204D25376B2C000E1755 /* TweetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetViewModel.swift; sourceTree = "<group>"; };
 		FA2C25A82532C7400042EC43 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		FA2C25B02532C76A0042EC43 /* ControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerProtocol.swift; sourceTree = "<group>"; };
 		FA2C25BB2532C89D0042EC43 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -255,17 +235,12 @@
 		FA408111253A04A8003DF3D7 /* ProfileFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilterCell.swift; sourceTree = "<group>"; };
 		FA408116253A0F09003DF3D7 /* ProfileHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModel.swift; sourceTree = "<group>"; };
 		FA576D3D253F3E0E0069BA96 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
-		FA576D42253F4D160069BA96 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		FA576D47253F56A10069BA96 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		FA6055DCFBA86E8C73A97186 /* Pods-TriponusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TriponusTests.release.xcconfig"; path = "Target Support Files/Pods-TriponusTests/Pods-TriponusTests.release.xcconfig"; sourceTree = "<group>"; };
-		FA66C5DB2523827400C31151 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		FA66C5E02523829C00C31151 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		FA66C5F5252393B400C31151 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		FA66C6062523AE2100C31151 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA684A23260903670044B082 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		FA70492826288C180093D11A /* LikeTweetParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeTweetParam.swift; sourceTree = "<group>"; };
-		FA80F1792545BE4E0030A00D /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
-		FA80F17F2545C4C10030A00D /* EditProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileHeader.swift; sourceTree = "<group>"; };
 		FA80F1872545CBB20030A00D /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		FA80F18C2545CC860030A00D /* EditProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileCell.swift; sourceTree = "<group>"; };
 		FA875FA0260B7F98006DCBA9 /* DLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLog.swift; sourceTree = "<group>"; };
@@ -276,7 +251,6 @@
 		FA8A03F9253C1F33006F3FAE /* ActionSheetLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetLauncher.swift; sourceTree = "<group>"; };
 		FA8A03FE253C2E48006F3FAE /* ActionSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetCell.swift; sourceTree = "<group>"; };
 		FA8A0403253C34E3006F3FAE /* ActionSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetViewModel.swift; sourceTree = "<group>"; };
-		FA9B7CF42535E7F9006DFFA2 /* UploadTweetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetController.swift; sourceTree = "<group>"; };
 		FA9B7CF92535FC85006DFFA2 /* CaptionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionTextView.swift; sourceTree = "<group>"; };
 		FA9B7CFE25361604006DFFA2 /* TweetService1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetService1.swift; sourceTree = "<group>"; };
 		FAA362662524D84A00580FE2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -285,12 +259,9 @@
 		FAC53E9E26103A7500E32E21 /* FeedsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsService.swift; sourceTree = "<group>"; };
 		FAC53EA32610417400E32E21 /* FeedsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsViewModel.swift; sourceTree = "<group>"; };
 		FAE337E22613730F00BCA038 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
-		FAF3865A253B330200E76AF1 /* TweetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetController.swift; sourceTree = "<group>"; };
-		FAF38662253B382100E76AF1 /* TweetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetHeader.swift; sourceTree = "<group>"; };
 		FAF38667253B61BB00E76AF1 /* UploadTweetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetViewModel.swift; sourceTree = "<group>"; };
 		FAF417F82528C96E00FDDC97 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		FAF417FE2528CA0600FDDC97 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
-		FAFD3A05254863100030F4DF /* EditProfileFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileFooterView.swift; sourceTree = "<group>"; };
 		FAFD58A125208D9B006E4F94 /* Triponus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Triponus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAFD58A425208D9C006E4F94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAFD58A625208D9C006E4F94 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -310,7 +281,7 @@
 		FAFD58F62520935C006E4F94 /* ConversationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
 		FAFDD714254E4E4B000C39FF /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		FAFDD71C254E4E5C000C39FF /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
-		FAFDD724254E5039000C39FF /* UIColorExention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExention.swift; sourceTree = "<group>"; };
+		FAFDD724254E5039000C39FF /* UIColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtention.swift; sourceTree = "<group>"; };
 		FAFDD729254E5292000C39FF /* UIControllExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIControllExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -416,6 +387,258 @@
 			path = CreateGroup;
 			sourceTree = "<group>";
 		};
+		838438E0266E654900695ADE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				838438E9266E687D00695ADE /* ViewModel */,
+				84E826FE26426A5A00D6929D /* LoginViewController.xib */,
+				84E826FD26426A5A00D6929D /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		838438E1266E655400695ADE /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				838438E8266E687300695ADE /* ViewModel */,
+				841CA67026427D4A00B6A83B /* RegisterViewController.xib */,
+				841CA66F26427D4A00B6A83B /* RegisterViewController.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		838438E2266E656300695ADE /* Booking */ = {
+			isa = PBXGroup;
+			children = (
+				838438E5266E65C600695ADE /* Cell */,
+				840421A6265E9BEE002E8ECE /* BookingViewController.xib */,
+				840421A5265E9BED002E8ECE /* BookingViewController.swift */,
+			);
+			path = Booking;
+			sourceTree = "<group>";
+		};
+		838438E4266E659400695ADE /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				84E1F1A52664219800FF1A7A /* WebViewController.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
+		838438E5266E65C600695ADE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				84E1F1A226641E5100FF1A7A /* BookingCLVCell.xib */,
+				84E1F1A126641E5100FF1A7A /* BookingCLVCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		838438E6266E65F300695ADE /* TweetCell */ = {
+			isa = PBXGroup;
+			children = (
+				FA39B509261E0B94006B9698 /* TweetCollectionViewCell.xib */,
+				FA39B508261E0B94006B9698 /* TweetCollectionViewCell.swift */,
+			);
+			path = TweetCell;
+			sourceTree = "<group>";
+		};
+		838438E7266E684700695ADE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FAF38667253B61BB00E76AF1 /* UploadTweetViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		838438E8266E687300695ADE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FA2C25E0253309450042EC43 /* RegisterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		838438E9266E687D00695ADE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FA2C25BB2532C89D0042EC43 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		838438EA266E68D600695ADE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FAE337E22613730F00BCA038 /* FeedViewModel.swift */,
+				FAC53EA32610417400E32E21 /* FeedsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		838438EB266E69FA00695ADE /* NotificationCell */ = {
+			isa = PBXGroup;
+			children = (
+				845F6CA726516FEF0015BD58 /* NotificationTBVCell.swift */,
+				845F6CA826516FEF0015BD58 /* NotificationTBVCell.xib */,
+			);
+			path = NotificationCell;
+			sourceTree = "<group>";
+		};
+		838438EC266E6A0F00695ADE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FA576D47253F56A10069BA96 /* NotificationViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		838438ED266E6A5E00695ADE /* UserCell */ = {
+			isa = PBXGroup;
+			children = (
+				FA89486A253ACBA10071A5DB /* UserCell.swift */,
+			);
+			path = UserCell;
+			sourceTree = "<group>";
+		};
+		838438EE266E6BCB00695ADE /* SettingCell */ = {
+			isa = PBXGroup;
+			children = (
+				845620DC265FF97D004E3583 /* SettingTVC.swift */,
+				845620DD265FF97D004E3583 /* SettingTVC.xib */,
+			);
+			path = SettingCell;
+			sourceTree = "<group>";
+		};
+		838438EF266E6C1100695ADE /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				838438F1266E6DC200695ADE /* HeaderView */,
+				FA1108D82538C0AA00443971 /* ProfileController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		838438F0266E6D8A00695ADE /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				838438F4266E6ECD00695ADE /* EditProfileCell */,
+				838438F3266E6E3300695ADE /* ViewModel */,
+				84405EF42663E0D500A68928 /* EditProfileViewController.swift */,
+				84405EF52663E0D500A68928 /* EditProfileViewController.xib */,
+			);
+			path = EditProfile;
+			sourceTree = "<group>";
+		};
+		838438F1266E6DC200695ADE /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				838438F2266E6DCE00695ADE /* ViewModel */,
+				FA1108E02538C57B00443971 /* ProfileHeaderView.swift */,
+				FA40810C253A01D9003DF3D7 /* ProfileFilterView.swift */,
+				FA408111253A04A8003DF3D7 /* ProfileFilterCell.swift */,
+			);
+			path = HeaderView;
+			sourceTree = "<group>";
+		};
+		838438F2266E6DCE00695ADE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FA408116253A0F09003DF3D7 /* ProfileHeaderViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		838438F3266E6E3300695ADE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FA80F1872545CBB20030A00D /* EditProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		838438F4266E6ECD00695ADE /* EditProfileCell */ = {
+			isa = PBXGroup;
+			children = (
+				FA80F18C2545CC860030A00D /* EditProfileCell.swift */,
+			);
+			path = EditProfileCell;
+			sourceTree = "<group>";
+		};
+		838438F5266F0A0900695ADE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		838438F6266F0A7700695ADE /* CustomTextField */ = {
+			isa = PBXGroup;
+			children = (
+				84E1882026419C84007A1A17 /* CustomTextField.swift */,
+				84E188242641ACA2007A1A17 /* CustomTextField.xib */,
+			);
+			path = CustomTextField;
+			sourceTree = "<group>";
+		};
+		838438F7266F0AF600695ADE /* CaptionTextView */ = {
+			isa = PBXGroup;
+			children = (
+				FA9B7CF92535FC85006DFFA2 /* CaptionTextView.swift */,
+			);
+			path = CaptionTextView;
+			sourceTree = "<group>";
+		};
+		838438F8266F0B0500695ADE /* ActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				838438F9266F0B1700695ADE /* ViewModel */,
+				838438FA266F0B1D00695ADE /* ActionSheetCell */,
+				FA8A03F9253C1F33006F3FAE /* ActionSheetLauncher.swift */,
+			);
+			path = ActionSheet;
+			sourceTree = "<group>";
+		};
+		838438F9266F0B1700695ADE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FA8A0403253C34E3006F3FAE /* ActionSheetViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		838438FA266F0B1D00695ADE /* ActionSheetCell */ = {
+			isa = PBXGroup;
+			children = (
+				FA8A03FE253C2E48006F3FAE /* ActionSheetCell.swift */,
+			);
+			path = ActionSheetCell;
+			sourceTree = "<group>";
+		};
+		838438FB266F0D1700695ADE /* ConversationsCell */ = {
+			isa = PBXGroup;
+			children = (
+				526F37E42645204E00F7CCD1 /* UserMessageCell.swift */,
+			);
+			path = ConversationsCell;
+			sourceTree = "<group>";
+		};
+		838438FC266F0D2C00695ADE /* ChatLogCell */ = {
+			isa = PBXGroup;
+			children = (
+				5245B0FD264516F3006031CB /* ChatMessagCell.swift */,
+			);
+			path = ChatLogCell;
+			sourceTree = "<group>";
+		};
+		838438FD266F0D3600695ADE /* InputContainer */ = {
+			isa = PBXGroup;
+			children = (
+				5245B0FF2645172A006031CB /* ChatInputContainerView.swift */,
+			);
+			path = InputContainer;
+			sourceTree = "<group>";
+		};
 		83AF06E526457DD300A16E8B /* UploadFeedParam */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,9 +666,10 @@
 		8409D601264317FE0036E3A1 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				838438F8266F0B0500695ADE /* ActionSheet */,
+				838438F7266F0AF600695ADE /* CaptionTextView */,
+				838438F6266F0A7700695ADE /* CustomTextField */,
 				83EEB9EF264E8D240010A17C /* Navigation */,
-				84E188242641ACA2007A1A17 /* CustomTextField.xib */,
-				84E1882026419C84007A1A17 /* CustomTextField.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -453,6 +677,7 @@
 		845620D9265FF61A004E3583 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				838438EE266E6BCB00695ADE /* SettingCell */,
 				845620DA265FF634004E3583 /* SettingViewController.swift */,
 			);
 			path = Setting;
@@ -471,10 +696,8 @@
 		FA1108D52538C0AA00443971 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				FA1108D82538C0AA00443971 /* ProfileController.swift */,
-				FA80F1792545BE4E0030A00D /* EditProfileController.swift */,
-				84405EF42663E0D500A68928 /* EditProfileViewController.swift */,
-				84405EF52663E0D500A68928 /* EditProfileViewController.xib */,
+				838438EF266E6C1100695ADE /* Profile */,
+				838438F0266E6D8A00695ADE /* EditProfile */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -526,10 +749,8 @@
 		FA66C5DA2523822C00C31151 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				FA66C5DB2523827400C31151 /* LoginController.swift */,
-				84E826FD26426A5A00D6929D /* LoginViewController.swift */,
-				841CA66F26427D4A00B6A83B /* RegisterViewController.swift */,
-				FA66C5E02523829C00C31151 /* RegistrationController.swift */,
+				838438E1266E655400695ADE /* Register */,
+				838438E0266E654900695ADE /* Login */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -540,19 +761,6 @@
 				FA70492826288C180093D11A /* LikeTweetParam.swift */,
 			);
 			path = LikeTweetParam;
-			sourceTree = "<group>";
-		};
-		FA80F17E2545C48F0030A00D /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				FA1108E02538C57B00443971 /* ProfileHeaderView.swift */,
-				FA40810C253A01D9003DF3D7 /* ProfileFilterView.swift */,
-				FA408111253A04A8003DF3D7 /* ProfileFilterCell.swift */,
-				FA80F17F2545C4C10030A00D /* EditProfileHeader.swift */,
-				FA80F18C2545CC860030A00D /* EditProfileCell.swift */,
-				FAFD3A05254863100030F4DF /* EditProfileFooterView.swift */,
-			);
-			path = Profile;
 			sourceTree = "<group>";
 		};
 		FA875F9F260B7F7B006DCBA9 /* Log */ = {
@@ -566,7 +774,7 @@
 		FA9B7CF32535E7DE006DFFA2 /* UploadTweet */ = {
 			isa = PBXGroup;
 			children = (
-				FA9B7CF42535E7F9006DFFA2 /* UploadTweetController.swift */,
+				838438E7266E684700695ADE /* ViewModel */,
 				83AF06E82645A21C00A16E8B /* UploadTweetViewController.swift */,
 				83AF06E92645A21C00A16E8B /* UploadTweetViewController.xib */,
 			);
@@ -597,29 +805,11 @@
 			path = FeedsService;
 			sourceTree = "<group>";
 		};
-		FAE337E02613729400BCA038 /* Authenticate */ = {
-			isa = PBXGroup;
-			children = (
-				FA2C25BB2532C89D0042EC43 /* LoginViewModel.swift */,
-				FA2C25E0253309450042EC43 /* RegisterViewModel.swift */,
-			);
-			path = Authenticate;
-			sourceTree = "<group>";
-		};
-		FAE337E1261372A300BCA038 /* Feed */ = {
-			isa = PBXGroup;
-			children = (
-				FAE337E22613730F00BCA038 /* FeedViewModel.swift */,
-				FAC53EA32610417400E32E21 /* FeedsViewModel.swift */,
-			);
-			path = Feed;
-			sourceTree = "<group>";
-		};
 		FAF38659253B32EC00E76AF1 /* Tweet */ = {
 			isa = PBXGroup;
 			children = (
+				838438F5266F0A0900695ADE /* ViewModel */,
 				83346DC326639CF70067C041 /* CommentCell */,
-				FAF3865A253B330200E76AF1 /* TweetController.swift */,
 				83346DBF26637AE60067C041 /* TweetViewController.swift */,
 				83346DC026637AE60067C041 /* TweetViewController.xib */,
 			);
@@ -629,6 +819,7 @@
 		FAF417F72528C95D00FDDC97 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				FAFD58DE25208EFB006E4F94 /* Utilities */,
 				83EEB9E4264D72CE0010A17C /* Helper */,
 				8409D601264317FE0036E3A1 /* CustomView */,
 				FAFDD70B254E4D2A000C39FF /* class */,
@@ -645,7 +836,7 @@
 			children = (
 				FA2495BF2523218C0060BECD /* UIViewExtension.swift */,
 				FAF417FE2528CA0600FDDC97 /* ViewControllerExtension.swift */,
-				FAFDD724254E5039000C39FF /* UIColorExention.swift */,
+				FAFDD724254E5039000C39FF /* UIColorExtention.swift */,
 				FAFDD729254E5292000C39FF /* UIControllExtension.swift */,
 				FA684A23260903670044B082 /* StringExtension.swift */,
 				FA88D41D261B860300A2FD6F /* AttributedString.swift */,
@@ -654,7 +845,6 @@
 				83EEB9E7264E601D0010A17C /* UIImageExtension.swift */,
 				83EEB9EB264E8CA20010A17C /* UIBezierPathExtension.swift */,
 				83EEB9ED264E8CBE0010A17C /* UINavigationBarExtension.swift */,
-				845F6CAF26517C080015BD58 /* UIColorExtension.swift */,
 				832D1C2F265FFA2D004FD551 /* UITextFieldExtension.swift */,
 				5245B101264519A1006031CB /* UIImageViewExtension.swift */,
 			);
@@ -686,15 +876,12 @@
 		FAFD58A325208D9B006E4F94 /* Project */ = {
 			isa = PBXGroup;
 			children = (
-				FAF417F72528C95D00FDDC97 /* Base */,
-				FAFD58D725208E72006E4F94 /* Models */,
-				FAFD58DD25208ED8006E4F94 /* Views */,
-				FAFD58DC25208ED6006E4F94 /* ViewModels */,
-				FAFD58DB25208ED4006E4F94 /* Controller */,
-				FAFD58D825208EC7006E4F94 /* Api */,
-				FAFD58DE25208EFB006E4F94 /* Utilities */,
 				FAFD58A425208D9C006E4F94 /* AppDelegate.swift */,
 				FAFD58A625208D9C006E4F94 /* SceneDelegate.swift */,
+				FAF417F72528C95D00FDDC97 /* Base */,
+				FAFD58D725208E72006E4F94 /* Models */,
+				FAFD58DB25208ED4006E4F94 /* Controllers */,
+				FAFD58D825208EC7006E4F94 /* Api */,
 				FAFD58AD25208D9C006E4F94 /* Assets.xcassets */,
 				FAFD58AF25208D9C006E4F94 /* LaunchScreen.storyboard */,
 				FAFD58B225208D9C006E4F94 /* Info.plist */,
@@ -733,10 +920,8 @@
 				FA70492726288C080093D11A /* LikeTweetParam */,
 				FA0DC9FB25265FED00377539 /* User.swift */,
 				FA26202C25374A3B000E1755 /* Tweet.swift */,
-				FA576D38253F3A770069BA96 /* NotificationModel.swift */,
 				84E1F19F26641D0300FF1A7A /* BookingModel.swift */,
 				845620E0265FFC4E004E3583 /* SettingModel.swift */,
-				5245B0FB264516AE006031CB /* Message.swift */,
 				52A60AD72652AFD400219C3D /* NotificationModel.swift */,
 				5245B0FB264516AE006031CB /* Message.swift */,
 			);
@@ -756,14 +941,13 @@
 			path = Api;
 			sourceTree = "<group>";
 		};
-		FAFD58DB25208ED4006E4F94 /* Controller */ = {
+		FAFD58DB25208ED4006E4F94 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				845620D9265FF61A004E3583 /* Setting */,
 				FAFD58E225208F9C006E4F94 /* MainTabBarController.swift */,
-				840421A5265E9BED002E8ECE /* BookingViewController.swift */,
-				84E1F1A52664219800FF1A7A /* WebViewController.swift */,
-				840421A6265E9BEE002E8ECE /* BookingViewController.xib */,
+				838438E4266E659400695ADE /* WebView */,
+				838438E2266E656300695ADE /* Booking */,
+				845620D9265FF61A004E3583 /* Setting */,
 				FAB9759C2602F86D006A66BB /* Splash */,
 				FA9B7CF32535E7DE006DFFA2 /* UploadTweet */,
 				FA66C5DA2523822C00C31151 /* Authentication */,
@@ -775,48 +959,7 @@
 				FAF38659253B32EC00E76AF1 /* Tweet */,
 				836C9869265E96FE00D625E0 /* Group */,
 			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		FAFD58DC25208ED6006E4F94 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				FAE337E02613729400BCA038 /* Authenticate */,
-				FAE337E1261372A300BCA038 /* Feed */,
-				FA26204D25376B2C000E1755 /* TweetViewModel.swift */,
-				FA408116253A0F09003DF3D7 /* ProfileHeaderViewModel.swift */,
-				FAF38667253B61BB00E76AF1 /* UploadTweetViewModel.swift */,
-				FA8A0403253C34E3006F3FAE /* ActionSheetViewModel.swift */,
-				FA576D47253F56A10069BA96 /* NotificationViewModel.swift */,
-				FA80F1872545CBB20030A00D /* EditProfileViewModel.swift */,
-				5245B0FD264516F3006031CB /* ChatMessagCell.swift */,
-				5245B0FF2645172A006031CB /* ChatInputContainerView.swift */,
-				526F37E42645204E00F7CCD1 /* UserMessageCell.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		FAFD58DD25208ED8006E4F94 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				FA80F17E2545C48F0030A00D /* Profile */,
-				84E826FE26426A5A00D6929D /* LoginViewController.xib */,
-				841CA67026427D4A00B6A83B /* RegisterViewController.xib */,
-				FA9B7CF92535FC85006DFFA2 /* CaptionTextView.swift */,
-				FA89486A253ACBA10071A5DB /* UserCell.swift */,
-				FAF38662253B382100E76AF1 /* TweetHeader.swift */,
-				FA8A03FE253C2E48006F3FAE /* ActionSheetCell.swift */,
-				FA576D42253F4D160069BA96 /* NotificationCell.swift */,
-				845F6CA726516FEF0015BD58 /* NotificationTBVCell.swift */,
-				845620DC265FF97D004E3583 /* SettingTVC.swift */,
-				845620DD265FF97D004E3583 /* SettingTVC.xib */,
-				845F6CA826516FEF0015BD58 /* NotificationTBVCell.xib */,
-				FA39B508261E0B94006B9698 /* TweetCollectionViewCell.swift */,
-				84E1F1A126641E5100FF1A7A /* BookingCLVCell.swift */,
-				84E1F1A226641E5100FF1A7A /* BookingCLVCell.xib */,
-				FA39B509261E0B94006B9698 /* TweetCollectionViewCell.xib */,
-			);
-			path = Views;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		FAFD58DE25208EFB006E4F94 /* Utilities */ = {
@@ -824,7 +967,6 @@
 			children = (
 				FA66C5F5252393B400C31151 /* Utilities.swift */,
 				FAA362662524D84A00580FE2 /* Constants.swift */,
-				FA8A03F9253C1F33006F3FAE /* ActionSheetLauncher.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -832,7 +974,9 @@
 		FAFD591125209480006E4F94 /* Feeds */ = {
 			isa = PBXGroup;
 			children = (
+				838438EA266E68D600695ADE /* ViewModel */,
 				8301731B265C0A490048136A /* FeedsHeaderView */,
+				838438E6266E65F300695ADE /* TweetCell */,
 				FAFD58E725209321006E4F94 /* FeedsViewController.swift */,
 			);
 			path = Feeds;
@@ -841,6 +985,7 @@
 		FAFD59122520948A006E4F94 /* Explore */ = {
 			isa = PBXGroup;
 			children = (
+				838438ED266E6A5E00695ADE /* UserCell */,
 				FAFD58EC25209338006E4F94 /* ExploreViewController.swift */,
 			);
 			path = Explore;
@@ -849,6 +994,8 @@
 		FAFD591325209493006E4F94 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				838438EC266E6A0F00695ADE /* ViewModel */,
+				838438EB266E69FA00695ADE /* NotificationCell */,
 				FAFD58F125209346006E4F94 /* NotificationsViewController.swift */,
 			);
 			path = Notifications;
@@ -857,6 +1004,9 @@
 		FAFD59142520949C006E4F94 /* Conversations */ = {
 			isa = PBXGroup;
 			children = (
+				838438FD266F0D3600695ADE /* InputContainer */,
+				838438FC266F0D2C00695ADE /* ChatLogCell */,
+				838438FB266F0D1700695ADE /* ConversationsCell */,
 				FAFD58F62520935C006E4F94 /* ConversationsViewController.swift */,
 				5245B0F726451291006031CB /* NewConversationsController.swift */,
 				5245B0F926451674006031CB /* ChatLogController.swift */,
@@ -1145,15 +1295,11 @@
 				83346DC626639D120067C041 /* CommentTableViewCell.swift in Sources */,
 				845F6CA926516FEF0015BD58 /* NotificationTBVCell.swift in Sources */,
 				5245B0F826451291006031CB /* NewConversationsController.swift in Sources */,
-				FA576D43253F4D160069BA96 /* NotificationCell.swift in Sources */,
 				832D1C30265FFA2D004FD551 /* UITextFieldExtension.swift in Sources */,
 				FA0DC9F7252658C400377539 /* UserService.swift in Sources */,
 				FA2C25E1253309450042EC43 /* RegisterViewModel.swift in Sources */,
 				5245B0FE264516F3006031CB /* ChatMessagCell.swift in Sources */,
-				FA80F1802545C4C10030A00D /* EditProfileHeader.swift in Sources */,
-				845F6CB026517C080015BD58 /* UIColorExtension.swift in Sources */,
 				FA40810D253A01D9003DF3D7 /* ProfileFilterView.swift in Sources */,
-				FA9B7CF52535E7F9006DFFA2 /* UploadTweetController.swift in Sources */,
 				84E1882126419C84007A1A17 /* CustomTextField.swift in Sources */,
 				836C986F265E975D00D625E0 /* CreateGroupViewController.swift in Sources */,
 				FAFD58A525208D9C006E4F94 /* AppDelegate.swift in Sources */,
@@ -1167,7 +1313,7 @@
 				FA684A24260903670044B082 /* StringExtension.swift in Sources */,
 				FA3CABB3260CE8DC009FC9B7 /* RegistrationService.swift in Sources */,
 				5245B0FA26451674006031CB /* ChatLogController.swift in Sources */,
-				FAFDD725254E5039000C39FF /* UIColorExention.swift in Sources */,
+				FAFDD725254E5039000C39FF /* UIColorExtention.swift in Sources */,
 				832D1C3326600228004FD551 /* CreateGroupViewModel.swift in Sources */,
 				FA875FA1260B7F98006DCBA9 /* DLog.swift in Sources */,
 				FA66C5F6252393B400C31151 /* Utilities.swift in Sources */,
@@ -1178,7 +1324,6 @@
 				FA576D3E253F3E0E0069BA96 /* NotificationService.swift in Sources */,
 				FA9B7CFF25361604006DFFA2 /* TweetService1.swift in Sources */,
 				845620E1265FFC4E004E3583 /* SettingModel.swift in Sources */,
-				FA80F17A2545BE4E0030A00D /* EditProfileController.swift in Sources */,
 				52A60AD82652AFD400219C3D /* NotificationModel.swift in Sources */,
 				FA2C25B12532C76A0042EC43 /* ControllerProtocol.swift in Sources */,
 				5245B0FC264516AE006031CB /* Message.swift in Sources */,
@@ -1191,10 +1336,7 @@
 				83775E942643D495000B402E /* FontExtension.swift in Sources */,
 				FA39B50A261E0B94006B9698 /* TweetCollectionViewCell.swift in Sources */,
 				FA70492926288C180093D11A /* LikeTweetParam.swift in Sources */,
-				FAF38663253B382100E76AF1 /* TweetHeader.swift in Sources */,
-				FA26204E25376B2C000E1755 /* TweetViewModel.swift in Sources */,
 				840421A7265E9BEE002E8ECE /* BookingViewController.swift in Sources */,
-				FA66C5DC2523827400C31151 /* LoginController.swift in Sources */,
 				FA2C25BC2532C89D0042EC43 /* LoginViewModel.swift in Sources */,
 				83AF06E726457DF000A16E8B /* UploadFeedParam.swift in Sources */,
 				FAC53E9F26103A7500E32E21 /* FeedsService.swift in Sources */,
@@ -1203,7 +1345,6 @@
 				FAB9759E2602F87C006A66BB /* SplashViewController.swift in Sources */,
 				FAE337E32613730F00BCA038 /* FeedViewModel.swift in Sources */,
 				FA2C25A92532C7400042EC43 /* ViewModelProtocol.swift in Sources */,
-				FAF3865B253B330200E76AF1 /* TweetController.swift in Sources */,
 				FA80F1882545CBB20030A00D /* EditProfileViewModel.swift in Sources */,
 				FA0DC9FC25265FED00377539 /* User.swift in Sources */,
 				FA875FA6260B8088006DCBA9 /* DateExtension.swift in Sources */,
@@ -1219,9 +1360,7 @@
 				FAFD58F225209346006E4F94 /* NotificationsViewController.swift in Sources */,
 				FAFD58E825209321006E4F94 /* FeedsViewController.swift in Sources */,
 				836C9873265E977B00D625E0 /* GroupsViewController.swift in Sources */,
-				FAFD3A06254863100030F4DF /* EditProfileFooterView.swift in Sources */,
 				FAFD58E325208F9C006E4F94 /* MainTabBarController.swift in Sources */,
-				FA66C5E12523829C00C31151 /* RegistrationController.swift in Sources */,
 				83EEB9E6264D72EF0010A17C /* Helper.swift in Sources */,
 				84405EF62663E0D500A68928 /* EditProfileViewController.swift in Sources */,
 				84E1F1A62664219800FF1A7A /* WebViewController.swift in Sources */,
