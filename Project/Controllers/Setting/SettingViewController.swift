@@ -94,7 +94,9 @@ extension SettingViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row  {
         case 0:
-            print("profile")
+            guard let user = self.user else { return }
+            let profileController = ProfileController(user)
+            self.navigationController?.pushViewController(profileController, animated: true)
         case 1:
             let vc = EditProfileViewController(nibName: "EditProfileViewController", bundle: nil)
             vc.modalPresentationStyle = .fullScreen

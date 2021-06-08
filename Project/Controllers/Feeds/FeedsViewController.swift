@@ -286,6 +286,7 @@ extension FeedsViewController: UploadTweetViewControllerDelegate {
     }
 }
 
+// MARK: -- FeedsHeaderCollectionReusableViewDelegate
 extension FeedsViewController: FeedsHeaderCollectionReusableViewDelegate {
     func feedHeaderCollectionView(showProfileOf user: User, view: FeedsHeaderCollectionReusableView) {
         let profileController = ProfileController(user)
@@ -302,12 +303,10 @@ extension FeedsViewController: FeedsHeaderCollectionReusableViewDelegate {
     }
     
     func feedHeaderCollectionView(message view: FeedsHeaderCollectionReusableView) {
-        // TODO: Message
         let conversationViewController = ConversationsViewController()
         let nav = UINavigationController(rootViewController: conversationViewController)
         nav.modalPresentationStyle = .fullScreen
         self.present(nav, animated: true, completion: nil)
-        
     }
 }
 
