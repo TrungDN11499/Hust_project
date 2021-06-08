@@ -101,11 +101,9 @@ extension SettingViewController {
             vc.user = self.user
             self.present(vc, animated: true, completion: nil)
         case 2:
-            print("edit")
             let groupViewController = GroupsViewController()
             self.navigationController?.pushViewController(groupViewController, animated: true)
         default:
-            print("logout")
             let alert = UIAlertController(title: nil, message: "Are your sure you want to log out?", preferredStyle: .actionSheet)
             
             let logoutAction = UIAlertAction(title: "Logout", style: .default) { action in
