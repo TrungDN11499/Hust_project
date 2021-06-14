@@ -27,7 +27,7 @@ class LoginViewController: BaseViewController, ControllerType {
         super.viewDidLoad()
         setUpView()
         self.loginFormView.transform = CGAffineTransform(scaleX: 0, y: 0)
-        self.addInputAccessoryForTextFields(textFields: [self.emailTextField.customTextField, self.passwordTextField.customTextField], dismissable: true, previousNextable: true)
+//        self.addInputAccessoryForTextFields(textFields: [self.emailTextField.customTextField, self.passwordTextField.customTextField], dismissable: true, previousNextable: true)
         addActivityIndicator()
 
         // Do any additional setup after loading the view.

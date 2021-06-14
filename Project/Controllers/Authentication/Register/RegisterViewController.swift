@@ -36,7 +36,7 @@ class RegisterViewController: BaseViewController {
         super.viewDidLoad()
         setUpView()
         self.setUpImagePicker()
-        self.addInputAccessoryForTextFields(textFields: [self.emailTextField.customTextField, self.passwordTextField.customTextField,self.comfirmPasswordField.customTextField, self.userNameTextField.customTextField, self.fullNameTextField.customTextField], dismissable: true, previousNextable: true)
+//        self.addInputAccessoryForTextFields(textFields: [self.emailTextField.customTextField, self.passwordTextField.customTextField,self.comfirmPasswordField.customTextField, self.userNameTextField.customTextField, self.fullNameTextField.customTextField], dismissable: true, previousNextable: true)
         addActivityIndicator()
     }
 
