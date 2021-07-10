@@ -18,6 +18,10 @@ target 'Triponus' do
   pod 'DTPhotoViewerController'
   pod 'DZNEmptyDataSet'
   
+  # RxSwift
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  
   target 'TriponusTests' do
     inherit! :search_paths
     # Pods for testing
