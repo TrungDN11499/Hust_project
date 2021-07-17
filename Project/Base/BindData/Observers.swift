@@ -7,9 +7,9 @@
 
 import Foundation
 
-class Observable<T> {
+class Observable1<T> {
     
-    typealias Observer = (_ observable: Observable<T>, T) -> ()
+    typealias Observer = (_ observable: Observable1<T>, T) -> ()
     
     var observers: [Observer]
     

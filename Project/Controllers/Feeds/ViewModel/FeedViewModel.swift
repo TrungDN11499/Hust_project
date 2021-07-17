@@ -11,8 +11,8 @@ class FeedViewModel: ViewModelProtocol {
     
     // MARK: - ViewModelProtocol
     struct Input {
-        fileprivate var tweet: Observable<Tweet> = Observable()
-        var likeTweet: Observable<LikeTweetParam> = Observable()
+        fileprivate var tweet: Observable1<Tweet> = Observable1()
+        var likeTweet: Observable1<LikeTweetParam> = Observable1()
     }
     
     struct Output  {

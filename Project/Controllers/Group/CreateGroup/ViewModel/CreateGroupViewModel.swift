@@ -9,11 +9,11 @@ import UIKit
 
 class CreateGroupViewModel: ViewModelProtocol {
     struct Input {
-        var createGroup = Observable<CreateGroupParams>()
+        var createGroup = Observable1<CreateGroupParams>()
     }
     
     struct Output {
-        var createGroupResult = Observable<CreateGroupParams>()
+        var createGroupResult = Observable1<CreateGroupParams>()
     }
     
     let input: Input

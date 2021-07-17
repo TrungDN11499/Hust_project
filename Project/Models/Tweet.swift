@@ -10,12 +10,12 @@ import Foundation
 class Tweet {
     let caption: String
     let tweetId: String
-    var likes = Observable<Int>()
-    var comments = Observable<Int>()
+    var likes = Observable1<Int>()
+    var comments = Observable1<Int>()
     var timestamp: Date!
     let retweets: Int
     var user: User!
-    var didLike = Observable<Bool>()
+    var didLike = Observable1<Bool>()
     var replyingTo: String?
     var images = [ImageParam]()
     

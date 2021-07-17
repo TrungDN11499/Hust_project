@@ -14,14 +14,14 @@ import FirebaseStorage
 class LoginViewModel: ViewModelProtocol {
     
     struct Input {
-        let email: Observable<String> = Observable()
-        let password: Observable<String> = Observable()
-        let signInDidTap: Observable<Any> = Observable()
+        let email: Observable1<String> = Observable1()
+        let password: Observable1<String> = Observable1()
+        let signInDidTap: Observable1<Any> = Observable1()
     }
 
     struct Output {
-        let errorsObservable: Observable<String> = Observable()
-        let successObservable: Observable<Bool> = Observable()
+        let errorsObservable: Observable1<String> = Observable1()
+        let successObservable: Observable1<Bool> = Observable1()
     }
         
     // MARK: - Public properties

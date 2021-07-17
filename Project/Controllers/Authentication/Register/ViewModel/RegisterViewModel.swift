@@ -10,18 +10,18 @@ import UIKit
 class RegisterViewModel: ViewModelProtocol {
         
     struct Input {
-        let email: Observable<String> = Observable()
-        let password: Observable<String> = Observable()
-        let confirmPassword: Observable<String> = Observable()
-        let fullName: Observable<String> = Observable()
-        let userName: Observable<String> = Observable()
-        let profileImage: Observable<UIImage> = Observable()
-        let registerDidTap: Observable<Any> = Observable()
+        let email: Observable1<String> = Observable1()
+        let password: Observable1<String> = Observable1()
+        let confirmPassword: Observable1<String> = Observable1()
+        let fullName: Observable1<String> = Observable1()
+        let userName: Observable1<String> = Observable1()
+        let profileImage: Observable1<UIImage> = Observable1()
+        let registerDidTap: Observable1<Any> = Observable1()
     }
     
     struct Output {
-        let errorsObservable: Observable<String> = Observable()
-        let successObservable: Observable<Bool> = Observable()
+        let errorsObservable: Observable1<String> = Observable1()
+        let successObservable: Observable1<Bool> = Observable1()
     }
     
     // MARK: - Public properties

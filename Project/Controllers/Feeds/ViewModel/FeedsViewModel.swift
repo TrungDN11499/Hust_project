@@ -10,13 +10,13 @@ import Foundation
 class FeedsViewModel: ViewModelProtocol {
     
     struct Input {
-        var fetchTweets: Observable<Any> = Observable()
-        var likeTweet: Observable<LikeTweetParam> = Observable()
-        var deleteTweet: Observable<DeleteParam> = Observable()
+        var fetchTweets: Observable1<Any> = Observable1()
+        var likeTweet: Observable1<LikeTweetParam> = Observable1()
+        var deleteTweet: Observable1<DeleteParam> = Observable1()
     }
     
     struct Output {
-        var fetchTweetsResult: Observable<[FeedViewModel]> = Observable()
+        var fetchTweetsResult: Observable1<[FeedViewModel]> = Observable1()
     }
     
     // MARK: - Public properties
