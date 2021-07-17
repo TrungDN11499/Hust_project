@@ -19,8 +19,8 @@ target 'Triponus' do
   pod 'DZNEmptyDataSet'
   
   # RxSwift
-  pod 'RxSwift'
-  pod 'RxCocoa'
+#  pod 'RxSwift'
+#  pod 'RxCocoa'
   
   target 'TriponusTests' do
     inherit! :search_paths
