@@ -22,6 +22,9 @@ target 'Triponus' do
   pod 'RxSwift'
   pod 'RxCocoa'
   
+  # Swiftlint
+  pod 'SwiftLint'
+  
   target 'TriponusTests' do
     inherit! :search_paths
     # Pods for testing

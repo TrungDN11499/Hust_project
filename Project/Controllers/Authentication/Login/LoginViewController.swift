@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class LoginViewController: BaseViewController, ControllerType {
     
     private var viewModel: ViewModelType!
     @IBOutlet weak var contentScrollView: UIScrollView!
     var moveLogoAnimator: UIViewPropertyAnimator!
+    private let disposeBag = DisposeBag()
     
     @IBOutlet weak var logoImageViewCenterY: NSLayoutConstraint!
     @IBOutlet weak var logoImageViewTop: NSLayoutConstraint!
@@ -20,32 +23,33 @@ class LoginViewController: BaseViewController, ControllerType {
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var emailTextField: CustomTextField!
     @IBOutlet weak var passwordTextField: CustomTextField!
-    @IBOutlet weak var loginInButton: BindingButton!
-    @IBOutlet weak var signUpButton: BindingButton!
-    // MARK: viewDidLoad
+    @IBOutlet weak var loginInButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
+
+    // MARK: Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
         self.loginFormView.transform = CGAffineTransform(scaleX: 0, y: 0)
-//        self.addInputAccessoryForTextFields(textFields: [self.emailTextField.customTextField, self.passwordTextField.customTextField], dismissable: true, previousNextable: true)
         addActivityIndicator()
-
-        // Do any additional setup after loading the view.
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         // animation.
         super.viewDidAppear(animated)
         UIView.animate(withDuration: 0.8, delay: 1, usingSpringWithDamping: 0.5, initialSpringVelocity: 2, options: .curveEaseOut, animations: {
             self.loginFormView.transform = CGAffineTransform(scaleX: 1, y: 1)
-        }) { (success) in
+        }, completion: { _ in
             self.setUpMoveLogo()
             self.moveLogoAnimator.startAnimation()
-        }
+        })
     }
+    
     // MARK: setUpFunction
     override func bindViewModel() {
         self.configure(with: self.viewModel)
     }
+    
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let act = UIActivityIndicatorView()
         act.color = .white
@@ -53,11 +57,13 @@ class LoginViewController: BaseViewController, ControllerType {
         act.isHidden = true
         return act
     }()
+    
     private func addActivityIndicator() {
         self.loginFormView.addSubview(self.activityIndicator)
         self.activityIndicator.centerY(inView: self.loginInButton)
         self.activityIndicator.anchor(right: self.loginInButton.rightAnchor, paddingRight: 10, width: 30, height: 30)
     }
+    
     private func setUpView() {
         loginFormView.layer.cornerRadius = 18
         loginFormView.clipsToBounds = true
@@ -66,13 +72,14 @@ class LoginViewController: BaseViewController, ControllerType {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         setUpTextView()
     }
+
     private func setUpTextView() {
         emailTextField.customImageView.image = UIImage(named: "ic_mail")
         passwordTextField.customImageView.image = UIImage(named: "ic_lock")
         passwordTextField.customTextField.placeholder = "password"
         passwordTextField.customTextField.isSecureTextEntry = true
     }
-    
+
     override func keyboardWillShow(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
         guard let keyBoardHeight = keyboardHeight else { return }
         let keyBoardMaxY = self.view.frame.height - keyBoardHeight
@@ -81,11 +88,11 @@ class LoginViewController: BaseViewController, ControllerType {
             self.contentScrollView.setContentOffset(CGPoint(x: 0, y: (contentViewMaxY - keyBoardMaxY) + 15), animated: true)
         }
     }
-    
+
     override func keyboardHide(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
         self.contentScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
-    
+
 }
 // MARK: - ControllerType
 extension LoginViewController {
@@ -99,36 +106,46 @@ extension LoginViewController {
     }
     
     func configure(with viewModel: ViewModelType) {
-        self.emailTextField.customTextField.bind(callBack: { viewModel.input.email.value = $0 })
-        self.passwordTextField.customTextField.bind(callBack: { viewModel.input.password.value = $0 })
+
+        self.emailTextField.bind(viewModel.input.email)
+        self.passwordTextField.bind(viewModel.input.password)
+
+        self.loginInButton.rx.tap.asObservable()
+            .subscribe(viewModel.input.signInDidTap)
+            .disposed(by: disposeBag)
         
-        viewModel.output.errorsObservable.bind { [unowned self] observable, value in
-            self.presentMessage(value)
-            self.view.isUserInteractionEnabled = true
-            self.activityIndicator.isHidden = true
-        }
+        self.signUpButton.rx.tap.asObservable()
+            .subscribe(viewModel.input.signUpDidTap)
+            .disposed(by: disposeBag)
         
-        viewModel.output.successObservable.bind { [unowned self] observable, value in
-            self.gotoHomeController()
-        }
+        viewModel.output.errorsObservable
+            .subscribe(onNext: { [unowned self] (error) in
+                self.presentError(error)
+            })
+            .disposed(by: disposeBag)
         
-        self.loginInButton.bind { [unowned self] button in
-            self.view.isUserInteractionEnabled = false
-            self.activityIndicator.isHidden = false
-            viewModel.input.signInDidTap.excecute()
-        }
+        viewModel.output.loginResultObservable
+            .subscribe(onNext: { [unowned self] (_) in
+                self.gotoHomeController()
+            })
+            .disposed(by: disposeBag)
         
-        self.signUpButton.bind { [unowned self] button in
-            let registrationService = RegistrationService()
-            let regiterViewModel = RegisterViewModel(registrationService: registrationService)
-            let registrationController = RegisterViewController.create(with: regiterViewModel)
-            self.navigationController?.pushViewController(registrationController, animated: true)
-        }
+        viewModel.output.signUpResultObservable.subscribe(onNext: { [unowned self] in
+            self.handleRegister()
+        })
+        .disposed(by: disposeBag)
+        
+        viewModel.isLoading.asObservable().subscribe(onNext: { [weak self] (value) in
+            guard let `self` = self else {return}
+            self.view.isUserInteractionEnabled = !value
+            self.activityIndicator.isHidden = !value
+        }).disposed(by: self.disposeBag)
     }
 }
-//MARK: Helper
+
+// MARK: - Helper
 extension LoginViewController {
-    
+
     /// Animation move logo image view
     /// - Returns: Void
     private func setUpMoveLogo() {
@@ -151,11 +168,18 @@ extension LoginViewController {
         moveLogoAnimator.addAnimations({
             self.loginInButton.alpha = 1
             self.registerView.alpha = 1
-        
+            
         }, delayFactor: 0.8) // delay the start of animation by 0.8 * 2 seconds.
-        self.moveLogoAnimator.addCompletion { final in
+        self.moveLogoAnimator.addCompletion { _ in
             self.logoImageViewTop = self.logoImageView.topAnchor.constraint(equalTo: self.loginFormView.topAnchor, constant: 24)
             self.logoImageViewTop.isActive = true
         }
+    }
+
+    private func handleRegister() {
+        let registrationService = RegistrationService()
+        let regiterViewModel = RegisterViewModel(registrationService: registrationService)
+        let registrationController = RegisterViewController.create(with: regiterViewModel)
+        self.navigationController?.pushViewController(registrationController, animated: true)
     }
 }

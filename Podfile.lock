@@ -117,6 +117,7 @@ PODS:
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
+  - SwiftLint (0.43.1)
 
 DEPENDENCIES:
   - ActiveLabel
@@ -131,6 +132,7 @@ DEPENDENCIES:
   - RxCocoa
   - RxSwift
   - SDWebImage (~> 5.0)
+  - SwiftLint
 
 SPEC REPOS:
   trunk:
@@ -157,6 +159,7 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - SDWebImage
+    - SwiftLint
 
 SPEC CHECKSUMS:
   ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
@@ -182,7 +185,8 @@ SPEC CHECKSUMS:
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 50a7483abca4151420b63b80bf8a974642eed266
+PODFILE CHECKSUM: baf04d2ff1ca9ea47b984f2767d67afb8d698cf1
 
 COCOAPODS: 1.10.1

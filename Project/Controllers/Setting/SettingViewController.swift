@@ -24,20 +24,19 @@ class SettingViewController: UITableViewController {
         configureViewController()
         fetchUser()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchUser()
     }
-    
+
     // MARK: - Api
     private func fetchUser() {
         UserService.shared.fetchUser { user in
             self.user = user
         }
     }
-    
-    
+
     // MARK: - Selectors
     func handleLogout() {
         do {

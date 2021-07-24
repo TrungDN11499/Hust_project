@@ -72,7 +72,7 @@
                                         <constraint firstAttribute="height" constant="28" id="za4-UL-dW0"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c3p-nE-t6v" customClass="BindingButton" customModule="Triponus" customModuleProvider="target">
+                                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c3p-nE-t6v">
                                     <rect key="frame" x="45" y="220" width="300" height="40"/>
                                     <color key="backgroundColor" red="0.0" green="0.60784313725490191" blue="0.90588235294117647" alpha="0.75" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -92,7 +92,7 @@
                                             <color key="textColor" red="0.50196078431372548" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfA-6o-Owo" customClass="BindingButton" customModule="Triponus" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfA-6o-Owo">
                                             <rect key="frame" x="87" y="-4" width="49" height="29"/>
                                             <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
                                             <state key="normal" title="Sign Up">

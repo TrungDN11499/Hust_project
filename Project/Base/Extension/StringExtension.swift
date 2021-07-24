@@ -13,7 +13,7 @@ extension String {
     ///   - aString: input string
     /// - Returns: Bool
     static func isNilOrEmpty(_ aString: String?) -> Bool {
-        return !(aString != nil && "\(aString ?? "")".count != 0)
+        return !(aString != nil && !"\(aString ?? "")".isEmpty)
     }
     
     /// Validate email

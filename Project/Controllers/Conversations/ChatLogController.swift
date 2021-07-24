@@ -408,7 +408,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     }
     
     @objc func handleKeyboardDidShow() {
-        if messages.count > 0 {
+        if !messages.isEmpty {
             let indexPath = NSIndexPath(item: messages.count - 1, section: 0)
             self.collectionView.scrollToItem(at: indexPath as IndexPath, at: .top, animated: true)
         }
@@ -448,7 +448,9 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ChatMessageCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? ChatMessageCell else {
+            return ChatMessageCell()
+        }
         
         cell.chatLogController = self
         
@@ -659,7 +661,6 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         }
     }
 }
-
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {

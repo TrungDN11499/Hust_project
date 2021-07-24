@@ -98,11 +98,11 @@ extension RegisterViewController: ControllerType {
     }
     
     func configure(with viewModel: ViewModelType) {
-        self.emailTextField.customTextField.bind(callBack: { viewModel.input.email.value = $0 })
-        self.passwordTextField.customTextField.bind(callBack: { viewModel.input.password.value = $0 })
-        self.comfirmPasswordField.customTextField.bind(callBack: { viewModel.input.confirmPassword.value = $0})
-        self.userNameTextField.customTextField.bind(callBack: { viewModel.input.userName.value = $0 })
-        self.fullNameTextField.customTextField.bind(callBack: { viewModel.input.fullName.value = $0 })
+//        self.emailTextField.customTextField.bind(callBack: { viewModel.input.email.value = $0 })
+//        self.passwordTextField.customTextField.bind(callBack: { viewModel.input.password.value = $0 })
+//        self.comfirmPasswordField.customTextField.bind(callBack: { viewModel.input.confirmPassword.value = $0})
+//        self.userNameTextField.customTextField.bind(callBack: { viewModel.input.userName.value = $0 })
+//        self.fullNameTextField.customTextField.bind(callBack: { viewModel.input.fullName.value = $0 })
         
         viewModel.output.errorsObservable.bind { [unowned self] observable, value in
             self.presentMessage(value)
