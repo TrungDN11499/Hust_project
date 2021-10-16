@@ -90,7 +90,7 @@ class FeedsViewController: BaseViewController, ControllerType {
         TweetCollectionViewCell.registerCellByNib(self.feedCollectionView)
         self.feedCollectionView.register(UINib(nibName: "FeedsHeaderCollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
     }
-    
+
     private func addUIConstraints() {
         self.view.addSubview(self.feedCollectionView)
         self.feedCollectionView.fillSuperView()
@@ -188,7 +188,7 @@ extension FeedsViewController: UICollectionViewDelegateFlowLayout {
         } else {
             contentHeight = profileImageSize + contentTextPadding * 2 + textHeight + seeMoreButtonHeight
         }
-        
+
         // calculate image content height
         var imageHeight: CGFloat = 0
         if let images = self.viewModel.viewModel(at: indexPath)?.tweet.images {
