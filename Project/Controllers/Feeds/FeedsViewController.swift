@@ -10,10 +10,10 @@ import SDWebImage
 import DZNEmptyDataSet
 
 class FeedsViewController: BaseViewController, ControllerType {
-  
+
     // MARK: - Properties
     private var viewModel: ViewModelType!
-        
+
     private lazy var feedCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collecionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -25,13 +25,13 @@ class FeedsViewController: BaseViewController, ControllerType {
         collecionView.showsVerticalScrollIndicator = false
         return collecionView
     }()
-    
+
     var user: User? {
         didSet {
             self.feedCollectionView.reloadData()
         }
     }
-    
+
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,51 +39,51 @@ class FeedsViewController: BaseViewController, ControllerType {
         self.viewModel.input.fetchTweets.excecute()
         self.configureViewController()
     }
-    
+
     override func bindViewModel() {
         self.configure(with: self.viewModel)
     }
-    
+
     override func configureUI() {
         // set up navigation bar
         self.configureViewController()
         self.addUIConstraints()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.navigationBar.barStyle = .default
         fetchUser()
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
         super.viewWillDisappear(animated)
     }
-    
+
     // MARK: - Selectors
     @objc private func hanldeRefresh(_ sender: UIRefreshControl) {
         self.viewModel.input.fetchTweets.excecute()
     }
-    
+
     @objc private func handleGoToProfile(_ sender: UIImageView) {
         guard let user = self.user else { return }
         let profileController = ProfileController(user)
         self.navigationController?.pushViewController(profileController, animated: true)
     }
-    
+
     // MARK: -  Api
     private func fetchUser() {
         UserService.shared.fetchUser { user in
             self.user = user
         }
     }
-        
+
     // MARK: - Helpers
     private func configureViewController() {
         self.view.backgroundColor = .navigationBarColor

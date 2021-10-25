@@ -68,6 +68,7 @@
 		FA0DC9FC25265FED00377539 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC9FB25265FED00377539 /* User.swift */; };
 		FA1108D92538C0AA00443971 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1108D82538C0AA00443971 /* ProfileController.swift */; };
 		FA1108E12538C57B00443971 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1108E02538C57B00443971 /* ProfileHeaderView.swift */; };
+		FA22E89127270D96003E114A /* TriponusAuthencationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA22E89027270D96003E114A /* TriponusAuthencationError.swift */; };
 		FA2495C02523218C0060BECD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2495BF2523218C0060BECD /* UIViewExtension.swift */; };
 		FA26202D25374A3B000E1755 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA26202C25374A3B000E1755 /* Tweet.swift */; };
 		FA2A051C26A5CFCA00DD4C13 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A051B26A5CFCA00DD4C13 /* LoginViewModel.swift */; };
@@ -92,6 +93,7 @@
 		FA66C6072523AE2100C31151 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA66C6062523AE2100C31151 /* GoogleService-Info.plist */; };
 		FA684A24260903670044B082 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA684A23260903670044B082 /* StringExtension.swift */; };
 		FA70492926288C180093D11A /* LikeTweetParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA70492826288C180093D11A /* LikeTweetParam.swift */; };
+		FA718B3E26AC1E5B00FA8092 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA718B3D26AC1E5A00FA8092 /* RegisterModel.swift */; };
 		FA80F1882545CBB20030A00D /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA80F1872545CBB20030A00D /* EditProfileViewModel.swift */; };
 		FA80F18D2545CC860030A00D /* EditProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA80F18C2545CC860030A00D /* EditProfileCell.swift */; };
 		FA875FA1260B7F98006DCBA9 /* DLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA875FA0260B7F98006DCBA9 /* DLog.swift */; };
@@ -220,6 +222,7 @@
 		FA0DC9FB25265FED00377539 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA1108D82538C0AA00443971 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		FA1108E02538C57B00443971 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		FA22E89027270D96003E114A /* TriponusAuthencationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriponusAuthencationError.swift; sourceTree = "<group>"; };
 		FA2495BF2523218C0060BECD /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		FA26202C25374A3B000E1755 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		FA2A051B26A5CFCA00DD4C13 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -245,6 +248,7 @@
 		FA66C6062523AE2100C31151 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA684A23260903670044B082 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		FA70492826288C180093D11A /* LikeTweetParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeTweetParam.swift; sourceTree = "<group>"; };
+		FA718B3D26AC1E5A00FA8092 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 		FA80F1872545CBB20030A00D /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		FA80F18C2545CC860030A00D /* EditProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileCell.swift; sourceTree = "<group>"; };
 		FA875FA0260B7F98006DCBA9 /* DLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLog.swift; sourceTree = "<group>"; };
@@ -394,6 +398,7 @@
 		838438E0266E654900695ADE /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				FA4E1C4B26A3509B004F7A9C /* LoginModel */,
 				838438E9266E687D00695ADE /* ViewModel */,
 				84E826FD26426A5A00D6929D /* LoginViewController.swift */,
 				84E826FE26426A5A00D6929D /* LoginViewController.xib */,
@@ -404,9 +409,10 @@
 		838438E1266E655400695ADE /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				FA718B3C26AC1E2200FA8092 /* RegisterModel */,
 				838438E8266E687300695ADE /* ViewModel */,
-				841CA67026427D4A00B6A83B /* RegisterViewController.xib */,
 				841CA66F26427D4A00B6A83B /* RegisterViewController.swift */,
+				841CA67026427D4A00B6A83B /* RegisterViewController.xib */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -706,6 +712,14 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		FA22E88F27270D73003E114A /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				FA22E89027270D96003E114A /* TriponusAuthencationError.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		FA2C25A62532C71A0042EC43 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -775,6 +789,14 @@
 			path = LikeTweetParam;
 			sourceTree = "<group>";
 		};
+		FA718B3C26AC1E2200FA8092 /* RegisterModel */ = {
+			isa = PBXGroup;
+			children = (
+				FA718B3D26AC1E5A00FA8092 /* RegisterModel.swift */,
+			);
+			path = RegisterModel;
+			sourceTree = "<group>";
+		};
 		FA875F9F260B7F7B006DCBA9 /* Log */ = {
 			isa = PBXGroup;
 			children = (
@@ -831,6 +853,7 @@
 		FAF417F72528C95D00FDDC97 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				FA22E88F27270D73003E114A /* Enum */,
 				FAFD58DE25208EFB006E4F94 /* Utilities */,
 				83EEB9E4264D72CE0010A17C /* Helper */,
 				8409D601264317FE0036E3A1 /* CustomView */,
@@ -928,7 +951,6 @@
 		FAFD58D725208E72006E4F94 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FA4E1C4B26A3509B004F7A9C /* LoginModel */,
 				83AF06E526457DD300A16E8B /* UploadFeedParam */,
 				FAA5DD642631FC9000C919A0 /* DeleteParam */,
 				FA70492726288C080093D11A /* LikeTweetParam */,
@@ -1392,6 +1414,7 @@
 				FAC53EA42610417400E32E21 /* FeedsViewModel.swift in Sources */,
 				FAFD58F225209346006E4F94 /* NotificationsViewController.swift in Sources */,
 				FAFD58E825209321006E4F94 /* FeedsViewController.swift in Sources */,
+				FA718B3E26AC1E5B00FA8092 /* RegisterModel.swift in Sources */,
 				836C9873265E977B00D625E0 /* GroupsViewController.swift in Sources */,
 				FAFD58E325208F9C006E4F94 /* MainTabBarController.swift in Sources */,
 				83EEB9E6264D72EF0010A17C /* Helper.swift in Sources */,
@@ -1412,6 +1435,7 @@
 				FAF417FF2528CA0600FDDC97 /* ViewControllerExtension.swift in Sources */,
 				FA89486B253ACBA10071A5DB /* UserCell.swift in Sources */,
 				FA2495C02523218C0060BECD /* UIViewExtension.swift in Sources */,
+				FA22E89127270D96003E114A /* TriponusAuthencationError.swift in Sources */,
 				83346DC126637AE60067C041 /* TweetViewController.swift in Sources */,
 				FA2C25C22532CA6A0042EC43 /* BindingTextField.swift in Sources */,
 				FAA362672524D84A00580FE2 /* Constants.swift in Sources */,

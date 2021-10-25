@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import RxSwift
 
 struct AuthCredentials {
     let email: String
@@ -20,15 +21,23 @@ struct AuthCredentials {
 
 protocol RegistrationServiceProtocol {
     func register(credentials: AuthCredentials, completion: @escaping(Error?, DatabaseReference) -> Void)
+    
+//    func register(with model: RegisterModel) -> Observable<(AuthDataResult?, Error?)>
 }
 
 class RegistrationService: RegistrationServiceProtocol {
+//    func register(with model: RegisterModel) -> Observable<(AuthDataResult?, Error?)> {
+//
+//    }
+
     func register(credentials: AuthCredentials, completion: @escaping (Error?, DatabaseReference) -> Void) {
         guard let imageData = credentials.profileImage.jpegData(compressionQuality: 0.1) else { return }
         let fileName = NSUUID().uuidString
         let storagre = STORAGE_PROFILE_IMAGES.child(fileName)
         
         let upload = storagre.putData(imageData)
+        
+        // catch upload progress block.
         upload.observe(.progress) { snapshot in
             
             let percentComplete = (Double(snapshot.progress!.completedUnitCount) / Double(snapshot.progress!.totalUnitCount)) * 100.0
@@ -36,7 +45,8 @@ class RegistrationService: RegistrationServiceProtocol {
             print(percentComplete)
         }
         
-        upload.observe(.success) { snapshot in
+        // catch upload successs.
+        upload.observe(.success) { _ in
             storagre.downloadURL { (url, error) in
                 
                 guard let imageUrl = url?.absoluteString else { return }

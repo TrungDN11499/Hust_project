@@ -15,7 +15,7 @@ class LoginViewController: BaseViewController, ControllerType {
     @IBOutlet weak var contentScrollView: UIScrollView!
     var moveLogoAnimator: UIViewPropertyAnimator!
     private let disposeBag = DisposeBag()
-    
+
     @IBOutlet weak var logoImageViewCenterY: NSLayoutConstraint!
     @IBOutlet weak var logoImageViewTop: NSLayoutConstraint!
     @IBOutlet weak var loginFormView: UIView!
@@ -33,7 +33,7 @@ class LoginViewController: BaseViewController, ControllerType {
         self.loginFormView.transform = CGAffineTransform(scaleX: 0, y: 0)
         addActivityIndicator()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         // animation.
         super.viewDidAppear(animated)
@@ -94,6 +94,7 @@ class LoginViewController: BaseViewController, ControllerType {
     }
 
 }
+
 // MARK: - ControllerType
 extension LoginViewController {
     typealias ViewModelType = LoginViewModel
@@ -123,13 +124,13 @@ extension LoginViewController {
                 self.presentError(error)
             })
             .disposed(by: disposeBag)
-        
+
         viewModel.output.loginResultObservable
             .subscribe(onNext: { [unowned self] (_) in
                 self.gotoHomeController()
             })
             .disposed(by: disposeBag)
-        
+
         viewModel.output.signUpResultObservable.subscribe(onNext: { [unowned self] in
             self.handleRegister()
         })

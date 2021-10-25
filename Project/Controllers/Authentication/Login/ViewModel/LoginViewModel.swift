@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 import RxSwift
 import RxCocoa
 
@@ -16,13 +17,13 @@ class LoginViewModel: ViewModelProtocol {
         let signInDidTap: AnyObserver<Void>
         let signUpDidTap: AnyObserver<Void>
     }
-    
+
     struct Output {
         let loginResultObservable: Observable<Bool>
         let signUpResultObservable: Observable<Void>
         let errorsObservable: Observable<Error>
     }
-    
+
     // MARK: - Public properties
     let input: Input
     let output: Output
@@ -49,13 +50,13 @@ class LoginViewModel: ViewModelProtocol {
                       password: passwordSubject.asObserver(),
                       signInDidTap: signInDidTapSubject.asObserver(),
                       signUpDidTap: signUpDidTapSubject.asObserver())
-        
+
         output = Output(loginResultObservable: loginResultSubject.asObservable(),
                         signUpResultObservable: signUpResultSubject.asObserver(),
                         errorsObservable: errorsSubject.asObservable())
-        
+
         self.signInDidTapSubject.withLatestFrom(self.loginModelObserver)
-            .do(onNext: {[weak self] (_) in
+            .do(onNext: { [weak self] (_) in
                 guard let `self` = self else {return}
                 self.isLoading.accept(true)
             }).flatMapLatest { loginModel in
@@ -69,12 +70,12 @@ class LoginViewModel: ViewModelProtocol {
                 }
                 self.isLoading.accept(false)
             }).disposed(by: self.disposeBag)
-        
-        self.signUpDidTapSubject.subscribe(onNext: {
+        self.signUpDidTapSubject.subscribe(onNext: { [weak self] in
+            guard let `self` = self else {return}
             self.signUpResultSubject.onNext(())
         }).disposed(by: self.disposeBag)
     }
-    
+
     deinit {
         dLogDebug("[deinit]: \(self) dealloc")
     }

@@ -135,10 +135,9 @@ class BaseViewController: UIViewController {
             .foregroundColor: UIColor(hexString: "#C4C4C4") ?? .lightGray
         ]
         let attributedMessage = NSAttributedString(string: message, attributes: attributes)
-        return attributedMessage;
+        return attributedMessage
     }
-    
-    
+
     @objc fileprivate func keyboardWillAppear(_ notification: Notification) {
         let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         let keyboardRectangle = keyboardFrame?.cgRectValue

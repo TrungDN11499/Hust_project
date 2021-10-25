@@ -13,21 +13,33 @@ import FirebaseStorage
 import RxSwift
 
 protocol LoginServiceProtocol {
-    func login(email: String, password: String, completion: @escaping(AuthDataResult?, Error?) -> (Void))
     func login(with model: LoginModel) -> Observable<(AuthDataResult?, Error?)>
 }
 
 class LoginService: LoginServiceProtocol {
+
     func login(with model: LoginModel) -> Observable<(AuthDataResult?, Error?)> {
         return Observable<(AuthDataResult?, Error?)>.create { observer in
+            
+            if String.isNilOrEmpty(model.email) {
+                let error = TriponusAuthencationError.emptyEmail
+                observer.onNext((nil, error))
+            } else {
+                if !model.email.isValidEmail() {
+                    let error = TriponusAuthencationError.emailValidationError
+                    observer.onNext((nil, error))
+                }
+            }
+
+            if String.isNilOrEmpty(model.password) {
+                observer.onNext((nil, TriponusAuthencationError.passwordEmpty))
+            }
+
             Auth.auth().signIn(withEmail: model.email, password: model.password) { result, error in
                 observer.onNext((result, error))
             }
             return Disposables.create()
         }
     }
-    
-    func login(email: String, password: String, completion: @escaping(AuthDataResult?, Error?) -> (Void)) {
-        Auth.auth().signIn(withEmail: email, password: password, completion: completion)
-    }
+
 }
