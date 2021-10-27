@@ -20,7 +20,7 @@ class LoginService: LoginServiceProtocol {
 
     func login(with model: LoginModel) -> Observable<(AuthDataResult?, Error?)> {
         return Observable<(AuthDataResult?, Error?)>.create { observer in
-            
+
             if String.isNilOrEmpty(model.email) {
                 let error = TriponusAuthencationError.emptyEmail
                 observer.onNext((nil, error))

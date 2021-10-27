@@ -213,11 +213,11 @@ struct TweetService1 {
         REF_TWEETS.child(tweet.tweetId).child("likes").setValue(likes)
         
         if tweet.didLike.value ?? false {
-            REF_USER_LIKES.child(uid).child(tweet.tweetId).removeValue { (err, ref) in
+            REF_USER_LIKES.child(uid).child(tweet.tweetId).removeValue { err, ref in
                 REF_TWEET_LIKES.child(tweet.tweetId).child(uid).removeValue(completionBlock: completion)
             }
         } else {
-            REF_USER_LIKES.child(uid).updateChildValues([tweet.tweetId: 1]) { (err, ref) in
+            REF_USER_LIKES.child(uid).updateChildValues([tweet.tweetId: 1]) { err, ref in
                 REF_TWEET_LIKES.child(tweet.tweetId).updateChildValues([uid: 1], withCompletionBlock: completion)
             }
         }
@@ -232,7 +232,7 @@ struct TweetService1 {
     
     func deleteTweet(tweet: Tweet, completion: @escaping Completion) {
         guard let currentUserId = Auth.auth().currentUser?.uid else { return }
-        REF_TWEET_LIKES.child(tweet.tweetId).removeValue  { error, dataReference in
+        REF_TWEET_LIKES.child(tweet.tweetId).removeValue { error, dataReference in
             REF_TWEETS.child(tweet.tweetId).removeValue { error, dataReference in
                 REF_USER_LIKES.child(currentUserId).child(tweet.tweetId).removeValue { error, dataReference in
                     REF_USER_TWEETS.child(currentUserId).child(tweet.tweetId).removeValue(completionBlock: completion)
