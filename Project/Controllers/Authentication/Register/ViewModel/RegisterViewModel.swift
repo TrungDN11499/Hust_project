@@ -6,68 +6,103 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class RegisterViewModel: ViewModelProtocol {
-        
+
     struct Input {
-        let email: Observable1<String> = Observable1()
-        let password: Observable1<String> = Observable1()
-        let confirmPassword: Observable1<String> = Observable1()
-        let fullName: Observable1<String> = Observable1()
-        let userName: Observable1<String> = Observable1()
-        let profileImage: Observable1<UIImage> = Observable1()
-        let registerDidTap: Observable1<Any> = Observable1()
+        let email: AnyObserver<String>
+        let password: AnyObserver<String>
+        let confirmPassword: AnyObserver<String>
+        let fullName: AnyObserver<String>
+        let userName: AnyObserver<String>
+        let profileImage: AnyObserver<UIImage>
+        let registerDidTap: AnyObserver<Void>
+        let signUpDidTap: AnyObserver<Void>
     }
-    
+
     struct Output {
-        let errorsObservable: Observable1<String> = Observable1()
-        let successObservable: Observable1<Bool> = Observable1()
+        let registerResultObservable: Observable<Bool>
+        let gotoLoginResultObservable: Observable<Void>
+        let errorsObservable: Observable<Error>
     }
-    
+
     // MARK: - Public properties
     let input: Input
     let output: Output
-    
-    init(registrationService: RegistrationService) {
-        self.input = Input()
-        self.output = Output()
-        
-        self.input.registerDidTap.bind {[unowned self] observer, value in
-            guard let email = self.input.email.value, !String.isNilOrEmpty(email) else {
-                self.output.errorsObservable.value = "Email is empty"
-                return
-            }
-            
-            guard let password = self.input.password.value, !String.isNilOrEmpty(password) else {
-                self.output.errorsObservable.value = "Password is empty"
-                return
-            }
-            guard let comfirmPassword = self.input.confirmPassword.value, !String.isNilOrEmpty(comfirmPassword) else {
-                self.output.errorsObservable.value = "Please comfirm your password"
-                return
-            }
-            guard let fullName = self.input.fullName.value, !String.isNilOrEmpty(fullName) else {
-                self.output.errorsObservable.value = "FullName is empty"
-                return
-            }
-            
-            guard let userName = self.input.userName.value, !String.isNilOrEmpty(userName) else {
-                self.output.errorsObservable.value = "UserName is empty"
-                return
-            }
-            if password != comfirmPassword {
-                self.output.errorsObservable.value = "Password is not matching, Please try again"
-                return
-            }
-            let avatar = self.input.profileImage.value ?? UIImage(named: "ic_default_user")
-            registrationService.register(credentials: AuthCredentials(email: email, password: password, username: userName, fullName: fullName, profileImage: avatar!)) { error, value in
-                if let error = error {
-                    self.output.errorsObservable.value = error.localizedDescription
-                    return
-                }
-                self.output.successObservable.value = true
-            }
-            
+    let isLoading = BehaviorRelay(value: false)
+
+    // MARK: - Private properties
+    private let emailSubject = PublishSubject<String>()
+    private let passwordSubject = PublishSubject<String>()
+    private let confirmPasswordSubject = PublishSubject<String>()
+    private let fullNamePasswordSubject = PublishSubject<String>()
+    private let userNamePasswordSubject = PublishSubject<String>()
+    private let profileImageSubject = PublishSubject<UIImage>()
+    private let registerSubject = PublishSubject<Void>()
+    private let signInSubject = PublishSubject<Void>()
+    private let errorsSubject = PublishSubject<Error>()
+    private let registerResultSubject = PublishSubject<Bool>()
+    private let signInResultSubject = PublishSubject<Void>()
+    private let disposeBag = DisposeBag()
+
+    private var registerModelObserver: Observable<RegisterModel> {
+        return Observable.combineLatest(emailSubject.asObserver(),
+                                        passwordSubject.asObserver(),
+                                        confirmPasswordSubject.asObserver(),
+                                        fullNamePasswordSubject.asObserver(),
+                                        userNamePasswordSubject.asObserver(),
+                                        profileImageSubject.asObserver()) { email, passwd, confirmPassword, fullName, userName, image in
+
+            return RegisterModel(email: email,
+                                 password: passwd,
+                                 confirmPassword: confirmPassword,
+                                 username: userName,
+                                 fullName: fullName,
+                                 profileImage: image)
         }
+    }
+
+    init(registrationService: RegistrationService) {
+        self.input = Input(email: emailSubject.asObserver(),
+                           password: passwordSubject.asObserver(),
+                           confirmPassword: confirmPasswordSubject.asObserver(),
+                           fullName: fullNamePasswordSubject.asObserver(),
+                           userName: userNamePasswordSubject.asObserver(),
+                           profileImage: profileImageSubject.asObserver(),
+                           registerDidTap: registerSubject.asObserver(),
+                           signUpDidTap: signInSubject.asObserver())
+
+        self.output = Output(registerResultObservable: registerResultSubject.asObservable(),
+                             gotoLoginResultObservable: signInResultSubject.asObservable(),
+                             errorsObservable: errorsSubject.asObservable())
+
+        self.registerSubject.withLatestFrom(self.registerModelObserver)
+            .do(onNext: { [weak self] (_) in
+                guard let `self` = self else { return }
+                self.isLoading.accept(true)
+            }).flatMapLatest { registerModel in
+                return registrationService.register(with: registerModel) { progress in
+                    print(progress)
+                }
+            }.subscribe(onNext: { [weak self] result in
+                guard let `self` = self else {return}
+                if let error = result.1 {
+                    self.errorsSubject.onNext(error)
+                } else {
+                    self.registerResultSubject.onNext(true)
+                }
+                self.isLoading.accept(false)
+            }).disposed(by: self.disposeBag)
+        
+        self.signInSubject.subscribe(onNext: { [weak self] in
+            guard let `self` = self else {return}
+            self.signInResultSubject.onNext(())
+        }).disposed(by: self.disposeBag)
+    }
+    
+    deinit {
+        dLogDebug("[deinit]: \(self) dealloc")
     }
 }

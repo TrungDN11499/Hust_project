@@ -52,7 +52,7 @@ class LoginViewModel: ViewModelProtocol {
                       signUpDidTap: signUpDidTapSubject.asObserver())
 
         output = Output(loginResultObservable: loginResultSubject.asObservable(),
-                        signUpResultObservable: signUpResultSubject.asObserver(),
+                        signUpResultObservable: signUpResultSubject.asObservable(),
                         errorsObservable: errorsSubject.asObservable())
 
         self.signInDidTapSubject.withLatestFrom(self.loginModelObserver)
@@ -70,6 +70,7 @@ class LoginViewModel: ViewModelProtocol {
                 }
                 self.isLoading.accept(false)
             }).disposed(by: self.disposeBag)
+
         self.signUpDidTapSubject.subscribe(onNext: { [weak self] in
             guard let `self` = self else {return}
             self.signUpResultSubject.onNext(())

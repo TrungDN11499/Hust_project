@@ -114,11 +114,11 @@ extension LoginViewController {
         self.loginInButton.rx.tap.asObservable()
             .subscribe(viewModel.input.signInDidTap)
             .disposed(by: disposeBag)
-        
+
         self.signUpButton.rx.tap.asObservable()
             .subscribe(viewModel.input.signUpDidTap)
             .disposed(by: disposeBag)
-        
+
         viewModel.output.errorsObservable
             .subscribe(onNext: { [unowned self] (error) in
                 self.presentError(error)
@@ -131,11 +131,12 @@ extension LoginViewController {
             })
             .disposed(by: disposeBag)
 
-        viewModel.output.signUpResultObservable.subscribe(onNext: { [unowned self] in
-            self.handleRegister()
-        })
-        .disposed(by: disposeBag)
-        
+        viewModel.output.signUpResultObservable
+            .subscribe(onNext: { [unowned self] in
+                self.handleRegister()
+            })
+            .disposed(by: disposeBag)
+
         viewModel.isLoading.asObservable().subscribe(onNext: { [weak self] (value) in
             guard let `self` = self else {return}
             self.view.isUserInteractionEnabled = !value

@@ -39,7 +39,7 @@ class Observable1<T> {
     }
     
     func notifyObservers(_ value: T) {
-        self.observers.forEach { [unowned self](observer) in
+        self.observers.forEach { [unowned self] (observer) in
             observer(self, value)
         }
     }

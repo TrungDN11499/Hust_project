@@ -6,22 +6,26 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class RegisterViewController: BaseViewController {
     
     private var viewModel: ViewModelType!
     @IBOutlet weak var registerFormView: UIView!
+    private let disposeBag = DisposeBag()
 
     @IBOutlet weak var contentScrollView: UIScrollView!
-    @IBOutlet weak var updateImageButton: BindingButton!
+    @IBOutlet weak var updateImageButton: UIButton!
     @IBOutlet weak var emailTextField: CustomTextField!
     @IBOutlet weak var passwordTextField: CustomTextField!
     @IBOutlet weak var comfirmPasswordField: CustomTextField!
     @IBOutlet weak var userNameTextField: CustomTextField!
     @IBOutlet weak var fullNameTextField: CustomTextField!
-    @IBOutlet weak var registerButton: BindingButton!
-    @IBOutlet weak var logInButton: BindingButton!
+    @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var logInButton: UIButton!
     private let imagePicker = UIImagePickerController()
+
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let act = UIActivityIndicatorView()
         act.color = .white
@@ -29,28 +33,30 @@ class RegisterViewController: BaseViewController {
         act.isHidden = true
         return act
     }()
-    
-   
-    //MARK: viewDidLoad
+
+    // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
         self.setUpImagePicker()
-//        self.addInputAccessoryForTextFields(textFields: [self.emailTextField.customTextField, self.passwordTextField.customTextField,self.comfirmPasswordField.customTextField, self.userNameTextField.customTextField, self.fullNameTextField.customTextField], dismissable: true, previousNextable: true)
         addActivityIndicator()
+    }
+
+    @IBAction func handleChoseImage(_ sender: UIButton) {
+        self.present(self.imagePicker, animated: true, completion: nil)
     }
 
     override func bindViewModel() {
         self.configure(with: self.viewModel)
     }
     
-    //MARK: handleFunction
-   
+    // MARK: handleFunction
     private func addActivityIndicator() {
         self.registerFormView.addSubview(self.activityIndicator)
         self.activityIndicator.centerY(inView: self.registerButton)
         self.activityIndicator.anchor(right: self.registerButton.rightAnchor, paddingRight: 10, width: 30, height: 30)
     }
+
     private func setUpView() {
         registerFormView.layer.cornerRadius = 18
         registerFormView.clipsToBounds = true
@@ -58,7 +64,8 @@ class RegisterViewController: BaseViewController {
         registerButton.clipsToBounds = true
         setUpTextField()
     }
-    //MARK: setUpTextField
+
+    // MARK: setUpTextField
     private func setUpTextField() {
         emailTextField.customImageView.image = UIImage(named: "ic_mail")
         passwordTextField.customImageView.image = UIImage(named: "ic_lock")
@@ -72,7 +79,7 @@ class RegisterViewController: BaseViewController {
         fullNameTextField.customImageView.image = UIImage(named: "ic_user")
         fullNameTextField.customTextField.placeholder = "fullname"
     }
-    
+
     override func keyboardWillShow(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
         guard let keyBoardHeight = keyboardHeight else { return }
         let keyBoardMaxY = self.view.frame.height - keyBoardHeight
@@ -81,76 +88,86 @@ class RegisterViewController: BaseViewController {
             self.contentScrollView.setContentOffset(CGPoint(x: 0, y: (contentViewMaxY - keyBoardMaxY) + 15), animated: true)
         }
     }
-    
+
     override func keyboardHide(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
         self.contentScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
-    
 }
 // MARK: ControllerType
 extension RegisterViewController: ControllerType {
     typealias ViewModelType = RegisterViewModel
-    
+
     static func create(with viewModel: ViewModelType) -> UIViewController {
         let vc = RegisterViewController()
         vc.viewModel = viewModel
         return vc
     }
-    
+
     func configure(with viewModel: ViewModelType) {
-//        self.emailTextField.customTextField.bind(callBack: { viewModel.input.email.value = $0 })
-//        self.passwordTextField.customTextField.bind(callBack: { viewModel.input.password.value = $0 })
-//        self.comfirmPasswordField.customTextField.bind(callBack: { viewModel.input.confirmPassword.value = $0})
-//        self.userNameTextField.customTextField.bind(callBack: { viewModel.input.userName.value = $0 })
-//        self.fullNameTextField.customTextField.bind(callBack: { viewModel.input.fullName.value = $0 })
+        self.emailTextField.bind(viewModel.input.email)
+        self.passwordTextField.bind(viewModel.input.password)
+        self.comfirmPasswordField.bind(viewModel.input.confirmPassword)
+        self.userNameTextField.bind(viewModel.input.userName)
+        self.fullNameTextField.bind(viewModel.input.fullName)
         
-        viewModel.output.errorsObservable.bind { [unowned self] observable, value in
-            self.presentMessage(value)
-            self.view.isUserInteractionEnabled = true
-            self.activityIndicator.isHidden = true
-        }
+        self.registerButton.rx.tap.asObservable()
+            .subscribe(viewModel.input.registerDidTap)
+            .disposed(by: disposeBag)
+
+        self.logInButton.rx.tap.asObservable()
+            .subscribe(viewModel.input.signUpDidTap)
+            .disposed(by: disposeBag)
         
-        viewModel.output.successObservable.bind { [unowned self] observable, value in
-            self.gotoHomeController()
-        }
+        viewModel.output.errorsObservable
+            .subscribe(onNext: { [unowned self] (error) in
+                self.presentError(error)
+            })
+            .disposed(by: disposeBag)
         
-        self.registerButton.bind { [unowned self] button in
-            self.view.isUserInteractionEnabled = false
-            self.activityIndicator.isHidden = false
-            viewModel.input.registerDidTap.excecute()
-        }
+        viewModel.output.registerResultObservable
+            .subscribe(onNext: { [unowned self] _ in
+                self.gotoHomeController()
+            })
+            .disposed(by: disposeBag)
         
-        self.logInButton.bind { [unowned self] button in
-            self.navigationController?.popViewController(animated: true)
-        }
+        viewModel.output.gotoLoginResultObservable
+            .subscribe(onNext: { [unowned self] in
+                self.handleLogin()
+            })
+            .disposed(by: disposeBag)
         
-        self.updateImageButton.bind { [unowned self] button in
-            self.present(self.imagePicker, animated: true, completion: nil)
-        }
+        viewModel.isLoading.asObservable().subscribe(onNext: { [weak self] (value) in
+            guard let `self` = self else {return}
+            self.view.isUserInteractionEnabled = !value
+            self.activityIndicator.isHidden = !value
+        }).disposed(by: self.disposeBag)
     }
 }
-//MARK: UIImagePickerControllerDelegat
+
+// MARK: UIImagePickerControllerDelegate
 extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let profileImage = info[.editedImage] as? UIImage else { return }
-        self.viewModel.input.profileImage.value = profileImage
         self.updateImageButton.layer.borderColor = UIColor.twitterBlue.cgColor
         self.updateImageButton.layer.borderWidth = 3
-        
         self.updateImageButton.setImage(profileImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        self.viewModel.input.profileImage.onNext(profileImage)
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
-    
 }
+
+// MARK: Helpers
 extension RegisterViewController {
-    
     private func setUpImagePicker() {
         self.imagePicker.delegate = self
         self.imagePicker.allowsEditing = true
+    }
+    
+    private func handleLogin() {
+        self.navigationController?.popViewController(animated: true)
     }
 }

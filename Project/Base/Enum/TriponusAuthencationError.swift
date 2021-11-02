@@ -18,6 +18,8 @@ public enum TriponusAuthencationError: Error {
     
     /// Password empty
     case passwordEmpty
+    
+    case passwordNotMatch
 }
 
 extension TriponusAuthencationError: LocalizedError {
@@ -29,6 +31,8 @@ extension TriponusAuthencationError: LocalizedError {
             return NSLocalizedString("Email cannot leave empty.", comment: "Email empty")
         case .passwordEmpty:
             return NSLocalizedString("Password cannot leave empty.", comment: "Password empty")
+        case .passwordNotMatch:
+            return NSLocalizedString("Password not match.", comment: "Password not match")
         }
     }
 
@@ -38,6 +42,8 @@ extension TriponusAuthencationError: LocalizedError {
             return NSLocalizedString("User entered wrong email format", comment: "")
         case .emptyEmail:
             return NSLocalizedString("User leaved email empty", comment: "")
+        case .passwordNotMatch:
+            return NSLocalizedString("Password not match.", comment: "Password not match")
         case .passwordEmpty:
             return NSLocalizedString("User leaved password empty", comment: "")
         }
@@ -47,6 +53,8 @@ extension TriponusAuthencationError: LocalizedError {
         switch self {
         case .emailValidationError:
             return NSLocalizedString("Re-enter email", comment: "")
+        case .passwordNotMatch:
+            return NSLocalizedString("Re-enter password", comment: "")
         case .emptyEmail:
             return NSLocalizedString("Re-enter email", comment: "")
         case .passwordEmpty:
