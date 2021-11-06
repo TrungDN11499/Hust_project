@@ -111,6 +111,9 @@
 		FAB9759E2602F87C006A66BB /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9759D2602F87C006A66BB /* SplashViewController.swift */; };
 		FAC53E9F26103A7500E32E21 /* FeedsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC53E9E26103A7500E32E21 /* FeedsService.swift */; };
 		FAC53EA42610417400E32E21 /* FeedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC53EA32610417400E32E21 /* FeedsViewModel.swift */; };
+		FAE1B49927368E44009A0BE8 /* AsyncFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1B49627368E43009A0BE8 /* AsyncFetcher.swift */; };
+		FAE1B49A27368E44009A0BE8 /* AsyncFetcherOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1B49727368E44009A0BE8 /* AsyncFetcherOperation.swift */; };
+		FAE1B49B27368E44009A0BE8 /* DisplayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1B49827368E44009A0BE8 /* DisplayData.swift */; };
 		FAE337E32613730F00BCA038 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE337E22613730F00BCA038 /* FeedViewModel.swift */; };
 		FAF38668253B61BB00E76AF1 /* UploadTweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF38667253B61BB00E76AF1 /* UploadTweetViewModel.swift */; };
 		FAF417F92528C96E00FDDC97 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF417F82528C96E00FDDC97 /* BaseViewController.swift */; };
@@ -266,6 +269,9 @@
 		FAB9759D2602F87C006A66BB /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		FAC53E9E26103A7500E32E21 /* FeedsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsService.swift; sourceTree = "<group>"; };
 		FAC53EA32610417400E32E21 /* FeedsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsViewModel.swift; sourceTree = "<group>"; };
+		FAE1B49627368E43009A0BE8 /* AsyncFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncFetcher.swift; sourceTree = "<group>"; };
+		FAE1B49727368E44009A0BE8 /* AsyncFetcherOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncFetcherOperation.swift; sourceTree = "<group>"; };
+		FAE1B49827368E44009A0BE8 /* DisplayData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayData.swift; sourceTree = "<group>"; };
 		FAE337E22613730F00BCA038 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		FAF38667253B61BB00E76AF1 /* UploadTweetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetViewModel.swift; sourceTree = "<group>"; };
 		FAF417F82528C96E00FDDC97 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -839,6 +845,16 @@
 			path = FeedsService;
 			sourceTree = "<group>";
 		};
+		FAE1B49527368E30009A0BE8 /* AsyncDataFetcher */ = {
+			isa = PBXGroup;
+			children = (
+				FAE1B49627368E43009A0BE8 /* AsyncFetcher.swift */,
+				FAE1B49727368E44009A0BE8 /* AsyncFetcherOperation.swift */,
+				FAE1B49827368E44009A0BE8 /* DisplayData.swift */,
+			);
+			path = AsyncDataFetcher;
+			sourceTree = "<group>";
+		};
 		FAF38659253B32EC00E76AF1 /* Tweet */ = {
 			isa = PBXGroup;
 			children = (
@@ -1010,6 +1026,7 @@
 		FAFD591125209480006E4F94 /* Feeds */ = {
 			isa = PBXGroup;
 			children = (
+				FAE1B49527368E30009A0BE8 /* AsyncDataFetcher */,
 				838438EA266E68D600695ADE /* ViewModel */,
 				8301731B265C0A490048136A /* FeedsHeaderView */,
 				838438E6266E65F300695ADE /* TweetCell */,
@@ -1344,6 +1361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA8A03FA253C1F33006F3FAE /* ActionSheetLauncher.swift in Sources */,
+				FAE1B49B27368E44009A0BE8 /* DisplayData.swift in Sources */,
 				841CA67126427D4A00B6A83B /* RegisterViewController.swift in Sources */,
 				FA8A03FF253C2E48006F3FAE /* ActionSheetCell.swift in Sources */,
 				83346DC626639D120067C041 /* CommentTableViewCell.swift in Sources */,
@@ -1394,6 +1412,7 @@
 				840421A7265E9BEE002E8ECE /* BookingViewController.swift in Sources */,
 				83AF06E726457DF000A16E8B /* UploadFeedParam.swift in Sources */,
 				FAC53E9F26103A7500E32E21 /* FeedsService.swift in Sources */,
+				FAE1B49927368E44009A0BE8 /* AsyncFetcher.swift in Sources */,
 				FA2C25CF2532DEC30042EC43 /* Observers.swift in Sources */,
 				832D1C36266005DF004FD551 /* CreateGroupParams.swift in Sources */,
 				FAB9759E2602F87C006A66BB /* SplashViewController.swift in Sources */,
@@ -1430,6 +1449,7 @@
 				83EEB9EC264E8CA20010A17C /* UIBezierPathExtension.swift in Sources */,
 				FA88D41E261B860300A2FD6F /* AttributedString.swift in Sources */,
 				83EEB9E8264E601D0010A17C /* UIImageExtension.swift in Sources */,
+				FAE1B49A27368E44009A0BE8 /* AsyncFetcherOperation.swift in Sources */,
 				FA2C25C82532CC1A0042EC43 /* LoginService.swift in Sources */,
 				845620DE265FF97D004E3583 /* SettingTVC.swift in Sources */,
 				FAF417FF2528CA0600FDDC97 /* ViewControllerExtension.swift in Sources */,

@@ -100,6 +100,7 @@ PODS:
   - GoogleUtilities/UserDefaults (7.4.0):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.5.0)
+  - Kingfisher (6.3.0)
   - leveldb-library (1.22.1)
   - MBProgressHUD (1.2.0)
   - nanopb (2.30908.0):
@@ -128,6 +129,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - Kingfisher
   - MBProgressHUD
   - RxCocoa
   - RxSwift
@@ -151,6 +153,7 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - GTMSessionFetcher
+    - Kingfisher
     - leveldb-library
     - MBProgressHUD
     - nanopb
@@ -177,6 +180,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: cd9db2180fcecd8da1b561aea31e3e56cf834aa7
   GoogleUtilities: 284cddc7fffc14ae1907efb6f78ab95c1fccaedc
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
@@ -187,6 +191,6 @@ SPEC CHECKSUMS:
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: baf04d2ff1ca9ea47b984f2767d67afb8d698cf1
+PODFILE CHECKSUM: 6282240ba3f89feb12a7a1b17e0251fd310b4f04
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

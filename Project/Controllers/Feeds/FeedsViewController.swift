@@ -77,7 +77,7 @@ class FeedsViewController: BaseViewController, ControllerType {
         self.navigationController?.pushViewController(profileController, animated: true)
     }
 
-    // MARK: -  Api
+    // MARK: - Api
     private func fetchUser() {
         UserService.shared.fetchUser { user in
             self.user = user

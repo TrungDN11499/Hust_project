@@ -17,6 +17,7 @@ target 'Triponus' do
   pod 'ActiveLabel'
   pod 'DTPhotoViewerController'
   pod 'DZNEmptyDataSet'
+  pod 'Kingfisher'
   
   # RxSwift
   pod 'RxSwift'
