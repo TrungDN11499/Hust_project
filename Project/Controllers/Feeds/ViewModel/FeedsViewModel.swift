@@ -26,7 +26,7 @@ class FeedsViewModel: ViewModelProtocol {
     init(feedsService: FeedsService) {
         self.input = Input()
         self.output = Output()
-        
+
         // fetch tweets
         self.input.fetchTweets.bind { observer, value in
             var values = [FeedViewModel]()
@@ -38,7 +38,7 @@ class FeedsViewModel: ViewModelProtocol {
                 self.output.fetchTweetsResult.value = values
             }
         }
-        
+
         // like tweet
         self.input.likeTweet.bind { observer, value  in
             feedsService.likeTweet(tweet: value.feedViewModel.tweet) { [unowned self] error, numberOfLikes, reference in
@@ -51,7 +51,7 @@ class FeedsViewModel: ViewModelProtocol {
                 NotificationService.shared.uploadNotification(.like, tweet: value.feedViewModel.tweet)
             }
         }
-        
+
         // delete tweet
         self.input.deleteTweet.bind { observer, value in
             feedsService.deleteTweet(tweet: value.tweet) { [unowned self] error, ref in

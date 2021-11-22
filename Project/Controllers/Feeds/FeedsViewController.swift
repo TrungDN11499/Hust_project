@@ -13,13 +13,13 @@ class FeedsViewController: BaseViewController, ControllerType {
 
     // MARK: - Properties
     private var viewModel: ViewModelType!
+    private lazy var dataSource = CustomDataSource(viewController: self)
 
     private lazy var feedCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collecionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collecionView.backgroundColor = .mainBackgroundColor
         collecionView.delegate = self
-        collecionView.dataSource = self
         collecionView.emptyDataSetSource = self
         collecionView.emptyDataSetDelegate = self
         collecionView.showsVerticalScrollIndicator = false
@@ -28,6 +28,7 @@ class FeedsViewController: BaseViewController, ControllerType {
 
     var user: User? {
         didSet {
+            self.dataSource.user = user
             self.feedCollectionView.reloadData()
         }
     }
@@ -89,6 +90,13 @@ class FeedsViewController: BaseViewController, ControllerType {
         self.view.backgroundColor = .navigationBarColor
         TweetCollectionViewCell.registerCellByNib(self.feedCollectionView)
         self.feedCollectionView.register(UINib(nibName: "FeedsHeaderCollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
+        
+        // Set the collection view's data source.
+        self.feedCollectionView.dataSource = dataSource
+      
+        // Set the collection view's prefetching data source.
+        self.feedCollectionView.prefetchDataSource = dataSource
+      
     }
 
     private func addUIConstraints() {
@@ -107,7 +115,7 @@ extension FeedsViewController {
         vc.viewModel = viewModel
         return vc
     }
-    
+
     func configure(with viewModel: ViewModelType) {
         viewModel.output.fetchTweetsResult.bind { [unowned self] observable, values in
             DispatchQueue.main.async {
@@ -118,6 +126,7 @@ extension FeedsViewController {
                     self.feedCollectionView.refreshControl = refreshControl
                 }
                 self.hideLoading()
+                self.dataSource.feedViewModel = values
                 self.feedCollectionView.reloadData()
             }
         }
@@ -125,43 +134,12 @@ extension FeedsViewController {
     
 }
 
-// MARK: - UICollectionViewDelegate
-extension FeedsViewController: UICollectionViewDelegate {
-   
-}
-
-// MARK: - UICollectionViewDataSource
-extension FeedsViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel.output.fetchTweetsResult.value?.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as? FeedsHeaderCollectionReusableView else {
-            return FeedsHeaderCollectionReusableView()
-        }
-        header.user = self.user
-        header.delegate = self
-        return header
-    }
-   
+// MARK: - UICollectionViewDelegateFlowLayout
+extension FeedsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return .init(width: self.view.frame.width, height: 100)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = TweetCollectionViewCell.loadCell(collectionView, indexPath: indexPath) as? TweetCollectionViewCell else {
-            return TweetCollectionViewCell()
-        }
-        cell.needDelete = true
-        cell.delegate = self
-        cell.feedViewModel = self.viewModel.viewModel(at: indexPath)
-        return cell
-    }
-}
 
-// MARK: - UICollectionViewDelegateFlowLayout
-extension FeedsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         // cell constants
@@ -261,7 +239,7 @@ extension FeedsViewController: TweetCollectionViewCellDelegate {
     
 }
 
-// MARK: -- TweetViewControllerDelegate
+// MARK: - TweetViewControllerDelegate
 extension FeedsViewController: TweetViewControllerDelegate {
     func handleLike(Tweet: Tweet, at index: IndexPath) {
     }
@@ -286,7 +264,7 @@ extension FeedsViewController: UploadTweetViewControllerDelegate {
     }
 }
 
-// MARK: -- FeedsHeaderCollectionReusableViewDelegate
+// MARK: - FeedsHeaderCollectionReusableViewDelegate
 extension FeedsViewController: FeedsHeaderCollectionReusableViewDelegate {
     func feedHeaderCollectionView(showProfileOf user: User, view: FeedsHeaderCollectionReusableView) {
         let profileController = ProfileController(user)

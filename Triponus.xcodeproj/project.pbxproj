@@ -72,6 +72,7 @@
 		FA2495C02523218C0060BECD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2495BF2523218C0060BECD /* UIViewExtension.swift */; };
 		FA26202D25374A3B000E1755 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA26202C25374A3B000E1755 /* Tweet.swift */; };
 		FA2A051C26A5CFCA00DD4C13 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A051B26A5CFCA00DD4C13 /* LoginViewModel.swift */; };
+		FA2C0DA4274BFDFF00A8690F /* CustomDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C0DA3274BFDFF00A8690F /* CustomDataSource.swift */; };
 		FA2C25A92532C7400042EC43 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C25A82532C7400042EC43 /* ViewModelProtocol.swift */; };
 		FA2C25B12532C76A0042EC43 /* ControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C25B02532C76A0042EC43 /* ControllerProtocol.swift */; };
 		FA2C25C22532CA6A0042EC43 /* BindingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C25C12532CA6A0042EC43 /* BindingTextField.swift */; };
@@ -113,7 +114,6 @@
 		FAC53EA42610417400E32E21 /* FeedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC53EA32610417400E32E21 /* FeedsViewModel.swift */; };
 		FAE1B49927368E44009A0BE8 /* AsyncFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1B49627368E43009A0BE8 /* AsyncFetcher.swift */; };
 		FAE1B49A27368E44009A0BE8 /* AsyncFetcherOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1B49727368E44009A0BE8 /* AsyncFetcherOperation.swift */; };
-		FAE1B49B27368E44009A0BE8 /* DisplayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1B49827368E44009A0BE8 /* DisplayData.swift */; };
 		FAE337E32613730F00BCA038 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE337E22613730F00BCA038 /* FeedViewModel.swift */; };
 		FAF38668253B61BB00E76AF1 /* UploadTweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF38667253B61BB00E76AF1 /* UploadTweetViewModel.swift */; };
 		FAF417F92528C96E00FDDC97 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF417F82528C96E00FDDC97 /* BaseViewController.swift */; };
@@ -229,6 +229,7 @@
 		FA2495BF2523218C0060BECD /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		FA26202C25374A3B000E1755 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		FA2A051B26A5CFCA00DD4C13 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		FA2C0DA3274BFDFF00A8690F /* CustomDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDataSource.swift; sourceTree = "<group>"; };
 		FA2C25A82532C7400042EC43 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		FA2C25B02532C76A0042EC43 /* ControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerProtocol.swift; sourceTree = "<group>"; };
 		FA2C25C12532CA6A0042EC43 /* BindingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingTextField.swift; sourceTree = "<group>"; };
@@ -271,7 +272,6 @@
 		FAC53EA32610417400E32E21 /* FeedsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsViewModel.swift; sourceTree = "<group>"; };
 		FAE1B49627368E43009A0BE8 /* AsyncFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncFetcher.swift; sourceTree = "<group>"; };
 		FAE1B49727368E44009A0BE8 /* AsyncFetcherOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncFetcherOperation.swift; sourceTree = "<group>"; };
-		FAE1B49827368E44009A0BE8 /* DisplayData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayData.swift; sourceTree = "<group>"; };
 		FAE337E22613730F00BCA038 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		FAF38667253B61BB00E76AF1 /* UploadTweetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetViewModel.swift; sourceTree = "<group>"; };
 		FAF417F82528C96E00FDDC97 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -581,13 +581,6 @@
 			path = EditProfileCell;
 			sourceTree = "<group>";
 		};
-		838438F5266F0A0900695ADE /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		838438F6266F0A7700695ADE /* CustomTextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -726,6 +719,14 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
+		FA2C0DA2274BFDD900A8690F /* CustomDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				FA2C0DA3274BFDFF00A8690F /* CustomDataSource.swift */,
+			);
+			path = CustomDataSource;
+			sourceTree = "<group>";
+		};
 		FA2C25A62532C71A0042EC43 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -850,7 +851,6 @@
 			children = (
 				FAE1B49627368E43009A0BE8 /* AsyncFetcher.swift */,
 				FAE1B49727368E44009A0BE8 /* AsyncFetcherOperation.swift */,
-				FAE1B49827368E44009A0BE8 /* DisplayData.swift */,
 			);
 			path = AsyncDataFetcher;
 			sourceTree = "<group>";
@@ -858,7 +858,6 @@
 		FAF38659253B32EC00E76AF1 /* Tweet */ = {
 			isa = PBXGroup;
 			children = (
-				838438F5266F0A0900695ADE /* ViewModel */,
 				83346DC326639CF70067C041 /* CommentCell */,
 				83346DBF26637AE60067C041 /* TweetViewController.swift */,
 				83346DC026637AE60067C041 /* TweetViewController.xib */,
@@ -1026,6 +1025,7 @@
 		FAFD591125209480006E4F94 /* Feeds */ = {
 			isa = PBXGroup;
 			children = (
+				FA2C0DA2274BFDD900A8690F /* CustomDataSource */,
 				FAE1B49527368E30009A0BE8 /* AsyncDataFetcher */,
 				838438EA266E68D600695ADE /* ViewModel */,
 				8301731B265C0A490048136A /* FeedsHeaderView */,
@@ -1361,7 +1361,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA8A03FA253C1F33006F3FAE /* ActionSheetLauncher.swift in Sources */,
-				FAE1B49B27368E44009A0BE8 /* DisplayData.swift in Sources */,
 				841CA67126427D4A00B6A83B /* RegisterViewController.swift in Sources */,
 				FA8A03FF253C2E48006F3FAE /* ActionSheetCell.swift in Sources */,
 				83346DC626639D120067C041 /* CommentTableViewCell.swift in Sources */,
@@ -1379,6 +1378,7 @@
 				FAFDD71D254E4E5C000C39FF /* BaseCollectionViewCell.swift in Sources */,
 				83EEB9F1264E8D400010A17C /* CustomNavigationController.swift in Sources */,
 				845620DB265FF634004E3583 /* SettingViewController.swift in Sources */,
+				FA2C0DA4274BFDFF00A8690F /* CustomDataSource.swift in Sources */,
 				84E1F1A326641E5100FF1A7A /* BookingCLVCell.swift in Sources */,
 				8301731E265C0AB20048136A /* FeedsHeaderCollectionReusableView.swift in Sources */,
 				FAFD58A725208D9C006E4F94 /* SceneDelegate.swift in Sources */,

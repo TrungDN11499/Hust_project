@@ -121,11 +121,10 @@ class TweetViewController: BaseViewController {
         }
         
     }
-    
+
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if(keyPath == "contentSize"){
-            if let newvalue = change?[.newKey]
-            {
+            if let newvalue = change?[.newKey] {
                 DispatchQueue.main.async {
                     let newsize  = newvalue as! CGSize
                     print(newsize.height)
@@ -138,7 +137,7 @@ class TweetViewController: BaseViewController {
     
 }
 
-// MARK: -- Selectors
+// MARK: - Selectors
 extension TweetViewController {
     
     @objc private func handleShowProfile(_ sender: UIImageView) {

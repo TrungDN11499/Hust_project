@@ -34,7 +34,10 @@ class TweetCollectionViewCell: BaseCollectionViewCell {
     @IBOutlet weak var tweetImageView: UIImageView!
     
     var needDelete: Bool = false
-    
+
+    /// The `UUID` for the data this cell is presenting.
+    var representedIdentifier: UUID?
+
     weak var delegate: TweetCollectionViewCellDelegate?
     
     // MARK: - Properties
@@ -97,7 +100,7 @@ extension TweetCollectionViewCell {
     
         self.profileImageView.sd_setImage(with: feedViewModel.profileImageUrl, completed: nil)
         infoLabel.attributedText = feedViewModel.userInfoText
-                
+     
         self.likeButton.tintColor = feedViewModel.likeButtonTintColor
         self.likeButton.setImage(feedViewModel.likeButtonImage, for: .normal)
         feedViewModel.tweet.didLike.bind { (observer, value) in
@@ -105,19 +108,19 @@ extension TweetCollectionViewCell {
             self.likeButton.setImage(feedViewModel.likeButtonImage(value), for: .normal)
             self.likeButton.tintColor = feedViewModel.likeButtonTintColor(value)
         }
-        
+
         self.likesLabel.text = feedViewModel.likes
         feedViewModel.tweet.likes.bind {  observer, value in
             self.likesLabel.text = feedViewModel.likes
         }
-        
+
         self.commentLabel.text = feedViewModel.comments
         feedViewModel.tweet.comments.bind { observer, value in
             self.commentLabel.text = feedViewModel.comments
         }
-        
+
         self.replyLabel.text = feedViewModel.replyText
-        
+
         self.replyLabel.isHidden = feedViewModel.shouldHideReplyLabel
         
         if feedViewModel.tweet.images.isEmpty {
@@ -125,7 +128,10 @@ extension TweetCollectionViewCell {
             self.contentImageView.isHidden = true
         } else {
             self.contentImageView.isHidden = false
-            self.tweetImageView.sd_setImage(with: URL(string: feedViewModel.tweet.images[0].imageUrl), completed: nil)
+            DispatchQueue.main.async {
+                self.tweetImageView.image = feedViewModel.image
+            }
+            
             let imageRatio = feedViewModel.tweet.images[0].width / feedViewModel.tweet.images[0].height
             self.imageContentViewHeightConstraint.constant = UIScreen.main.bounds.width / imageRatio
         }

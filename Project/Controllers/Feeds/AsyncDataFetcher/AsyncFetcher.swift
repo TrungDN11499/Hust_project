@@ -18,10 +18,10 @@ class AsyncFetcher {
     private let fetchQueue = OperationQueue()
 
     /// A dictionary of arrays of closures to call when an object has been fetched for an id.
-    private var completionHandlers = [UUID: [(DisplayData?) -> Void]]()
+    private var completionHandlers = [UUID: [(FeedViewModel?) -> Void]]()
 
     /// An `NSCache` used to store fetched objects.
-    private var cache = NSCache<NSUUID, DisplayData>()
+    private var cache = NSCache<NSUUID, FeedViewModel>()
 
     // MARK: Initialization
 
@@ -38,7 +38,7 @@ class AsyncFetcher {
          - identifier: The `UUID` to fetch data for.
          - completion: An optional called when the data has been fetched.
     */
-    func fetchAsync(_ identifier: UUID, completion: ((DisplayData?) -> Void)? = nil) {
+    func fetchAsync(_ identifier: UUID, fetchData: FeedViewModel, completion: ((FeedViewModel?) -> Void)? = nil) {
         // Use the serial queue while we access the fetch queue and completion handlers.
         serialAccessQueue.addOperation {
             // If a completion block has been provided, store it.
@@ -47,7 +47,7 @@ class AsyncFetcher {
                 self.completionHandlers[identifier] = handlers + [completion]
             }
             
-            self.fetchData(for: identifier)
+            self.fetchData(for: identifier, fetchData: fetchData)
         }
     }
 
@@ -57,7 +57,7 @@ class AsyncFetcher {
      - Parameter identifier: The `UUID` of the object to return.
      - Returns: The 'DisplayData' that has previously been fetched or nil.
      */
-    func fetchedData(for identifier: UUID) -> DisplayData? {
+    func fetchedData(for identifier: UUID) -> FeedViewModel? {
         return cache.object(forKey: identifier as NSUUID)
     }
 
@@ -87,7 +87,7 @@ class AsyncFetcher {
      
      - Parameter identifier: The `UUID` to fetch data for.
      */
-    private func fetchData(for identifier: UUID) {
+    private func fetchData(for identifier: UUID, fetchData: FeedViewModel) {
         // If a request has already been made for the object, do nothing more.
         guard operation(for: identifier) == nil else { return }
         
@@ -96,7 +96,7 @@ class AsyncFetcher {
             invokeCompletionHandlers(for: identifier, with: data)
         } else {
             // Enqueue a request for the object.
-            let operation = AsyncFetcherOperation(identifier: identifier)
+            let operation = AsyncFetcherOperation(identifier: identifier, fetchData: fetchData)
             
             // Set the operation's completion block to cache the fetched object and call the associated completion blocks.
             operation.completionBlock = { [weak operation] in
@@ -135,7 +135,7 @@ class AsyncFetcher {
      - identifier: The `UUID` of the completion handlers to call.
      - object: The fetched object to pass when calling a completion handler.
      */
-    private func invokeCompletionHandlers(for identifier: UUID, with fetchedData: DisplayData) {
+    private func invokeCompletionHandlers(for identifier: UUID, with fetchedData: FeedViewModel) {
         let completionHandlers = self.completionHandlers[identifier, default: []]
         self.completionHandlers[identifier] = nil
 

@@ -14,13 +14,15 @@ class FeedViewModel: ViewModelProtocol {
         fileprivate var tweet: Observable1<Tweet> = Observable1()
         var likeTweet: Observable1<LikeTweetParam> = Observable1()
     }
-    
-    struct Output  {
-        
+
+    struct Output {
+
     }
-    
+
+    var image: UIImage?
     let input: Input
     let output: Output
+    var identifier = UUID()
     
     // MARK: - Initializers
     init(_ tweet: Tweet, feedsService: FeedsService? = nil) {
@@ -34,7 +36,7 @@ class FeedViewModel: ViewModelProtocol {
 
                     self.tweet.likes.value = numberOfLikes
                     self.tweet.didLike.value = !(value.feedViewModel.tweet.didLike.value ?? false)
-            
+
                     // only upload notification when user like
                     guard let didLike = value.feedViewModel.tweet.didLike.value, didLike else { return }
                     NotificationService.shared.uploadNotification(.like, tweet: value.feedViewModel.tweet)
