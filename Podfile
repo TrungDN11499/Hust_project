@@ -18,6 +18,7 @@ target 'Triponus' do
   pod 'DTPhotoViewerController'
   pod 'DZNEmptyDataSet'
   pod 'Kingfisher'
+  pod 'YPImagePicker'
   
   # RxSwift
   pod 'RxSwift'

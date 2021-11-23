@@ -8,6 +8,7 @@
 import UIKit
 import ActiveLabel
 import MobileCoreServices
+import YPImagePicker
 
 protocol UploadTweetViewControllerDelegate: AnyObject {
     func handleUpdateNumberOfComment(for index: Int, numberOfComment: Int)
@@ -125,19 +126,51 @@ class UploadTweetViewController: BaseViewController {
     
     // MARK: - Selectors
     @objc private func handleAddImage(_ sender: UITapGestureRecognizer) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.allowsEditing = true
-        imagePicker.delegate = self
-        // TODO: turn on sending video.
-        imagePicker.mediaTypes = [kUTTypeImage as String
-//                                  , kUTTypeMovie as String
-        ]
-        imagePicker.modalPresentationStyle = .fullScreen
-        self.captionTextView.resignFirstResponder()
-        self.showLoading()
-        present(imagePicker, animated: true) {
-            self.hideLoading()
+        
+        var config = YPImagePickerConfiguration()
+        config.screens = [.library, .video, .photo]
+        config.library.mediaType = .photoAndVideo
+        config.hidesCancelButton = false
+        config.library.maxNumberOfItems = 3
+        // And then use the default configuration like so:
+        let picker = YPImagePicker(configuration: config)
+        picker.navigationBar.update(backroundColor: .primary, titleColor: .white)
+
+        picker.didFinishPicking { [unowned picker] items, _ in
+            if let photo = items.singlePhoto {
+                print(photo.fromCamera) // Image source (camera or library)
+                print(photo.image) // Final image selected by the user
+                print(photo.originalImage) // original image selected by the user, unfiltered
+                print(photo.modifiedImage) // Transformed image, can be nil
+                print(photo.exifMeta)
+                self.imageContentView.isHidden = false
+                self.uploadImageView.image = photo.image
+                
+                let margin: CGFloat = 12
+                let imageRatio = photo.image.size.width / photo.image.size.height
+                self.uploadImageViewHeightConstraint.constant = (self.view.frame.width - margin * 2) / imageRatio
+                
+                // Print exif meta data of original image.
+            }
+            picker.dismiss(animated: true) {
+                self.captionTextView.becomeFirstResponder()
+            }
         }
+        present(picker, animated: true, completion: nil)
+        
+//        let imagePicker = UIImagePickerController()
+//        imagePicker.allowsEditing = true
+//        imagePicker.delegate = self
+//        // TODO: turn on sending video.
+//        imagePicker.mediaTypes = [kUTTypeImage as String
+////                                  , kUTTypeMovie as String
+//        ]
+//        imagePicker.modalPresentationStyle = .fullScreen
+//        self.captionTextView.resignFirstResponder()
+//        self.showLoading()
+//        present(imagePicker, animated: true) {
+//            self.hideLoading()
+//        }
     }
     
     @objc private func handleDissmiss(_ sender: UIBarButtonItem) {
@@ -295,6 +328,29 @@ extension UploadTweetViewController: UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true) {
             self.captionTextView.becomeFirstResponder()
+        }
+    }
+}
+
+extension UINavigationBar {
+    func update(backroundColor: UIColor? = nil, titleColor: UIColor? = nil) {
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithTransparentBackground()
+
+            if let backroundColor = backroundColor {
+              appearance.backgroundColor = backroundColor
+            }
+
+            appearance.backgroundImage = UIImage()
+            appearance.shadowImage = UIImage()
+            if let titleColor = titleColor {
+              appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: titleColor]
+            }
+
+            self.standardAppearance = appearance
+            self.scrollEdgeAppearance = appearance
+        } else {
         }
     }
 }

@@ -109,6 +109,7 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (1.2.12)
+  - PryntTrimmerView (4.0.2)
   - RxCocoa (6.2.0):
     - RxRelay (= 6.2.0)
     - RxSwift (= 6.2.0)
@@ -118,7 +119,11 @@ PODS:
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
+  - SteviaLayout (4.7.3)
   - SwiftLint (0.43.1)
+  - YPImagePicker (5.0.0):
+    - PryntTrimmerView (= 4.0.2)
+    - SteviaLayout (= 4.7.3)
 
 DEPENDENCIES:
   - ActiveLabel
@@ -135,6 +140,7 @@ DEPENDENCIES:
   - RxSwift
   - SDWebImage (~> 5.0)
   - SwiftLint
+  - YPImagePicker
 
 SPEC REPOS:
   trunk:
@@ -158,11 +164,14 @@ SPEC REPOS:
     - MBProgressHUD
     - nanopb
     - PromisesObjC
+    - PryntTrimmerView
     - RxCocoa
     - RxRelay
     - RxSwift
     - SDWebImage
+    - SteviaLayout
     - SwiftLint
+    - YPImagePicker
 
 SPEC CHECKSUMS:
   ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
@@ -185,12 +194,15 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
+  YPImagePicker: 1463a19a36244e209dcb03c30e63559c5afa9602
 
-PODFILE CHECKSUM: 6282240ba3f89feb12a7a1b17e0251fd310b4f04
+PODFILE CHECKSUM: fdddae665f35c91b1b88b3736f67100d5c8d099c
 
 COCOAPODS: 1.11.2
