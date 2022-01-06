@@ -104,6 +104,8 @@ extension RegisterViewController: ControllerType {
     }
 
     func configure(with viewModel: ViewModelType) {
+        self.viewModel.input.profileImage.onNext(self.updateImageButton.imageView!.image!)
+        self.registerButton.isUserInteractionEnabled = true
         self.emailTextField.bind(viewModel.input.email)
         self.passwordTextField.bind(viewModel.input.password)
         self.comfirmPasswordField.bind(viewModel.input.confirmPassword)
