@@ -146,6 +146,13 @@ extension SettingViewController {
             let setting = settings.setting[indexPath.item-1]
             cell.setting = setting
             cell.nextArrowImage.isHidden = true
+            cell.imageViewHeightAnchor.constant = 24
+            cell.imageViewWidthAnchor.constant = 24
+            cell.objectImageView.contentMode = .center
+            cell.objectImageView.layoutIfNeeded()
+            cell.objectImageView.layer.cornerRadius = 0
+            cell.objectImageView.borderColor = UIColor.clear
+            cell.objectImageView.contentMode = .scaleAspectFill
         }
          return cell
     }
