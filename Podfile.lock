@@ -1,5 +1,4 @@
 PODS:
-  - ActiveLabel (1.1.0)
   - DTPhotoViewerController (3.1.0)
   - DZNEmptyDataSet (1.8.1)
   - Firebase/Analytics (7.11.0):
@@ -126,7 +125,6 @@ PODS:
     - SteviaLayout (= 4.7.3)
 
 DEPENDENCIES:
-  - ActiveLabel
   - DTPhotoViewerController
   - DZNEmptyDataSet
   - Firebase/Analytics
@@ -144,7 +142,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - ActiveLabel
     - DTPhotoViewerController
     - DZNEmptyDataSet
     - Firebase
@@ -174,7 +171,6 @@ SPEC REPOS:
     - YPImagePicker
 
 SPEC CHECKSUMS:
-  ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
   DTPhotoViewerController: 2b5e64792ee89fcab1f154538577d1856e04e15b
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Firebase: c121feb35e4126c0b355e3313fa9b487d47319fd
@@ -203,6 +199,6 @@ SPEC CHECKSUMS:
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   YPImagePicker: 1463a19a36244e209dcb03c30e63559c5afa9602
 
-PODFILE CHECKSUM: fdddae665f35c91b1b88b3736f67100d5c8d099c
+PODFILE CHECKSUM: 6ff9bb2f4a6f83f00c12e7209e807b2be3491d36
 
 COCOAPODS: 1.11.2

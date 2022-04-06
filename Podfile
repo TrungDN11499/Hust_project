@@ -8,13 +8,14 @@ target 'Triponus' do
   # Pods for Triponus
   
   pod 'SDWebImage', '~> 5.0'
+  
   pod 'Firebase/Analytics'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'Firebase/Auth'
+  
   pod 'MBProgressHUD'
-  pod 'ActiveLabel'
   pod 'DTPhotoViewerController'
   pod 'DZNEmptyDataSet'
   pod 'Kingfisher'

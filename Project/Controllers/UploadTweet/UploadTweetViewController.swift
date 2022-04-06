@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import ActiveLabel
 import MobileCoreServices
 import YPImagePicker
 
