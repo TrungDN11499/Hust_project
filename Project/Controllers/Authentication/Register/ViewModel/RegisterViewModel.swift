@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import FirebaseDatabase
 
 class RegisterViewModel: ViewModelProtocol {
 
@@ -84,6 +85,7 @@ class RegisterViewModel: ViewModelProtocol {
                 self.isLoading.accept(true)
             }).flatMapLatest { registerModel in
                 return registrationService.register(with: registerModel) { progress in
+                    // Upload image progress
                     print(progress)
                 }
             }.subscribe(onNext: { [weak self] result in

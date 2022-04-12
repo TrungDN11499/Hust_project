@@ -19,6 +19,7 @@ public enum TriponusAuthencationError: Error {
     /// Password empty
     case passwordEmpty
     
+    /// Password not match
     case passwordNotMatch
 }
 

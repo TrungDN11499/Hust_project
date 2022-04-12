@@ -27,6 +27,20 @@ class RegistrationService: RegistrationServiceProtocol {
 
         return Observable<(DatabaseReference?, Error?)>.create { observer in
 
+            // check email empty
+            if String.isNilOrEmpty(model.email) {
+                let error = TriponusAuthencationError.emptyEmail
+                observer.onNext((nil, error))
+                return Disposables.create()
+            }
+            
+            // Email validation
+            if !model.email.isValidEmail() {
+                let error = TriponusAuthencationError.emailValidationError
+                observer.onNext((nil, error))
+                return Disposables.create()
+            }
+        
             // check password match
             if model.password != model.confirmPassword {
                 let error = TriponusAuthencationError.passwordNotMatch
