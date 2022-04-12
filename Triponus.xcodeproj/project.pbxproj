@@ -327,6 +327,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		242371D027FE84C900E09D97 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				FAFD58B225208D9C006E4F94 /* Info.plist */,
+				FA66C6062523AE2100C31151 /* GoogleService-Info.plist */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		242371D127FE850800E09D97 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				242371D227FE852F00E09D97 /* Fonts */,
+			);
+			name = Resources;
+			path = "Support Files/Resources";
+			sourceTree = "<group>";
+		};
+		242371D227FE852F00E09D97 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FAFD58AD25208D9C006E4F94 /* Assets.xcassets */,
+				242371D327FE853600E09D97 /* Roboto */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		242371D327FE853600E09D97 /* Roboto */ = {
+			isa = PBXGroup;
+			children = (
+				84E8270326426EC100D6929D /* Roboto-Medium.ttf */,
+				84E8270526426ECC00D6929D /* Roboto-Regular.ttf */,
+				84E8270726426EDD00D6929D /* Roboto-Bold.ttf */,
+				8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */,
+			);
+			path = Roboto;
+			sourceTree = "<group>";
+		};
 		4083350EFAECD67AB00B0E3D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,6 +442,7 @@
 		838438E0266E654900695ADE /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				FA2C25C62532CC090042EC43 /* LoginService */,
 				FA4E1C4B26A3509B004F7A9C /* LoginModel */,
 				838438E9266E687D00695ADE /* ViewModel */,
 				84E826FD26426A5A00D6929D /* LoginViewController.swift */,
@@ -415,6 +454,7 @@
 		838438E1266E655400695ADE /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				FA3CABB1260CE6B4009FC9B7 /* RegistrationService */,
 				FA718B3C26AC1E2200FA8092 /* RegisterModel */,
 				838438E8266E687300695ADE /* ViewModel */,
 				841CA66F26427D4A00B6A83B /* RegisterViewController.swift */,
@@ -933,14 +973,9 @@
 				FAFD58D725208E72006E4F94 /* Models */,
 				FAFD58DB25208ED4006E4F94 /* Controllers */,
 				FAFD58D825208EC7006E4F94 /* Api */,
-				FAFD58AD25208D9C006E4F94 /* Assets.xcassets */,
+				242371D127FE850800E09D97 /* Resources */,
+				242371D027FE84C900E09D97 /* Support Files */,
 				FAFD58AF25208D9C006E4F94 /* LaunchScreen.storyboard */,
-				FAFD58B225208D9C006E4F94 /* Info.plist */,
-				84E8270326426EC100D6929D /* Roboto-Medium.ttf */,
-				84E8270526426ECC00D6929D /* Roboto-Regular.ttf */,
-				84E8270726426EDD00D6929D /* Roboto-Bold.ttf */,
-				8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */,
-				FA66C6062523AE2100C31151 /* GoogleService-Info.plist */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -982,8 +1017,6 @@
 		FAFD58D825208EC7006E4F94 /* Api */ = {
 			isa = PBXGroup;
 			children = (
-				FA2C25C62532CC090042EC43 /* LoginService */,
-				FA3CABB1260CE6B4009FC9B7 /* RegistrationService */,
 				FAC53E9A26103A1A00E32E21 /* FeedsService */,
 				FA0DC9F6252658C400377539 /* UserService.swift */,
 				FA9B7CFE25361604006DFFA2 /* TweetService1.swift */,
@@ -1629,7 +1662,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 699J3RXKFC;
-				INFOPLIST_FILE = Project/Info.plist;
+				INFOPLIST_FILE = "Project/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1649,7 +1682,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 699J3RXKFC;
-				INFOPLIST_FILE = Project/Info.plist;
+				INFOPLIST_FILE = "Project/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

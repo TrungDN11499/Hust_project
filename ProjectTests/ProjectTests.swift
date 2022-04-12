@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Project
+@testable import Triponus
 
 class ProjectTests: XCTestCase {
 
