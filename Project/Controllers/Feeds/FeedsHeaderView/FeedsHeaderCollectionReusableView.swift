@@ -16,7 +16,7 @@ protocol FeedsHeaderCollectionReusableViewDelegate: AnyObject {
 
 class FeedsHeaderCollectionReusableView: UICollectionReusableView {
 
-    // MARK: -- Properties
+    // MARK: - Properties
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var tweetView: UIView!
@@ -53,7 +53,7 @@ class FeedsHeaderCollectionReusableView: UICollectionReusableView {
     }
 }
 
-// MARK: -- Helpers
+// MARK: - Helpers
 extension FeedsHeaderCollectionReusableView {
     private func setUpViews() {
         guard let user = self.user else { return }

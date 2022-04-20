@@ -102,7 +102,7 @@ extension LoginViewController {
     static func create(with viewModel: ViewModelType) -> UIViewController {
         let vc = LoginViewController()
         vc.viewModel = viewModel
-        let nav = CustomNavigationController(rootViewController: vc)
+        let nav = BaseNavigationController(rootViewController: vc)
         return nav
     }
     

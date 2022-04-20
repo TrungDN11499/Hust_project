@@ -275,7 +275,7 @@ extension FeedsViewController: FeedsHeaderCollectionReusableViewDelegate {
         let uploadTweetViewModel = UploadTweetViewModel(.tweet, user: user)
         let controller = UploadTweetViewController.create(with: uploadTweetViewModel) as! UploadTweetViewController
         controller.delegate = self
-        let nav = CustomNavigationController(rootViewController: controller)
+        let nav = BaseNavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
         self.present(nav, animated: true, completion: nil)
     }

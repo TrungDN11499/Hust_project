@@ -1,5 +1,5 @@
 //
-//  CustomNavigationController.swift
+//  BaseNavigationController.swift
 //  Triponus
 //
 //  Created by Be More on 14/05/2021.
@@ -7,18 +7,10 @@
 
 import UIKit
 
-extension UINavigationController {
-    open override var preferredStatusBarStyle: UIStatusBarStyle {
-        return topViewController?.preferredStatusBarStyle ?? .lightContent
-    }
+class BaseNavigationController: UINavigationController {
 
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        self.setNeedsStatusBarAppearanceUpdate()
-    }
-}
+    var listViewControllerHiddenNavBar: [UIViewController.Type] = []
 
-class CustomNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,6 +19,22 @@ class CustomNavigationController: UINavigationController {
         setCornerRadius()
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if let topVC = viewControllers.last {
+            //return the status property of each VC, look at step 2
+            return topVC.preferredStatusBarStyle
+        }
+        return .default
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return topViewController?.supportedInterfaceOrientations ?? .portrait
+    }
+
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    
     func changeTitleColor() {
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationBar.titleTextAttributes = textAttributes
@@ -43,7 +51,7 @@ class CustomNavigationController: UINavigationController {
         backButtonBackgroundImage = backButtonBackgroundImage.resizableImage(withCapInsets: insets)
 
         let barAppearance =
-            UINavigationBar.appearance(whenContainedInInstancesOf: [CustomNavigationController.self])
+            UINavigationBar.appearance(whenContainedInInstancesOf: [BaseNavigationController.self])
         barAppearance.backIndicatorImage = backButtonBackgroundImage
         barAppearance.backIndicatorTransitionMaskImage = backButtonBackgroundImage
         barAppearance.tintColor = .white
@@ -56,4 +64,3 @@ class CustomNavigationController: UINavigationController {
         navigationBar.tintColor = .white
     }
 }
-

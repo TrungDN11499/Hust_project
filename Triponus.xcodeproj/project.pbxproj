@@ -38,7 +38,7 @@
 		83EEB9E8264E601D0010A17C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EEB9E7264E601D0010A17C /* UIImageExtension.swift */; };
 		83EEB9EC264E8CA20010A17C /* UIBezierPathExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EEB9EB264E8CA20010A17C /* UIBezierPathExtension.swift */; };
 		83EEB9EE264E8CBE0010A17C /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EEB9ED264E8CBE0010A17C /* UINavigationBarExtension.swift */; };
-		83EEB9F1264E8D400010A17C /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EEB9F0264E8D400010A17C /* CustomNavigationController.swift */; };
+		83EEB9F1264E8D400010A17C /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EEB9F0264E8D400010A17C /* BaseNavigationController.swift */; };
 		840421A7265E9BEE002E8ECE /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840421A5265E9BED002E8ECE /* BookingViewController.swift */; };
 		840421A8265E9BEE002E8ECE /* BookingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840421A6265E9BEE002E8ECE /* BookingViewController.xib */; };
 		8409D6002642E8C20036E3A1 /* Griffy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */; };
@@ -110,6 +110,8 @@
 		FAA362672524D84A00580FE2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA362662524D84A00580FE2 /* Constants.swift */; };
 		FAA5DD662631FCAB00C919A0 /* DeleteParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA5DD652631FCAB00C919A0 /* DeleteParam.swift */; };
 		FAB9759E2602F87C006A66BB /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9759D2602F87C006A66BB /* SplashViewController.swift */; };
+		FABAA7A828107AF100A1771B /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABAA7A728107AF100A1771B /* UINavigationController+Extension.swift */; };
+		FABAA7AB281080B000A1771B /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABAA7AA281080B000A1771B /* Toast.swift */; };
 		FAC53E9F26103A7500E32E21 /* FeedsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC53E9E26103A7500E32E21 /* FeedsService.swift */; };
 		FAC53EA42610417400E32E21 /* FeedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC53EA32610417400E32E21 /* FeedsViewModel.swift */; };
 		FAE1B49927368E44009A0BE8 /* AsyncFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1B49627368E43009A0BE8 /* AsyncFetcher.swift */; };
@@ -193,7 +195,7 @@
 		83EEB9E7264E601D0010A17C /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		83EEB9EB264E8CA20010A17C /* UIBezierPathExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPathExtension.swift; sourceTree = "<group>"; };
 		83EEB9ED264E8CBE0010A17C /* UINavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtension.swift; sourceTree = "<group>"; };
-		83EEB9F0264E8D400010A17C /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
+		83EEB9F0264E8D400010A17C /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		840421A5265E9BED002E8ECE /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewController.swift; sourceTree = "<group>"; };
 		840421A6265E9BEE002E8ECE /* BookingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookingViewController.xib; sourceTree = "<group>"; };
 		8409D5FF2642E8C20036E3A1 /* Griffy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Griffy-Regular.ttf"; sourceTree = "<group>"; };
@@ -268,6 +270,8 @@
 		FAA362662524D84A00580FE2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FAA5DD652631FCAB00C919A0 /* DeleteParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteParam.swift; sourceTree = "<group>"; };
 		FAB9759D2602F87C006A66BB /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		FABAA7A728107AF100A1771B /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
+		FABAA7AA281080B000A1771B /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		FAC53E9E26103A7500E32E21 /* FeedsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsService.swift; sourceTree = "<group>"; };
 		FAC53EA32610417400E32E21 /* FeedsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsViewModel.swift; sourceTree = "<group>"; };
 		FAE1B49627368E43009A0BE8 /* AsyncFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncFetcher.swift; sourceTree = "<group>"; };
@@ -707,7 +711,7 @@
 		83EEB9EF264E8D240010A17C /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				83EEB9F0264E8D400010A17C /* CustomNavigationController.swift */,
+				83EEB9F0264E8D400010A17C /* BaseNavigationController.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -715,6 +719,7 @@
 		8409D601264317FE0036E3A1 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				FABAA7A92810808D00A1771B /* Toast */,
 				838438F8266F0B0500695ADE /* ActionSheet */,
 				838438F7266F0AF600695ADE /* CaptionTextView */,
 				838438F6266F0A7700695ADE /* CustomTextField */,
@@ -878,6 +883,14 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
+		FABAA7A92810808D00A1771B /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				FABAA7AA281080B000A1771B /* Toast.swift */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
 		FAC53E9A26103A1A00E32E21 /* FeedsService */ = {
 			isa = PBXGroup;
 			children = (
@@ -936,6 +949,7 @@
 				83EEB9E7264E601D0010A17C /* UIImageExtension.swift */,
 				83EEB9EB264E8CA20010A17C /* UIBezierPathExtension.swift */,
 				83EEB9ED264E8CBE0010A17C /* UINavigationBarExtension.swift */,
+				FABAA7A728107AF100A1771B /* UINavigationController+Extension.swift */,
 				832D1C2F265FFA2D004FD551 /* UITextFieldExtension.swift */,
 				5245B101264519A1006031CB /* UIImageViewExtension.swift */,
 			);
@@ -1399,7 +1413,9 @@
 				83346DC626639D120067C041 /* CommentTableViewCell.swift in Sources */,
 				845F6CA926516FEF0015BD58 /* NotificationTBVCell.swift in Sources */,
 				5245B0F826451291006031CB /* NewConversationsController.swift in Sources */,
+				FABAA7AB281080B000A1771B /* Toast.swift in Sources */,
 				832D1C30265FFA2D004FD551 /* UITextFieldExtension.swift in Sources */,
+				FABAA7A828107AF100A1771B /* UINavigationController+Extension.swift in Sources */,
 				FA0DC9F7252658C400377539 /* UserService.swift in Sources */,
 				FA2C25E1253309450042EC43 /* RegisterViewModel.swift in Sources */,
 				5245B0FE264516F3006031CB /* ChatMessagCell.swift in Sources */,
@@ -1409,7 +1425,7 @@
 				FA4E1C4D26A350AA004F7A9C /* LoginModel.swift in Sources */,
 				FAFD58A525208D9C006E4F94 /* AppDelegate.swift in Sources */,
 				FAFDD71D254E4E5C000C39FF /* BaseCollectionViewCell.swift in Sources */,
-				83EEB9F1264E8D400010A17C /* CustomNavigationController.swift in Sources */,
+				83EEB9F1264E8D400010A17C /* BaseNavigationController.swift in Sources */,
 				845620DB265FF634004E3583 /* SettingViewController.swift in Sources */,
 				FA2C0DA4274BFDFF00A8690F /* CustomDataSource.swift in Sources */,
 				84E1F1A326641E5100FF1A7A /* BookingCLVCell.swift in Sources */,

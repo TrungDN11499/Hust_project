@@ -9,6 +9,7 @@ target 'Triponus' do
   
   pod 'SDWebImage', '~> 5.0'
   
+  # Firebase
   pod 'Firebase/Analytics'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
