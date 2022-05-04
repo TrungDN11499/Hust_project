@@ -29,6 +29,9 @@ target 'Triponus' do
   # Swiftlint
   pod 'SwiftLint'
   
+  # Auto generate
+  pod 'R.swift'
+  
   target 'TriponusTests' do
     inherit! :search_paths
     # Pods for testing

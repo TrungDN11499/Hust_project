@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1C87D98FD40E964BE6C360FF /* Pods_Triponus_TriponusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10E226C9FC8EEAB0A642311B /* Pods_Triponus_TriponusUITests.framework */; };
+		24BAF71E28221EEF006A4BE3 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BAF71D28221EEF006A4BE3 /* R.generated.swift */; };
 		26F122434903DBB4505C46AD /* Pods_TriponusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F671E29E78B6CB6EFD5179 /* Pods_TriponusTests.framework */; };
 		5245B0F826451291006031CB /* NewConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0F726451291006031CB /* NewConversationsController.swift */; };
 		5245B0FA26451674006031CB /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0F926451674006031CB /* ChatLogController.swift */; };
@@ -158,6 +159,7 @@
 		10E226C9FC8EEAB0A642311B /* Pods_Triponus_TriponusUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Triponus_TriponusUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2071E2208C39E05A9E5B6A40 /* Pods-Triponus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus.release.xcconfig"; path = "Target Support Files/Pods-Triponus/Pods-Triponus.release.xcconfig"; sourceTree = "<group>"; };
 		22708268814D7642E590F26D /* Pods-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project.debug.xcconfig"; path = "Target Support Files/Pods-Project/Pods-Project.debug.xcconfig"; sourceTree = "<group>"; };
+		24BAF71D28221EEF006A4BE3 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		4141F717A3954A181127DF91 /* Pods-TriponusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TriponusTests.debug.xcconfig"; path = "Target Support Files/Pods-TriponusTests/Pods-TriponusTests.debug.xcconfig"; sourceTree = "<group>"; };
 		41AF713B0B2DB31752A47D72 /* Pods_Triponus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Triponus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A665F7EE67AC311EEFFA0AB /* Pods-Project-ProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-ProjectUITests.debug.xcconfig"; path = "Target Support Files/Pods-Project-ProjectUITests/Pods-Project-ProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 		242371D027FE84C900E09D97 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				24BAF71D28221EEF006A4BE3 /* R.generated.swift */,
 				FAFD58B225208D9C006E4F94 /* Info.plist */,
 				FA66C6062523AE2100C31151 /* GoogleService-Info.plist */,
 			);
@@ -1140,6 +1143,7 @@
 			buildConfigurationList = FAFD58CB25208D9D006E4F94 /* Build configuration list for PBXNativeTarget "Triponus" */;
 			buildPhases = (
 				5EAA7962E3443F04B1F518B3 /* [CP] Check Pods Manifest.lock */,
+				24BAF71C28221D2F006A4BE3 /* ShellScript */,
 				FAFD589D25208D9B006E4F94 /* Sources */,
 				FAFD589E25208D9B006E4F94 /* Frameworks */,
 				FAFD589F25208D9B006E4F94 /* Resources */,
@@ -1283,6 +1287,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		24BAF71C28221D2F006A4BE3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 		26DCFB70A47926283BCD7572 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1466,6 +1488,7 @@
 				832D1C36266005DF004FD551 /* CreateGroupParams.swift in Sources */,
 				FAB9759E2602F87C006A66BB /* SplashViewController.swift in Sources */,
 				FAE337E32613730F00BCA038 /* FeedViewModel.swift in Sources */,
+				24BAF71E28221EEF006A4BE3 /* R.generated.swift in Sources */,
 				FA2C25A92532C7400042EC43 /* ViewModelProtocol.swift in Sources */,
 				FA80F1882545CBB20030A00D /* EditProfileViewModel.swift in Sources */,
 				FA0DC9FC25265FED00377539 /* User.swift in Sources */,

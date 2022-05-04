@@ -109,6 +109,9 @@ PODS:
   - nanopb/encode (2.30908.0)
   - PromisesObjC (1.2.12)
   - PryntTrimmerView (4.0.2)
+  - R.swift (6.0.0):
+    - R.swift.Library (~> 5.3.0)
+  - R.swift.Library (5.3.0)
   - RxCocoa (6.2.0):
     - RxRelay (= 6.2.0)
     - RxSwift (= 6.2.0)
@@ -134,6 +137,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - Kingfisher
   - MBProgressHUD
+  - R.swift
   - RxCocoa
   - RxSwift
   - SDWebImage (~> 5.0)
@@ -162,6 +166,8 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - PryntTrimmerView
+    - R.swift
+    - R.swift.Library
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -191,6 +197,8 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
+  R.swift: 5ec056f5ba2744de1c3f6deeb4882ae2630f6e63
+  R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
@@ -199,6 +207,6 @@ SPEC CHECKSUMS:
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   YPImagePicker: 1463a19a36244e209dcb03c30e63559c5afa9602
 
-PODFILE CHECKSUM: 6ff9bb2f4a6f83f00c12e7209e807b2be3491d36
+PODFILE CHECKSUM: 46eaa5665c5f33335b3e37e62cd58c493d2ea749
 
 COCOAPODS: 1.11.2
