@@ -7,17 +7,7 @@
 
 import UIKit
 
-enum ActionButtonConfiguration {
-    case tweet
-    case message
-}
-
 class MainTabBarController: UITabBarController {
-    
-    // MARK: - Properties
-    private var buttonConfig: ActionButtonConfiguration = .tweet
-    
-    let feedsService = FeedsService()
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +33,7 @@ class MainTabBarController: UITabBarController {
 //        let notificationsViewController = NotificationsViewController()
 //        let bookingViewController = BookingViewController(nibName: "BookingViewController", bundle: nil)
 
+        let feedsService = FeedsService()
         let feedsViewModel = FeedsViewModel(feedsService: feedsService)
         let feedsViewController = FeedsViewController.create(with: feedsViewModel)
 
