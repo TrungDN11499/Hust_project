@@ -18,9 +18,6 @@ class MainTabBarController: UITabBarController {
     private var buttonConfig: ActionButtonConfiguration = .tweet
     
     let feedsService = FeedsService()
-    lazy var feedsViewModel = FeedsViewModel(feedsService: feedsService)
-    lazy var feedsViewController = FeedsViewController.create(with: feedsViewModel)
-
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +26,6 @@ class MainTabBarController: UITabBarController {
     }
     
     // MARK: - Helpers
-    private func configureUI() {
-        self.delegate = self
-    }
     
     /// configure.
     private func configureViewController() {
@@ -45,28 +39,41 @@ class MainTabBarController: UITabBarController {
         self.view.backgroundColor = .mainBackgroundColor
         
         let exploreViewController = ExploreViewController()
-//        let notificationsViewController = NotificationsViewController()
         let settingViewController = SettingViewController()
+//        let notificationsViewController = NotificationsViewController()
 //        let bookingViewController = BookingViewController(nibName: "BookingViewController", bundle: nil)
-        
+
+        let feedsViewModel = FeedsViewModel(feedsService: feedsService)
+        let feedsViewController = FeedsViewController.create(with: feedsViewModel)
+
         let tabBarData: [(UIViewController, UIImage)] = [
-            (feedsViewController, UIImage(named: "ic_home_untouch")!),
-            (exploreViewController, UIImage(named: "ic_search_untouch")!),
+            (feedsViewController, R.image.ic_home_untouch()!),
+            (exploreViewController, R.image.ic_search_untouch()!),
 //            (notificationsViewController, UIImage(named: "ic_bell_untouch")!),
 //            (bookingViewController, UIImage(named: "ic_booking_untouch")!),
-            (settingViewController, UIImage(named: "ic_control_untouch")!)
+            (settingViewController, R.image.ic_control_untouch()!)
         ]
         
         self.viewControllers = tabBarData.map({ (vc, image) -> BaseNavigationController in
             return self.templateNavigationController(image: image, rootViewController: vc)
         })
         
-        self.configureUI()
+        self.delegate = self
     }
     
     /// create navigation bar.
     private func templateNavigationController(image: UIImage, rootViewController: UIViewController) -> BaseNavigationController {
         let nav = BaseNavigationController(rootViewController: rootViewController)
+        if rootViewController is FeedsViewController {
+            nav.setHiddenNavigationBarViewControllers([FeedsViewController.self])
+        }
+        
+        if rootViewController is ExploreViewController {
+        }
+        
+        if rootViewController is SettingViewController {
+        }
+        
         nav.tabBarItem.image = image
         nav.navigationBar.barTintColor = .white
         return nav

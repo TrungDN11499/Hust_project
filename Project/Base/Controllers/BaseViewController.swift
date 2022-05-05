@@ -9,7 +9,6 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
-    // MARK: - Lifecycles
     var haveStatusBar: Bool {
         if UIDevice().userInterfaceIdiom == .phone {
             switch UIScreen.main.nativeBounds.height {
@@ -42,13 +41,22 @@ class BaseViewController: UIViewController {
         return false
     }
     
+    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureView()
         self.bindViewModel()
         self.configureUI()
-        self.configNavigationBar()
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.observeKeyboardEvent()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.removeKeyboardEvent()
     }
     
     func showLoading() {
@@ -59,24 +67,7 @@ class BaseViewController: UIViewController {
         Helper.shared.hideLoading(inView: self.view)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChageFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-    }
+    
     
     // MARK: - Selectors
     @objc private func handleResignFirstResponder() {
@@ -90,33 +81,12 @@ class BaseViewController: UIViewController {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleResignFirstResponder)))
     }
     
-    func configNavigationBar() {
-        if let navigationBar = self.navigationController?.navigationBar {
-            let gradient = CAGradientLayer()
-            var bounds = navigationBar.bounds
-            bounds.size.height += UIApplication.shared.statusBarFrame.size.height
-            gradient.frame = bounds
-            gradient.colors = [UIColor.navigationBarColor.cgColor,UIColor.navigationBarColor.cgColor]
-            gradient.startPoint = CGPoint(x: 0, y: 0)
-            gradient.endPoint = CGPoint(x: 1, y: 0)
-
-            if let image = UIImage.getImageFrom(gradientLayer: gradient) {
-                let app = UINavigationBarAppearance()
-                app.backgroundImage = image
-                self.navigationController?.navigationBar.scrollEdgeAppearance = app
-                self.navigationController?.navigationBar.standardAppearance = app
-            }
-        }
-    }
-    
     /// for programmatically configuring UI
     func configureUI() {
-        
     }
     
     /// for binding view model
     func bindViewModel() {
-        
     }
     
     // go to home viewController
@@ -137,7 +107,36 @@ class BaseViewController: UIViewController {
         let attributedMessage = NSAttributedString(string: message, attributes: attributes)
         return attributedMessage
     }
+    
+    func keyboardWillShow(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
+    }
+    
+    func keyboardDidShow(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
+    }
+    
+    func keyboardWillChageFrame(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
+    }
+    
+    func keyboardHide(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
+    }
+}
 
+// MARK: - Keyboard handler
+extension BaseViewController {
+    private func observeKeyboardEvent() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChageFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    private func removeKeyboardEvent() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
     @objc fileprivate func keyboardWillAppear(_ notification: Notification) {
         let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         let keyboardRectangle = keyboardFrame?.cgRectValue
@@ -146,7 +145,7 @@ class BaseViewController: UIViewController {
         let duration = durationNumber?.doubleValue
         let keyboardCurveNumber = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
         let keyboardCurve = keyboardCurveNumber?.uintValue
-
+        
         self.keyboardWillShow(keyboardHeight: keyboardHeight, duration: duration, keyboardCurve: keyboardCurve)
     }
     
@@ -158,7 +157,7 @@ class BaseViewController: UIViewController {
         let duration = durationNumber?.doubleValue
         let keyboardCurveNumber = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
         let keyboardCurve = keyboardCurveNumber?.uintValue
-
+        
         self.keyboardDidShow(keyboardHeight: keyboardHeight, duration: duration, keyboardCurve: keyboardCurve)
     }
     
@@ -170,10 +169,10 @@ class BaseViewController: UIViewController {
         let duration = durationNumber?.doubleValue
         let keyboardCurveNumber = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
         let keyboardCurve = keyboardCurveNumber?.uintValue
-
+        
         self.keyboardDidShow(keyboardHeight: keyboardHeight, duration: duration, keyboardCurve: keyboardCurve)
     }
-
+    
     @objc fileprivate func keyboardWillDisappear(_ notification: Notification) {
         let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         let keyboardRectangle = keyboardFrame?.cgRectValue
@@ -182,24 +181,7 @@ class BaseViewController: UIViewController {
         let duration = durationNumber?.doubleValue
         let keyboardCurveNumber = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
         let keyboardCurve = keyboardCurveNumber?.uintValue
-
+        
         self.keyboardHide(keyboardHeight: keyboardHeight, duration: duration, keyboardCurve: keyboardCurve)
     }
-
-    func keyboardWillShow(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
-
-    }
-    
-    func keyboardDidShow(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
-        
-    }
-
-    func keyboardWillChageFrame(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
-        
-    }
-    
-    func keyboardHide(keyboardHeight: CGFloat?, duration: Double?, keyboardCurve: UInt?) {
-
-    }
-    
 }

@@ -106,6 +106,696 @@ struct R: Rswift.Validatable {
   }
   #endif
 
+  /// This `R.color` struct is generated, and contains static references to 36 colors.
+  struct color {
+    /// Color `SpO2Average`.
+    static let spO2Average = Rswift.ColorResource(bundle: R.hostingBundle, name: "SpO2Average")
+    /// Color `SpO2Low`.
+    static let spO2Low = Rswift.ColorResource(bundle: R.hostingBundle, name: "SpO2Low")
+    /// Color `active`.
+    static let active = Rswift.ColorResource(bundle: R.hostingBundle, name: "active")
+    /// Color `background`.
+    static let background = Rswift.ColorResource(bundle: R.hostingBundle, name: "background")
+    /// Color `biolightHigh1`.
+    static let biolightHigh1 = Rswift.ColorResource(bundle: R.hostingBundle, name: "biolightHigh1")
+    /// Color `biolightHigh2`.
+    static let biolightHigh2 = Rswift.ColorResource(bundle: R.hostingBundle, name: "biolightHigh2")
+    /// Color `biolightLow`.
+    static let biolightLow = Rswift.ColorResource(bundle: R.hostingBundle, name: "biolightLow")
+    /// Color `biolightNormal`.
+    static let biolightNormal = Rswift.ColorResource(bundle: R.hostingBundle, name: "biolightNormal")
+    /// Color `biolightPre`.
+    static let biolightPre = Rswift.ColorResource(bundle: R.hostingBundle, name: "biolightPre")
+    /// Color `blue`.
+    static let blue = Rswift.ColorResource(bundle: R.hostingBundle, name: "blue")
+    /// Color `darkText`.
+    static let darkText = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkText")
+    /// Color `disable`.
+    static let disable = Rswift.ColorResource(bundle: R.hostingBundle, name: "disable")
+    /// Color `good`.
+    static let good = Rswift.ColorResource(bundle: R.hostingBundle, name: "good")
+    /// Color `high`.
+    static let high = Rswift.ColorResource(bundle: R.hostingBundle, name: "high")
+    /// Color `idealWeightColor`.
+    static let idealWeightColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "idealWeightColor")
+    /// Color `mainColor`.
+    static let mainColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "mainColor")
+    /// Color `overweight1`.
+    static let overweight1 = Rswift.ColorResource(bundle: R.hostingBundle, name: "overweight1")
+    /// Color `overweight2`.
+    static let overweight2 = Rswift.ColorResource(bundle: R.hostingBundle, name: "overweight2")
+    /// Color `overweight`.
+    static let overweight = Rswift.ColorResource(bundle: R.hostingBundle, name: "overweight")
+    /// Color `ratioOfFatColor`.
+    static let ratioOfFatColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "ratioOfFatColor")
+    /// Color `ratioOfProteinColor`.
+    static let ratioOfProteinColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "ratioOfProteinColor")
+    /// Color `ratioOfSubcutaneousFatColor`.
+    static let ratioOfSubcutaneousFatColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "ratioOfSubcutaneousFatColor")
+    /// Color `ratioOfWaterColor`.
+    static let ratioOfWaterColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "ratioOfWaterColor")
+    /// Color `red`.
+    static let red = Rswift.ColorResource(bundle: R.hostingBundle, name: "red")
+    /// Color `separatorColor`.
+    static let separatorColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "separatorColor")
+    /// Color `shadow`.
+    static let shadow = Rswift.ColorResource(bundle: R.hostingBundle, name: "shadow")
+    /// Color `spO2Good`.
+    static let spO2Good = Rswift.ColorResource(bundle: R.hostingBundle, name: "spO2Good")
+    /// Color `standard`.
+    static let standard = Rswift.ColorResource(bundle: R.hostingBundle, name: "standard")
+    /// Color `subTitle`.
+    static let subTitle = Rswift.ColorResource(bundle: R.hostingBundle, name: "subTitle")
+    /// Color `thin`.
+    static let thin = Rswift.ColorResource(bundle: R.hostingBundle, name: "thin")
+    /// Color `title`.
+    static let title = Rswift.ColorResource(bundle: R.hostingBundle, name: "title")
+    /// Color `weightColor`.
+    static let weightColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "weightColor")
+    /// Color `weightOfBoneColor`.
+    static let weightOfBoneColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "weightOfBoneColor")
+    /// Color `weightOfMuscleColor`.
+    static let weightOfMuscleColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "weightOfMuscleColor")
+    /// Color `white`.
+    static let white = Rswift.ColorResource(bundle: R.hostingBundle, name: "white")
+    /// Color `yellow`.
+    static let yellow = Rswift.ColorResource(bundle: R.hostingBundle, name: "yellow")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "SpO2Average", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func spO2Average(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.spO2Average, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "SpO2Low", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func spO2Low(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.spO2Low, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "active", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func active(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.active, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "background", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func background(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.background, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "biolightHigh1", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func biolightHigh1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.biolightHigh1, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "biolightHigh2", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func biolightHigh2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.biolightHigh2, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "biolightLow", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func biolightLow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.biolightLow, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "biolightNormal", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func biolightNormal(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.biolightNormal, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "biolightPre", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func biolightPre(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.biolightPre, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "blue", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func blue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.blue, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "darkText", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func darkText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.darkText, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "disable", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func disable(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.disable, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "good", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func good(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.good, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "high", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func high(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.high, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "idealWeightColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func idealWeightColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.idealWeightColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "mainColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func mainColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.mainColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "overweight", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func overweight(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.overweight, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "overweight1", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func overweight1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.overweight1, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "overweight2", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func overweight2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.overweight2, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "ratioOfFatColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func ratioOfFatColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.ratioOfFatColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "ratioOfProteinColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func ratioOfProteinColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.ratioOfProteinColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "ratioOfSubcutaneousFatColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func ratioOfSubcutaneousFatColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.ratioOfSubcutaneousFatColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "ratioOfWaterColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func ratioOfWaterColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.ratioOfWaterColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "red", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func red(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.red, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "separatorColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func separatorColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.separatorColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "shadow", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func shadow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.shadow, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "spO2Good", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func spO2Good(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.spO2Good, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "standard", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func standard(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.standard, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "subTitle", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func subTitle(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.subTitle, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "thin", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func thin(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.thin, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "title", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func title(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.title, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "weightColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func weightColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.weightColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "weightOfBoneColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func weightOfBoneColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.weightOfBoneColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "weightOfMuscleColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func weightOfMuscleColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.weightOfMuscleColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "white", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func white(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.white, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "yellow", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func yellow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.yellow, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "SpO2Average", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func spO2Average(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.spO2Average.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "SpO2Low", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func spO2Low(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.spO2Low.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "active", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func active(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.active.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "background", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func background(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.background.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "biolightHigh1", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func biolightHigh1(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.biolightHigh1.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "biolightHigh2", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func biolightHigh2(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.biolightHigh2.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "biolightLow", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func biolightLow(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.biolightLow.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "biolightNormal", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func biolightNormal(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.biolightNormal.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "biolightPre", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func biolightPre(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.biolightPre.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "blue", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func blue(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.blue.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "darkText", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func darkText(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.darkText.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "disable", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func disable(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.disable.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "good", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func good(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.good.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "high", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func high(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.high.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "idealWeightColor", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func idealWeightColor(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.idealWeightColor.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "mainColor", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func mainColor(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.mainColor.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "overweight", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func overweight(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.overweight.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "overweight1", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func overweight1(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.overweight1.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "overweight2", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func overweight2(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.overweight2.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "ratioOfFatColor", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func ratioOfFatColor(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.ratioOfFatColor.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "ratioOfProteinColor", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func ratioOfProteinColor(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.ratioOfProteinColor.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "ratioOfSubcutaneousFatColor", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func ratioOfSubcutaneousFatColor(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.ratioOfSubcutaneousFatColor.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "ratioOfWaterColor", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func ratioOfWaterColor(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.ratioOfWaterColor.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "red", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func red(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.red.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "separatorColor", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func separatorColor(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.separatorColor.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "shadow", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func shadow(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.shadow.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "spO2Good", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func spO2Good(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.spO2Good.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "standard", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func standard(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.standard.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "subTitle", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func subTitle(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.subTitle.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "thin", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func thin(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.thin.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "title", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func title(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.title.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "weightColor", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func weightColor(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.weightColor.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "weightOfBoneColor", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func weightOfBoneColor(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.weightOfBoneColor.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "weightOfMuscleColor", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func weightOfMuscleColor(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.weightOfMuscleColor.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "white", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func white(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.white.name)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "yellow", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func yellow(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.yellow.name)
+    }
+    #endif
+
+    fileprivate init() {}
+  }
+
   /// This `R.file` struct is generated, and contains static references to 5 files.
   struct file {
     /// Resource file `GoogleService-Info.plist`.

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1C87D98FD40E964BE6C360FF /* Pods_Triponus_TriponusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10E226C9FC8EEAB0A642311B /* Pods_Triponus_TriponusUITests.framework */; };
 		24BAF71E28221EEF006A4BE3 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BAF71D28221EEF006A4BE3 /* R.generated.swift */; };
+		24BAF7202822350C006A4BE3 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24BAF71F2822350C006A4BE3 /* Color.xcassets */; };
 		26F122434903DBB4505C46AD /* Pods_TriponusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F671E29E78B6CB6EFD5179 /* Pods_TriponusTests.framework */; };
 		5245B0F826451291006031CB /* NewConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0F726451291006031CB /* NewConversationsController.swift */; };
 		5245B0FA26451674006031CB /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5245B0F926451674006031CB /* ChatLogController.swift */; };
@@ -160,6 +161,7 @@
 		2071E2208C39E05A9E5B6A40 /* Pods-Triponus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus.release.xcconfig"; path = "Target Support Files/Pods-Triponus/Pods-Triponus.release.xcconfig"; sourceTree = "<group>"; };
 		22708268814D7642E590F26D /* Pods-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project.debug.xcconfig"; path = "Target Support Files/Pods-Project/Pods-Project.debug.xcconfig"; sourceTree = "<group>"; };
 		24BAF71D28221EEF006A4BE3 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		24BAF71F2822350C006A4BE3 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		4141F717A3954A181127DF91 /* Pods-TriponusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TriponusTests.debug.xcconfig"; path = "Target Support Files/Pods-TriponusTests/Pods-TriponusTests.debug.xcconfig"; sourceTree = "<group>"; };
 		41AF713B0B2DB31752A47D72 /* Pods_Triponus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Triponus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A665F7EE67AC311EEFFA0AB /* Pods-Project-ProjectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-ProjectUITests.debug.xcconfig"; path = "Target Support Files/Pods-Project-ProjectUITests/Pods-Project-ProjectUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -346,6 +348,8 @@
 		242371D127FE850800E09D97 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				24BAF71F2822350C006A4BE3 /* Color.xcassets */,
+				FAFD58AD25208D9C006E4F94 /* Assets.xcassets */,
 				242371D227FE852F00E09D97 /* Fonts */,
 			);
 			name = Resources;
@@ -355,7 +359,6 @@
 		242371D227FE852F00E09D97 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				FAFD58AD25208D9C006E4F94 /* Assets.xcassets */,
 				242371D327FE853600E09D97 /* Roboto */,
 			);
 			path = Fonts;
@@ -1264,6 +1267,7 @@
 				FAFD58AE25208D9C006E4F94 /* Assets.xcassets in Resources */,
 				840421A8265E9BEE002E8ECE /* BookingViewController.xib in Resources */,
 				84405EF72663E0D500A68928 /* EditProfileViewController.xib in Resources */,
+				24BAF7202822350C006A4BE3 /* Color.xcassets in Resources */,
 				845F6CAA26516FEF0015BD58 /* NotificationTBVCell.xib in Resources */,
 				FA66C6072523AE2100C31151 /* GoogleService-Info.plist in Resources */,
 				83346DC726639D120067C041 /* CommentTableViewCell.xib in Resources */,

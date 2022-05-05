@@ -29,5 +29,27 @@ extension UINavigationBar {
         mask.path = path.cgPath
         layer.mask = mask
     }
+    
+    func update(backroundColor: UIColor? = nil, titleColor: UIColor? = nil) {
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithTransparentBackground()
+
+            if let backroundColor = backroundColor {
+              appearance.backgroundColor = backroundColor
+            }
+
+            // Set empty backgroundImage and shadowImage
+            appearance.backgroundImage = UIImage()
+            appearance.shadowImage = UIImage()
+            
+            if let titleColor = titleColor {
+              appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: titleColor]
+            }
+
+            self.standardAppearance = appearance
+            self.scrollEdgeAppearance = appearance
+        }
+    }
 }
 

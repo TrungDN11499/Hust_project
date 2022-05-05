@@ -53,8 +53,6 @@ class FeedsViewController: BaseViewController, ControllerType {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isHidden = true
-        self.navigationController?.navigationBar.barStyle = .default
         fetchUser()
     }
 

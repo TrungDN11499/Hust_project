@@ -330,26 +330,3 @@ extension UploadTweetViewController: UINavigationControllerDelegate {
         }
     }
 }
-
-extension UINavigationBar {
-    func update(backroundColor: UIColor? = nil, titleColor: UIColor? = nil) {
-        if #available(iOS 15, *) {
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithTransparentBackground()
-
-            if let backroundColor = backroundColor {
-              appearance.backgroundColor = backroundColor
-            }
-
-            appearance.backgroundImage = UIImage()
-            appearance.shadowImage = UIImage()
-            if let titleColor = titleColor {
-              appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: titleColor]
-            }
-
-            self.standardAppearance = appearance
-            self.scrollEdgeAppearance = appearance
-        } else {
-        }
-    }
-}
