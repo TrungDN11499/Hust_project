@@ -16,6 +16,25 @@ class MainTabBarController: UITabBarController {
     }
     
     // MARK: - Helpers
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        let navigation = self.selectedViewController as? BaseNavigationController
+        return navigation?.supportedInterfaceOrientations ?? .portrait
+    }
+
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    
+    private func setShadowTabBar() {
+        self.tabBar.layer.shadowColor = UIColor.lightGray.cgColor
+        self.tabBar.layer.shadowOpacity = 0.5
+        self.tabBar.layer.shadowOffset = CGSize.zero
+        self.tabBar.layer.shadowRadius = 5
+        self.tabBar.layer.borderColor = UIColor.clear.cgColor
+        self.tabBar.layer.borderWidth = 0
+        self.tabBar.clipsToBounds = false
+        self.tabBar.backgroundColor = UIColor.white
+    }
     
     /// configure.
     private func configureViewController() {
