@@ -30,6 +30,7 @@ class FeedsViewModel: ViewModelProtocol {
         // fetch tweets
         self.input.fetchTweets.bind { observer, value in
             var values = [FeedViewModel]()
+            
             feedsService.fetchTweet { [unowned self] tweets in
                 self.sort(tweets: tweets).forEach { tweet in
                     let tweet = FeedViewModel(tweet)

@@ -13,7 +13,6 @@ class BookingViewController: UIViewController {
     let bookings = Booking()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
 
     override func viewDidLoad() {
@@ -32,25 +31,6 @@ class BookingViewController: UIViewController {
 
     private func configureViewController() {
         self.navigationItem.title = "Booking Agency"
-        view.backgroundColor = .white
-
-        if let navigationBar = self.navigationController?.navigationBar {
-            let gradient = CAGradientLayer()
-            var bounds = navigationBar.bounds
-            bounds.size.height += UIApplication.shared.statusBarFrame.size.height
-            gradient.frame = bounds
-            gradient.colors = [UIColor.navigationBarColor.cgColor,UIColor.navigationBarColor.cgColor]
-            gradient.startPoint = CGPoint(x: 0, y: 0)
-            gradient.endPoint = CGPoint(x: 1, y: 0)
-
-            if let image = UIImage.getImageFrom(gradientLayer: gradient) {
-                let app = UINavigationBarAppearance()
-                app.backgroundImage = image
-                self.navigationController?.navigationBar.scrollEdgeAppearance = app
-                self.navigationController?.navigationBar.standardAppearance = app
-
-            }
-        }
     }
 }
 

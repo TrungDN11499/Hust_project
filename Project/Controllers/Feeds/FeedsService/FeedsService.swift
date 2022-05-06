@@ -9,45 +9,89 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import RxSwift
 
 protocol FeedsServiceProtocol {
     
     /// fetch all tweets of current user and following user tweets
     /// - Parameters:
     ///   - completion: @escaping ([Tweet]) -> ()
-    /// - Returns: Void
     func fetchTweet(completion: @escaping ([Tweet]) -> ())
     
     /// fetch all tweets for user
     /// - Parameters:
     ///   - user: input user
     ///   - completion: @escaping ([Tweet]) -> ()
-    /// - Returns: Void
     func fetchTweets(forUser user: User, completion: @escaping ([Tweet]) -> ())
     
     /// fetch  tweet for id
     /// - Parameters:
     ///   - tweetId: input id
     ///   - completion: @escaping (Tweet) -> ()
-    /// - Returns: Void
     func fetchTweet(withTweetId tweetId: String, completion: @escaping (Tweet) -> ())
+    
+    /// fetch all tweets for user
+    /// - Returns: `Observable<([Tweet], Error?)>`
+    func fetchTweets() -> Observable<([Tweet], Error?)>
     
     /// like or unlike a tweet
     /// - Parameters:
-    ///   - tweet: Tweet
-    ///   - completion: @escaping ((Error? , Int, DatabaseReference) -> Void)
-    /// - Returns: Void
+    ///   - tweet: `Tweet`
+    ///   - completion: `@escaping ((Error? , Int, DatabaseReference) -> Void)`
     func likeTweet(tweet: Tweet, completion: @escaping ((Error?, Int, DatabaseReference) -> Void))
     
     /// delete tweet
     /// - Parameters:
-    ///   - tweet: Tweet
-    ///   - completion: @escaping ((Error? ,DatabaseReference) -> Void)
-    /// - Returns: Void
+    ///   - tweet: `Tweet`
+    ///   - completion: `@escaping ((Error? ,DatabaseReference) -> Void)`
     func deleteTweet(tweet: Tweet, completion: @escaping ((Error? ,DatabaseReference) -> Void))
 }
 
 class FeedsService: FeedsServiceProtocol {
+    func fetchTweets() -> Observable<([Tweet], Error?)> {
+        var tweets = [Tweet]()
+        
+        let MAX_API_COUNTER = 2
+        var finalStatus = true
+        
+        return Observable<([Tweet], Error?)>.create { observer  in
+            var numberFinished = 0 {
+                didSet {
+                    if numberFinished == MAX_API_COUNTER {
+                        if finalStatus {
+                            observer.onNext((tweets, nil))
+                        }
+                    }
+                }
+            }
+
+            // get following user tweets.
+            self.fetchFollowingUserTweets { (success, followingUserTweets) in
+                if success {
+                    if let followingUserTweets = followingUserTweets {
+                        tweets.append(contentsOf: followingUserTweets)
+                    }
+                    numberFinished += 1
+                } else {
+                    finalStatus = success
+                }
+            }
+            
+            // get current user tweets.
+            self.fetchUserTweets { (success, currentUserTweets) in
+                if success {
+                    if let currentUserTweets =  currentUserTweets {
+                        tweets.append(contentsOf: currentUserTweets)
+                    }
+                    numberFinished += 1
+                } else {
+                    finalStatus = success
+                }
+            }
+            
+            return Disposables.create()
+        }
+    }
     
     func fetchTweet(completion: @escaping ([Tweet]) -> ()) {
         
@@ -102,7 +146,6 @@ class FeedsService: FeedsServiceProtocol {
     /// fetch current user tweets.
     /// - Parameters:
     ///   - completion: @escaping (Bool, [Tweet]?) -> ()
-    /// - Returns: Void
     private func fetchUserTweets(completion: @escaping (Bool, [Tweet]?) -> ()) {
         guard let currentUid = Auth.auth().currentUser?.uid else { return }
         REF_USER_TWEETS.child(currentUid).observe(.value) { snapshot in
@@ -134,8 +177,7 @@ class FeedsService: FeedsServiceProtocol {
     
     /// fetch following user tweets.
     /// - Parameters:
-    ///   - completion: @escaping (Bool, [Tweet]?) -> ()
-    /// - Returns: Void
+    ///   - completion: `@escaping (Bool, [Tweet]?) -> ()`
     private func fetchFollowingUserTweets(completion: @escaping (Bool, [Tweet]?) -> ()) {
         var followingCount = 0
         var tweets = [Tweet]()

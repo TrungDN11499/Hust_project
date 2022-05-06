@@ -10,34 +10,34 @@ import Foundation
 /// - Tag: AsyncFetcher
 class AsyncFetcher {
     // MARK: Types
-
+    
     /// A serial `OperationQueue` to lock access to the `fetchQueue` and `completionHandlers` properties.
     private let serialAccessQueue = OperationQueue()
-
+    
     /// An `OperationQueue` that contains `AsyncFetcherOperation`s for requested data.
     private let fetchQueue = OperationQueue()
-
+    
     /// A dictionary of arrays of closures to call when an object has been fetched for an id.
     private var completionHandlers = [UUID: [(FeedViewModel?) -> Void]]()
-
+    
     /// An `NSCache` used to store fetched objects.
     private var cache = NSCache<NSUUID, FeedViewModel>()
-
+    
     // MARK: Initialization
-
+    
     init() {
         serialAccessQueue.maxConcurrentOperationCount = 1
     }
-
+    
     // MARK: Object fetching
-
+    
     /**
      Asynchronously fetches data for a specified `UUID`.
      
      - Parameters:
-         - identifier: The `UUID` to fetch data for.
-         - completion: An optional called when the data has been fetched.
-    */
+     - identifier: The `UUID` to fetch data for.
+     - completion: An optional called when the data has been fetched.
+     */
     func fetchAsync(_ identifier: UUID, fetchData: FeedViewModel, completion: ((FeedViewModel?) -> Void)? = nil) {
         // Use the serial queue while we access the fetch queue and completion handlers.
         serialAccessQueue.addOperation {
@@ -50,7 +50,7 @@ class AsyncFetcher {
             self.fetchData(for: identifier, fetchData: fetchData)
         }
     }
-
+    
     /**
      Returns the previously fetched data for a specified `UUID`.
      
@@ -60,7 +60,7 @@ class AsyncFetcher {
     func fetchedData(for identifier: UUID) -> FeedViewModel? {
         return cache.object(forKey: identifier as NSUUID)
     }
-
+    
     /**
      Cancels any enqueued asychronous fetches for a specified `UUID`. Completion
      handlers are not called if a fetch is canceled.
@@ -73,12 +73,12 @@ class AsyncFetcher {
             defer {
                 self.fetchQueue.isSuspended = false
             }
-
+            
             self.operation(for: identifier)?.cancel()
             self.completionHandlers[identifier] = nil
         }
     }
-
+    
     // MARK: Convenience
     
     /**
@@ -111,7 +111,7 @@ class AsyncFetcher {
             fetchQueue.addOperation(operation)
         }
     }
-
+    
     /**
      Returns any enqueued `ObjectFetcherOperation` for a specified `UUID`.
      
@@ -120,13 +120,13 @@ class AsyncFetcher {
      */
     private func operation(for identifier: UUID) -> AsyncFetcherOperation? {
         for case let fetchOperation as AsyncFetcherOperation in fetchQueue.operations
-            where !fetchOperation.isCancelled && fetchOperation.identifier == identifier {
+        where !fetchOperation.isCancelled && fetchOperation.identifier == identifier {
             return fetchOperation
         }
         
         return nil
     }
-
+    
     /**
      Invokes any completion handlers for a specified `UUID`. Once called,
      the stored array of completion handlers for the `UUID` is cleared.
@@ -138,7 +138,7 @@ class AsyncFetcher {
     private func invokeCompletionHandlers(for identifier: UUID, with fetchedData: FeedViewModel) {
         let completionHandlers = self.completionHandlers[identifier, default: []]
         self.completionHandlers[identifier] = nil
-
+        
         for completionHandler in completionHandlers {
             completionHandler(fetchedData)
         }

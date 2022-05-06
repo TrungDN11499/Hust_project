@@ -49,8 +49,6 @@ class MainTabBarController: UITabBarController {
         
         let exploreViewController = ExploreViewController()
         let settingViewController = SettingViewController()
-//        let notificationsViewController = NotificationsViewController()
-//        let bookingViewController = BookingViewController(nibName: "BookingViewController", bundle: nil)
 
         let feedsService = FeedsService()
         let feedsViewModel = FeedsViewModel(feedsService: feedsService)
@@ -59,8 +57,6 @@ class MainTabBarController: UITabBarController {
         let tabBarData: [(UIViewController, UIImage)] = [
             (feedsViewController, R.image.ic_home_untouch()!),
             (exploreViewController, R.image.ic_search_untouch()!),
-//            (notificationsViewController, UIImage(named: "ic_bell_untouch")!),
-//            (bookingViewController, UIImage(named: "ic_booking_untouch")!),
             (settingViewController, R.image.ic_control_untouch()!)
         ]
         

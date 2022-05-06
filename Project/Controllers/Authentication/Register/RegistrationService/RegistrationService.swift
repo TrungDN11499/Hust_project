@@ -24,9 +24,9 @@ class RegistrationService: RegistrationServiceProtocol {
         }
         let fileName = NSUUID().uuidString
         let storagre = STORAGE_PROFILE_IMAGES.child(fileName)
-
+        
         return Observable<(DatabaseReference?, Error?)>.create { observer in
-
+            
             // check email empty
             if String.isNilOrEmpty(model.email) {
                 let error = TriponusAuthencationError.emptyEmail
@@ -40,14 +40,14 @@ class RegistrationService: RegistrationServiceProtocol {
                 observer.onNext((nil, error))
                 return Disposables.create()
             }
-        
+            
             // check password match
             if model.password != model.confirmPassword {
                 let error = TriponusAuthencationError.passwordNotMatch
                 observer.onNext((nil, error))
                 return Disposables.create()
             }
-
+            
             let upload = storagre.putData(imageData)
             // catch upload progress block.
             upload.observe(.progress) { snapshot in
@@ -55,7 +55,7 @@ class RegistrationService: RegistrationServiceProtocol {
                 // upload progress
                 uploadProgress(percentComplete)
             }
-
+            
             // upload success
             upload.observe(.success) { _ in
                 storagre.downloadURL { (url, error) in
@@ -84,7 +84,7 @@ class RegistrationService: RegistrationServiceProtocol {
                     }
                 }
             }
-
+            
             return Disposables.create()
         }
     }

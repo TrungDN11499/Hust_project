@@ -1037,7 +1037,6 @@
 		FAFD58D825208EC7006E4F94 /* Api */ = {
 			isa = PBXGroup;
 			children = (
-				FAC53E9A26103A1A00E32E21 /* FeedsService */,
 				FA0DC9F6252658C400377539 /* UserService.swift */,
 				FA9B7CFE25361604006DFFA2 /* TweetService1.swift */,
 				FA576D3D253F3E0E0069BA96 /* NotificationService.swift */,
@@ -1078,6 +1077,7 @@
 		FAFD591125209480006E4F94 /* Feeds */ = {
 			isa = PBXGroup;
 			children = (
+				FAC53E9A26103A1A00E32E21 /* FeedsService */,
 				FA2C0DA2274BFDD900A8690F /* CustomDataSource */,
 				FAE1B49527368E30009A0BE8 /* AsyncDataFetcher */,
 				838438EA266E68D600695ADE /* ViewModel */,
