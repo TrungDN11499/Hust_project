@@ -93,6 +93,7 @@ class RegisterViewController: BaseViewController {
         self.contentScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
 }
+
 // MARK: ControllerType
 extension RegisterViewController: ControllerType {
     typealias ViewModelType = RegisterViewModel

@@ -9,6 +9,12 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+    var isInteractivePopGestureEnable = true {
+        didSet {
+            self.updateInteractivePopGesture()
+        }
+    }
+    
     var haveStatusBar: Bool {
         if UIDevice().userInterfaceIdiom == .phone {
             switch UIScreen.main.nativeBounds.height {
@@ -52,6 +58,7 @@ class BaseViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.observeKeyboardEvent()
+        self.updateInteractivePopGesture()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -67,11 +74,14 @@ class BaseViewController: UIViewController {
         Helper.shared.hideLoading(inView: self.view)
     }
     
-    
-    
     // MARK: - Selectors
     @objc private func handleResignFirstResponder() {
         self.view.endEditing(true)
+    }
+    
+    private func updateInteractivePopGesture() {
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = self.isInteractivePopGestureEnable
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     // MARK: - Helpers
@@ -98,7 +108,7 @@ class BaseViewController: UIViewController {
                                         duration: 0.2)
     }
     
-    func getMessageNoData(message : String) -> NSAttributedString {
+    func getMessageNoData(message: String) -> NSAttributedString {
         let font = UIFont.robotoMedium(point: 16)
         let attributes: [NSAttributedString.Key: Any] = [
             .font: font,
@@ -183,5 +193,14 @@ extension BaseViewController {
         let keyboardCurve = keyboardCurveNumber?.uintValue
         
         self.keyboardHide(keyboardHeight: keyboardHeight, duration: duration, keyboardCurve: keyboardCurve)
+    }
+}
+
+extension BaseViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard gestureRecognizer == self.navigationController?.interactivePopGestureRecognizer else {
+            return true
+        }
+        return navigationController?.viewControllers.count ?? 0 > 1
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class LoginViewController: BaseViewController, ControllerType {
+class LoginViewController: BaseViewController {
     
     private var viewModel: ViewModelType!
     @IBOutlet weak var contentScrollView: UIScrollView!
@@ -96,13 +96,14 @@ class LoginViewController: BaseViewController, ControllerType {
 }
 
 // MARK: - ControllerType
-extension LoginViewController {
+extension LoginViewController: ControllerType {
     typealias ViewModelType = LoginViewModel
     
     static func create(with viewModel: ViewModelType) -> UIViewController {
         let vc = LoginViewController()
         vc.viewModel = viewModel
         let nav = BaseNavigationController(rootViewController: vc)
+        nav.setHiddenNavigationBarViewControllers([LoginViewController.self, RegisterViewController.self])
         return nav
     }
     
