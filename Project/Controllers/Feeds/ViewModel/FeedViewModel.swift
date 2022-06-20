@@ -6,18 +6,21 @@
 //
 
 import UIKit
+import RxSwift
 
 class FeedViewModel: ViewModelProtocol {
     
     // MARK: - ViewModelProtocol
     struct Input {
-        fileprivate var tweet: Observable1<Tweet> = Observable1()
+        let tweet: AnyObserver<Tweet>
         var likeTweet: Observable1<LikeTweetParam> = Observable1()
     }
 
     struct Output {
 
     }
+    
+    private let tweetSubject = PublishSubject<Tweet>()
 
     var image: UIImage?
     let input: Input
@@ -26,42 +29,46 @@ class FeedViewModel: ViewModelProtocol {
     
     // MARK: - Initializers
     init(_ tweet: Tweet, feedsService: FeedsService? = nil) {
-        self.input = Input()
+        self.input = Input(tweet: tweetSubject.asObserver())
         self.output = Output()
+        self.tweetSubject.onNext(tweet)
         
         // like tweet
-        if let feedsService = feedsService {
-            self.input.likeTweet.bind { observer, value  in
-                feedsService.likeTweet(tweet: value.feedViewModel.tweet) { [unowned self] error, numberOfLikes, reference in
-
-                    self.tweet.likes.value = numberOfLikes
-                    self.tweet.didLike.value = !(value.feedViewModel.tweet.didLike.value ?? false)
-
-                    // only upload notification when user like
-                    guard let didLike = value.feedViewModel.tweet.didLike.value, didLike else { return }
-                    NotificationService.shared.uploadNotification(.like, tweet: value.feedViewModel.tweet)
-                }
-            }
-        }
-        self.input.tweet.value = tweet
+//        if let feedsService = feedsService {
+//            self.input.likeTweet.bind { observer, value  in
+//                feedsService.likeTweet(tweet: value.feedViewModel.tweet) { [unowned self] error, numberOfLikes, reference in
+//
+//                    self.tweet.likes.value = numberOfLikes
+//                    self.tweet.didLike.value = !(value.feedViewModel.tweet.didLike.value ?? false)
+//
+//                    // only upload notification when user like
+//                    guard let didLike = value.feedViewModel.tweet.didLike.value, didLike else { return }
+//                    NotificationService.shared.uploadNotification(.like, tweet: value.feedViewModel.tweet)
+//                }
+//            }
+//        }
+//        self.input.tweet.value = tweet
     }
     
     // MARK: - Properties
     private var user: User {
-        guard let tweet = self.input.tweet.value else {
-            return User(uid: "", dictionary: ["": ""])
-        }
-        return tweet.user
+//        guard let tweet = self.input.tweet.value else {
+//            return User(uid: "", dictionary: ["": ""])
+//        }
+//        return tweet.user
+        return User(uid: "", dictionary: [:])
     }
     
     var tweet: Tweet {
         get {
-            guard let tweet = self.input.tweet.value else {
-                return Tweet(user: self.user, tweetId: "", dictionary: ["": ""])
-            }
-            return tweet
+//            guard let tweet = self.input.tweet.value else {
+//                return Tweet(user: self.user, tweetId: "", dictionary: ["": ""])
+//            }
+//            return tweet
+            return Tweet()
         } set {
-            self.input.tweet.value = newValue
+//            self.input.tweet.value = newValue
+            print("")
         }
     }
         

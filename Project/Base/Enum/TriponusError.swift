@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - TriponusAuthencationError
 /// Triponus error type
 public enum TriponusAuthencationError: Error {
 
@@ -60,6 +61,42 @@ extension TriponusAuthencationError: LocalizedError {
             return NSLocalizedString("Re-enter email", comment: "")
         case .passwordEmpty:
             return NSLocalizedString("Re-enter password", comment: "")
+        }
+    }
+}
+
+// MARK: - TriponusTweetsError
+/// Triponus error type
+public enum TriponusTweetsError: Error {
+    case fetchFollowingUserTweetsError
+    case fetchUserTweetsError
+}
+
+extension TriponusTweetsError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .fetchFollowingUserTweetsError:
+            return NSLocalizedString("Fetch Following User Tweets Error.", comment: "Fetch Following User Tweets Error.")
+        case .fetchUserTweetsError:
+            return NSLocalizedString("Fetch User Tweets Error", comment: "Fetch User Tweets Error")
+        }
+    }
+
+    public var failureReason: String? {
+        switch self {
+        case .fetchFollowingUserTweetsError:
+            return NSLocalizedString("Fetch Following User Tweets Error.", comment: "")
+        case .fetchUserTweetsError:
+            return NSLocalizedString("Fetch User Tweets Error", comment: "")
+        }
+    }
+
+    public var recoverySuggestion: String? {
+        switch self {
+        case .fetchFollowingUserTweetsError:
+            return NSLocalizedString("", comment: "")
+        case .fetchUserTweetsError:
+            return NSLocalizedString("", comment: "")
         }
     }
 }

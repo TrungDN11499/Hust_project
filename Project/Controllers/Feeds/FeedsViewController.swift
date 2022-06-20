@@ -8,12 +8,14 @@
 import UIKit
 import SDWebImage
 import DZNEmptyDataSet
+import RxCocoa
+import RxSwift
 
 class FeedsViewController: BaseViewController, ControllerType {
 
     // MARK: - Properties
     private var viewModel: ViewModelType!
-    private lazy var dataSource = CustomDataSource(viewController: self)
+    private let disposeBag = DisposeBag()
 
     private lazy var feedCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -28,7 +30,6 @@ class FeedsViewController: BaseViewController, ControllerType {
 
     var user: User? {
         didSet {
-            self.dataSource.user = user
             self.feedCollectionView.reloadData()
         }
     }
@@ -36,8 +37,6 @@ class FeedsViewController: BaseViewController, ControllerType {
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.showLoading()
-        self.viewModel.input.fetchTweets.excecute()
         self.configureViewController()
     }
 
@@ -67,7 +66,7 @@ class FeedsViewController: BaseViewController, ControllerType {
 
     // MARK: - Selectors
     @objc private func hanldeRefresh(_ sender: UIRefreshControl) {
-        self.viewModel.input.fetchTweets.excecute()
+//        self.viewModel.input.fetchTweets.excecute()
     }
 
     @objc private func handleGoToProfile(_ sender: UIImageView) {
@@ -86,15 +85,10 @@ class FeedsViewController: BaseViewController, ControllerType {
     // MARK: - Helpers
     private func configureViewController() {
         self.view.backgroundColor = .navigationBarColor
-        TweetCollectionViewCell.registerCellByNib(self.feedCollectionView)
+        self.feedCollectionView.registerNib(ofType: TweetCollectionViewCell.self)
+        
         self.feedCollectionView.register(UINib(nibName: "FeedsHeaderCollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
         
-        // Set the collection view's data source.
-        self.feedCollectionView.dataSource = dataSource
-      
-        // Set the collection view's prefetching data source.
-        self.feedCollectionView.prefetchDataSource = dataSource
-      
     }
 
     private func addUIConstraints() {
@@ -115,19 +109,40 @@ extension FeedsViewController {
     }
 
     func configure(with viewModel: ViewModelType) {
-        viewModel.output.fetchTweetsResult.bind { [unowned self] observable, values in
-            DispatchQueue.main.async {
-                self.feedCollectionView.refreshControl?.endRefreshing()
-                if self.feedCollectionView.refreshControl == nil {
-                    let refreshControl = UIRefreshControl()
-                    refreshControl.addTarget(self, action: #selector(hanldeRefresh(_:)), for: .valueChanged)
-                    self.feedCollectionView.refreshControl = refreshControl
-                }
+        
+        viewModel.output.fetchTweetResultObservable.bind(to: self.feedCollectionView.rx.items(cellIdentifier: String(describing: TweetCollectionViewCell.self), cellType: TweetCollectionViewCell.self)) { indexPath, title, cell in
+            
+        }.disposed(by: self.disposeBag)
+        
+        viewModel.output.fetchTweetResultObservable.subscribe(onNext: { [weak self] tweets in
+            guard let `self` = self else { return }
+            print(tweets)
+        }).disposed(by: self.disposeBag)
+
+        viewModel.isLoading.asObservable().subscribe(onNext: { [weak self] value in
+            guard let `self` = self else { return }
+            if value {
+                self.showLoading()
+            } else {
                 self.hideLoading()
-                self.dataSource.feedViewModel = values
-                self.feedCollectionView.reloadData()
             }
-        }
+        }).disposed(by: self.disposeBag)
+        
+        viewModel.input.fetchTweets.onNext(())
+        
+//        viewModel.output.fetchTweetsResult.bind { [unowned self] observable, values in
+//            DispatchQueue.main.async {
+//                self.feedCollectionView.refreshControl?.endRefreshing()
+//                if self.feedCollectionView.refreshControl == nil {
+//                    let refreshControl = UIRefreshControl()
+//                    refreshControl.addTarget(self, action: #selector(hanldeRefresh(_:)), for: .valueChanged)
+//                    self.feedCollectionView.refreshControl = refreshControl
+//                }
+//                self.hideLoading()
+//                self.dataSource.feedViewModel = values
+//                self.feedCollectionView.reloadData()
+//            }
+//        }
     }
     
 }
@@ -209,7 +224,7 @@ extension FeedsViewController: TweetCollectionViewCellDelegate {
     
     func handleLikeTweet(_ cell: TweetCollectionViewCell) {
         guard let index = self.feedCollectionView.indexPath(for: cell), let feedViewModel = cell.feedViewModel else { return }
-        self.viewModel.input.likeTweet.value = LikeTweetParam(feedViewModel: feedViewModel, indexPath: index)
+//        self.viewModel.input.likeTweet.value = LikeTweetParam(feedViewModel: feedViewModel, indexPath: index)
     }
     
     func handleProfileImageTapped(_ cell: TweetCollectionViewCell) {
@@ -221,7 +236,7 @@ extension FeedsViewController: TweetCollectionViewCellDelegate {
     func handleDeletePost(_ cell: TweetCollectionViewCell) {
         self.presentMessage("Do you want to delete this post?") { action in
             guard let tweet = cell.feedViewModel?.tweet, let index = self.feedCollectionView.indexPath(for: cell) else { return }
-            self.viewModel.input.deleteTweet.value = DeleteParam(tweet: tweet, at: index)
+//            self.viewModel.input.deleteTweet.value = DeleteParam(tweet: tweet, at: index)
         }
     }
     
@@ -243,14 +258,14 @@ extension FeedsViewController: TweetViewControllerDelegate {
     }
     
     func handleDelete(tweet: Tweet, at index: IndexPath) {
-        self.viewModel.input.deleteTweet.value = DeleteParam(tweet: tweet, at: index)
+//        self.viewModel.input.deleteTweet.value = DeleteParam(tweet: tweet, at: index)
     }
 }
 
 // MARK: - UploadTweetViewControllerDelegate
 extension FeedsViewController: UploadTweetViewControllerDelegate {
     func handleUpdateNumberOfComment(for index: Int, numberOfComment: Int) {
-        self.viewModel.output.fetchTweetsResult.value?[index].tweet.comments.value = numberOfComment
+//        self.viewModel.output.fetchTweetsResult.value?[index].tweet.comments.value = numberOfComment
         DispatchQueue.main.async {
             self.feedCollectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
         }
@@ -258,7 +273,7 @@ extension FeedsViewController: UploadTweetViewControllerDelegate {
     
     func handleUpdateTweet(tweet: Tweet) {
         let feedViewModel = FeedViewModel(tweet)
-        self.viewModel.output.fetchTweetsResult.value?.insert(feedViewModel, at: 0)
+//        self.viewModel.output.fetchTweetsResult.value?.insert(feedViewModel, at: 0)
     }
 }
 

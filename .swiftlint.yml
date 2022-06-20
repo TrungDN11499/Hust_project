@@ -6,6 +6,7 @@ disabled_rules:
 - empty_count
 - type_name
 - type_body_length
+- no_space_in_method_call
 
 opt_in_rules:
 - empty_count

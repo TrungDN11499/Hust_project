@@ -70,11 +70,12 @@
 		FA0DC9FC25265FED00377539 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC9FB25265FED00377539 /* User.swift */; };
 		FA1108D92538C0AA00443971 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1108D82538C0AA00443971 /* ProfileController.swift */; };
 		FA1108E12538C57B00443971 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1108E02538C57B00443971 /* ProfileHeaderView.swift */; };
-		FA22E89127270D96003E114A /* TriponusAuthencationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA22E89027270D96003E114A /* TriponusAuthencationError.swift */; };
+		FA22E89127270D96003E114A /* TriponusError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA22E89027270D96003E114A /* TriponusError.swift */; };
 		FA2495C02523218C0060BECD /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2495BF2523218C0060BECD /* UIViewExtension.swift */; };
 		FA26202D25374A3B000E1755 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA26202C25374A3B000E1755 /* Tweet.swift */; };
+		FA28E28E285A2B5A00EAAA04 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28E28D285A2B5A00EAAA04 /* UITableViewExtension.swift */; };
+		FA28E290285A2BA000EAAA04 /* UICollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28E28F285A2BA000EAAA04 /* UICollectionViewExtension.swift */; };
 		FA2A051C26A5CFCA00DD4C13 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2A051B26A5CFCA00DD4C13 /* LoginViewModel.swift */; };
-		FA2C0DA4274BFDFF00A8690F /* CustomDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C0DA3274BFDFF00A8690F /* CustomDataSource.swift */; };
 		FA2C25A92532C7400042EC43 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C25A82532C7400042EC43 /* ViewModelProtocol.swift */; };
 		FA2C25B12532C76A0042EC43 /* ControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C25B02532C76A0042EC43 /* ControllerProtocol.swift */; };
 		FA2C25C22532CA6A0042EC43 /* BindingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2C25C12532CA6A0042EC43 /* BindingTextField.swift */; };
@@ -116,8 +117,6 @@
 		FABAA7AB281080B000A1771B /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABAA7AA281080B000A1771B /* Toast.swift */; };
 		FAC53E9F26103A7500E32E21 /* FeedsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC53E9E26103A7500E32E21 /* FeedsService.swift */; };
 		FAC53EA42610417400E32E21 /* FeedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC53EA32610417400E32E21 /* FeedsViewModel.swift */; };
-		FAE1B49927368E44009A0BE8 /* AsyncFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1B49627368E43009A0BE8 /* AsyncFetcher.swift */; };
-		FAE1B49A27368E44009A0BE8 /* AsyncFetcherOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1B49727368E44009A0BE8 /* AsyncFetcherOperation.swift */; };
 		FAE337E32613730F00BCA038 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE337E22613730F00BCA038 /* FeedViewModel.swift */; };
 		FAF38668253B61BB00E76AF1 /* UploadTweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF38667253B61BB00E76AF1 /* UploadTweetViewModel.swift */; };
 		FAF417F92528C96E00FDDC97 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF417F82528C96E00FDDC97 /* BaseViewController.swift */; };
@@ -231,11 +230,12 @@
 		FA0DC9FB25265FED00377539 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA1108D82538C0AA00443971 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		FA1108E02538C57B00443971 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
-		FA22E89027270D96003E114A /* TriponusAuthencationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriponusAuthencationError.swift; sourceTree = "<group>"; };
+		FA22E89027270D96003E114A /* TriponusError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriponusError.swift; sourceTree = "<group>"; };
 		FA2495BF2523218C0060BECD /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		FA26202C25374A3B000E1755 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		FA28E28D285A2B5A00EAAA04 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
+		FA28E28F285A2BA000EAAA04 /* UICollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtension.swift; sourceTree = "<group>"; };
 		FA2A051B26A5CFCA00DD4C13 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		FA2C0DA3274BFDFF00A8690F /* CustomDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDataSource.swift; sourceTree = "<group>"; };
 		FA2C25A82532C7400042EC43 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		FA2C25B02532C76A0042EC43 /* ControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerProtocol.swift; sourceTree = "<group>"; };
 		FA2C25C12532CA6A0042EC43 /* BindingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingTextField.swift; sourceTree = "<group>"; };
@@ -278,8 +278,6 @@
 		FABAA7AA281080B000A1771B /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		FAC53E9E26103A7500E32E21 /* FeedsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsService.swift; sourceTree = "<group>"; };
 		FAC53EA32610417400E32E21 /* FeedsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsViewModel.swift; sourceTree = "<group>"; };
-		FAE1B49627368E43009A0BE8 /* AsyncFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncFetcher.swift; sourceTree = "<group>"; };
-		FAE1B49727368E44009A0BE8 /* AsyncFetcherOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncFetcherOperation.swift; sourceTree = "<group>"; };
 		FAE337E22613730F00BCA038 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		FAF38667253B61BB00E76AF1 /* UploadTweetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetViewModel.swift; sourceTree = "<group>"; };
 		FAF417F82528C96E00FDDC97 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -765,17 +763,9 @@
 		FA22E88F27270D73003E114A /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				FA22E89027270D96003E114A /* TriponusAuthencationError.swift */,
+				FA22E89027270D96003E114A /* TriponusError.swift */,
 			);
 			path = Enum;
-			sourceTree = "<group>";
-		};
-		FA2C0DA2274BFDD900A8690F /* CustomDataSource */ = {
-			isa = PBXGroup;
-			children = (
-				FA2C0DA3274BFDFF00A8690F /* CustomDataSource.swift */,
-			);
-			path = CustomDataSource;
 			sourceTree = "<group>";
 		};
 		FA2C25A62532C71A0042EC43 /* Controllers */ = {
@@ -905,15 +895,6 @@
 			path = FeedsService;
 			sourceTree = "<group>";
 		};
-		FAE1B49527368E30009A0BE8 /* AsyncDataFetcher */ = {
-			isa = PBXGroup;
-			children = (
-				FAE1B49627368E43009A0BE8 /* AsyncFetcher.swift */,
-				FAE1B49727368E44009A0BE8 /* AsyncFetcherOperation.swift */,
-			);
-			path = AsyncDataFetcher;
-			sourceTree = "<group>";
-		};
 		FAF38659253B32EC00E76AF1 /* Tweet */ = {
 			isa = PBXGroup;
 			children = (
@@ -958,6 +939,8 @@
 				FABAA7A728107AF100A1771B /* UINavigationController+Extension.swift */,
 				832D1C2F265FFA2D004FD551 /* UITextFieldExtension.swift */,
 				5245B101264519A1006031CB /* UIImageViewExtension.swift */,
+				FA28E28D285A2B5A00EAAA04 /* UITableViewExtension.swift */,
+				FA28E28F285A2BA000EAAA04 /* UICollectionViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1078,8 +1061,6 @@
 			isa = PBXGroup;
 			children = (
 				FAC53E9A26103A1A00E32E21 /* FeedsService */,
-				FA2C0DA2274BFDD900A8690F /* CustomDataSource */,
-				FAE1B49527368E30009A0BE8 /* AsyncDataFetcher */,
 				838438EA266E68D600695ADE /* ViewModel */,
 				8301731B265C0A490048136A /* FeedsHeaderView */,
 				838438E6266E65F300695ADE /* TweetCell */,
@@ -1453,7 +1434,6 @@
 				FAFDD71D254E4E5C000C39FF /* BaseCollectionViewCell.swift in Sources */,
 				83EEB9F1264E8D400010A17C /* BaseNavigationController.swift in Sources */,
 				845620DB265FF634004E3583 /* SettingViewController.swift in Sources */,
-				FA2C0DA4274BFDFF00A8690F /* CustomDataSource.swift in Sources */,
 				84E1F1A326641E5100FF1A7A /* BookingCLVCell.swift in Sources */,
 				8301731E265C0AB20048136A /* FeedsHeaderCollectionReusableView.swift in Sources */,
 				FAFD58A725208D9C006E4F94 /* SceneDelegate.swift in Sources */,
@@ -1487,7 +1467,6 @@
 				840421A7265E9BEE002E8ECE /* BookingViewController.swift in Sources */,
 				83AF06E726457DF000A16E8B /* UploadFeedParam.swift in Sources */,
 				FAC53E9F26103A7500E32E21 /* FeedsService.swift in Sources */,
-				FAE1B49927368E44009A0BE8 /* AsyncFetcher.swift in Sources */,
 				FA2C25CF2532DEC30042EC43 /* Observers.swift in Sources */,
 				832D1C36266005DF004FD551 /* CreateGroupParams.swift in Sources */,
 				FAB9759E2602F87C006A66BB /* SplashViewController.swift in Sources */,
@@ -1501,6 +1480,7 @@
 				5245B102264519A1006031CB /* UIImageViewExtension.swift in Sources */,
 				FA875FAB260B8122006DCBA9 /* BindingView.swift in Sources */,
 				FAA5DD662631FCAB00C919A0 /* DeleteParam.swift in Sources */,
+				FA28E290285A2BA000EAAA04 /* UICollectionViewExtension.swift in Sources */,
 				83EEB9EE264E8CBE0010A17C /* UINavigationBarExtension.swift in Sources */,
 				526F37E52645204E00F7CCD1 /* UserMessageCell.swift in Sources */,
 				FA2C25DC2532F6900042EC43 /* BindingButton.swift in Sources */,
@@ -1525,13 +1505,13 @@
 				83EEB9EC264E8CA20010A17C /* UIBezierPathExtension.swift in Sources */,
 				FA88D41E261B860300A2FD6F /* AttributedString.swift in Sources */,
 				83EEB9E8264E601D0010A17C /* UIImageExtension.swift in Sources */,
-				FAE1B49A27368E44009A0BE8 /* AsyncFetcherOperation.swift in Sources */,
 				FA2C25C82532CC1A0042EC43 /* LoginService.swift in Sources */,
 				845620DE265FF97D004E3583 /* SettingTVC.swift in Sources */,
 				FAF417FF2528CA0600FDDC97 /* ViewControllerExtension.swift in Sources */,
 				FA89486B253ACBA10071A5DB /* UserCell.swift in Sources */,
+				FA28E28E285A2B5A00EAAA04 /* UITableViewExtension.swift in Sources */,
 				FA2495C02523218C0060BECD /* UIViewExtension.swift in Sources */,
-				FA22E89127270D96003E114A /* TriponusAuthencationError.swift in Sources */,
+				FA22E89127270D96003E114A /* TriponusError.swift in Sources */,
 				83346DC126637AE60067C041 /* TweetViewController.swift in Sources */,
 				FA2C25C22532CA6A0042EC43 /* BindingTextField.swift in Sources */,
 				FAA362672524D84A00580FE2 /* Constants.swift in Sources */,

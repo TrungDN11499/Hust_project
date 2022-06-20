@@ -25,6 +25,8 @@ target 'Triponus' do
   # RxSwift
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'RxDataSources'
+  pod 'RxFlow'
   
   # Swiftlint
   pod 'SwiftLint'

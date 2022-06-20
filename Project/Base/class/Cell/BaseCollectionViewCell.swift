@@ -54,4 +54,3 @@ class BaseCollectionViewCell: UICollectionViewCell {
     }
     
 }
-
