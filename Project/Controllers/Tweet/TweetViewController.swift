@@ -63,7 +63,7 @@ class TweetViewController: BaseViewController {
     }
     
     @IBAction func handleLikeTweet(_ sender: UIButton) {
-        self.viewModel.input.likeTweet.value = LikeTweetParam(feedViewModel: self.viewModel, indexPath: self.tweetIndex)
+//        self.viewModel.input.likeTweet.value = LikeTweetParam(feedViewModel: self.viewModel, indexPath: self.tweetIndex)
     }
     
     @IBAction func handleComment(_ sender: Any) {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1C87D98FD40E964BE6C360FF /* Pods_Triponus_TriponusUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10E226C9FC8EEAB0A642311B /* Pods_Triponus_TriponusUITests.framework */; };
+		241C1461286174EF008C2409 /* FeedsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C1460286174EF008C2409 /* FeedsDatasource.swift */; };
 		24BAF71E28221EEF006A4BE3 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BAF71D28221EEF006A4BE3 /* R.generated.swift */; };
 		24BAF7202822350C006A4BE3 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24BAF71F2822350C006A4BE3 /* Color.xcassets */; };
 		26F122434903DBB4505C46AD /* Pods_TriponusTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F671E29E78B6CB6EFD5179 /* Pods_TriponusTests.framework */; };
@@ -159,6 +160,7 @@
 		10E226C9FC8EEAB0A642311B /* Pods_Triponus_TriponusUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Triponus_TriponusUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2071E2208C39E05A9E5B6A40 /* Pods-Triponus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Triponus.release.xcconfig"; path = "Target Support Files/Pods-Triponus/Pods-Triponus.release.xcconfig"; sourceTree = "<group>"; };
 		22708268814D7642E590F26D /* Pods-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project.debug.xcconfig"; path = "Target Support Files/Pods-Project/Pods-Project.debug.xcconfig"; sourceTree = "<group>"; };
+		241C1460286174EF008C2409 /* FeedsDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsDatasource.swift; sourceTree = "<group>"; };
 		24BAF71D28221EEF006A4BE3 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		24BAF71F2822350C006A4BE3 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		4141F717A3954A181127DF91 /* Pods-TriponusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TriponusTests.debug.xcconfig"; path = "Target Support Files/Pods-TriponusTests/Pods-TriponusTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -333,6 +335,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		241C145F286174C7008C2409 /* FeedsDatasource */ = {
+			isa = PBXGroup;
+			children = (
+				241C1460286174EF008C2409 /* FeedsDatasource.swift */,
+			);
+			path = FeedsDatasource;
+			sourceTree = "<group>";
+		};
 		242371D027FE84C900E09D97 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1062,6 +1072,7 @@
 			children = (
 				FAC53E9A26103A1A00E32E21 /* FeedsService */,
 				838438EA266E68D600695ADE /* ViewModel */,
+				241C145F286174C7008C2409 /* FeedsDatasource */,
 				8301731B265C0A490048136A /* FeedsHeaderView */,
 				838438E6266E65F300695ADE /* TweetCell */,
 				FAFD58E725209321006E4F94 /* FeedsViewController.swift */,
@@ -1450,6 +1461,7 @@
 				84E1F1A026641D0300FF1A7A /* BookingModel.swift in Sources */,
 				FA26202D25374A3B000E1755 /* Tweet.swift in Sources */,
 				FA576D3E253F3E0E0069BA96 /* NotificationService.swift in Sources */,
+				241C1461286174EF008C2409 /* FeedsDatasource.swift in Sources */,
 				FA9B7CFF25361604006DFFA2 /* TweetService1.swift in Sources */,
 				845620E1265FFC4E004E3583 /* SettingModel.swift in Sources */,
 				52A60AD82652AFD400219C3D /* NotificationModel.swift in Sources */,

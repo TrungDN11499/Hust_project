@@ -88,6 +88,12 @@ extension TweetCollectionViewCell {
     private func configureData() {
         guard let feedViewModel = self.feedViewModel else { return }
         
+        feedViewModel.output.tweetObservable.subscribe(onNext: { [weak self] tweet in
+            guard let `self` = self else { return }
+            
+            
+        })
+        
         if self.needDelete && (feedViewModel.tweet.user.uid == Auth.auth().currentUser?.uid) {
             self.optionsImageView.isHidden = false
         } else {
@@ -129,7 +135,7 @@ extension TweetCollectionViewCell {
         } else {
             self.contentImageView.isHidden = false
             DispatchQueue.main.async {
-                self.tweetImageView.image = feedViewModel.image
+//                self.tweetImageView.image = feedViewModel.image
             }
             
             let imageRatio = feedViewModel.tweet.images[0].width / feedViewModel.tweet.images[0].height

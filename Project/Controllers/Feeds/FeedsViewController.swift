@@ -87,6 +87,8 @@ class FeedsViewController: BaseViewController, ControllerType {
         self.view.backgroundColor = .navigationBarColor
         self.feedCollectionView.registerNib(ofType: TweetCollectionViewCell.self)
         
+        self.feedCollectionView.registerHeaderNib(ofType: FeedsHeaderCollectionReusableView.self, kind: UICollectionView.elementKindSectionHeader)
+        
         self.feedCollectionView.register(UINib(nibName: "FeedsHeaderCollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
         
     }
@@ -110,15 +112,13 @@ extension FeedsViewController {
 
     func configure(with viewModel: ViewModelType) {
         
-        viewModel.output.fetchTweetResultObservable.bind(to: self.feedCollectionView.rx.items(cellIdentifier: String(describing: TweetCollectionViewCell.self), cellType: TweetCollectionViewCell.self)) { indexPath, title, cell in
-            
+        viewModel.output.fetchTweetResultObservable.bind(to: self.feedCollectionView.rx.items(cellIdentifier: String(describing: TweetCollectionViewCell.self), cellType: TweetCollectionViewCell.self)) { indexPath, tweets, cell in
+            print(tweets)
         }.disposed(by: self.disposeBag)
         
-        viewModel.output.fetchTweetResultObservable.subscribe(onNext: { [weak self] tweets in
-            guard let `self` = self else { return }
-            print(tweets)
-        }).disposed(by: self.disposeBag)
-
+        self.feedCollectionView.rx.setDelegate(self)
+            .disposed(by: self.disposeBag)
+        
         viewModel.isLoading.asObservable().subscribe(onNext: { [weak self] value in
             guard let `self` = self else { return }
             if value {
@@ -242,8 +242,8 @@ extension FeedsViewController: TweetCollectionViewCellDelegate {
     
     func handleShowContent(_ cell: TweetCollectionViewCell) {
         guard let tweet = cell.feedViewModel?.tweet, let index = self.feedCollectionView.indexPath(for: cell) else { return }
-        let feedsService = FeedsService()
-        let feedViewModel = FeedViewModel(tweet, feedsService: feedsService)
+//        let feedsService = FeedsService()
+        let feedViewModel = FeedViewModel(tweet)
         let controller = TweetViewController.create(with: feedViewModel) as! TweetViewController
         controller.delegate = self
         controller.tweetIndex = index

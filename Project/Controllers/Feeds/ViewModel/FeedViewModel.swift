@@ -13,41 +13,28 @@ class FeedViewModel: ViewModelProtocol {
     // MARK: - ViewModelProtocol
     struct Input {
         let tweet: AnyObserver<Tweet>
-        var likeTweet: Observable1<LikeTweetParam> = Observable1()
     }
 
     struct Output {
-
+        let tweetObservable: Observable<Tweet>
     }
     
     private let tweetSubject = PublishSubject<Tweet>()
+    private let tweetResultSubject = PublishSubject<Tweet>()
+    private let disposeBag = DisposeBag()
 
-    var image: UIImage?
     let input: Input
     let output: Output
-    var identifier = UUID()
-    
+
     // MARK: - Initializers
-    init(_ tweet: Tweet, feedsService: FeedsService? = nil) {
-        self.input = Input(tweet: tweetSubject.asObserver())
-        self.output = Output()
-        self.tweetSubject.onNext(tweet)
+    init(_ tweet: Tweet) {
+        self.input = Input(tweet: self.tweetSubject.asObserver())
+        self.output = Output(tweetObservable: self.tweetResultSubject)
         
-        // like tweet
-//        if let feedsService = feedsService {
-//            self.input.likeTweet.bind { observer, value  in
-//                feedsService.likeTweet(tweet: value.feedViewModel.tweet) { [unowned self] error, numberOfLikes, reference in
-//
-//                    self.tweet.likes.value = numberOfLikes
-//                    self.tweet.didLike.value = !(value.feedViewModel.tweet.didLike.value ?? false)
-//
-//                    // only upload notification when user like
-//                    guard let didLike = value.feedViewModel.tweet.didLike.value, didLike else { return }
-//                    NotificationService.shared.uploadNotification(.like, tweet: value.feedViewModel.tweet)
-//                }
-//            }
-//        }
-//        self.input.tweet.value = tweet
+        self.tweetSubject.subscribe(onNext: { [weak self] tweet in
+            guard let `self` = self else { return }
+            self.tweetResultSubject.onNext(tweet)
+        }).disposed(by: self.disposeBag)
     }
     
     // MARK: - Properties

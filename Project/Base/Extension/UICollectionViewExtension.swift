@@ -35,9 +35,12 @@ extension UICollectionView {
         return cell
     }
 
-    func dequeueHeader<T: UIView>(ofType _ : T.Type, for indexPath: IndexPath) -> UICollectionReusableView {
-        return dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
-                                                withReuseIdentifier: String(describing: T.self),
-                                                for: indexPath)
+    func dequeueHeader<T: UICollectionReusableView>(ofType _ : T.Type, for indexPath: IndexPath) -> T {
+        guard let header = dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
+                                                            withReuseIdentifier: String(describing: T.self),
+                                                            for: indexPath) as? T else {
+            fatalError("Could not deque header with identifier: \(String(describing: T.self))")
+        }
+        return header
     }
 }
