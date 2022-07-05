@@ -9,25 +9,22 @@ import UIKit
 
 // MARK: - Properties
 class SplashViewController: BaseViewController {
+    let logoImageViewSize: CGFloat = 120
     
-    let catImageViewSize: CGFloat = 120
-    
-    let catImageView = UIImageView(image: UIImage(named: "ic_sun"))
+    let logoImageView = UIImageView(image: UIImage(named: "ic_sun"))
 
     let splashView = UIView()
-    
 }
 
 // MARK: - View lifecycles
 extension SplashViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.catImageView.contentMode = .scaleAspectFit
-        self.catImageView.clipsToBounds = true
+        self.logoImageView.contentMode = .scaleAspectFit
+        self.logoImageView.clipsToBounds = true
         
         self.view.addSubview(self.splashView)
-        self.splashView.addSubview(self.catImageView)
+        self.splashView.addSubview(self.logoImageView)
         
     }
     
@@ -35,36 +32,40 @@ extension SplashViewController {
         super.viewDidLayoutSubviews()
         
         self.splashView.frame = self.view.bounds
-        self.catImageView.frame = CGRect(x: self.splashView.frame.midX - catImageViewSize / 2, y: self.splashView.frame.midY - self.catImageViewSize / 2, width: self.catImageViewSize, height: self.catImageViewSize)
-        self.catImageView.layer.cornerRadius = self.catImageView.frame.height / 2
+        self.logoImageView.frame = CGRect(x: self.splashView.frame.midX - logoImageViewSize / 2, y: self.splashView.frame.midY - self.logoImageViewSize / 2, width: self.logoImageViewSize, height: self.logoImageViewSize)
+        self.logoImageView.layer.cornerRadius = self.logoImageView.frame.height / 2
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.scaleDownAnimation()
+        UserService.shared.fetchUser(userId: nil) { user in
+            gUser = user
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+                guard let `self` = self else { return }
+                self.scaleDownAnimation()
+            }
         }
+       
     }
 }
 
 // MARK: - Helpers
 
 extension SplashViewController {
-    
     private func scaleDownAnimation() {
         UIView.animate(withDuration: 0.5) {
-            self.catImageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            self.logoImageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         } completion: { (success) in
             self.scaleUpAnimation()
         }
     }
     
     private func scaleUpAnimation() {
-        let scaleFactor = self.view.frame.width > self.view.frame.height ? self.view.frame.width / self.catImageViewSize : self.view.frame.height / self.catImageViewSize
+        let scaleFactor = self.view.frame.width > self.view.frame.height ? self.view.frame.width / self.logoImageViewSize : self.view.frame.height / self.logoImageViewSize
         UIView.animate(withDuration: 0.35, delay: 0.1, options: .curveEaseIn) {
-            self.catImageView.transform = CGAffineTransform(scaleX: scaleFactor * 1.5, y: scaleFactor * 1.5)
-            self.catImageView.alpha = 0
+            self.logoImageView.transform = CGAffineTransform(scaleX: scaleFactor * 1.5, y: scaleFactor * 1.5)
+            self.logoImageView.alpha = 0
         } completion: { (success) in
             self.removeSplashView()
         }
