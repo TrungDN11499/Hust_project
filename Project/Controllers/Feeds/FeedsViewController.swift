@@ -116,6 +116,8 @@ extension FeedsViewController {
             }
         }).disposed(by: self.disposeBag)
         
+        self.feedCollectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
+        
         viewModel.input.fetchTweets.onNext(())
         
 //        viewModel.output.fetchTweetsResult.bind { [unowned self] observable, values in
@@ -143,48 +145,50 @@ extension FeedsViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        // cell constants
-        let cellPadding: CGFloat = 12
-        let actionButtonSize: CGFloat = 25
-        let optionButtonSize: CGFloat = 20
-        let profileImageSize: CGFloat = 40
-        let maxTextHeight: CGFloat = 200
-        let seperatorHeight: CGFloat = 0.5
-        let seeMoreButtonHeight: CGFloat = 17
-        let contentTextPadding: CGFloat = 5
-        let contentImagePadding: CGFloat = 8
-        
-        // calculate caption text width
-        let textWidth = self.view.frame.width - (optionButtonSize + cellPadding * 2 + contentTextPadding)
-        
-        // calculate caption text height
-        let textHeight = self.viewModel.viewModel(at: indexPath)?.caption.height(withConstrainedWidth: textWidth, font: UIFont.robotoRegular(point: 14)) ?? 0 > maxTextHeight ? maxTextHeight : self.viewModel.viewModel(at: indexPath)?.caption.height(withConstrainedWidth: textWidth, font: UIFont.robotoRegular(point: 14)) ?? 0
-             
-        // calculate content text height
-        var contentHeight: CGFloat = 0
-        if textHeight != maxTextHeight {
-            contentHeight = profileImageSize + contentTextPadding + textHeight
-        } else {
-            contentHeight = profileImageSize + contentTextPadding * 2 + textHeight + seeMoreButtonHeight
-        }
+        switch self.viewModel.dataSource[indexPath.section] {
+        case .feedSection(header: _, items: let items):
+            switch items[indexPath.item] {
+            case .feedCollectionViewwItem(tweets: let tweets):
+                // cell constants
+                let cellPadding: CGFloat = 12
+                let actionButtonSize: CGFloat = 25
+                let optionButtonSize: CGFloat = 20
+                let profileImageSize: CGFloat = 40
+                let maxTextHeight: CGFloat = 200
+                let seperatorHeight: CGFloat = 0.5
+                let seeMoreButtonHeight: CGFloat = 17
+                let contentTextPadding: CGFloat = 5
+                let contentImagePadding: CGFloat = 8
+                
+                // calculate caption text width
+                let textWidth = self.view.frame.width - (optionButtonSize + cellPadding * 2 + contentTextPadding)
+                
+                // calculate caption text height
+                let textHeight = tweets.caption.height(withConstrainedWidth: textWidth, font: UIFont.robotoRegular(point: 14)) > maxTextHeight ? maxTextHeight : tweets.caption.height(withConstrainedWidth: textWidth, font: UIFont.robotoRegular(point: 14))
+                     
+                // calculate content text height
+                var contentHeight: CGFloat = 0
+                if textHeight != maxTextHeight {
+                    contentHeight = profileImageSize + contentTextPadding + textHeight
+                } else {
+                    contentHeight = profileImageSize + contentTextPadding * 2 + textHeight + seeMoreButtonHeight
+                }
 
-        // calculate image content height
-        var imageHeight: CGFloat = 0
-        if let images = self.viewModel.viewModel(at: indexPath)?.tweet.images {
-            if !images.isEmpty {
-                let ratio = images[0].width / images[0].height
-                imageHeight = (self.view.frame.width / ratio) + contentImagePadding
-            } else {
-                imageHeight = 0
+                // calculate image content height
+                var imageHeight: CGFloat = 0
+                if !tweets.images.isEmpty {
+                    let ratio = tweets.images[0].width / tweets.images[0].height
+                    imageHeight = (self.view.frame.width / ratio) + contentImagePadding
+                } else {
+                    imageHeight = 0
+                }
+                
+                // calculate cell height
+                let cellHeight: CGFloat =  cellPadding * 3 + actionButtonSize + contentHeight + imageHeight + seperatorHeight
+                
+                return CGSize(width: self.view.frame.width, height: cellHeight)
             }
-        } else {
-            imageHeight = 0
         }
-        
-        // calculate cell height
-        let cellHeight: CGFloat =  cellPadding * 3 + actionButtonSize + contentHeight + imageHeight + seperatorHeight
-        
-        return CGSize(width: self.view.frame.width, height: cellHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

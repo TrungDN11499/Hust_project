@@ -39,11 +39,8 @@ class FeedViewModel: ViewModelProtocol {
     
     // MARK: - Properties
     private var user: User {
-//        guard let tweet = self.input.tweet.value else {
-//            return User(uid: "", dictionary: ["": ""])
-//        }
-//        return tweet.user
-        return User(uid: "", dictionary: [:])
+        guard let user = gUser else { return User(uid: "", dictionary: [:]) }
+        return user
     }
     
     var tweet: Tweet {

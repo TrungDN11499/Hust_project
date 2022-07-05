@@ -511,8 +511,8 @@
 		838438E6266E65F300695ADE /* TweetCell */ = {
 			isa = PBXGroup;
 			children = (
-				FA39B509261E0B94006B9698 /* TweetCollectionViewCell.xib */,
 				FA39B508261E0B94006B9698 /* TweetCollectionViewCell.swift */,
+				FA39B509261E0B94006B9698 /* TweetCollectionViewCell.xib */,
 			);
 			path = TweetCell;
 			sourceTree = "<group>";

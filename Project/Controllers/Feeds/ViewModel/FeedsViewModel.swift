@@ -56,7 +56,8 @@ class FeedsViewModel: ViewModelProtocol {
                 self.errorsSubject.onNext(error)
             } else {
                 var items: [FeedsCollecionViewItem] = []
-                for tweet in result.0 {
+                let sortedTweets = self.sort(tweets: result.0)
+                for tweet in sortedTweets {
                     items.append(.feedCollectionViewwItem(tweets: tweet))
                 }
                 self.fetchTweetResultSubject.onNext([.feedSection(header: gUser!, items: items)])
@@ -120,7 +121,6 @@ extension FeedsViewModel {
             
             return lhsLikes + lhsComments > rhsLikes + rhsComments
         }
-//        $0.likes.value ?? 0 + $0.comments.value >  $1.likes.value ?? 0 + $1.comments
         
         return newTweets + highInteractionTweets
     }
