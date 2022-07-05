@@ -19,9 +19,9 @@ class FeedsViewController: BaseViewController, ControllerType {
 
     private lazy var feedCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.headerReferenceSize = CGSize(width: 100, height: 100) 
         let collecionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collecionView.backgroundColor = .mainBackgroundColor
-        collecionView.delegate = self
         collecionView.emptyDataSetSource = self
         collecionView.emptyDataSetDelegate = self
         collecionView.showsVerticalScrollIndicator = false
@@ -77,20 +77,13 @@ class FeedsViewController: BaseViewController, ControllerType {
 
     // MARK: - Api
     private func fetchUser() {
-        UserService.shared.fetchUser { user in
-            self.user = user
-        }
     }
 
     // MARK: - Helpers
     private func configureViewController() {
         self.view.backgroundColor = .navigationBarColor
         self.feedCollectionView.registerNib(ofType: TweetCollectionViewCell.self)
-        
         self.feedCollectionView.registerHeaderNib(ofType: FeedsHeaderCollectionReusableView.self, kind: UICollectionView.elementKindSectionHeader)
-        
-        self.feedCollectionView.register(UINib(nibName: "FeedsHeaderCollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
-        
     }
 
     private func addUIConstraints() {
@@ -112,13 +105,8 @@ extension FeedsViewController {
 
     func configure(with viewModel: ViewModelType) {
         
-        viewModel.output.fetchTweetResultObservable.bind(to: self.feedCollectionView.rx.items(cellIdentifier: String(describing: TweetCollectionViewCell.self), cellType: TweetCollectionViewCell.self)) { indexPath, tweets, cell in
-            print(tweets)
-        }.disposed(by: self.disposeBag)
-        
-        self.feedCollectionView.rx.setDelegate(self)
-            .disposed(by: self.disposeBag)
-        
+        viewModel.output.fetchTweetResultObservable.bind(to: self.feedCollectionView.rx.items(dataSource: viewModel.dataSource)).disposed(by: self.disposeBag)
+    
         viewModel.isLoading.asObservable().subscribe(onNext: { [weak self] value in
             guard let `self` = self else { return }
             if value {

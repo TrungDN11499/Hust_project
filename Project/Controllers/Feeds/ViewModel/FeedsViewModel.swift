@@ -18,7 +18,7 @@ class FeedsViewModel: ViewModelProtocol {
     }
     
     struct Output {
-        let fetchTweetResultObservable: Observable<[Tweet]>
+        let fetchTweetResultObservable: Observable<[FeedsCollecionViewSection]>
         let errorsObservable: Observable<Error>
     }
     
@@ -26,12 +26,13 @@ class FeedsViewModel: ViewModelProtocol {
     let input: Input
     let output: Output
     let isLoading = BehaviorRelay(value: false)
+    let dataSource = FeedsCollecionViewSource.dataSource()
     
     // MARK: - Private properties
     private let fetchTweetsSubject = PublishSubject<Void>()
     private let likeTweetSubject = PublishSubject<Void>()
     private let deleteTweetSubject = PublishSubject<Void>()
-    private let fetchTweetResultSubject = PublishSubject<[Tweet]>()
+    private let fetchTweetResultSubject = PublishSubject<[FeedsCollecionViewSection]>()
     private let errorsSubject = PublishSubject<Error>()
     private let disposeBag = DisposeBag()
     
@@ -41,10 +42,11 @@ class FeedsViewModel: ViewModelProtocol {
                            deleteTweet: deleteTweetSubject.asObserver())
         self.output = Output(fetchTweetResultObservable: fetchTweetResultSubject.asObserver(),
                              errorsObservable: errorsSubject.asObserver())
-        
+
         // fetch tweets
         self.fetchTweetsSubject.do(onNext: { [weak self] _ in
             guard let `self` = self else { return }
+            self.fetchTweetResultSubject.onNext([.feedSection(header: gUser!, items: [])])
             self.isLoading.accept(true)
         }).flatMapLatest { _ in
             return feedsService.fetchTweets()
@@ -53,7 +55,11 @@ class FeedsViewModel: ViewModelProtocol {
             if let error = result.1 {
                 self.errorsSubject.onNext(error)
             } else {
-                self.fetchTweetResultSubject.onNext(result.0)
+                var items: [FeedsCollecionViewItem] = []
+                for tweet in result.0 {
+                    items.append(.feedCollectionViewwItem(tweets: tweet))
+                }
+                self.fetchTweetResultSubject.onNext([.feedSection(header: gUser!, items: items)])
             }
             self.isLoading.accept(false)
         }).disposed(by: self.disposeBag)

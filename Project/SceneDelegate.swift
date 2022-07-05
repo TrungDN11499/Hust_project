@@ -22,7 +22,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if Auth.auth().currentUser == nil {
             self.toLogin()
         } else {
-            self.window?.rootViewController = SplashViewController()
+            UserService.shared.fetchUser(userId: nil) { [weak self] user in
+                guard let `self` = self else { return }
+                gUser = user
+                self.window?.rootViewController = SplashViewController()
+            }
         }
         self.window?.makeKeyAndVisible()
     }

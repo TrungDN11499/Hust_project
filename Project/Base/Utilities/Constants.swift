@@ -40,3 +40,5 @@ let REF_NOTIFICATION = DB_REF.child("notifications")
 let REF_USER_REPLIES = DB_REF.child("user-replies")
 
 let EXECUTE_SIGNAL = "execute" 
+
+var gUser: User?

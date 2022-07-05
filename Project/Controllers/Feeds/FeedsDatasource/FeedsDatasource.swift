@@ -10,7 +10,7 @@ import Foundation
 
 enum FeedsCollecionViewItem {
     /// Represents a cell with a collection view inside
-    case feedCollectionViewwItem(tweets: [Tweet])
+    case feedCollectionViewwItem(tweets: Tweet)
 }
 
 enum FeedsCollecionViewSection {
@@ -43,21 +43,21 @@ struct FeedsCollecionViewSource {
     typealias DataSource = RxCollectionViewSectionedReloadDataSource
     
     static func dataSource() -> DataSource<FeedsCollecionViewSection> {
-        return .init { dataSource, collectionView, indexPath, item in
+        let dataSource = DataSource<FeedsCollecionViewSection>.init { dataSource, collectionView, indexPath, item in
             switch dataSource[indexPath] {
-            case let .feedCollectionViewwItem(tweets):
+            case let .feedCollectionViewwItem(tweet):
                 let cell = collectionView.dequeuCell(ofType: TweetCollectionViewCell.self, for: indexPath)
-                cell.feedViewModel = FeedViewModel(tweets[indexPath.item])
+                cell.feedViewModel = FeedViewModel(tweet)
                 return cell
             }
-        } configureSupplementaryView: { dataSource, collectionView, string, indexPath in
+        } configureSupplementaryView: { dataSource, collectionView, _, indexPath in
             let header = collectionView.dequeueHeader(ofType: FeedsHeaderCollectionReusableView.self, for: indexPath)
             header.user = dataSource.sectionModels[indexPath.section].header
             return header
-        } moveItem: { dataSource, sourceIndexPath, destinationIndexPath in
+        } moveItem: { _, _, _ in
         } canMoveItemAtIndexPath: { _, _ in
             return false
-        }
-
+        }        
+        return dataSource
     }
 }
