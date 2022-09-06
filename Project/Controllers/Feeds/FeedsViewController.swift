@@ -100,7 +100,6 @@ extension FeedsViewController {
     }
 
     func configure(with viewModel: ViewModelType) {
-        
         let refreshControl = UIRefreshControl()
         refreshControl.rx.controlEvent(.valueChanged)
                .bind(to: viewModel.input.fetchTweets)
@@ -108,7 +107,6 @@ extension FeedsViewController {
         self.feedCollectionView.refreshControl = refreshControl
 
         viewModel.output.fetchTweetResultObservable.bind(to: self.feedCollectionView.rx.items(dataSource: viewModel.dataSource)).disposed(by: self.disposeBag)
-    
         viewModel.isLoading.asObservable().subscribe(onNext: { [weak self] value in
             guard let `self` = self else { return }
             if value {
@@ -118,24 +116,9 @@ extension FeedsViewController {
                 self.hideLoading()
             }
         }).disposed(by: self.disposeBag)
-        
         self.feedCollectionView.rx.setDelegate(self).disposed(by: self.disposeBag)
-        
+
         viewModel.input.fetchTweets.onNext(())
-        
-//        viewModel.output.fetchTweetsResult.bind { [unowned self] observable, values in
-//            DispatchQueue.main.async {
-//                self.feedCollectionView.refreshControl?.endRefreshing()
-//                if self.feedCollectionView.refreshControl == nil {
-//                    let refreshControl = UIRefreshControl()
-//                    refreshControl.addTarget(self, action: #selector(hanldeRefresh(_:)), for: .valueChanged)
-//                    self.feedCollectionView.refreshControl = refreshControl
-//                }
-//                self.hideLoading()
-//                self.dataSource.feedViewModel = values
-//                self.feedCollectionView.reloadData()
-//            }
-//        }
     }
     
 }

@@ -87,60 +87,51 @@ class TweetCollectionViewCell: BaseCollectionViewCell {
 extension TweetCollectionViewCell {
     private func configureData() {
         guard let feedViewModel = self.feedViewModel else { return }
-        
-        feedViewModel.output.tweetObservable.subscribe(onNext: { [weak self] tweet in
-            guard let `self` = self else { return }
-            
-            
-        })
-        
-//        if self.needDelete && (feedViewModel.tweet.user.uid == Auth.auth().currentUser?.uid) {
-//            self.optionsImageView.isHidden = false
-//        } else {
-//            self.optionsImageView.isHidden = true
-//        }
-//
-//        self.seeMoreButton.isHidden = feedViewModel.hideSeeMore
-//
-//        self.captionLabel.text = feedViewModel.caption
-//
-//        self.profileImageView.sd_setImage(with: feedViewModel.profileImageUrl, completed: nil)
-//        infoLabel.attributedText = feedViewModel.userInfoText
-//
-//        self.likeButton.tintColor = feedViewModel.likeButtonTintColor
-//        self.likeButton.setImage(feedViewModel.likeButtonImage, for: .normal)
-//        feedViewModel.tweet.didLike.bind { (observer, value) in
-//            dLogDebug(value)
-//            self.likeButton.setImage(feedViewModel.likeButtonImage(value), for: .normal)
-//            self.likeButton.tintColor = feedViewModel.likeButtonTintColor(value)
-//        }
-//
-//        self.likesLabel.text = feedViewModel.likes
-//        feedViewModel.tweet.likes.bind {  observer, value in
-//            self.likesLabel.text = feedViewModel.likes
-//        }
-//
-//        self.commentLabel.text = feedViewModel.comments
-//        feedViewModel.tweet.comments.bind { observer, value in
-//            self.commentLabel.text = feedViewModel.comments
-//        }
-//
-//        self.replyLabel.text = feedViewModel.replyText
-//
-//        self.replyLabel.isHidden = feedViewModel.shouldHideReplyLabel
-//
-//        if feedViewModel.tweet.images.isEmpty {
-//            self.imageContentViewHeightConstraint.constant = 0
-//            self.contentImageView.isHidden = true
-//        } else {
-//            self.contentImageView.isHidden = false
-//            DispatchQueue.main.async {
-////                self.tweetImageView.image = feedViewModel.image
-//            }
-//
-//            let imageRatio = feedViewModel.tweet.images[0].width / feedViewModel.tweet.images[0].height
-//            self.imageContentViewHeightConstraint.constant = UIScreen.main.bounds.width / imageRatio
-//        }
-//
+
+        if self.needDelete && (feedViewModel.tweet.user.uid == Auth.auth().currentUser?.uid) {
+            self.optionsImageView.isHidden = false
+        } else {
+            self.optionsImageView.isHidden = true
+        }
+
+        self.seeMoreButton.isHidden = feedViewModel.hideSeeMore
+
+        self.captionLabel.text = feedViewModel.caption
+
+        self.profileImageView.sd_setImage(with: feedViewModel.profileImageUrl, completed: nil)
+        infoLabel.attributedText = feedViewModel.userInfoText
+
+        self.likeButton.tintColor = feedViewModel.likeButtonTintColor
+        self.likeButton.setImage(feedViewModel.likeButtonImage, for: .normal)
+        feedViewModel.tweet.didLike.bind { (observer, value) in
+            dLogDebug(value)
+            self.likeButton.setImage(feedViewModel.likeButtonImage(value), for: .normal)
+            self.likeButton.tintColor = feedViewModel.likeButtonTintColor(value)
+        }
+
+        self.likesLabel.text = feedViewModel.likes
+        feedViewModel.tweet.likes.bind {  observer, value in
+            self.likesLabel.text = feedViewModel.likes
+        }
+
+        self.commentLabel.text = feedViewModel.comments
+        feedViewModel.tweet.comments.bind { observer, value in
+            self.commentLabel.text = feedViewModel.comments
+        }
+
+        self.replyLabel.text = feedViewModel.replyText
+
+        self.replyLabel.isHidden = feedViewModel.shouldHideReplyLabel
+
+        if feedViewModel.tweet.images.isEmpty {
+            self.imageContentViewHeightConstraint.constant = 0
+            self.contentImageView.isHidden = true
+        } else {
+            self.contentImageView.isHidden = false
+            self.tweetImageView.setImageWith(imageUrl: feedViewModel.tweet.images[0].imageUrl)
+            let imageRatio = feedViewModel.tweet.images[0].width / feedViewModel.tweet.images[0].height
+            self.imageContentViewHeightConstraint.constant = UIScreen.main.bounds.width / imageRatio
+        }
+
     }
 }

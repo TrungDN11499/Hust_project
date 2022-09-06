@@ -30,7 +30,7 @@ class FeedViewModel: ViewModelProtocol {
     init(_ tweet: Tweet) {
         self.input = Input(tweet: self.tweetSubject.asObserver())
         self.output = Output(tweetObservable: self.tweetResultSubject)
-        
+        self.tweet = tweet
         self.tweetSubject.subscribe(onNext: { [weak self] tweet in
             guard let `self` = self else { return }
             self.tweetResultSubject.onNext(tweet)
@@ -43,18 +43,7 @@ class FeedViewModel: ViewModelProtocol {
         return user
     }
     
-    var tweet: Tweet {
-        get {
-//            guard let tweet = self.input.tweet.value else {
-//                return Tweet(user: self.user, tweetId: "", dictionary: ["": ""])
-//            }
-//            return tweet
-            return Tweet()
-        } set {
-//            self.input.tweet.value = newValue
-            print("")
-        }
-    }
+    var tweet: Tweet!
         
     var timestamp: String {
         let formatter = DateComponentsFormatter()

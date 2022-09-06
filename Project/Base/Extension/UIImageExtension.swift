@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 public extension UIImage {
     convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
@@ -128,4 +129,34 @@ public extension UIImage {
         return gradientImage
     }
     
+}
+
+extension UIImageView {
+    func setImageWith(imageUrl: String, placeHolder: UIImage? = nil) {
+        let url = URL(string: imageUrl)
+        let processor = DownsamplingImageProcessor(size: bounds.size)
+        kf.setImage(with: url, placeholder: placeHolder,
+                    options: [
+            .processor(processor),
+            .scaleFactor(UIScreen.main.scale)
+        ])
+    }
+
+    func setImage(with imageURL: String, completion: ((UIImage) -> Void)?) {
+        guard let url = URL(string: imageURL) else {
+            return
+        }
+        let resource = ImageResource(downloadURL: url)
+        KingfisherManager.shared.retrieveImage(with: resource) { result in
+            switch result {
+            case .success(let result):
+                DispatchQueue.main.async {
+                    self.image = result.image
+                    completion?(result.image)
+                }
+            case .failure:
+                break
+            }
+        }
+    }
 }
