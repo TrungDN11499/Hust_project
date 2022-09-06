@@ -14,6 +14,7 @@ import RxSwift
 
 protocol LoginServiceProtocol {
     func login(with model: LoginModel) -> Observable<(AuthDataResult?, Error?)>
+    func fetchCurrentUser() -> Observable<(User?, Error?)>
 }
 
 class LoginService: LoginServiceProtocol {
@@ -36,6 +37,21 @@ class LoginService: LoginServiceProtocol {
             }
             Auth.auth().signIn(withEmail: model.email, password: model.password) { result, error in
                 observer.onNext((result, error))
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func fetchCurrentUser() -> Observable<(User?, Error?)> {
+        return Observable<(User?, Error?)>.create { observer in
+            guard let uid = Auth.auth().currentUser?.uid else { return Disposables.create() }
+            REF_USERS.child(uid).observeSingleEvent(of: .value) { snapshot in
+                guard let dictionary = snapshot.value as? [String: Any] else {
+                    observer.onNext((nil, TriponusUserError.fetchCurrentUserError))
+                    return
+                }
+                let user = User(uid: uid, dictionary: dictionary)
+                observer.onNext((user, nil))
             }
             return Disposables.create()
         }

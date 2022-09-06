@@ -127,8 +127,8 @@ extension LoginViewController: ControllerType {
             .disposed(by: disposeBag)
 
         viewModel.output.loginResultObservable
-            .subscribe(onNext: { [unowned self] (_) in
-                self.gotoHomeController()
+            .subscribe(onNext: { (_) in
+                viewModel.input.fetchUser.onNext(())
             })
             .disposed(by: disposeBag)
 
@@ -137,6 +137,13 @@ extension LoginViewController: ControllerType {
                 self.handleRegister()
             })
             .disposed(by: disposeBag)
+        
+        viewModel.output.fetchUserResultObservable.subscribe(onNext: { [unowned self] user in
+            if user != nil {
+                gUser = user
+                self.gotoHomeController()
+            }
+        }).disposed(by: self.disposeBag)
 
         viewModel.isLoading.asObservable().subscribe(onNext: { [weak self] (value) in
             guard let `self` = self else {return}

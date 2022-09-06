@@ -38,11 +38,6 @@ class MainTabBarController: UITabBarController {
     
     /// configure.
     private func configureViewController() {
-        
-        UserService.shared.fetchUser { user in
-            gUser = user
-        }
-        
         UITabBar.appearance().isTranslucent = false
         UITabBar.appearance().backgroundImage = UIImage(color: UIColor.white)
     

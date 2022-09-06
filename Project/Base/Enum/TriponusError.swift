@@ -100,3 +100,31 @@ extension TriponusTweetsError: LocalizedError {
         }
     }
 }
+
+// MARK: - TriponusUserError
+public enum TriponusUserError: Error {
+    case fetchCurrentUserError
+}
+ 
+extension TriponusUserError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .fetchCurrentUserError:
+            return NSLocalizedString("Fetch Current User Error.", comment: "Fetch Current User Error.")
+        }
+    }
+
+    public var failureReason: String? {
+        switch self {
+        case .fetchCurrentUserError:
+            return NSLocalizedString("Fetch Current User Error.", comment: "")
+        }
+    }
+
+    public var recoverySuggestion: String? {
+        switch self {
+        case .fetchCurrentUserError:
+            return NSLocalizedString("", comment: "")
+        }
+    }
+}

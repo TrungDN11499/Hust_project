@@ -16,12 +16,14 @@ class LoginViewModel: ViewModelProtocol {
         let password: AnyObserver<String>
         let signInDidTap: AnyObserver<Void>
         let signUpDidTap: AnyObserver<Void>
+        let fetchUser: AnyObserver<Void>
     }
 
     struct Output {
         let loginResultObservable: Observable<Bool>
         let signUpResultObservable: Observable<Void>
         let errorsObservable: Observable<Error>
+        let fetchUserResultObservable: Observable<User?>
     }
 
     // MARK: - Public properties
@@ -34,6 +36,8 @@ class LoginViewModel: ViewModelProtocol {
     private let passwordSubject = PublishSubject<String>()
     private let signInDidTapSubject = PublishSubject<Void>()
     private let signUpDidTapSubject = PublishSubject<Void>()
+    private let fetchUserSubject = PublishSubject<Void>()
+    private let fetchUserResultSubject = PublishSubject<User?>()
     private let loginResultSubject = PublishSubject<Bool>()
     private let signUpResultSubject = PublishSubject<Void>()
     private let errorsSubject = PublishSubject<Error>()
@@ -44,17 +48,19 @@ class LoginViewModel: ViewModelProtocol {
             return LoginModel(email: email, password: passwd)
         }
     }
-
+    
     init(loginService: LoginServiceProtocol) {
-        input = Input(email: emailSubject.asObserver(),
-                      password: passwordSubject.asObserver(),
-                      signInDidTap: signInDidTapSubject.asObserver(),
-                      signUpDidTap: signUpDidTapSubject.asObserver())
-
-        output = Output(loginResultObservable: loginResultSubject.asObservable(),
-                        signUpResultObservable: signUpResultSubject.asObservable(),
-                        errorsObservable: errorsSubject.asObservable())
-
+        self.input = Input(email: self.emailSubject.asObserver(),
+                           password: self.passwordSubject.asObserver(),
+                           signInDidTap: self.signInDidTapSubject.asObserver(),
+                           signUpDidTap: self.signUpDidTapSubject.asObserver(),
+                           fetchUser: self.fetchUserSubject.asObserver())
+        
+        self.output = Output(loginResultObservable: self.loginResultSubject.asObservable(),
+                             signUpResultObservable: self.signUpResultSubject.asObservable(),
+                             errorsObservable: self.errorsSubject.asObservable(),
+                             fetchUserResultObservable: self.fetchUserResultSubject.asObservable())
+        
         self.signInDidTapSubject.withLatestFrom(self.loginModelObserver)
             .do(onNext: { [weak self] (_) in
                 guard let `self` = self else {return}
@@ -68,8 +74,20 @@ class LoginViewModel: ViewModelProtocol {
                 } else {
                     self.loginResultSubject.onNext(true)
                 }
-                self.isLoading.accept(false)
+                
             }).disposed(by: self.disposeBag)
+        
+        self.fetchUserSubject.flatMapLatest { _ in
+            return loginService.fetchCurrentUser()
+        }.subscribe(onNext: { [weak self] result in
+            guard let `self` = self else {return}
+            if let error = result.1 {
+                self.errorsSubject.onNext(error)
+            } else {
+                self.fetchUserResultSubject.onNext(result.0)
+            }
+            self.isLoading.accept(false)
+        }).disposed(by: self.disposeBag)
 
         self.signUpDidTapSubject.subscribe(onNext: { [weak self] in
             guard let `self` = self else {return}
