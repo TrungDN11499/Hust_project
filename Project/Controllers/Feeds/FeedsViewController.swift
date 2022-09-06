@@ -65,10 +65,6 @@ class FeedsViewController: BaseViewController, ControllerType {
     }
 
     // MARK: - Selectors
-    @objc private func hanldeRefresh(_ sender: UIRefreshControl) {
-//        self.viewModel.input.fetchTweets.excecute()
-    }
-
     @objc private func handleGoToProfile(_ sender: UIImageView) {
         guard let user = self.user else { return }
         let profileController = ProfileController(user)
@@ -105,6 +101,12 @@ extension FeedsViewController {
 
     func configure(with viewModel: ViewModelType) {
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.rx.controlEvent(.valueChanged)
+               .bind(to: viewModel.input.fetchTweets)
+               .disposed(by: self.disposeBag)
+        self.feedCollectionView.refreshControl = refreshControl
+
         viewModel.output.fetchTweetResultObservable.bind(to: self.feedCollectionView.rx.items(dataSource: viewModel.dataSource)).disposed(by: self.disposeBag)
     
         viewModel.isLoading.asObservable().subscribe(onNext: { [weak self] value in
@@ -112,6 +114,7 @@ extension FeedsViewController {
             if value {
                 self.showLoading()
             } else {
+                refreshControl.endRefreshing()
                 self.hideLoading()
             }
         }).disposed(by: self.disposeBag)

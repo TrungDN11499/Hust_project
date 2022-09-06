@@ -127,7 +127,7 @@ extension LoginViewController: ControllerType {
             .disposed(by: disposeBag)
 
         viewModel.output.loginResultObservable
-            .subscribe(onNext: { (_) in
+            .subscribe(onNext: { _ in
                 viewModel.input.fetchUser.onNext(())
             })
             .disposed(by: disposeBag)
