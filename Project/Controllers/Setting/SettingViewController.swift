@@ -50,10 +50,7 @@ class SettingViewController: UITableViewController {
         let loginService = LoginService()
         let loginControllerViewModel = LoginViewModel(loginService: loginService)
         let loginController = LoginViewController.create(with: loginControllerViewModel)
-        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-            sceneDelegate.changeRootViewController(view: loginController)
-        }
-        
+       
         self.changeRootViewControllerTo(rootViewController: loginController,
                                         withOption: .transitionCrossDissolve,
                                         duration: 0.2)
@@ -105,7 +102,7 @@ extension SettingViewController {
             let groupViewController = GroupsViewController()
             self.navigationController?.pushViewController(groupViewController, animated: true)
         default:
-            let alert = UIAlertController(title: nil, message: "Are your sure you want to log out?", preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: nil, message: "Are your sure you want to log out?", preferredStyle: .alert)
             
             let logoutAction = UIAlertAction(title: "Logout", style: .default) { action in
                 self.dismiss(animated: true) {
