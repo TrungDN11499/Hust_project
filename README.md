@@ -1,7 +1,9 @@
 
 # Hust_project
 
-Project áp dụng mô hinh MVVM và reactive way of coding
+Project đồ án kỹ sư chưa hoàn thiện và đang trong quá trình chuyển công nghệ sang sử dụng rxswift
+
+Project áp dụng mô hinh MVVM và rxswift
 
 Link thiết kế giao diện trên figma
 
